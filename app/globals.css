@@ -15,13 +15,22 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+:root {
+  --bg-color: #fff;
+  --fg-color: #24292f;
+}
 
-  body {
-    color: #fff;
-    background: #000;
-  }
+[data-theme='dark'] {
+  --bg-color: #121212;
+  --fg-color: #fff;
+}
+
+[data-theme='dark'] ::selection {
+  background-color: #0070f3;
+  color: #fff;
+}
+
+body {
+  background: var(--bg-color);
+  color: var(--fg-color);
 }

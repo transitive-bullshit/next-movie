@@ -1,21 +1,9 @@
-// import { DefaultToastOptions, Toaster } from 'react-hot-toast'
-
 import { Footer } from '@/components/Footer/Footer'
-import { PageHead } from '@/components/PageHead/PageHead'
-import { Client } from './client'
+import { Toaster } from '@/components/Toaster/Toaster'
+import { Providers } from './providers'
 
 import './globals.css'
 import styles from './styles.module.css'
-
-// const toastOptions: DefaultToastOptions = {
-//   duration: 5000,
-//   success: {
-//     duration: 4000
-//   },
-//   error: {
-//     duration: 6000
-//   }
-// }
 
 export default function RootLayout({
   children
@@ -25,19 +13,25 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <head>
-        <PageHead />
+        <meta charSet='utf-8' />
+        <meta httpEquiv='Content-Type' content='text/html; charset=utf-8' />
+        <meta
+          name='viewport'
+          content='width=device-width, initial-scale=1, shrink-to-fit=no'
+        />
 
         <link rel='icon' href='/favicon.ico' />
       </head>
 
       <body className={styles.body}>
         <div className={styles.container}>
-          <main className={styles.main}>{children}</main>
+          <Providers>
+            <main className={styles.main}>{children}</main>
 
-          <Client />
-          {/* <Toaster position='top-right' toastOptions={toastOptions} /> */}
+            <Toaster />
 
-          <Footer />
+            <Footer />
+          </Providers>
         </div>
       </body>
     </html>

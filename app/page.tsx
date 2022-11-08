@@ -1,5 +1,8 @@
 import { GitHubShareButton } from '@/components/GitHubShareButton/GitHubShareButton'
 import { githubRepoUrl } from '@/lib/config'
+import { bootstrap } from '@/lib/bootstrap'
+
+bootstrap()
 
 // import styles from './styles.module.css'
 
