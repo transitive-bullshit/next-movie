@@ -1,9 +1,9 @@
 <p>
-  <img alt="Pick your next movie using Next.js" src="/media/banner.jpg">
+  <img alt="Find your next movie with Next.js" src="/public/banner.jpg">
 </p>
 
 <p align="center">
-  Pick your next movie using Next.js
+  Find your next movie with Next.js
 </p>
 
 <p align="center">
@@ -16,8 +16,6 @@
 - [License](#license)
 
 ## Intro
-
-TODO
 
 ## License
 
