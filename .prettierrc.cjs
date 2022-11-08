@@ -12,7 +12,7 @@ module.exports = {
   importOrder: [
     '^(react/(.*)$)|^(react$)|^(next/(.*)$)|^(next$)',
     '<THIRD_PARTY_MODULES>',
-    '^(@/lib/(.*)$)|^(@/components/(.*)$)',
+    '^(@/lib/(.*)$)|^(@/components/(.*)$)|^(@/icons/(.*)$)',
     '^[./]'
   ],
   importOrderSeparation: true,
