@@ -1,0 +1,83 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Movie {
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tmdbId Int    @id @unique
+  imdbId String @unique
+
+  title             String   @db.VarChar(256)
+  originalTitle     String?  @db.VarChar(256)
+  language          String?
+  releaseYear       Int?
+  releaseDate       String?
+  genres            String[]
+  overview          String   @db.VarChar(4096)
+  runtime           Int
+  adult             Boolean  @default(false)
+  budget            Int
+  revenue           Int
+  homepage          String?  @db.VarChar(511)
+  status            String
+  mpaaRating        String?
+  keywords          String[] @default([])
+  countriesOfOrigin String[] @default([])
+  languages         String[] @default([])
+  cast              String[] @default([])
+  director          String?
+  production        String?
+  awardsSummary     String?
+
+  // media
+  posterUrl        String? @db.VarChar(512)
+  backdropUrl      String? @db.VarChar(512)
+  trailerUrl       String? @db.VarChar(512)
+  trailerYouTubeId String?
+
+  // imdb
+  imdbRating Float?
+  imdbVotes  Int?
+  imdbType   String?
+
+  // tmdb
+  tmdbPopularity Float?
+  tmdbRating     Float?
+  tmdbVotes      Int?
+
+  // metacritic
+  metacriticRating Float?
+  metacriticVotes  Int?
+
+  // rotten tomatoes
+  rtCriticRating   Int?
+  rtCriticVotes    Int?
+  rtAudienceRating Int?
+  rtAudienceVotes  Int?
+  rtUrl            String?
+
+  // letterboxd
+  letterboxdScore Int?
+  letterboxdVotes Int?
+
+  // flickmetrix
+  flickMetrixScore Int?
+  flickMetrixId    Int?
+
+  // custom / application-specific)
+  foreign              Boolean? @default(false)
+  relevancyScore       Float?
+  imdbCustomPopularity Float?
+
+  // TODO
+  // @@index([releaseYear, relevancyScore, imdbRating, foreign, genres])
+
+  @@index([imdbId])
+}
