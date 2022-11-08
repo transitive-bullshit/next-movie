@@ -1,9 +1,12 @@
+import { bootstrap } from '@/lib/bootstrap'
 import { Footer } from '@/components/Footer/Footer'
 import { Toaster } from '@/components/Toaster/Toaster'
 import { Providers } from './providers'
 
 import './globals.css'
 import styles from './styles.module.css'
+
+bootstrap()
 
 export default function RootLayout({
   children

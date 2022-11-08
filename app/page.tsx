@@ -1,12 +1,41 @@
 import { GitHubShareButton } from '@/components/GitHubShareButton/GitHubShareButton'
 import { githubRepoUrl } from '@/lib/config'
-import { bootstrap } from '@/lib/bootstrap'
+import { prisma } from '@/lib/prisma'
 
-bootstrap()
+export default async function HomePage() {
+  const res = await prisma.movie.findMany({
+    where: {
+      imdbRating: {
+        gte: 6
+      },
+      releaseYear: {
+        gte: 1972
+      },
+      relevancyScore: {
+        gte: 31000
+      },
+      foreign: false,
+      NOT: {
+        genres: {
+          hasSome: ['stand up', 'documentary', 'short']
+        }
+      }
+    },
+    select: {
+      title: true,
+      releaseYear: true,
+      releaseDate: true,
+      imdbRating: true,
+      imdbVotes: true,
+      tmdbPopularity: true,
+      imdbCustomPopularity: true,
+      relevancyScore: true
+    },
+    orderBy: {
+      relevancyScore: 'desc'
+    }
+  })
 
-// import styles from './styles.module.css'
-
-export default function HomePage() {
   return (
     <>
       <GitHubShareButton repoUrl={githubRepoUrl} />

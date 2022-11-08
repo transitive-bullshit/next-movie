@@ -1,9 +1,9 @@
 <p>
-  <img alt="Find your next movie with Next.js" src="/public/banner.jpg">
+  <img alt="Pick your next movie with Next.js 13" src="/public/banner.jpg">
 </p>
 
 <p align="center">
-  Find your next movie with Next.js
+  Pick your next movie with Next.js 13
 </p>
 
 <p align="center">
