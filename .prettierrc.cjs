@@ -1,5 +1,5 @@
 module.exports = {
-  plugins: [require('@trivago/prettier-plugin-sort-imports')],
+  // plugins: [require('@trivago/prettier-plugin-sort-imports')],
   singleQuote: true,
   jsxSingleQuote: true,
   semi: false,
@@ -8,14 +8,14 @@ module.exports = {
   bracketSpacing: true,
   bracketSameLine: false,
   arrowParens: 'always',
-  trailingComma: 'none',
-  importOrder: [
-    '^(react/(.*)$)|^(react$)|^(next/(.*)$)|^(next$)',
-    '<THIRD_PARTY_MODULES>',
-    '^(@/lib/(.*)$)|^(@/components/(.*)$)|^(@/icons/(.*)$)',
-    '^[./]'
-  ],
-  importOrderSeparation: true,
-  importOrderSortSpecifiers: true,
-  importOrderGroupNamespaceSpecifiers: true
+  trailingComma: 'none'
+  // importOrder: [
+  //   '^(react/(.*)$)|^(react$)|^(next/(.*)$)|^(next$)',
+  //   '<THIRD_PARTY_MODULES>',
+  //   '^(@/lib/(.*)$)|^(@/components/(.*)$)|^(@/icons/(.*)$)',
+  //   '^[./]'
+  // ],
+  // importOrderSeparation: true,
+  // importOrderSortSpecifiers: true,
+  // importOrderGroupNamespaceSpecifiers: true
 }

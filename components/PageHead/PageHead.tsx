@@ -1,5 +1,4 @@
 import * as React from 'react'
-import Head from 'next/head'
 
 import * as config from '@/lib/config'
 
@@ -15,7 +14,7 @@ export const PageHead: React.FC<{
   url = config.url
 }) => {
   return (
-    <Head>
+    <>
       <meta charSet='utf-8' />
       <meta httpEquiv='Content-Type' content='text/html; charset=utf-8' />
       <meta
@@ -60,6 +59,6 @@ export const PageHead: React.FC<{
       <meta property='og:title' content={title} />
       <meta name='twitter:title' content={title} />
       <title>{title}</title>
-    </Head>
+    </>
   )
 }
