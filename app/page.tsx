@@ -27,7 +27,7 @@ export default async function HomePage() {
     orderBy: {
       relevancyScore: 'desc'
     },
-    take: 20
+    take: 100
   })
 
   return (

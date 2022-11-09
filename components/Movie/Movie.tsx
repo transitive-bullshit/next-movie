@@ -109,7 +109,7 @@ export const Movie: React.FC<{
             className={styles.backdrop}
             src={movie.backdropUrl}
             alt={movie.title}
-            sizes='100vw'
+            sizes='"(max-width: 768px) 33vw, (max-width: 1200px) 25vw, 10vw"'
             fill
           />
         )}
@@ -124,7 +124,7 @@ export const Movie: React.FC<{
               className={styles.poster}
               src={movie.posterUrl}
               alt={movie.title}
-              sizes='100vw'
+              sizes='"(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"'
               fill
             />
           </div>
@@ -155,6 +155,7 @@ export const Movie: React.FC<{
         <div className={styles.body}>
           <div className={styles.lh}>
             <div className={styles.plot}>{movie.plot}</div>
+
             <div className={styles.metadata}>
               <div>Genres</div>
 
@@ -219,7 +220,7 @@ export const Movie: React.FC<{
                       blurDataURL={imdbLogoImage.blurDataURL}
                       placeholder='blur'
                       alt='IMDB'
-                      sizes='10vw'
+                      sizes='96px'
                       width={imdbLogoImage.width}
                       height={imdbLogoImage.height}
                     />

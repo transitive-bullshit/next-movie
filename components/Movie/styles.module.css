@@ -44,13 +44,8 @@
 }
 
 .lhs {
-  position: relative;
   min-width: var(--col-width);
   max-width: var(--col-width);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
 }
 
 .frame {
@@ -61,11 +56,13 @@
 }
 
 .poster {
+  display: block;
   position: relative !important;
   width: 100%;
   height: unset !important;
   left: unset !important;
   top: unset !important;
+  right: unset !important;
   bottom: unset !important;
   border-radius: 4px;
   /* object-fit: contain; */
@@ -239,5 +236,5 @@
 
 .detail {
   color: var(--fg-color-1);
-  font-size: 75%;
+  font-size: 70%;
 }
