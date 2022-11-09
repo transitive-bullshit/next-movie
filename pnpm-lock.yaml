@@ -17,6 +17,7 @@ specifiers:
   next-themes: ^0.2.1
   npm-run-all: ^4.1.5
   prettier: ^2.7.1
+  pretty-ms: ^8.0.0
   prisma: ^4.5.0
   react: 18.2.0
   react-dom: 18.2.0
@@ -30,6 +31,7 @@ dependencies:
   fathom-client: 3.5.0
   next: 13.0.3-canary.1_biqbaboplfbrettd7655fr4n2y
   next-themes: 0.2.1_aqiqc4vv7pffmc2pmelp4wqb4e
+  pretty-ms: 8.0.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-hot-toast: 2.4.0_biqbaboplfbrettd7655fr4n2y
@@ -2352,6 +2354,11 @@ packages:
       json-parse-better-errors: 1.0.2
     dev: true
 
+  /parse-ms/3.0.0:
+    resolution: {integrity: sha512-Tpb8Z7r7XbbtBTrM9UhpkzzaMrqA2VXMT3YChzYltwV3P3pM6t8wl7TvpMnSTosz1aQAdVib7kdoys7vYOPerw==}
+    engines: {node: '>=12'}
+    dev: false
+
   /path-exists/4.0.0:
     resolution: {integrity: sha512-ak9Qy5Q7jYb2Wwcey5Fpvg2KoAc/ZIhLSLOSBmRmygPsGwkVVt0fZa0qrtMz+m6tJTAHfZQ8FnmB4MG4LWy7/w==}
     engines: {node: '>=8'}
@@ -2446,6 +2453,13 @@ packages:
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
+
+  /pretty-ms/8.0.0:
+    resolution: {integrity: sha512-ASJqOugUF1bbzI35STMBUpZqdfYKlJugy6JBziGi2EE+AL5JPJGSzvpeVXojxrr0ViUYoToUjb5kjSEGf7Y83Q==}
+    engines: {node: '>=14.16'}
+    dependencies:
+      parse-ms: 3.0.0
+    dev: false
 
   /prisma/4.5.0:
     resolution: {integrity: sha512-9Aeg4qiKlv9Wsjz4NO8k2CzRzlvS3A4FYVJ5+28sBBZ0eEwbiVOE/Jj7v6rZC1tFW2s4GSICQOAyuOjc6WsNew==}

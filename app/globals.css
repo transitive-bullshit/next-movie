@@ -28,17 +28,19 @@ h6 {
 :root {
   --bg-color: #fff;
   --fg-color: #24292f;
+  --fg-color-1: #292d32;
 }
 
 [data-theme='dark'] {
   --bg-color: #121212;
   --fg-color: #fff;
+  --fg-color-1: rgba(255, 255, 255, 0.7);
 }
 
-[data-theme='dark'] ::selection {
+/* [data-theme='dark'] ::selection {
   background-color: #0070f3;
   color: #fff;
-}
+} */
 
 body {
   background: var(--bg-color);

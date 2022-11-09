@@ -1,9 +1,24 @@
 .footer {
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
+}
+
+.settings,
+.copyright,
+.social {
+  flex: 1;
+}
+
+.settings {
+  justify-content: center;
+}
+
+.social {
+  justify-content: flex-end;
 }
 
 .copyright {
@@ -53,14 +68,17 @@
   }
 
   .footer .settings {
+    justify-content: center;
     order: 1;
   }
 
   .footer .social {
+    justify-content: center;
     order: 2;
   }
 
   .footer .copyright {
+    justify-content: center;
     order: 3;
   }
 }

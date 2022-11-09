@@ -4,9 +4,37 @@
   --gap-1: calc(var(--gap) / 2);
   --gap-2: calc(var(--gap) / 4);
 
+  position: relative;
   display: flex;
   flex-direction: row;
   gap: var(--gap);
+  padding: var(--gap);
+}
+
+.backdropWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.backdrop {
+  object-fit: cover;
+  filter: blur(8px);
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(185deg, transparent, #0a1016 95%),
+    linear-gradient(to bottom, transparent, #0a1016 95%);
+  border-radius: 4px;
 }
 
 .lhs {
@@ -33,6 +61,7 @@
   left: unset !important;
   top: unset !important;
   bottom: unset !important;
+  border-radius: 4px;
   /* object-fit: contain; */
 }
 
@@ -52,10 +81,23 @@
   display: flex;
   flex-direction: row;
   gap: var(--gap-1);
+  flex-wrap: wrap;
 }
 
 .title {
   font-size: 2rem;
+}
+
+.releaseYear {
+  white-space: nowrap;
+}
+
+.mpaaRating {
+  white-space: nowrap;
+}
+
+.runtime {
+  white-space: nowrap;
 }
 
 .body {
@@ -75,4 +117,29 @@
   max-width: var(--col-width);
   display: flex;
   flex-direction: column;
+}
+
+.imdbRating {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.imdbStar {
+  width: 2rem;
+  height: 2rem;
+  color: rgb(245, 197, 24);
+  vertical-align: middle;
+}
+
+.imdbRatingValue0 {
+  font-size: 1.2rem;
+  color: var(--fg-color-1);
+}
+
+.imdbRatingValue1 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--fg-color);
 }

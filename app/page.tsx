@@ -35,7 +35,7 @@ export default async function HomePage() {
       <GitHubShareButton repoUrl={githubRepoUrl} />
 
       <div className={styles.movies}>
-        <Movie movie={movies[0]} />
+        <Movie movie={movies[1]} />
       </div>
     </>
   )
