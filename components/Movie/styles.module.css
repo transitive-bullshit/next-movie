@@ -1,5 +1,5 @@
 .movie {
-  --col-width: calc(max(64px, 13vw));
+  --col-width: calc(min(232px, max(64px, 18vw)));
   --gap: calc(max(12px, 1.5vw));
   --gap-1: calc(var(--gap) / 2);
   --gap-2: calc(var(--gap) / 4);
@@ -26,6 +26,7 @@
   object-fit: cover;
   filter: blur(8px);
 }
+
 .overlay {
   position: absolute;
   top: 0;
@@ -35,6 +36,11 @@
   background: linear-gradient(185deg, transparent, #0a1016 95%),
     linear-gradient(to bottom, transparent, #0a1016 95%);
   border-radius: 4px;
+}
+
+[data-theme='light'] .backdropWrapper,
+[data-theme='light'] .overlay {
+  display: none;
 }
 
 .lhs {
@@ -90,14 +96,17 @@
 
 .releaseYear {
   white-space: nowrap;
+  color: var(--fg-color-1);
 }
 
 .mpaaRating {
   white-space: nowrap;
+  color: var(--fg-color-1);
 }
 
 .runtime {
   white-space: nowrap;
+  color: var(--fg-color-1);
 }
 
 .body {
@@ -109,7 +118,7 @@
 .lh {
   display: flex;
   flex-direction: column;
-  gap: var(--gap-1);
+  gap: var(--gap);
 }
 
 .rh {
@@ -117,6 +126,7 @@
   max-width: var(--col-width);
   display: flex;
   flex-direction: column;
+  gap: var(--gap-1);
 }
 
 .imdbRating {
@@ -134,12 +144,100 @@
 }
 
 .imdbRatingValue0 {
-  font-size: 1.2rem;
-  color: var(--fg-color-1);
+  font-size: 1.1rem;
+  color: var(--fg-color-2);
 }
 
 .imdbRatingValue1 {
   font-size: 1.5rem;
   font-weight: 400;
   color: var(--fg-color);
+}
+
+.imdbLogo {
+  width: 48px;
+  height: auto;
+}
+
+.imdbLogoLink {
+  align-self: center;
+}
+
+.metadata {
+  display: grid;
+  grid-template-columns: 0.2fr 1fr;
+  align-items: center;
+  grid-gap: var(--gap-1);
+}
+
+.genres {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--gap-2);
+}
+
+.genre {
+  padding: 5px 10px;
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 16px;
+  white-space: nowrap;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--fg-color-1);
+}
+
+.genre:hover {
+  background: rgba(255, 255, 255, 0.32);
+  color: var(--fg-color);
+}
+
+[data-theme='light'] .genre {
+  background: rgba(0, 0, 0, 0.16);
+}
+
+[data-theme='light'] .genre:hover {
+  background: rgba(0, 0, 0, 0.32);
+}
+
+.label {
+  align-self: start;
+}
+
+.cast {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--gap-2);
+}
+
+.director {
+  color: var(--fg-color-1);
+}
+
+.person {
+  color: var(--fg-color-1);
+}
+
+.ratingsGrid {
+  display: grid;
+  grid-template-columns: 32px max-content 1fr;
+  grid-row-gap: var(--gap);
+  grid-column-gap: var(--gap-1);
+}
+
+.rtRatingImage {
+  width: 32px;
+  height: 32px;
+}
+
+.rtRatingValue {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--fg-color);
+}
+
+.detail {
+  color: var(--fg-color-1);
+  font-size: 75%;
 }

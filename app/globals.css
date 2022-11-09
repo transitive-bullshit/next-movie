@@ -29,12 +29,14 @@ h6 {
   --bg-color: #fff;
   --fg-color: #24292f;
   --fg-color-1: #292d32;
+  --fg-color-2: #31363b;
 }
 
 [data-theme='dark'] {
   --bg-color: #121212;
   --fg-color: #fff;
-  --fg-color-1: rgba(255, 255, 255, 0.7);
+  --fg-color-1: rgba(255, 255, 255, 0.85);
+  --fg-color-2: rgba(255, 255, 255, 0.7);
 }
 
 /* [data-theme='dark'] ::selection {

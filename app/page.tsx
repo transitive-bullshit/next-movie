@@ -27,7 +27,7 @@ export default async function HomePage() {
     orderBy: {
       relevancyScore: 'desc'
     },
-    take: 10
+    take: 20
   })
 
   return (
@@ -35,7 +35,9 @@ export default async function HomePage() {
       <GitHubShareButton repoUrl={githubRepoUrl} />
 
       <div className={styles.movies}>
-        <Movie movie={movies[1]} />
+        {movies.map((movie) => (
+          <Movie key={movie.tmdbId} movie={movie} />
+        ))}
       </div>
     </>
   )

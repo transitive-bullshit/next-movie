@@ -26,4 +26,5 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: calc(max(12px, min(48px, 4vmin)));
 }
