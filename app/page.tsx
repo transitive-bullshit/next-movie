@@ -1,9 +1,12 @@
 import { GitHubShareButton } from '@/components/GitHubShareButton/GitHubShareButton'
+import { Movie } from '@/components/Movie/Movie'
 import { githubRepoUrl } from '@/lib/config'
 import { prisma } from '@/lib/prisma'
 
+import styles from './styles.module.css'
+
 export default async function HomePage() {
-  const res = await prisma.movie.findMany({
+  const movies = await prisma.movie.findMany({
     where: {
       imdbRating: {
         gte: 6
@@ -21,26 +24,19 @@ export default async function HomePage() {
         }
       }
     },
-    select: {
-      title: true,
-      releaseYear: true,
-      releaseDate: true,
-      imdbRating: true,
-      imdbVotes: true,
-      tmdbPopularity: true,
-      imdbCustomPopularity: true,
-      relevancyScore: true
-    },
     orderBy: {
       relevancyScore: 'desc'
-    }
+    },
+    take: 10
   })
 
   return (
     <>
       <GitHubShareButton repoUrl={githubRepoUrl} />
 
-      <p>TODO</p>
+      <div className={styles.movies}>
+        <Movie movie={movies[0]} />
+      </div>
     </>
   )
 }

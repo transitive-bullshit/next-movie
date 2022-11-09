@@ -1,0 +1,78 @@
+.movie {
+  --col-width: calc(max(64px, 13vw));
+  --gap: calc(max(12px, 1.5vw));
+  --gap-1: calc(var(--gap) / 2);
+  --gap-2: calc(var(--gap) / 4);
+
+  display: flex;
+  flex-direction: row;
+  gap: var(--gap);
+}
+
+.lhs {
+  position: relative;
+  min-width: var(--col-width);
+  max-width: var(--col-width);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+.frame {
+  position: relative;
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+}
+
+.poster {
+  position: relative !important;
+  width: 100%;
+  height: unset !important;
+  left: unset !important;
+  top: unset !important;
+  bottom: unset !important;
+  /* object-fit: contain; */
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-2);
+}
+
+.subHeader {
+  display: flex;
+  flex-direction: row;
+  gap: var(--gap-1);
+}
+
+.title {
+  font-size: 2rem;
+}
+
+.body {
+  display: flex;
+  flex-direction: row;
+  gap: var(--gap);
+}
+
+.lh {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-1);
+}
+
+.rh {
+  min-width: var(--col-width);
+  max-width: var(--col-width);
+  display: flex;
+  flex-direction: column;
+}

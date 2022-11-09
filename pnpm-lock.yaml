@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@next/font': ^13.0.2
   '@prisma/client': ^4.5.0
   '@trivago/prettier-plugin-sort-imports': ^3.4.0
   '@types/node': 18.11.8
@@ -23,6 +24,7 @@ specifiers:
   typescript: 4.8.4
 
 dependencies:
+  '@next/font': 13.0.2
   '@prisma/client': 4.5.0_prisma@4.5.0
   clsx: 1.2.1
   fathom-client: 3.5.0
@@ -391,6 +393,10 @@ packages:
     dependencies:
       glob: 7.1.7
     dev: true
+
+  /@next/font/13.0.2:
+    resolution: {integrity: sha512-tLbyZCA1uF8HjbUEN5c4zB453yEzt5aT9VDhXPw1/eJhX4U0Q4lD3s3Bs+gpCjuLrEgILd56jQuzxgrMnWHH8A==}
+    dev: false
 
   /@next/swc-android-arm-eabi/13.0.3-canary.1:
     resolution: {integrity: sha512-Igw1lXoPS5EnZQ7o5npsNUWXDFnMiizhTU7+M54QUaajS7HUSc8slYeqgYj8mnMBp6Pm/x4sJgi8n3MrDECAbw==}

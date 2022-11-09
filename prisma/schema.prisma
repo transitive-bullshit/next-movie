@@ -20,7 +20,7 @@ model Movie {
   releaseYear       Int?
   releaseDate       String?
   genres            String[]
-  overview          String   @db.VarChar(4096)
+  plot              String   @db.VarChar(4096)
   runtime           Int
   adult             Boolean  @default(false)
   budget            Int

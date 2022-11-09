@@ -2,7 +2,7 @@
   "name": "next-movie",
   "version": "0.1.0",
   "private": true,
-  "description": "Pick your next movie using Next.js.",
+  "description": "Pick your next movie using Next.js 13.",
   "author": "Travis Fischer <travis@transitivebullsh.it>",
   "repository": "transitive-bullshit/next-movie",
   "license": "MIT",
@@ -21,6 +21,7 @@
     "test:prettier": "prettier '**/*.{js,jsx,ts,tsx}' --check"
   },
   "dependencies": {
+    "@next/font": "^13.0.2",
     "@prisma/client": "^4.5.0",
     "clsx": "^1.2.1",
     "fathom-client": "^3.5.0",
