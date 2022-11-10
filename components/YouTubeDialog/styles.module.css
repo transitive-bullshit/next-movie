@@ -1,5 +1,6 @@
 .overlay {
   position: fixed;
+  z-index: 1000;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.44);
   animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
@@ -7,6 +8,7 @@
 
 .content {
   position: fixed;
+  z-index: 1001;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

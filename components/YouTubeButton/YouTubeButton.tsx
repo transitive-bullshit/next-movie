@@ -27,7 +27,7 @@ export const YouTubeButton: React.FC<{
           </Tooltip.Trigger>
         </Dialog.Trigger>
 
-        <Tooltip.Portal>
+        <Tooltip.Portal className={styles.tooltipPortal}>
           <Tooltip.Content className={styles.tooltipContent} sideOffset={5}>
             Play YouTube Trailer
             <Tooltip.Arrow className={styles.tooltipArrow} />

@@ -5,14 +5,14 @@
   justify-content: space-around;
   align-items: center;
   margin: 0 auto;
-  max-width: 1200px;
+  max-width: var(--max-width);
   min-height: 100vh;
   padding: 12px;
   gap: 24px;
 }
 
 .main {
-  max-width: 1024px;
+  max-width: var(--max-body-width);
   flex: 1;
   display: flex;
   flex-direction: column;

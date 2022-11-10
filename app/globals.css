@@ -34,6 +34,9 @@ h6 {
   --fg-color: #24292f;
   --fg-color-1: #292d32;
   --fg-color-2: #31363b;
+
+  --max-width: 1200px;
+  --max-body-width: 1024px;
 }
 
 [data-theme='dark'] {
@@ -56,4 +59,8 @@ body {
   background: var(--bg-color);
   color: var(--fg-color);
   line-height: 1.3;
+}
+
+[data-radix-popper-content-wrapper] {
+  z-index: 500 !important;
 }

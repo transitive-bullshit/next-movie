@@ -28,8 +28,7 @@
   gap: 2em;
   padding: 0 12px;
 
-  /* TODO */
-  max-width: 1100px;
+  max-width: var(--max-width);
   height: 100%;
   margin: 0 auto;
 }
