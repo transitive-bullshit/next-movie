@@ -6,21 +6,22 @@ import { createContainer } from 'unstated-next'
 
 function useYouTube() {
   const [movie, setMovie] = React.useState<Movie | null>(null)
-  const [isOpen, setIsOpen] = React.useState<boolean>(false)
+  const [isYouTubeDialogOpen, setIsYouTubeDialogOpen] =
+    React.useState<boolean>(false)
 
   const openYouTubeDialog = React.useCallback((movie: Movie) => {
     setMovie(movie)
-    setIsOpen(true)
+    setIsYouTubeDialogOpen(true)
   }, [])
 
   const closeYouTubeDialog = React.useCallback(() => {
-    setIsOpen(false)
+    setIsYouTubeDialogOpen(false)
     setMovie(null)
   }, [])
 
   return {
     movie,
-    isOpen,
+    isYouTubeDialogOpen,
 
     openYouTubeDialog,
     closeYouTubeDialog

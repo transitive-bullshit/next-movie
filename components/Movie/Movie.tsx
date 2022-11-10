@@ -1,15 +1,14 @@
 import * as React from 'react'
-import * as Dialog from '@radix-ui/react-dialog'
 import Image from 'next/image'
 import Link from 'next/link'
 import ms from 'pretty-ms'
 
 import type { MovieModel } from '@/lib/models'
 import imdbLogoImage from '@/public/logos/imdb.png'
+import { YouTubeButton } from '@/components/YouTubeButton/YouTubeButton'
+import { Star } from '@/icons/Star'
 
 import styles from './styles.module.css'
-import { Star } from '@/icons/Star'
-import { YouTubeButton } from './YouTubeButton'
 
 const rtCriticScoreEmptyImage = '/images/rt-critics-empty.svg'
 const rtCriticScoreFreshImage = '/images/rt-critics-fresh.svg'
@@ -122,7 +121,7 @@ export const Movie: React.FC<{
 
       <div className={styles.lhs}>
         {movie.posterUrl && (
-          <Link className={styles.title} href={`/titles/${movie.tmdbId}`}>
+          <Link className={styles.title} href={`/titles/${movie.id}`}>
             <div className={styles.frame}>
               <Image
                 className={styles.poster}
@@ -140,7 +139,7 @@ export const Movie: React.FC<{
       <div className={styles.main}>
         <div className={styles.header}>
           <div className={styles.leftHeader}>
-            <Link className={styles.title} href={`/titles/${movie.tmdbId}`}>
+            <Link className={styles.title} href={`/titles/${movie.id}`}>
               <h3>{movie.title}</h3>
             </Link>
 

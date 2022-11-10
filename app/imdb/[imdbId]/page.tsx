@@ -11,16 +11,16 @@ import styles from './styles.module.css'
 export default async function MovieDetailPage({
   params
 }: {
-  params: { movieId: string }
+  params: { imdbId: string }
 }) {
-  const id = parseInt(params.movieId)
-  if (!id || isNaN(id)) {
+  const { imdbId } = params
+  if (!imdbId || !imdbId.startsWith('tt')) {
     return notFound()
   }
 
   let movie = await prisma.movie.findUnique({
     where: {
-      id
+      imdbId
     }
   })
 
@@ -42,16 +42,4 @@ export default async function MovieDetailPage({
       </YouTubeDialog>
     </>
   )
-}
-
-export async function generateStaticParams() {
-  const movies = await prisma.movie.findMany({
-    select: {
-      id: true
-    }
-  })
-
-  return movies.map((movie) => ({
-    movieId: `${movie.id}`
-  }))
 }

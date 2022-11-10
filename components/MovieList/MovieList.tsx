@@ -11,7 +11,7 @@ export const MovieList: React.FC<{
   return (
     <div className={styles.movies}>
       {movies.map((movie) => (
-        <Movie key={movie.tmdbId} movie={movie} />
+        <Movie key={movie.id} movie={movie} />
       ))}
     </div>
   )

@@ -18,7 +18,8 @@ export function YouTubeDialog({ children }: { children: React.ReactNode }) {
 }
 
 function YouTubeDialogInner({ children }: { children: React.ReactNode }) {
-  const { isOpen, movie, closeYouTubeDialog } = YouTube.useContainer()
+  const { isYouTubeDialogOpen, movie, closeYouTubeDialog } =
+    YouTube.useContainer()
 
   const onOpenChange = React.useCallback(
     (value: any) => {
@@ -30,11 +31,19 @@ function YouTubeDialogInner({ children }: { children: React.ReactNode }) {
   )
 
   return (
-    <Dialog.Root open={isOpen && !!movie} onOpenChange={onOpenChange}>
+    <Dialog.Root
+      open={isYouTubeDialogOpen && !!movie}
+      onOpenChange={onOpenChange}
+    >
       <Dialog.Portal>
         <Dialog.Overlay className={styles.overlay} />
 
-        <Dialog.Content className={styles.content}>
+        <Dialog.Content
+          className={styles.content}
+          onCloseAutoFocus={(event) => {
+            event.preventDefault()
+          }}
+        >
           {movie && (
             <>
               {/* <Dialog.Title className={styles.title}>
