@@ -5,6 +5,7 @@ import ms from 'pretty-ms'
 
 import type { MovieModel } from '@/lib/models'
 import imdbLogoImage from '@/public/logos/imdb.png'
+import { ActiveLink } from '@/components/ActiveLink/ActiveLink'
 import { YouTubeButton } from '@/components/YouTubeButton/YouTubeButton'
 import { Star } from '@/icons/Star'
 
@@ -31,8 +32,8 @@ const genreMap: Record<string, string> = {
   drama: 'Drama',
   family: 'Family',
   fantasy: 'Fantasy',
-  filmnoir: 'Film noir',
-  gameshow: 'Game show',
+  filmnoir: 'Film Noir',
+  gameshow: 'Game Show',
   history: 'History',
   horror: 'Horror',
   music: 'Music',
@@ -41,12 +42,12 @@ const genreMap: Record<string, string> = {
   news: 'News',
   realitytv: 'Reality TV',
   romance: 'Romance',
-  scifi: 'Science fiction',
+  scifi: 'Science Fiction',
   sport: 'Sports',
-  'stand up': 'Stand up',
-  talkshow: 'Talk show',
+  'stand up': 'Stand Up',
+  talkshow: 'Talk Show',
   thriller: 'Thriller',
-  'tv movie': 'TV movie',
+  'tv movie': 'TV Movie',
   war: 'War',
   western: 'Western'
 }
@@ -121,7 +122,7 @@ export const Movie: React.FC<{
 
       <div className={styles.lhs}>
         {movie.posterUrl && (
-          <Link className={styles.title} href={`/titles/${movie.id}`}>
+          <ActiveLink className={styles.title} href={`/titles/${movie.id}`}>
             <div className={styles.frame}>
               <Image
                 className={styles.poster}
@@ -132,16 +133,16 @@ export const Movie: React.FC<{
                 sizes='"(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"'
               />
             </div>
-          </Link>
+          </ActiveLink>
         )}
       </div>
 
       <div className={styles.main}>
         <div className={styles.header}>
           <div className={styles.leftHeader}>
-            <Link className={styles.title} href={`/titles/${movie.id}`}>
+            <ActiveLink className={styles.title} href={`/titles/${movie.id}`}>
               <h3>{movie.title}</h3>
-            </Link>
+            </ActiveLink>
 
             <div className={styles.subHeader}>
               {movie.releaseYear && (
