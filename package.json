@@ -27,7 +27,6 @@
     "@radix-ui/react-dialog": "^1.0.2",
     "@radix-ui/react-icons": "^1.1.1",
     "clsx": "^1.2.1",
-    "csstype": "^3.1.1",
     "fathom-client": "^3.5.0",
     "lqip-modern": "^2.0.0",
     "next": "13.0.3-canary.1",
@@ -35,7 +34,6 @@
     "pretty-ms": "^8.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-hot-toast": "^2.4.0",
     "react-use": "^17.4.0",
     "react-youtube": "^10.0.0",
     "unstated-next": "^1.1.0"

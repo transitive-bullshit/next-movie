@@ -2,7 +2,6 @@ import { Inter } from '@next/font/google'
 
 import { bootstrap } from '@/lib/bootstrap'
 import { Footer } from '@/components/Footer/Footer'
-import { Toaster } from '@/components/Toaster/Toaster'
 import { Providers } from './providers'
 
 import './globals.css'
@@ -34,8 +33,6 @@ export default function RootLayout({
         <div className={styles.container}>
           <Providers>
             <main className={styles.main}>{children}</main>
-
-            <Toaster />
 
             <Footer />
           </Providers>

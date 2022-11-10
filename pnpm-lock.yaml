@@ -10,7 +10,6 @@ specifiers:
   '@types/react': 18.0.25
   '@types/react-dom': 18.0.8
   clsx: ^1.2.1
-  csstype: ^3.1.1
   eslint: 8.27.0
   eslint-config-next: 13.0.2
   fathom-client: ^3.5.0
@@ -25,7 +24,6 @@ specifiers:
   prisma: ^4.6.0
   react: 18.2.0
   react-dom: 18.2.0
-  react-hot-toast: ^2.4.0
   react-use: ^17.4.0
   react-youtube: ^10.0.0
   typescript: 4.8.4
@@ -37,7 +35,6 @@ dependencies:
   '@radix-ui/react-dialog': 1.0.2_2zx2umvpluuhvlq44va5bta2da
   '@radix-ui/react-icons': 1.1.1_react@18.2.0
   clsx: 1.2.1
-  csstype: 3.1.1
   fathom-client: 3.5.0
   lqip-modern: 2.0.0
   next: 13.0.3-canary.1_biqbaboplfbrettd7655fr4n2y
@@ -45,7 +42,6 @@ dependencies:
   pretty-ms: 8.0.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
-  react-hot-toast: 2.4.0_owo25xnefcwdq3zjgtohz6dbju
   react-use: 17.4.0_biqbaboplfbrettd7655fr4n2y
   react-youtube: 10.0.0_react@18.2.0
   unstated-next: 1.1.0
@@ -1990,14 +1986,6 @@ packages:
       slash: 3.0.0
     dev: true
 
-  /goober/2.1.11_csstype@3.1.1:
-    resolution: {integrity: sha512-5SS2lmxbhqH0u9ABEWq7WPU69a4i2pYcHeCxqaNq6Cw3mnrF0ghWNM4tEGid4dKy8XNIAUbuThuozDHHKJVh3A==}
-    peerDependencies:
-      csstype: ^3.0.10
-    dependencies:
-      csstype: 3.1.1
-    dev: false
-
   /graceful-fs/4.2.10:
     resolution: {integrity: sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==}
     dev: true
@@ -2955,20 +2943,6 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
-    dev: false
-
-  /react-hot-toast/2.4.0_owo25xnefcwdq3zjgtohz6dbju:
-    resolution: {integrity: sha512-qnnVbXropKuwUpriVVosgo8QrB+IaPJCpL8oBI6Ov84uvHZ5QQcTp2qg6ku2wNfgJl6rlQXJIQU5q+5lmPOutA==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      react: '>=16'
-      react-dom: '>=16'
-    dependencies:
-      goober: 2.1.11_csstype@3.1.1
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
-    transitivePeerDependencies:
-      - csstype
     dev: false
 
   /react-is/16.13.1:
