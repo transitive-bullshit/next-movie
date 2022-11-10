@@ -35,8 +35,7 @@
   user-select: none;
 }
 
-.settings a,
-.social a {
+.action {
   cursor: pointer;
   width: 2rem;
   height: 2rem;
@@ -45,13 +44,8 @@
   transition: color 250ms ease-out;
 }
 
-.settings a:hover,
-.social a:hover {
+.action:hover {
   transition: color 50ms ease-out;
-}
-
-.toggleDarkMode:hover {
-  color: #2795e9;
 }
 
 .twitter:hover {

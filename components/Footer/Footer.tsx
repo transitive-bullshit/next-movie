@@ -1,16 +1,13 @@
-'use client'
-
 import * as React from 'react'
+import cs from 'clsx'
 
-import { GitHub, Moon, Sun, Twitter } from '@/icons/index'
+import { DarkModeToggle } from '@/components/DarkModeToggle/DarkModeToggle'
+import { GitHub, Twitter } from '@/icons/index'
 import { copyright, githubRepoUrl, twitter, twitterUrl } from '@/lib/config'
 
-import { useTheme } from '@/lib/hooks/use-theme'
 import styles from './styles.module.css'
 
 export const Footer: React.FC = () => {
-  const { isDarkMode, toggleDarkMode } = useTheme()
-
   return (
     <footer className={styles.footer}>
       <div className={styles.copyright}>
@@ -20,20 +17,12 @@ export const Footer: React.FC = () => {
       </div>
 
       <div className={styles.settings}>
-        <a
-          className={styles.toggleDarkMode}
-          href='#'
-          role='button'
-          onClick={toggleDarkMode}
-          title='Toggle dark mode'
-        >
-          {isDarkMode ? <Moon /> : <Sun />}
-        </a>
+        <DarkModeToggle className={styles.action} />
       </div>
 
       <div className={styles.social}>
         <a
-          className={styles.twitter}
+          className={cs(styles.twitter, styles.action)}
           href={twitterUrl}
           title={`Twitter ${twitter}`}
           target='_blank'
@@ -43,7 +32,7 @@ export const Footer: React.FC = () => {
         </a>
 
         <a
-          className={styles.github}
+          className={cs(styles.github, styles.action)}
           href={githubRepoUrl}
           title='View source on GitHub'
           target='_blank'

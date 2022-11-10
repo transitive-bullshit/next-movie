@@ -1,8 +1,9 @@
 import { Inter } from '@next/font/google'
 
 import { bootstrap } from '@/lib/bootstrap'
-import { Footer } from '@/components/Footer/Footer'
 import { Providers } from './providers'
+import { Footer } from '@/components/Footer/Footer'
+import { Header } from '@/components/Header/Header'
 
 import './globals.css'
 import styles from './styles.module.css'
@@ -32,6 +33,8 @@ export default function RootLayout({
       <body className={styles.body}>
         <div className={styles.container}>
           <Providers>
+            <Header />
+
             <main className={styles.main}>{children}</main>
 
             <Footer />

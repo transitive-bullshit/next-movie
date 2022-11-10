@@ -27,6 +27,10 @@ h6 {
 
 :root {
   --bg-color: #fff;
+  --bg-color-0: rgba(135, 131, 120, 0.15);
+  --bg-color-1: rgb(247, 246, 243);
+  --bg-color-2: rgba(135, 131, 120, 0.15);
+
   --fg-color: #24292f;
   --fg-color-1: #292d32;
   --fg-color-2: #31363b;
@@ -34,6 +38,10 @@ h6 {
 
 [data-theme='dark'] {
   --bg-color: #121212;
+  --bg-color-0: rgb(71, 76, 80);
+  --bg-color-1: rgb(63, 68, 71);
+  --bg-color-2: rgba(135, 131, 120, 0.15);
+
   --fg-color: #fff;
   --fg-color-1: rgba(255, 255, 255, 0.85);
   --fg-color-2: rgba(255, 255, 255, 0.7);

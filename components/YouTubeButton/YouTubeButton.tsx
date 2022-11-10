@@ -21,7 +21,7 @@ export const YouTubeButton: React.FC<{
   return (
     <Tooltip.Provider>
       <Tooltip.Root>
-        <Dialog.Trigger asChild onClick={() => openYouTubeDialog(movie)}>
+        <Dialog.Trigger asChild>
           <Tooltip.Trigger asChild>
             <button className={styles.youtubeButton} onClick={onClick} />
           </Tooltip.Trigger>
