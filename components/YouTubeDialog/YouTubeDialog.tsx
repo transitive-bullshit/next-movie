@@ -102,17 +102,6 @@ function YouTubeDialogContent() {
     }
   }, [width, height])
 
-  // console.log(
-  //   'youtube',
-  //   movie.trailerYouTubeId,
-  //   youtubeOpts.width,
-  //   youtubeOpts.height
-  // )
-
-  // TODO: There is currently a flash of the youtube iframe player presumably
-  // being mounted or re-rendered twice before playing which is a bit jarring,
-  // though I haven't been able to figure out the root cause. It is likely
-  // within the `react-youtube` package that we're using.
   return (
     <YouTubeEmbed
       className={styles.embed}
