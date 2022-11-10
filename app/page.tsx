@@ -3,6 +3,7 @@ import { Movie } from '@/components/Movie/Movie'
 import { githubRepoUrl } from '@/lib/config'
 import { prisma } from '@/lib/prisma'
 
+import { YouTubeDialog } from '../components/YouTubeDialog/YouTubeDialog'
 import styles from './styles.module.css'
 
 export default async function HomePage() {
@@ -34,11 +35,13 @@ export default async function HomePage() {
     <>
       <GitHubShareButton repoUrl={githubRepoUrl} />
 
-      <div className={styles.movies}>
-        {movies.map((movie) => (
-          <Movie key={movie.tmdbId} movie={movie} />
-        ))}
-      </div>
+      <YouTubeDialog>
+        <div className={styles.movies}>
+          {movies.map((movie) => (
+            <Movie key={movie.tmdbId} movie={movie} />
+          ))}
+        </div>
+      </YouTubeDialog>
     </>
   )
 }

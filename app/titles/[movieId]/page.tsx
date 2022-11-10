@@ -5,6 +5,7 @@ import { Movie } from '@/components/Movie/Movie'
 import { githubRepoUrl } from '@/lib/config'
 import { prisma } from '@/lib/prisma'
 
+import { YouTubeDialog } from '../../../components/YouTubeDialog/YouTubeDialog'
 import styles from './styles.module.css'
 
 export default async function MovieDetailPage({
@@ -31,9 +32,11 @@ export default async function MovieDetailPage({
     <>
       <GitHubShareButton repoUrl={githubRepoUrl} />
 
-      <div className={styles.movies}>
-        <Movie movie={movie} />
-      </div>
+      <YouTubeDialog>
+        <div className={styles.movies}>
+          <Movie movie={movie} />
+        </div>
+      </YouTubeDialog>
     </>
   )
 }

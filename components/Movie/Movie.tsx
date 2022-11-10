@@ -1,4 +1,5 @@
 import * as React from 'react'
+import * as Dialog from '@radix-ui/react-dialog'
 import Image from 'next/image'
 import Link from 'next/link'
 import ms from 'pretty-ms'
@@ -8,6 +9,7 @@ import imdbLogoImage from '@/public/logos/imdb.png'
 
 import styles from './styles.module.css'
 import { Star } from '@/icons/Star'
+import { YouTubeButton } from './YouTubeButton'
 
 const rtCriticScoreEmptyImage = '/images/rt-critics-empty.svg'
 const rtCriticScoreFreshImage = '/images/rt-critics-fresh.svg'
@@ -109,8 +111,9 @@ export const Movie: React.FC<{
             className={styles.backdrop}
             src={movie.backdropUrl}
             alt={movie.title}
+            width={movie.backdropWidth!}
+            height={movie.backdropHeight!}
             sizes='"(max-width: 768px) 33vw, (max-width: 1200px) 25vw, 10vw"'
-            fill
           />
         )}
 
@@ -119,35 +122,48 @@ export const Movie: React.FC<{
 
       <div className={styles.lhs}>
         {movie.posterUrl && (
-          <div className={styles.frame}>
-            <Image
-              className={styles.poster}
-              src={movie.posterUrl}
-              alt={movie.title}
-              sizes='"(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"'
-              fill
-            />
-          </div>
+          <Link className={styles.title} href={`/titles/${movie.tmdbId}`}>
+            <div className={styles.frame}>
+              <Image
+                className={styles.poster}
+                src={movie.posterUrl}
+                alt={movie.title}
+                width={movie.posterWidth!}
+                height={movie.posterHeight!}
+                sizes='"(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"'
+              />
+            </div>
+          </Link>
         )}
       </div>
 
       <div className={styles.main}>
         <div className={styles.header}>
-          <h3 className={styles.title}>{movie.title}</h3>
+          <div className={styles.leftHeader}>
+            <Link className={styles.title} href={`/titles/${movie.tmdbId}`}>
+              <h3>{movie.title}</h3>
+            </Link>
 
-          <div className={styles.subHeader}>
-            {movie.releaseYear && (
-              <div className={styles.releaseYear}>{movie.releaseYear}</div>
-            )}
+            <div className={styles.subHeader}>
+              {movie.releaseYear && (
+                <div className={styles.releaseYear}>{movie.releaseYear}</div>
+              )}
 
-            {movie.mpaaRating && (
-              <div className={styles.mpaaRating}>{movie.mpaaRating}</div>
-            )}
+              {movie.mpaaRating && (
+                <div className={styles.mpaaRating}>{movie.mpaaRating}</div>
+              )}
 
-            {movie.runtime && (
-              <div className={styles.runtime}>
-                {ms(movie.runtime * 60 * 1000)}
-              </div>
+              {movie.runtime && (
+                <div className={styles.runtime}>
+                  {ms(movie.runtime * 60 * 1000)}
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className={styles.rightHeader}>
+            {movie.trailerYouTubeId && (
+              <YouTubeButton videoId={movie.trailerYouTubeId} />
             )}
           </div>
         </div>
@@ -234,7 +250,7 @@ export const Movie: React.FC<{
                 </>
               )}
 
-              {movie.rtCriticRating && (
+              {movie.rtUrl && (
                 <>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
@@ -250,7 +266,7 @@ export const Movie: React.FC<{
                   </div>
 
                   <Link
-                    href={movie.rtUrl || '#'}
+                    href={movie.rtUrl}
                     target='_blank'
                     rel='noopener noreferrer'
                     className={styles.score}
@@ -265,7 +281,7 @@ export const Movie: React.FC<{
                 </>
               )}
 
-              {movie.rtAudienceRating && (
+              {movie.rtUrl && (
                 <>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
@@ -281,7 +297,7 @@ export const Movie: React.FC<{
                   </div>
 
                   <Link
-                    href={movie.rtUrl || '#'}
+                    href={movie.rtUrl}
                     target='_blank'
                     rel='noopener noreferrer'
                     className={styles.score}
