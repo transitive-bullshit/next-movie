@@ -2,10 +2,10 @@ import { notFound } from 'next/navigation'
 
 import { GitHubShareButton } from '@/components/GitHubShareButton/GitHubShareButton'
 import { Movie } from '@/components/Movie/Movie'
+import { YouTubeDialog } from '@/components/YouTubeDialog/YouTubeDialog'
 import { githubRepoUrl } from '@/lib/config'
 import { prisma } from '@/lib/prisma'
 
-import { YouTubeDialog } from '../../../components/YouTubeDialog/YouTubeDialog'
 import styles from './styles.module.css'
 
 export default async function MovieDetailPage({
@@ -36,7 +36,7 @@ export default async function MovieDetailPage({
       <GitHubShareButton repoUrl={githubRepoUrl} />
 
       <YouTubeDialog>
-        <div className={styles.movies}>
+        <div className={styles.container}>
           <Movie movie={movie} />
         </div>
       </YouTubeDialog>

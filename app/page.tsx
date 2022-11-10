@@ -1,10 +1,8 @@
 import { GitHubShareButton } from '@/components/GitHubShareButton/GitHubShareButton'
-import { Movie } from '@/components/Movie/Movie'
+import { MovieList } from '@/components/MovieList/MovieList'
+import { YouTubeDialog } from '@/components/YouTubeDialog/YouTubeDialog'
 import { githubRepoUrl } from '@/lib/config'
 import { prisma } from '@/lib/prisma'
-
-import { YouTubeDialog } from '../components/YouTubeDialog/YouTubeDialog'
-import styles from './styles.module.css'
 
 export default async function HomePage() {
   let movies = await prisma.movie.findMany({
@@ -39,11 +37,7 @@ export default async function HomePage() {
       <GitHubShareButton repoUrl={githubRepoUrl} />
 
       <YouTubeDialog>
-        <div className={styles.movies}>
-          {movies.map((movie) => (
-            <Movie key={movie.tmdbId} movie={movie} />
-          ))}
-        </div>
+        <MovieList movies={movies} />
       </YouTubeDialog>
     </>
   )
