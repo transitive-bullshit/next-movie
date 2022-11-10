@@ -18,11 +18,14 @@ export default async function MovieDetailPage({
     return notFound()
   }
 
-  const movie = await prisma.movie.findUnique({
+  let movie = await prisma.movie.findUnique({
     where: {
       tmdbId
     }
   })
+
+  // convert dates to strings
+  movie = JSON.parse(JSON.stringify(movie))
 
   if (!movie) {
     return notFound()

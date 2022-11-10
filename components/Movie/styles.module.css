@@ -242,6 +242,8 @@
 }
 
 .youtubeButton {
+  all: unset;
+  display: block;
   position: relative;
   width: 68px;
   height: 48px;

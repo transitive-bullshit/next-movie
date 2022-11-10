@@ -7,7 +7,7 @@ import { YouTubeDialog } from '../components/YouTubeDialog/YouTubeDialog'
 import styles from './styles.module.css'
 
 export default async function HomePage() {
-  const movies = await prisma.movie.findMany({
+  let movies = await prisma.movie.findMany({
     where: {
       imdbRating: {
         gte: 6
@@ -30,6 +30,9 @@ export default async function HomePage() {
     },
     take: 100
   })
+
+  // convert dates to strings
+  movies = JSON.parse(JSON.stringify(movies))
 
   return (
     <>

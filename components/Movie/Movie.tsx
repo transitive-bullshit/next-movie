@@ -162,9 +162,7 @@ export const Movie: React.FC<{
           </div>
 
           <div className={styles.rightHeader}>
-            {movie.trailerYouTubeId && (
-              <YouTubeButton videoId={movie.trailerYouTubeId} />
-            )}
+            {movie.trailerYouTubeId && <YouTubeButton movie={movie} />}
           </div>
         </div>
 
