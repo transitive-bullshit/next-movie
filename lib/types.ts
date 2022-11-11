@@ -1,34 +1,35 @@
+import { z } from 'zod'
 import { type Movie as MovieModel, type Prisma } from '@prisma/client'
 
 export { type MovieModel, type Prisma }
 
-export interface IMovieSearchOptions {
-  query?: string
+export const MovieSearchOptionsSchema = z.object({
+  query: z.string().optional(),
 
-  releaseYearMin?: number
-  releaseYearMax?: number
+  foreign: z.boolean().optional(),
+  genres: z.string().array().optional(),
 
-  foreign?: boolean
-  genres?: string[]
+  releaseYearMin: z.number().int().nonnegative().optional(),
+  releaseYearMax: z.number().int().nonnegative().optional(),
 
-  imdbRatingMin?: number
-  imdbRatingMax?: number
-  imdbVotesMin?: number
-  imdbVotesMax?: number
+  imdbRatingMin: z.number().nonnegative().lte(10).optional(),
+  imdbRatingMax: z.number().nonnegative().lte(10).optional(),
 
-  relevancyScoreMin?: number
-  relevancyScoreMax?: number
+  relevancyScoreMin: z.number().nonnegative().optional(),
+  relevancyScoreMax: z.number().nonnegative().optional(),
 
-  rtCriticRatingMin?: number
-  rtCriticRatingMax?: number
+  rtCriticRatingMin: z.number().nonnegative().lte(100).optional(),
+  rtCriticRatingMax: z.number().nonnegative().lte(100).optional(),
 
-  rtAudienceRatingMin?: number
-  rtAudienceRatingMax?: number
+  rtAudienceRatingMin: z.number().nonnegative().lte(100).optional(),
+  rtAudienceRatingMax: z.number().nonnegative().lte(100).optional(),
 
-  orderBy?: keyof MovieModel
-  cursor?: number
-  limit?: number
-}
+  orderBy: z.string().optional(),
+  cursor: z.number().nonnegative().optional(),
+  limit: z.number().int().gte(1).lte(100).optional()
+})
+
+export type IMovieSearchOptions = z.infer<typeof MovieSearchOptionsSchema>
 
 export interface IMovieSearchResults {
   results: MovieModel[]
