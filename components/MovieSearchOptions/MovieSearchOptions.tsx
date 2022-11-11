@@ -4,6 +4,7 @@ import * as React from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 
 import { MovieSearchOptionsSchema, IMovieSearchOptions } from '@/lib/types'
+import { genres, genreLabelMap } from '@/lib/genres'
 import { toFormikValidationSchema } from '@/lib/zod-formik-adapter'
 
 import styles from './styles.module.css'
@@ -11,6 +12,7 @@ import styles from './styles.module.css'
 const defaultSearchOptions: IMovieSearchOptions = {
   query: '',
   releaseYearMin: 1972,
+  genres: [],
   imdbRatingMin: 7,
   foreign: false,
   orderBy: 'relevancyScore'
@@ -30,20 +32,17 @@ export const MovieSearchOptions: React.FC = () => {
         }, 500)
       }}
     >
-      {({
-        isSubmitting
-        /* and other goodies */
-      }) => (
+      {({ isSubmitting }) => (
         <Form className={styles.movieSearchOptions}>
           <div>
-            <label>Search</label>
+            <label htmlFor='query'>Search</label>
             <Field name='query' />
             <ErrorMessage name='query' component='div' />
           </div>
 
           <div>
             <div>
-              <label>Year Min</label>
+              <label htmlFor='releaseYearMin'>Year Min</label>
               <Field
                 type='number'
                 name='releaseYearMin'
@@ -54,13 +53,26 @@ export const MovieSearchOptions: React.FC = () => {
             </div>
 
             <div>
-              <label>IMDB Rating Min</label>
+              <label htmlFor='imdbRatingMin'>IMDB Rating Min</label>
               <Field type='number' name='imdbRatingMin' min={0} max={10} />
               <ErrorMessage name='imdbRatingMin' component='div' />
             </div>
 
             <div>
-              <label>Foreign?</label>
+              <label htmlFor='genres'>Genres</label>
+              <Field component='select' name='genres' multiple={true}>
+                {genres.map((genre) => (
+                  <option key={genre} value={genre}>
+                    {genreLabelMap[genre]}
+                  </option>
+                ))}
+              </Field>
+
+              <ErrorMessage name='genres' component='div' />
+            </div>
+
+            <div>
+              <label htmlFor='foreign'>Foreign?</label>
               <Field type='checkbox' name='foreign' />
               <ErrorMessage name='foreign' component='div' />
             </div>
