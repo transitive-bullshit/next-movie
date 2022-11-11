@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import ms from 'pretty-ms'
 
-import type { MovieModel } from '@/lib/models'
+import type { MovieModel } from '@/lib/types'
 import { encodeGenre, genreLabelMap } from '@/lib/genres'
 import imdbLogoImage from '@/public/logos/imdb.png'
 import { ActiveLink } from '@/components/ActiveLink/ActiveLink'

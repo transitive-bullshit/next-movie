@@ -1,7 +1,6 @@
 import { MovieList } from '@/components/MovieList/MovieList'
 import { YouTubeDialog } from '@/components/YouTubeDialog/YouTubeDialog'
 import { prisma } from '@/lib/prisma'
-// import random from 'random'
 
 export default async function HomePage() {
   let movies = await prisma.movie.findMany({
