@@ -6,7 +6,7 @@ import Link, { LinkProps } from 'next/link'
 import cs from 'clsx'
 
 type ActiveLinkProps = LinkProps & {
-  children: React.ReactNode
+  children?: React.ReactNode
   className?: string
   activeClassName?: string
   style?: React.CSSProperties

@@ -33,6 +33,7 @@
     "next": "13.0.3-canary.3",
     "next-themes": "^0.2.1",
     "pretty-ms": "^8.0.0",
+    "random": "^4.0.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-use": "^17.4.0",

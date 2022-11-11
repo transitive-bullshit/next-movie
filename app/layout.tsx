@@ -1,10 +1,12 @@
 import { Inter } from '@next/font/google'
 
-import { bootstrap } from '@/lib/bootstrap'
-import { Providers } from './providers'
 import { Footer } from '@/components/Footer/Footer'
 import { Header } from '@/components/Header/Header'
+import { GitHubShareButton } from '@/components/GitHubShareButton/GitHubShareButton'
+import { bootstrap } from '@/lib/bootstrap'
+import { githubRepoUrl } from '@/lib/config'
 
+import { Providers } from './providers'
 import './globals.css'
 import styles from './styles.module.css'
 
@@ -32,6 +34,8 @@ export default function RootLayout({
 
       <body className={styles.body}>
         <div className={styles.container}>
+          <GitHubShareButton repoUrl={githubRepoUrl} />
+
           <Providers>
             <Header />
 

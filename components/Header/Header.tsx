@@ -14,7 +14,7 @@ export const Header: React.FC = () => {
           className={styles.action}
           activeClassName={styles.active}
         >
-          Next Movie
+          <div className={styles.logo} />
         </ActiveLink>
 
         <div className={styles.rhs}>
