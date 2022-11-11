@@ -44,7 +44,11 @@ export async function generateStaticParams() {
   const movies = await prisma.movie.findMany({
     select: {
       id: true
-    }
+    },
+    orderBy: {
+      relevancyScore: 'desc'
+    },
+    take: 500
   })
 
   return movies.map((movie) => ({

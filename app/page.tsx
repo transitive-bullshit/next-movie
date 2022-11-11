@@ -26,7 +26,7 @@ export default async function HomePage() {
       relevancyScore: 'desc'
     },
     take: 10,
-    skip: 135
+    skip: 125
   })
 
   // convert dates to strings
