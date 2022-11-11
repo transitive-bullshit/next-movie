@@ -12,8 +12,8 @@ import styles from './styles.module.css'
 
 const defaultSearchOptions: IMovieSearchOptions = {
   query: '',
-  releaseYearMin: 1972,
   genres: [],
+  releaseYearMin: 1972,
   imdbRatingMin: 7,
   foreign: false,
   orderBy: 'relevancyScore'

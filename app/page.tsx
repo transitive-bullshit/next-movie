@@ -17,7 +17,8 @@ export default async function HomePage() {
       foreign: false,
       NOT: {
         genres: {
-          hasSome: ['stand up', 'documentary', 'short']
+          // hasSome: ['stand up', 'documentary', 'short']
+          hasSome: ['stand up', 'short']
         }
       }
     },
