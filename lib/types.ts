@@ -15,6 +15,9 @@ export const MovieSearchOptionsSchema = z.object({
   imdbRatingMin: z.number().nonnegative().lte(10).optional(),
   imdbRatingMax: z.number().nonnegative().lte(10).optional(),
 
+  imdbVotesMin: z.number().nonnegative().optional(),
+  imdbVotesMax: z.number().nonnegative().optional(),
+
   relevancyScoreMin: z.number().nonnegative().optional(),
   relevancyScoreMax: z.number().nonnegative().optional(),
 

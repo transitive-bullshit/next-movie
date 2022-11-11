@@ -136,8 +136,8 @@ export async function searchMovies(
   const results: types.MovieModel[] = JSON.parse(JSON.stringify(movies))
 
   return {
+    results,
     total: count,
-    cursor: movies[movies.length - 1]?.id,
-    results
+    cursor: movies[movies.length - 1]?.id
   }
 }
