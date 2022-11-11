@@ -16,9 +16,8 @@ export const DarkModeToggle: React.FC<{ className?: string }> = ({
   return (
     <button
       className={cs(styles.toggleDarkMode, className)}
-      role='button'
+      aria-label='Toggle dark mode'
       onClick={toggleDarkMode}
-      title='Toggle dark mode'
     >
       {isDarkMode ? <Moon /> : <Sun />}
     </button>

@@ -14,8 +14,8 @@ interface IMovieSearchOptions {
   relevancyScoreMax?: number
 
   orderBy?: string
-  take?: number
-  skip?: number
+  cursor?: number
+  limit?: number
 }
 
 export default async function SearhPage() {

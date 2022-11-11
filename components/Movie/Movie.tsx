@@ -4,6 +4,7 @@ import Link from 'next/link'
 import ms from 'pretty-ms'
 
 import type { MovieModel } from '@/lib/models'
+import { encodeGenre, genreLabelMap } from '@/lib/genres'
 import imdbLogoImage from '@/public/logos/imdb.png'
 import { ActiveLink } from '@/components/ActiveLink/ActiveLink'
 import { YouTubeButton } from '@/components/YouTubeButton/YouTubeButton'
@@ -20,37 +21,6 @@ const rtCriticScoreRottenImage = '/images/rt-critics-rotten.svg'
 const rtAudienceScoreEmptyImage = '/images/rt-audience-empty.svg'
 const rtAudienceScoreFreshImage = '/images/rt-audience-fresh.svg'
 const rtAudienceScoreRottenImage = '/images/rt-audience-rotten.svg'
-
-const genreMap: Record<string, string> = {
-  action: 'Action',
-  adventure: 'Adventure',
-  animation: 'Animation',
-  biography: 'Biography',
-  comedy: 'Comedy',
-  crime: 'Crime',
-  documentary: 'Documentary',
-  drama: 'Drama',
-  family: 'Family',
-  fantasy: 'Fantasy',
-  filmnoir: 'Film Noir',
-  gameshow: 'Game Show',
-  history: 'History',
-  horror: 'Horror',
-  music: 'Music',
-  musical: 'Musical',
-  mystery: 'Mystery',
-  news: 'News',
-  realitytv: 'Reality TV',
-  romance: 'Romance',
-  scifi: 'Science Fiction',
-  sport: 'Sports',
-  'stand up': 'Stand Up',
-  talkshow: 'Talk Show',
-  thriller: 'Thriller',
-  'tv movie': 'TV Movie',
-  war: 'War',
-  western: 'Western'
-}
 
 function getApproxHumanizedNumVotes(numVotes: number | null) {
   if (!numVotes) {
@@ -177,10 +147,10 @@ export const Movie: React.FC<{
                 {movie.genres.map((genre) => (
                   <Link
                     key={genre}
-                    href={`/genres/${encodeURIComponent(genre)}`}
+                    href={`/genres/${encodeGenre(genre)}`}
                     className={styles.genre}
                   >
-                    {genreMap[genre] ?? genre}
+                    {genreLabelMap[genre] ?? genre}
                   </Link>
                 ))}
               </div>

@@ -23,7 +23,11 @@ export const YouTubeButton: React.FC<{
       <Tooltip.Root>
         <Dialog.Trigger asChild>
           <Tooltip.Trigger asChild>
-            <button className={styles.youtubeButton} onClick={onClick} />
+            <button
+              className={styles.youtubeButton}
+              onClick={onClick}
+              aria-label='Play YouTube Trailer'
+            />
           </Tooltip.Trigger>
         </Dialog.Trigger>
 

@@ -13,6 +13,7 @@ export const Header: React.FC = () => {
           href='/'
           className={styles.action}
           activeClassName={styles.active}
+          aria-label='Next Movie Logo'
         >
           <div className={styles.logo} />
         </ActiveLink>
