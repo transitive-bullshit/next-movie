@@ -6,7 +6,7 @@ export const isSafari =
 
 export const title = 'Next Movie'
 export const description = 'TODO'
-export const domain = 'nextmovie.vercel.app'
+export const domain = 'next-movie.transitivebullsh.it'
 export const author = 'Travis Fischer'
 export const twitter = 'transitive_bs'
 export const twitterUrl = `https://twitter.com/${twitter}`
@@ -23,11 +23,3 @@ export const socialImageUrl: string | null = null // `${prodUrl}/social.jpg`
 export const bannerImageUrl: string | null = `${prodUrl}/banner.jpg`
 export const twitterIconUrl: string | null = `${prodUrl}/icons/twitter.png`
 export const githubIconUrl: string | null = `${prodUrl}/icons/github.png`
-
-// analytics
-export const fathomId = isDev ? null : process.env.NEXT_PUBLIC_FATHOM_ID
-export const fathomConfig = fathomId
-  ? {
-      excludedDomains: ['localhost', 'localhost:3000']
-    }
-  : undefined
