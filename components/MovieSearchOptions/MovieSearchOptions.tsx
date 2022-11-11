@@ -2,6 +2,7 @@
 
 import * as React from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
+import Select from 'react-select'
 
 import { MovieSearchOptionsSchema, IMovieSearchOptions } from '@/lib/types'
 import { genres, genreLabelMap } from '@/lib/genres'
@@ -17,6 +18,11 @@ const defaultSearchOptions: IMovieSearchOptions = {
   foreign: false,
   orderBy: 'relevancyScore'
 } as any
+
+const genreOptions = genres.map((genre) => ({
+  value: genre,
+  label: genreLabelMap[genre]
+}))
 
 export const MovieSearchOptions: React.FC = () => {
   // TODO: persist search options to local storage
@@ -60,13 +66,15 @@ export const MovieSearchOptions: React.FC = () => {
 
             <div>
               <label htmlFor='genres'>Genres</label>
-              <Field component='select' name='genres' multiple={true}>
+              {/* <Field component='select' name='genres' multiple={true}>
                 {genres.map((genre) => (
                   <option key={genre} value={genre}>
                     {genreLabelMap[genre]}
                   </option>
                 ))}
-              </Field>
+              </Field> */}
+
+              <Select isMulti={true} name='genres' options={genreOptions} />
 
               <ErrorMessage name='genres' component='div' />
             </div>
