@@ -82,10 +82,9 @@ model Movie {
   foreign              Boolean? @default(false)
   relevancyScore       Float?
   imdbCustomPopularity Float?
+  searchL              String?  @db.VarChar(2048)
 
-  // TODO
-  // @@index([releaseYear, relevancyScore, imdbRating, foreign, genres])
-
+  @@index([imdbRating, releaseYear, foreign, genres, searchL, relevancyScore])
   @@index([tmdbId])
   @@index([imdbId])
 }

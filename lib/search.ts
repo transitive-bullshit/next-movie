@@ -7,19 +7,18 @@ export async function searchMovies(
   const where: types.Prisma.MovieWhereInput = {}
 
   if (opts.query) {
-    // TODO: query isn't even case insensitive
-    // const query = opts.query.toLowerCase().trim()
-    const query = opts.query.trim()
+    const query = opts.query.toLowerCase().trim()
 
     // TODO: use a full-text index
     if (query) {
-      where.OR = [
-        { title: { contains: query } },
-        { originalTitle: { contains: query } },
-        { cast: { has: query } },
-        { keywords: { has: query } },
-        { director: { contains: query } }
-      ]
+      where.searchL = { contains: query }
+      // where.OR = [
+      //   { title: { contains: query } },
+      //   { originalTitle: { contains: query } },
+      //   { cast: { has: query } },
+      //   { keywords: { has: query } },
+      //   { director: { contains: query } }
+      // ]
     }
   }
 
