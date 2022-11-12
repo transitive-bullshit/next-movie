@@ -47,8 +47,12 @@ const selectStyles: any = {
 }
 
 export const MovieSearchOptions: React.FC = () => {
-  const { searchOptions, onChangeQuery, onChangeForeign } =
-    Search.useContainer()
+  const {
+    searchOptions,
+    onChangeQuery,
+    onChangeForeign,
+    onChangeReleaseYearMin
+  } = Search.useContainer()
 
   return (
     <form className={styles.movieSearchOptions}>
@@ -79,6 +83,10 @@ export const MovieSearchOptions: React.FC = () => {
             className={styles.select}
             options={genreOptions}
             styles={selectStyles}
+            value={
+              genreOptions.find((o) => o.value === searchOptions.genres?.[0]) ??
+              null
+            }
             // isMulti
             isClearable
           />
@@ -94,7 +102,16 @@ export const MovieSearchOptions: React.FC = () => {
             className={styles.select}
             options={yearOptions}
             styles={selectStyles}
+            value={
+              searchOptions.releaseYearMin
+                ? {
+                    value: searchOptions.releaseYearMin,
+                    label: `${searchOptions.releaseYearMin}`
+                  }
+                : null
+            }
             isClearable
+            onChange={onChangeReleaseYearMin}
           />
         </div>
 
@@ -108,6 +125,14 @@ export const MovieSearchOptions: React.FC = () => {
             className={styles.select}
             options={imdbRatingOptions}
             styles={selectStyles}
+            value={
+              searchOptions.imdbRatingMin
+                ? {
+                    value: searchOptions.imdbRatingMin,
+                    label: searchOptions.imdbRatingMin?.toFixed()
+                  }
+                : null
+            }
             isClearable
           />
         </div>

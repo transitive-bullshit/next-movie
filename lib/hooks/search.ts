@@ -53,15 +53,25 @@ function useSearch() {
     setSearchOptions((options) => ({ ...options, foreign: !options.foreign }))
   }, [])
 
+  const onChangeReleaseYearMin = React.useCallback(
+    (opts: { value: number } | null) => {
+      setSearchOptions((options) => ({
+        ...options,
+        releaseYearMin: opts?.value
+      }))
+    },
+    []
+  )
+
   // React.useEffect(() => {
   // }, [searchOptions])
 
   return {
     searchOptions,
-    setSearchOptions,
 
     onChangeQuery,
     onChangeForeign,
+    onChangeReleaseYearMin,
 
     searchResult,
     error,
