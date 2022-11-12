@@ -64,3 +64,10 @@ body {
 [data-radix-popper-content-wrapper] {
   z-index: 500 !important;
 }
+
+[data-nextjs-scroll-focus-boundary] {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

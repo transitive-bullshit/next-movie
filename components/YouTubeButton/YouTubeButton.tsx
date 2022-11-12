@@ -17,7 +17,6 @@ function isMouseEventNewTab(event: MouseEvent) {
     event.metaKey || // apple
     (event.button && event.button == 1) // middle click, >IE9 + everyone else
   ) {
-    // allow user to open link in new tab
     return true
   } else {
     return false
@@ -32,27 +31,21 @@ export const YouTubeButton: React.FC<{
   const onClick = React.useCallback(
     (event: MouseEvent) => {
       if (isMouseEventNewTab(event)) {
-        return
+        // open link in new tab
+      } else {
+        event.preventDefault()
+        openYouTubeDialog(movie)
       }
-
-      return openYouTubeDialog(movie)
     },
     [movie, openYouTubeDialog]
   )
-
-  const onClickLink = React.useCallback((event: MouseEvent) => {
-    if (!isMouseEventNewTab(event)) {
-      event.preventDefault()
-      return false
-    }
-  }, [])
 
   return (
     <Tooltip.Provider>
       <Tooltip.Root>
         <Link
           href={movie.trailerUrl!}
-          onClick={onClickLink}
+          onClick={onClick}
           target='_blank'
           rel='noopener noreferrer'
           aria-label='YouTube Trailer'
@@ -61,7 +54,6 @@ export const YouTubeButton: React.FC<{
             <Tooltip.Trigger asChild>
               <button
                 className={styles.youtubeButton}
-                onClick={onClick}
                 aria-label='Play YouTube Trailer'
               />
             </Tooltip.Trigger>

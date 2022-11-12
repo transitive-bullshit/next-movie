@@ -1,98 +1,145 @@
 'use client'
 
 import * as React from 'react'
-import { Formik, Form, Field, ErrorMessage } from 'formik'
 import Select from 'react-select'
+import cs from 'clsx'
 
-import { MovieSearchOptionsSchema, IMovieSearchOptions } from '@/lib/types'
+import * as Checkbox from '@radix-ui/react-checkbox'
+import { CheckIcon } from '@radix-ui/react-icons'
+
 import { genres, genreLabelMap } from '@/lib/genres'
-import { toFormikValidationSchema } from '@/lib/zod-formik-adapter'
+import { SearchIcon } from '@/icons/Search'
+import { Search } from '@/lib/hooks/search'
 
 import styles from './styles.module.css'
-
-const defaultSearchOptions: IMovieSearchOptions = {
-  query: '',
-  genres: [],
-  releaseYearMin: 1972,
-  imdbRatingMin: 7,
-  foreign: false,
-  orderBy: 'relevancyScore'
-} as any
 
 const genreOptions = genres.map((genre) => ({
   value: genre,
   label: genreLabelMap[genre]
 }))
 
+const minYear = 1900
+const maxYear = 2022
+
+const yearOptions = [...new Array(maxYear - minYear + 1)]
+  .map((_, index) => ({
+    value: minYear + index,
+    label: `${minYear + index}`
+  }))
+  .reverse()
+
+const imdbRatingOptions = [
+  6, 6.1, 6.2, 6.3, 6.4, 6.5, 6.6, 6.7, 6.8, 6.9, 7, 7.1, 7.2, 7.3, 7.4, 7.5,
+  7.6, 7.7, 7.8, 7.9, 8, 8.1, 8.2, 8.3, 8.4, 8.5, 8.6, 8.7, 8.8, 8.9, 9, 9.1,
+  9.2, 9.3, 9.4, 9.5
+]
+  .map((value) => ({
+    value,
+    label: value.toFixed(1)
+  }))
+  .reverse()
+
+const selectStyles: any = {
+  option: (provided: any, state: any) => ({
+    ...provided,
+    color: state.isSelected ? '#fff' : '#24292f'
+  })
+}
+
 export const MovieSearchOptions: React.FC = () => {
-  // TODO: persist search options to local storage
+  const { searchOptions, onChangeQuery, onChangeForeign } =
+    Search.useContainer()
 
   return (
-    <Formik
-      initialValues={defaultSearchOptions}
-      validationSchema={toFormikValidationSchema(MovieSearchOptionsSchema)}
-      onSubmit={(values, { setSubmitting }) => {
-        console.log(values)
-        setTimeout(() => {
-          setSubmitting(false)
-        }, 500)
-      }}
-    >
-      {({ isSubmitting }) => (
-        <Form className={styles.movieSearchOptions}>
-          <div>
-            <label htmlFor='query'>Search</label>
-            <Field name='query' />
-            <ErrorMessage name='query' component='div' />
+    <form className={styles.movieSearchOptions}>
+      <div className={styles.mainOptions}>
+        <div className={cs(styles.field, styles.queryField)}>
+          <label htmlFor='query'>Search</label>
+
+          <div className={styles.searchInput}>
+            <SearchIcon className={styles.searchIcon} />
+
+            <input
+              type='text'
+              name='query'
+              className={cs(styles.input, styles.textInput)}
+              value={searchOptions.query}
+              onChange={onChangeQuery}
+            />
           </div>
+        </div>
+
+        <div className={cs(styles.field, styles.genresField)}>
+          <label htmlFor='genres'>Genre</label>
+
+          <Select
+            name='genres'
+            instanceId='genres'
+            placeholder='Any'
+            className={styles.select}
+            options={genreOptions}
+            styles={selectStyles}
+            // isMulti
+            isClearable
+          />
+        </div>
+
+        <div className={cs(styles.field, styles.releaseYearMinField)}>
+          <label htmlFor='releaseYearMin'>Min Release Year</label>
+
+          <Select
+            name='releaseYearMin'
+            instanceId='releaseYearMin'
+            placeholder='Any'
+            className={styles.select}
+            options={yearOptions}
+            styles={selectStyles}
+            isClearable
+          />
+        </div>
+
+        <div className={cs(styles.field, styles.imdbRatingMinField)}>
+          <label htmlFor='imdbRatingMin'>Min IMDB Rating</label>
+
+          <Select
+            name='imdbRatingMin'
+            instanceId='imdbRatingMin'
+            placeholder='Any'
+            className={styles.select}
+            options={imdbRatingOptions}
+            styles={selectStyles}
+            isClearable
+          />
+        </div>
+
+        <div
+          className={cs(styles.field, styles.booleanField, styles.foreignField)}
+        >
+          <label htmlFor='foreign'>Foreign</label>
+
+          {/* <input
+            type='checkbox'
+            name='foreign'
+            className={styles.input}
+            checked={searchOptions.foreign}
+            onChange={onChangeForeign}
+          />
+ */}
 
           <div>
-            <div>
-              <label htmlFor='releaseYearMin'>Year Min</label>
-              <Field
-                type='number'
-                name='releaseYearMin'
-                min={1900}
-                max={2022}
-              />
-              <ErrorMessage name='releaseYearMin' component='div' />
-            </div>
-
-            <div>
-              <label htmlFor='imdbRatingMin'>IMDB Rating Min</label>
-              <Field type='number' name='imdbRatingMin' min={0} max={10} />
-              <ErrorMessage name='imdbRatingMin' component='div' />
-            </div>
-
-            <div>
-              <label htmlFor='genres'>Genres</label>
-              {/* <Field component='select' name='genres' multiple={true}>
-                {genres.map((genre) => (
-                  <option key={genre} value={genre}>
-                    {genreLabelMap[genre]}
-                  </option>
-                ))}
-              </Field> */}
-
-              <Select isMulti={true} name='genres' options={genreOptions} />
-
-              <ErrorMessage name='genres' component='div' />
-            </div>
-
-            <div>
-              <label htmlFor='foreign'>Foreign?</label>
-              <Field type='checkbox' name='foreign' />
-              <ErrorMessage name='foreign' component='div' />
-            </div>
-
-            <div>
-              <button type='submit' disabled={isSubmitting}>
-                Submit
-              </button>
-            </div>
+            <Checkbox.Root
+              className={cs(styles.checkbox)}
+              name='foreign'
+              checked={searchOptions.foreign}
+              onCheckedChange={onChangeForeign}
+            >
+              <Checkbox.Indicator className={styles.checkboxIndicator}>
+                <CheckIcon />
+              </Checkbox.Indicator>
+            </Checkbox.Root>
           </div>
-        </Form>
-      )}
-    </Formik>
+        </div>
+      </div>
+    </form>
   )
 }

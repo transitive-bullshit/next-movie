@@ -1,12 +1,18 @@
-'use client'
-
 import { MovieSearchOptions } from '@/components/MovieSearchOptions/MovieSearchOptions'
-import { YouTubeDialog } from '@/components/YouTubeDialog/YouTubeDialog'
+import { MovieSearchResults } from '@/components/MovieSearchResults/MovieSearchResults'
+import { defaultSearchOptions } from '@/lib/config'
+import { searchMovies } from '@/lib/search'
 
-export default function SearchPage() {
+import { Providers } from './providers'
+
+export default async function SearchPage() {
+  const result = await searchMovies(defaultSearchOptions)
+
   return (
-    <YouTubeDialog>
+    <Providers fallbackData={result}>
       <MovieSearchOptions />
-    </YouTubeDialog>
+
+      <MovieSearchResults />
+    </Providers>
   )
 }

@@ -7,14 +7,15 @@ export async function searchMovies(
   const where: types.Prisma.MovieWhereInput = {}
 
   if (opts.query) {
-    const query = opts.query.toLowerCase().trim()
+    // TODO: query isn't even case insensitive
+    // const query = opts.query.toLowerCase().trim()
+    const query = opts.query.trim()
 
     // TODO: use a full-text index
     if (query) {
       where.OR = [
         { title: { contains: query } },
         { originalTitle: { contains: query } },
-        { plot: { contains: query } },
         { cast: { has: query } },
         { keywords: { has: query } },
         { director: { contains: query } }
@@ -134,6 +135,8 @@ export async function searchMovies(
 
   // convert dates to strings
   const results: types.MovieModel[] = JSON.parse(JSON.stringify(movies))
+
+  console.log('search', opts, JSON.stringify(where, null, 2), results.length)
 
   return {
     results,

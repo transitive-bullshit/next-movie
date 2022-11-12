@@ -1,3 +1,5 @@
+import { IMovieSearchOptions } from './types'
+
 export const environment = process.env.NODE_ENV || 'development'
 export const isDev = environment === 'development'
 export const isServer = typeof window === 'undefined'
@@ -23,3 +25,12 @@ export const socialImageUrl: string | null = null // `${prodUrl}/social.jpg`
 export const bannerImageUrl: string | null = `${prodUrl}/banner.jpg`
 export const twitterIconUrl: string | null = `${prodUrl}/icons/twitter.png`
 export const githubIconUrl: string | null = `${prodUrl}/icons/github.png`
+
+export const defaultSearchOptions: IMovieSearchOptions = {
+  query: '',
+  genres: [],
+  releaseYearMin: 1972,
+  imdbRatingMin: 7,
+  foreign: false,
+  orderBy: 'relevancyScore'
+}

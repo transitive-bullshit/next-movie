@@ -1,0 +1,91 @@
+.movieSearchOptions {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+}
+
+.mainOptions {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+}
+
+.field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5em;
+}
+
+.booleanField {
+  flex: 0;
+}
+
+.select {
+  width: 100%;
+}
+
+.input {
+  all: unset;
+  border-radius: 6px;
+  background: var(--bg-color-2);
+  font-size: 13px;
+}
+
+.textInput {
+  width: 100%;
+  padding: 11px 16px 11px 34px;
+}
+
+.field label {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.searchInput {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+}
+
+.searchIcon {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  top: calc(50% - 9px);
+  left: 10px;
+  color: var(--fg-color-2);
+}
+
+.checkbox {
+  all: unset;
+
+  width: 25px;
+  height: 25px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* --blackA7: hsla(0, 0%, 0%, 0.141);
+  box-shadow: 0 2px 10px var(--blackA7); */
+
+  border-radius: 6px;
+  background: var(--bg-color-2);
+}
+.checkbox:hover {
+  --violetA3: hsla(254, 100%, 50%, 0.051);
+  background: var(--bg-color-1);
+}
+.checkbox:focus {
+  box-shadow: 0 0 0 2px #000;
+}
+
+.checkboxIndicator {
+  --violet11: hsl(250, 43%, 48%);
+  color: var(--violet11);
+}
