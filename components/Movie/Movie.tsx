@@ -84,7 +84,7 @@ export const Movie: React.FC<{
             alt={movie.title}
             width={movie.backdropWidth!}
             height={movie.backdropHeight!}
-            sizes='"(max-width: 768px) 33vw, (max-width: 1200px) 25vw, 10vw"'
+            sizes='(max-width: 768px) 33vw, (max-width: 1200px) 25vw, 10vw'
           />
         )}
 
@@ -101,7 +101,7 @@ export const Movie: React.FC<{
                 alt={movie.title}
                 width={movie.posterWidth!}
                 height={movie.posterHeight!}
-                sizes='"(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"'
+                sizes='(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw'
               />
             ) : (
               <div className={cs(styles.poster, styles.emptyPoster)} />
