@@ -22,6 +22,10 @@ export const MovieSearchResults: React.FC = () => {
 
   return (
     <div className={styles.movieSearchResults}>
+      <p className={styles.totalResults}>
+        {searchResult.total.toLocaleString()} results
+      </p>
+
       <MovieList movies={searchResult.results} />
     </div>
   )

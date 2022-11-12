@@ -2,6 +2,7 @@ import * as React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import ms from 'pretty-ms'
+import cs from 'clsx'
 
 import type { MovieModel } from '@/lib/types'
 import { encodeGenre, genreLabelMap } from '@/lib/genres'
@@ -91,9 +92,9 @@ export const Movie: React.FC<{
       </div>
 
       <div className={styles.lhs}>
-        {movie.posterUrl && (
-          <ActiveLink className={styles.title} href={`/titles/${movie.id}`}>
-            <div className={styles.frame}>
+        <ActiveLink className={styles.title} href={`/titles/${movie.id}`}>
+          <div className={styles.frame}>
+            {movie.posterUrl ? (
               <Image
                 className={styles.poster}
                 src={movie.posterUrl}
@@ -102,9 +103,11 @@ export const Movie: React.FC<{
                 height={movie.posterHeight!}
                 sizes='"(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"'
               />
-            </div>
-          </ActiveLink>
-        )}
+            ) : (
+              <div className={cs(styles.poster, styles.emptyPoster)} />
+            )}
+          </div>
+        </ActiveLink>
       </div>
 
       <div className={styles.main}>
@@ -163,7 +166,7 @@ export const Movie: React.FC<{
                 </>
               )}
 
-              {movie.cast?.length && (
+              {movie.cast?.length ? (
                 <>
                   <div className={styles.label}>Cast</div>
 
@@ -176,7 +179,7 @@ export const Movie: React.FC<{
                     ))}
                   </div>
                 </>
-              )}
+              ) : null}
             </div>
           </div>
 

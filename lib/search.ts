@@ -36,7 +36,7 @@ export async function searchMovies(
     }
   }
 
-  if (opts.foreign) {
+  if (opts.foreign !== undefined) {
     where.foreign = !!opts.foreign
   }
 

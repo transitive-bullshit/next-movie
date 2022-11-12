@@ -39,6 +39,7 @@ const imdbRatingOptions = [
   }))
   .reverse()
 
+// TODO: these styles need a lot of work
 const selectStyles: any = {
   option: (provided: any, state: any) => ({
     ...provided,
@@ -136,7 +137,7 @@ export const MovieSearchOptions: React.FC = () => {
               searchOptions.imdbRatingMin
                 ? {
                     value: searchOptions.imdbRatingMin,
-                    label: searchOptions.imdbRatingMin?.toFixed()
+                    label: searchOptions.imdbRatingMin?.toFixed(1)
                   }
                 : null
             }

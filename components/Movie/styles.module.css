@@ -63,6 +63,15 @@
   /* object-fit: contain; */
 }
 
+.emptyPoster {
+  aspect-ratio: 230 / 345;
+  background-color: #dbdbdb;
+  background-image: url('/images/image-not-found.svg');
+  background-repeat: no-repeat;
+  background-size: 75%;
+  background-position: center center;
+}
+
 .main {
   display: flex;
   flex-direction: column;

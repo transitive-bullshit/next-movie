@@ -2,6 +2,7 @@
 
 import * as React from 'react'
 import { createContainer } from 'unstated-next'
+// import { useLocalStorage, useDebounce } from 'react-use'
 import useSWR from 'swr'
 
 import { IMovieSearchOptions, IMovieSearchResults } from '@/lib/types'
@@ -24,8 +25,17 @@ const fetcher = ({
     }
   }).then((res) => res.json())
 
+const localStorageSearchOptionsKey = 'search-options-v0.0.1'
+
 function useSearch() {
-  const [searchOptions, setSearchOptions] = React.useState(defaultSearchOptions)
+  // const [cachedSearchOptions, setCachedSearchOptions] = useLocalStorage(
+  //   localStorageSearchOptionsKey,
+  //   defaultSearchOptions
+  // )
+  const [searchOptions, setSearchOptions] = React.useState<IMovieSearchOptions>(
+    // cachedSearchOptions ?? defaultSearchOptions
+    defaultSearchOptions
+  )
   const {
     data: searchResult,
     error,
@@ -80,6 +90,14 @@ function useSearch() {
   const onChangeForeign = React.useCallback(() => {
     setSearchOptions((options) => ({ ...options, foreign: !options.foreign }))
   }, [])
+
+  // useDebounce(
+  //   () => {
+  //     setCachedSearchOptions(searchOptions)
+  //   },
+  //   2000,
+  //   [searchOptions]
+  // )
 
   return {
     searchOptions,

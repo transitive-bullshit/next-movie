@@ -4,15 +4,22 @@ import { defaultSearchOptions } from '@/lib/config'
 import { searchMovies } from '@/lib/search'
 
 import { Providers } from './providers'
+import styles from './styles.module.css'
 
 export default async function SearchPage() {
   const result = await searchMovies(defaultSearchOptions)
 
   return (
     <Providers fallbackData={result}>
-      <MovieSearchOptions />
+      <div className={styles.container}>
+        <h1 className={styles.title}>Search</h1>
 
-      <MovieSearchResults />
+        <div className={styles.body}>
+          <MovieSearchOptions />
+
+          <MovieSearchResults />
+        </div>
+      </div>
     </Providers>
   )
 }

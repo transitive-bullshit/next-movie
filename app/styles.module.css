@@ -8,7 +8,6 @@
   max-width: var(--max-width);
   min-height: 100vh;
   padding: 12px;
-  gap: 24px;
 }
 
 .main {
