@@ -1,44 +1,67 @@
 'use client'
 
 import * as React from 'react'
-import LoadingSpinner from 'react-spinners/BeatLoader'
+import useInfiniteScroll from 'react-infinite-scroll-hook'
 
 import { MovieList } from '@/components/MovieList/MovieList'
+import { LoadingSpinner } from '@/components/LoadingSpinner/LoadingSpinner'
 import { Search } from '@/lib/hooks/search'
-import { useTheme } from '@/lib/hooks/use-theme'
 
 import styles from './styles.module.css'
 
+// TODO: better error UI
+
 export const MovieSearchResults: React.FC = () => {
-  const { searchResult, error, isLoading, isValidating } = Search.useContainer()
-  const { isDarkMode } = useTheme()
+  const {
+    searchResults,
+    searchResultMovies,
+    error,
+    isEmpty,
+    isLoading,
+    isValidating,
+    hasMoreSearchResults,
+    loadMoreSearchResults
+  } = Search.useContainer()
+
+  const [sentryRef] = useInfiniteScroll({
+    loading: isLoading || isValidating,
+    hasNextPage: hasMoreSearchResults,
+    onLoadMore: loadMoreSearchResults,
+    disabled: !!error,
+    rootMargin: '0px 0px 50% 0px'
+  })
 
   if (error) {
     return <div>Error loading results</div>
   }
 
-  // TODO: better error UI
-  // TODO: use infinite scroll
-
   return (
     <div className={styles.movieSearchResults}>
       <div className={styles.detail}>
-        <LoadingSpinner
-          loading={isLoading || isValidating}
-          color={isDarkMode ? '#fff' : '#24292f'}
-          className={styles.loading}
-        />
+        <LoadingSpinner loading={isLoading || isValidating} />
 
         <div className={styles.totalResults}>
           {isLoading
             ? 'Loading results'
-            : searchResult
-            ? `${searchResult.total.toLocaleString()} results`
+            : isEmpty
+            ? 'No results'
+            : searchResults?.length
+            ? `${searchResults[0].total.toLocaleString()} results`
             : ''}
         </div>
       </div>
 
-      {searchResult && <MovieList movies={searchResult.results} />}
+      {searchResultMovies && <MovieList movies={searchResultMovies} />}
+
+      {hasMoreSearchResults && (
+        <div ref={sentryRef} className={styles.loadMore}>
+          <LoadingSpinner
+            loading={
+              !!searchResultMovies?.length && (isLoading || isValidating)
+            }
+          />
+        </div>
+      )}
     </div>
   )
 }

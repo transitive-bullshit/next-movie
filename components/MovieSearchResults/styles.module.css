@@ -18,9 +18,12 @@
   font-size: 90%;
 }
 
-.loading {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.loadMore {
+  position: relative;
+  width: 100%;
+  min-height: 24px;
+  margin: 0 auto calc(max(12px, min(48px, 4vmin)));
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }

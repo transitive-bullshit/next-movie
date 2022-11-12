@@ -3,7 +3,7 @@
 import * as React from 'react'
 import { createContainer } from 'unstated-next'
 // import { useLocalStorage, useDebounce } from 'react-use'
-import useSWR from 'swr'
+import useSWRInfinite from 'swr/infinite'
 
 import { IMovieSearchOptions, IMovieSearchResults } from '@/lib/types'
 import { defaultSearchOptions } from '@/lib/config'
@@ -36,23 +36,40 @@ function useSearch() {
     // cachedSearchOptions ?? defaultSearchOptions
     defaultSearchOptions
   )
+
+  const getKey = React.useCallback(
+    (_: number, previousPageData: IMovieSearchResults) => {
+      const body: IMovieSearchOptions = { ...searchOptions }
+      const url = '/api/search'
+
+      if (previousPageData) {
+        const cursor =
+          previousPageData.results[previousPageData.results.length - 1]?.id
+        if (cursor) {
+          body.cursor = cursor
+        }
+      }
+
+      return { url, body }
+    },
+    [searchOptions]
+  )
+
   const {
-    data: searchResult,
+    data: searchResults,
     error,
+    size: searchPageNum,
+    setSize: setSearchPageNum,
     isLoading,
     isValidating
-  } = useSWR<IMovieSearchResults, Error>(
-    { url: '/api/search', body: searchOptions },
-    fetcher,
-    {
-      // treat movie results as immutable
-      keepPreviousData: true,
-      revalidateIfStale: true,
-      revalidateOnFocus: false,
-      revalidateOnReconnect: false,
-      dedupingInterval: 24 * 60 * 1000
-    }
-  )
+  } = useSWRInfinite<IMovieSearchResults, Error>(getKey, fetcher, {
+    // treat movie results as immutable
+    keepPreviousData: true,
+    revalidateIfStale: true,
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+    dedupingInterval: 24 * 60 * 1000
+  })
 
   const onChangeQuery = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -92,6 +109,25 @@ function useSearch() {
     setSearchOptions((options) => ({ ...options, foreign: !options.foreign }))
   }, [])
 
+  const searchResultMovies = React.useMemo(
+    () => searchResults?.flatMap((searchResult) => searchResult.results),
+    [searchResults]
+  )
+
+  const loadMoreSearchResults = React.useCallback(() => {
+    console.log('loadMoreSearchResults', searchPageNum + 1)
+    setSearchPageNum(searchPageNum + 1)
+  }, [searchPageNum, setSearchPageNum])
+
+  const pageSize = defaultSearchOptions.limit ?? 10
+  const isEmpty = searchResults?.[0]?.results?.length === 0
+  const hasMoreSearchResults = !(
+    isEmpty ||
+    (searchResults &&
+      searchResults[searchResults.length - 1]?.results?.length < pageSize)
+  )
+  // const isRefreshing = isValidating && searchResults?.length === searchPageNum
+
   // useDebounce(
   //   () => {
   //     setCachedSearchOptions(searchOptions)
@@ -109,10 +145,16 @@ function useSearch() {
     onChangeImdbRatingMin,
     onChangeGenres,
 
-    searchResult,
+    searchResults,
+    searchResultMovies,
     error,
+    isEmpty,
     isLoading,
-    isValidating
+    isValidating,
+    hasMoreSearchResults,
+    searchPageNum,
+
+    loadMoreSearchResults
   }
 }
 

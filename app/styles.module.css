@@ -16,6 +16,5 @@
   max-width: var(--max-body-width);
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }

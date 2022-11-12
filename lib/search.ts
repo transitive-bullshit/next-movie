@@ -114,7 +114,7 @@ export async function searchMovies(
     ? { [opts.orderBy]: 'desc' }
     : { relevancyScore: 'desc' }
   const cursor = opts.cursor ? { id: opts.cursor } : undefined
-  const take = Math.max(1, Math.min(100, opts.limit || 25))
+  const take = Math.max(1, Math.min(100, opts.limit || 10))
   const skip = opts.cursor ? 1 : 0
 
   const [count, movies] = await Promise.all([

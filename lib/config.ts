@@ -32,5 +32,6 @@ export const defaultSearchOptions: IMovieSearchOptions = {
   releaseYearMin: 1972,
   imdbRatingMin: 7,
   foreign: false,
-  orderBy: 'relevancyScore'
+  orderBy: 'relevancyScore',
+  limit: 10
 }
