@@ -44,6 +44,10 @@ const selectStyles: any = {
   option: (provided: any, state: any) => ({
     ...provided,
     color: state.isSelected ? '#fff' : '#24292f'
+  }),
+  control: (provided: any) => ({
+    ...provided,
+    height: '100%'
   })
 }
 
@@ -159,7 +163,7 @@ export const MovieSearchOptions: React.FC = () => {
               onCheckedChange={onChangeForeign}
             >
               <Checkbox.Indicator className={styles.checkboxIndicator}>
-                <CheckIcon />
+                <CheckIcon width={18} height={18} />
               </Checkbox.Indicator>
             </Checkbox.Root>
           </div>

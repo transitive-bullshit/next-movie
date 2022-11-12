@@ -4,9 +4,23 @@
   flex-direction: column;
 }
 
-.totalResults {
+.detail {
+  position: relative;
+  width: 100%;
   margin: 0 auto 24px;
-  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.totalResults {
   font-style: italic;
   font-size: 90%;
+}
+
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

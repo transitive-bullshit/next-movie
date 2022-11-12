@@ -25,7 +25,7 @@ const fetcher = ({
     }
   }).then((res) => res.json())
 
-const localStorageSearchOptionsKey = 'search-options-v0.0.1'
+// const localStorageSearchOptionsKey = 'search-options-v0.0.1'
 
 function useSearch() {
   // const [cachedSearchOptions, setCachedSearchOptions] = useLocalStorage(
@@ -47,7 +47,7 @@ function useSearch() {
     {
       // treat movie results as immutable
       keepPreviousData: true,
-      revalidateIfStale: false,
+      revalidateIfStale: true,
       revalidateOnFocus: false,
       revalidateOnReconnect: false
     }
@@ -87,10 +87,12 @@ function useSearch() {
     []
   )
 
-  const onChangeForeign = React.useCallback(() => {
+  const onChangeForeign = React.useCallback((e: any) => {
+    console.log('change foreign', e)
     setSearchOptions((options) => ({ ...options, foreign: !options.foreign }))
   }, [])
 
+  console.log(searchOptions)
   // useDebounce(
   //   () => {
   //     setCachedSearchOptions(searchOptions)
