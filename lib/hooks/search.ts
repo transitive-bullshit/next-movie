@@ -35,6 +35,7 @@ function useSearch() {
     { url: '/api/search', body: searchOptions },
     fetcher,
     {
+      // treat movie results as immutable
       keepPreviousData: true,
       revalidateIfStale: false,
       revalidateOnFocus: false,
@@ -49,8 +50,11 @@ function useSearch() {
     []
   )
 
-  const onChangeForeign = React.useCallback(() => {
-    setSearchOptions((options) => ({ ...options, foreign: !options.foreign }))
+  const onChangeGenres = React.useCallback((opts: { value: string } | null) => {
+    setSearchOptions((options) => ({
+      ...options,
+      genres: opts?.value ? [opts.value] : []
+    }))
   }, [])
 
   const onChangeReleaseYearMin = React.useCallback(
@@ -63,8 +67,19 @@ function useSearch() {
     []
   )
 
-  // React.useEffect(() => {
-  // }, [searchOptions])
+  const onChangeImdbRatingMin = React.useCallback(
+    (opts: { value: number } | null) => {
+      setSearchOptions((options) => ({
+        ...options,
+        imdbRatingMin: opts?.value
+      }))
+    },
+    []
+  )
+
+  const onChangeForeign = React.useCallback(() => {
+    setSearchOptions((options) => ({ ...options, foreign: !options.foreign }))
+  }, [])
 
   return {
     searchOptions,
@@ -72,6 +87,8 @@ function useSearch() {
     onChangeQuery,
     onChangeForeign,
     onChangeReleaseYearMin,
+    onChangeImdbRatingMin,
+    onChangeGenres,
 
     searchResult,
     error,

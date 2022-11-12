@@ -50,8 +50,10 @@ export const MovieSearchOptions: React.FC = () => {
   const {
     searchOptions,
     onChangeQuery,
-    onChangeForeign,
-    onChangeReleaseYearMin
+    onChangeGenres,
+    onChangeReleaseYearMin,
+    onChangeImdbRatingMin,
+    onChangeForeign
   } = Search.useContainer()
 
   return (
@@ -84,11 +86,16 @@ export const MovieSearchOptions: React.FC = () => {
             options={genreOptions}
             styles={selectStyles}
             value={
-              genreOptions.find((o) => o.value === searchOptions.genres?.[0]) ??
-              null
+              searchOptions.genres?.[0]
+                ? {
+                    value: searchOptions.genres[0],
+                    label: genreLabelMap[searchOptions.genres[0]]
+                  }
+                : null
             }
             // isMulti
             isClearable
+            onChange={onChangeGenres}
           />
         </div>
 
@@ -134,6 +141,7 @@ export const MovieSearchOptions: React.FC = () => {
                 : null
             }
             isClearable
+            onChange={onChangeImdbRatingMin}
           />
         </div>
 
@@ -141,15 +149,6 @@ export const MovieSearchOptions: React.FC = () => {
           className={cs(styles.field, styles.booleanField, styles.foreignField)}
         >
           <label htmlFor='foreign'>Foreign</label>
-
-          {/* <input
-            type='checkbox'
-            name='foreign'
-            className={styles.input}
-            checked={searchOptions.foreign}
-            onChange={onChangeForeign}
-          />
- */}
 
           <div>
             <Checkbox.Root
