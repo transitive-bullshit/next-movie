@@ -136,7 +136,7 @@ export async function searchMovies(
   // convert dates to strings
   const results: types.MovieModel[] = JSON.parse(JSON.stringify(movies))
 
-  console.log('search', opts, JSON.stringify(where, null, 2), results.length)
+  // console.log('search', opts, JSON.stringify(where, null, 2), results.length)
 
   return {
     results,

@@ -49,7 +49,8 @@ function useSearch() {
       keepPreviousData: true,
       revalidateIfStale: true,
       revalidateOnFocus: false,
-      revalidateOnReconnect: false
+      revalidateOnReconnect: false,
+      dedupingInterval: 24 * 60 * 1000
     }
   )
 

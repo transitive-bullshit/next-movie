@@ -37,6 +37,11 @@
   font-size: 13px;
   border: 1px solid hsl(0, 0%, 80%);
   transition: all 100%;
+  color: #24292f;
+}
+
+.input::selection {
+  background-color: #b5d7ff;
 }
 
 .input:hover {
