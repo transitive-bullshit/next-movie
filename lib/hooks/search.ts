@@ -88,11 +88,9 @@ function useSearch() {
   )
 
   const onChangeForeign = React.useCallback((e: any) => {
-    console.log('change foreign', e)
     setSearchOptions((options) => ({ ...options, foreign: !options.foreign }))
   }, [])
 
-  console.log(searchOptions)
   // useDebounce(
   //   () => {
   //     setCachedSearchOptions(searchOptions)

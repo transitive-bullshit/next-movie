@@ -12,7 +12,7 @@ export default async function SearchPage() {
   return (
     <Providers fallbackData={result}>
       <div className={styles.container}>
-        <h1 className={styles.title}>Search</h1>
+        <h1 className={styles.title}>Movie Search</h1>
 
         <div className={styles.body}>
           <MovieSearchOptions />
