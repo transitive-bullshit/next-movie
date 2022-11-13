@@ -1,18 +1,17 @@
+import * as React from 'react'
 import { Inter } from '@next/font/google'
 
 import { Footer } from '@/components/Footer/Footer'
 import { Header } from '@/components/Header/Header'
 import { GitHubShareButton } from '@/components/GitHubShareButton/GitHubShareButton'
-import { bootstrap } from '@/lib/bootstrap'
 import { githubRepoUrl } from '@/lib/config'
 
 import { Providers } from './providers'
-import './globals.css'
 import styles from './styles.module.css'
 
-const inter = Inter()
+import './globals.css'
 
-bootstrap()
+const inter = Inter()
 
 export default function RootLayout({
   children

@@ -43,7 +43,8 @@ function getApproxHumanizedNumVotes(numVotes: number | null) {
 
 export const Movie: React.FC<{
   movie: MovieModel
-}> = ({ movie }) => {
+  priority?: boolean
+}> = ({ movie, priority }) => {
   const rtAudienceVotesApprox = getApproxHumanizedNumVotes(
     movie.rtAudienceVotes
   )
@@ -76,8 +77,8 @@ export const Movie: React.FC<{
 
   return (
     <div className={styles.movie}>
-      <div className={styles.backdropWrapper}>
-        {/* {movie.backdropUrl && (
+      {/* <div className={styles.backdropWrapper}>
+        {movie.backdropUrl && (
           <Image
             className={styles.backdrop}
             src={movie.backdropUrl}
@@ -86,10 +87,10 @@ export const Movie: React.FC<{
             height={movie.backdropHeight!}
             sizes='(max-width: 768px) 33vw, (max-width: 1200px) 25vw, 10vw'
           />
-        )} */}
+        )}
 
         <div className={styles.overlay} />
-      </div>
+      </div> */}
 
       <div className={styles.lhs}>
         <ActiveLink className={styles.title} href={`/titles/${movie.id}`}>
@@ -102,6 +103,7 @@ export const Movie: React.FC<{
                 width={movie.posterWidth!}
                 height={movie.posterHeight!}
                 sizes='(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw'
+                priority
               />
             ) : (
               <div className={cs(styles.poster, styles.emptyPoster)} />

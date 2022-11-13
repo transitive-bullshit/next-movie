@@ -33,7 +33,7 @@ export default async function MovieDetailPage({
     <>
       <YouTubeDialog>
         <div className={styles.container}>
-          <Movie movie={movie} />
+          <Movie movie={movie} priority />
         </div>
       </YouTubeDialog>
     </>
@@ -48,7 +48,8 @@ export async function generateStaticParams() {
     orderBy: {
       relevancyScore: 'desc'
     },
-    take: 500
+    // TODO
+    take: 10
   })
 
   return movies.map((movie) => ({
