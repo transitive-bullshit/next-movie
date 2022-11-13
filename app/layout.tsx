@@ -36,7 +36,7 @@ export default function RootLayout({
           <GitHubShareButton repoUrl={githubRepoUrl} />
 
           <Providers>
-            {/* <Header /> */}
+            <Header />
 
             <main className={styles.main}>{children}</main>
 
