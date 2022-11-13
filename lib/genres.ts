@@ -1,3 +1,5 @@
+import { IMovieSearchOptions } from './types'
+
 export const genreLabelMap: Record<string, string> = {
   action: 'Action',
   adventure: 'Adventure',
@@ -38,3 +40,19 @@ export function encodeGenre(genre: string) {
 export function decodeGenre(genre: string) {
   return genre?.replace(/-/g, ' ').toLowerCase().trim()
 }
+
+export const defaultSearchOptionsByGenre: Record<string, IMovieSearchOptions> =
+  Object.fromEntries(
+    genres.map((genre) => [
+      genre,
+      {
+        query: '',
+        genres: [genre],
+        releaseYearMin: 1900,
+        imdbRatingMin: 0,
+        foreign: false,
+        orderBy: 'relevancyScore',
+        limit: 10
+      }
+    ])
+  )

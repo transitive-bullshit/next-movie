@@ -1,8 +1,7 @@
 'use client'
 
-import { unstable_serialize } from 'swr'
+import { unstable_serialize, SWRConfig } from 'swr'
 
-import { SWRConfig } from 'swr'
 import { YouTubeDialog } from '@/components/YouTubeDialog/YouTubeDialog'
 import { Search } from '@/lib/hooks/search'
 import { defaultSearchOptions } from '@/lib/config'
@@ -15,8 +14,11 @@ export function Providers({
   fallbackData?: any
 }) {
   const fallback = {
-    [unstable_serialize({ url: '/api/search', body: defaultSearchOptions })]:
-      fallbackData
+    [unstable_serialize({
+      url: '/api/search',
+      key: 'search',
+      body: defaultSearchOptions
+    })]: fallbackData
   }
 
   return (

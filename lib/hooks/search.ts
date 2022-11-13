@@ -27,14 +27,24 @@ const fetcher = ({
 
 // const localStorageSearchOptionsKey = 'search-options-v0.0.1'
 
-function useSearch() {
+interface ISearchConfig {
+  key: string
+  initialSearchOptions: IMovieSearchOptions
+}
+
+function useSearch(
+  config: ISearchConfig = {
+    key: 'search',
+    initialSearchOptions: defaultSearchOptions
+  }
+) {
   // const [cachedSearchOptions, setCachedSearchOptions] = useLocalStorage(
-  //   localStorageSearchOptionsKey,
-  //   defaultSearchOptions
+  //   `${localStorageSearchOptionsKey}-config.key}`,
+  //   config.initialSearchOptions
   // )
   const [searchOptions, setSearchOptions] = React.useState<IMovieSearchOptions>(
     // cachedSearchOptions ?? defaultSearchOptions
-    defaultSearchOptions
+    config.initialSearchOptions
   )
 
   const getKey = React.useCallback(
@@ -50,9 +60,9 @@ function useSearch() {
         }
       }
 
-      return { url, body }
+      return { url, body, key: config.key }
     },
-    [searchOptions]
+    [searchOptions, config.key]
   )
 
   const {
