@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { ActiveLink } from '@/components/ActiveLink/ActiveLink'
-import { DarkModeToggle } from '@/components/DarkModeToggle/DarkModeToggle'
+// import { DarkModeToggle } from '@/components/DarkModeToggle/DarkModeToggle'
 
 import styles from './styles.module.css'
 
@@ -35,7 +35,7 @@ export const Header: React.FC = () => {
             About
           </ActiveLink>
 
-          <DarkModeToggle className={styles.action} />
+          {/* <DarkModeToggle className={styles.action} /> */}
         </div>
       </div>
     </header>
