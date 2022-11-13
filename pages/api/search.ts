@@ -30,10 +30,11 @@ export default async function searchHandler(
 
   const result = await searchMovies(searchOptions)
 
-  res.setHeader(
-    'Cache-Control',
-    'public, s-maxage=3600, max-age=3600, stale-while-revalidate=3600'
-  )
+  // TODO: search results can't be cached because the params are a POST body
+  // res.setHeader(
+  //   'Cache-Control',
+  //   'public, s-maxage=3600, max-age=3600, stale-while-revalidate=3600'
+  // )
 
   return res.status(200).json(result)
 }

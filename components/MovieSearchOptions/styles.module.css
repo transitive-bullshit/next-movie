@@ -111,5 +111,7 @@
 }
 
 .checkboxIndicator {
+  position: relative;
+  top: 2px;
   color: #111;
 }

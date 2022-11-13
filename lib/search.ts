@@ -2,7 +2,7 @@ import { prisma } from './prisma'
 import * as types from './types'
 
 export async function searchMovies(
-  opts: types.IMovieSearchOptions
+  opts: types.IMovieSearchOptions & { skip?: number }
 ): Promise<types.IMovieSearchResults> {
   const where: types.Prisma.MovieWhereInput = {}
 
@@ -115,7 +115,7 @@ export async function searchMovies(
     : { relevancyScore: 'desc' }
   const cursor = opts.cursor ? { id: opts.cursor } : undefined
   const take = Math.max(1, Math.min(100, opts.limit || 10))
-  const skip = opts.cursor ? 1 : 0
+  const skip = opts.skip ?? (opts.cursor ? 1 : 0)
 
   const [count, movies] = await Promise.all([
     prisma.movie.count({

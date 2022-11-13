@@ -34,8 +34,24 @@ export const MovieSearchOptionsSchema = z.object({
 
 export type IMovieSearchOptions = z.infer<typeof MovieSearchOptionsSchema>
 
+export const NextMovieOptionsSchema = z.object({
+  searchOptions: MovieSearchOptionsSchema,
+
+  seed: z.string().min(1),
+  total: z.number().int().nonnegative().optional(),
+  seq: z.number().int().nonnegative().optional()
+})
+
+export type INextMovieOptions = z.infer<typeof NextMovieOptionsSchema>
+
 export interface IMovieSearchResults {
   results: MovieModel[]
   total: number
   cursor?: number
+}
+
+export interface INextMovieResult {
+  movie: MovieModel
+  total: number
+  seq: number
 }
