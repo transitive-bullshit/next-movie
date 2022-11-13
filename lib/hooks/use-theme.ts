@@ -8,7 +8,7 @@ export function useTheme() {
   const [hasMounted, setHasMounted] = React.useState(false)
   const { resolvedTheme, setTheme } = useNextTheme()
 
-  const isDarkMode = hasMounted && resolvedTheme === 'dark'
+  const isDarkMode = !hasMounted || resolvedTheme === 'dark'
 
   const toggleDarkMode = React.useCallback(
     (e?: React.MouseEvent) => {

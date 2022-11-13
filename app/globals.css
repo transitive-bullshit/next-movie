@@ -50,15 +50,6 @@ h6 {
   --fg-color-2: rgba(255, 255, 255, 0.7);
 }
 
-[data-theme='dark'] ::selection {
-  background-color: #255b98;
-}
-
-/* [data-theme='dark'] ::selection {
-  background-color: #0070f3;
-  color: #fff;
-} */
-
 body {
   background: var(--bg-color);
   color: var(--fg-color);

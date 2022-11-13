@@ -6,13 +6,15 @@ export const PageHead: React.FC<{
   title?: string
   description?: string
   image?: string
-  url?: string
+  pathname?: string
 }> = ({
   title = config.title,
   description = config.description,
   image = config.socialImageUrl,
-  url = config.url
+  pathname = ''
 }) => {
+  const url = pathname ? `${config.url}${pathname}` : config.url
+
   return (
     <>
       <meta name='robots' content='index,follow' />

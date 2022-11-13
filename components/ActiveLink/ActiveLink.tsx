@@ -23,6 +23,7 @@ export const ActiveLink = ({
   className,
   activeClassName,
   onClick,
+  prefetch,
   ...props
 }: ActiveLinkProps) => {
   const pathname = usePathname()
@@ -64,6 +65,7 @@ export const ActiveLink = ({
       {...props}
       className={cs(className, disabled && activeClassName)}
       href={href}
+      prefetch={disabled ? false : prefetch}
       style={styleOverride}
       onClick={onClickOverride}
     >

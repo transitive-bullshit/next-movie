@@ -20,6 +20,11 @@ export const port = process.env.PORT || '3000'
 export const prodUrl = `https://${domain}`
 export const url = isDev ? `http://localhost:${port}` : prodUrl
 
+export const apiBaseUrl =
+  isDev || !process.env.VERCEL_URL
+    ? `${url}/api`
+    : `https://${process.env.VERCEL_URL}/api`
+
 // these must all be absolute urls
 export const socialImageUrl: string | null = null // `${prodUrl}/social.jpg`
 export const bannerImageUrl: string | null = `${prodUrl}/banner.jpg`
