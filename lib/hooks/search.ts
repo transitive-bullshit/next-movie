@@ -125,7 +125,6 @@ function useSearch(
   )
 
   const loadMoreSearchResults = React.useCallback(() => {
-    console.log('loadMoreSearchResults', searchPageNum + 1)
     setSearchPageNum(searchPageNum + 1)
   }, [searchPageNum, setSearchPageNum])
 

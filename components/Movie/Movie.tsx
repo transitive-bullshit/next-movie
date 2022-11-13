@@ -77,7 +77,7 @@ export const Movie: React.FC<{
   return (
     <div className={styles.movie}>
       <div className={styles.backdropWrapper}>
-        {movie.backdropUrl && (
+        {/* {movie.backdropUrl && (
           <Image
             className={styles.backdrop}
             src={movie.backdropUrl}
@@ -86,7 +86,7 @@ export const Movie: React.FC<{
             height={movie.backdropHeight!}
             sizes='(max-width: 768px) 33vw, (max-width: 1200px) 25vw, 10vw'
           />
-        )}
+        )} */}
 
         <div className={styles.overlay} />
       </div>
