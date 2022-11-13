@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Inter } from '@next/font/google'
 
 import { Footer } from '@/components/Footer/Footer'
-// import { Header } from '@/components/Header/Header'
+import { Header } from '@/components/Header/Header'
 import { GitHubShareButton } from '@/components/GitHubShareButton/GitHubShareButton'
 import { githubRepoUrl } from '@/lib/config'
 
@@ -36,7 +36,7 @@ export default function RootLayout({
           <GitHubShareButton repoUrl={githubRepoUrl} />
 
           <Providers>
-            {/* <Header /> */}
+            <Header />
 
             <main className={styles.main}>{children}</main>
 
