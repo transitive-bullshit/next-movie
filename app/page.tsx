@@ -27,7 +27,7 @@ export default async function HomePage() {
       relevancyScore: 'desc'
     },
     take: 10,
-    skip: 125
+    skip: 0
   })
 
   const movies = await convertMovies(results)

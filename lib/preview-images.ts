@@ -89,12 +89,18 @@ export const getPreviewImage = pMemoize(createPreviewImage, {
 })
 
 export function getCacheKey(url: string) {
-  const parsed = new URL(url)
+  try {
+    const parsed = new URL(url)
 
-  if (parsed.hostname === 'image.tmdb.org') {
-    const parts = parsed.pathname.split('/')
-    return parts[parts.length - 1]
-  } else {
-    return url
+    if (parsed.hostname === 'image.tmdb.org') {
+      const parts = parsed.pathname.split('/')
+      return parts[parts.length - 1]
+    } else {
+      // TODO: use normalized url
+    }
+  } catch (err) {
+    // TODO: should we just ignore invalid urls here?
   }
+
+  return url
 }
