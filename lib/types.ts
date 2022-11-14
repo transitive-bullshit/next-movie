@@ -58,15 +58,7 @@ export interface INextMovieResult {
   nextSeq: number
 }
 
-export interface PreviewImage {
-  originalWidth: number
-  originalHeight: number
-  dataURIBase64: string
-}
-
 export interface MovieModel extends Omit<Movie, 'createdAt' | 'updatedAt'> {
   createdAt: string
   updatedAt: string
-
-  posterPlaceholderURL?: string
 }

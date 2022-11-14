@@ -22,8 +22,6 @@
     "test:prettier": "prettier '**/*.{js,jsx,ts,tsx}' --check"
   },
   "dependencies": {
-    "@keyvhq/core": "^1.6.14",
-    "@keyvhq/redis": "^1.6.21",
     "@next/bundle-analyzer": "^13.0.3",
     "@next/font": "^13.0.3",
     "@prisma/client": "^4.6.1",
@@ -31,8 +29,6 @@
     "@radix-ui/react-dialog": "^1.0.2",
     "@radix-ui/react-tooltip": "^1.0.2",
     "clsx": "^1.2.1",
-    "got": "^12.5.2",
-    "lqip-modern": "^2.0.0",
     "next": "13.0.3",
     "next-themes": "^0.2.1",
     "p-map": "^5.5.0",

@@ -1,4 +1,3 @@
-import { enrichMoviesWithPreviewImages } from './preview-images'
 import * as types from './types'
 
 export async function convertMovies(
@@ -10,9 +9,6 @@ export async function convertMovies(
     createdAt: movie.createdAt?.toISOString(),
     updatedAt: movie.updatedAt?.toISOString()
   }))
-
-  // add preview images
-  await enrichMoviesWithPreviewImages(models)
 
   return models
 }
@@ -27,9 +23,6 @@ export async function convertMovie(
     createdAt: movie.createdAt?.toISOString(),
     updatedAt: movie.updatedAt?.toISOString()
   }
-
-  // add preview images
-  await enrichMoviesWithPreviewImages([model])
 
   return model
 }

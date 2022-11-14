@@ -38,12 +38,14 @@ model Movie {
   awardsSummary     String?
 
   // images
-  posterUrl      String? @db.VarChar(512)
-  posterWidth    Int?
-  posterHeight   Int?
-  backdropUrl    String? @db.VarChar(512)
-  backdropWidth  Int?
-  backdropHeight Int?
+  posterUrl             String? @db.VarChar(512)
+  posterPlaceholderUrl  String? @db.VarChar(4096)
+  posterWidth           Int?
+  posterHeight          Int?
+  backdropUrl           String? @db.VarChar(512)
+  backdroplaceholderUrl String? @db.VarChar(4096)
+  backdropWidth         Int?
+  backdropHeight        Int?
 
   // video
   trailerUrl       String? @db.VarChar(512)
