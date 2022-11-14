@@ -104,7 +104,7 @@ export const Movie: React.FC<{
                 height={movie.posterHeight!}
                 sizes='(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw'
                 placeholder={movie.posterPlaceholderUrl ? 'blur' : 'empty'}
-                blurDataURL={movie.posterPlaceholderUrl}
+                blurDataURL={movie.posterPlaceholderUrl || undefined}
                 priority
               />
             ) : (

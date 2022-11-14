@@ -3,6 +3,32 @@ import random from 'random'
 import { searchMovies } from './search'
 import * as types from './types'
 
+export async function getMovie(
+  opts: types.INextMovieOptions
+): Promise<types.INextMovieResult> {
+  const seed = opts.seed || JSON.stringify(opts.searchOptions)
+  const total =
+    opts.total ??
+    (await searchMovies({ ...opts.searchOptions, limit: 0 })).total
+  const seq = opts.seq ? opts.seq % total : random.clone(seed).int(0, total - 1)
+  const prevSeq = getPrevSeq(total, seq)
+  const nextSeq = getNextSeq(total, seq)
+
+  const result = await searchMovies({
+    ...opts.searchOptions,
+    limit: 1,
+    skip: seq
+  })
+
+  return {
+    movie: result.results[0],
+    total,
+    prevSeq,
+    seq,
+    nextSeq
+  }
+}
+
 // TODO: p-memoize?
 export async function nextMovie(
   opts: types.INextMovieOptions
