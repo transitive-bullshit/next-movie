@@ -4,6 +4,7 @@ import { MovieList } from '@/components/MovieList/MovieList'
 import { YouTubeDialog } from '@/components/YouTubeDialog/YouTubeDialog'
 import { prisma } from '@/lib/prisma'
 import { encodeGenre, decodeGenre, genres, genreLabelMap } from '@/lib/genres'
+import { convertMovies } from '@/lib/utils'
 
 import styles from './styles.module.css'
 
@@ -24,7 +25,7 @@ export default async function GenrePage({
     return notFound()
   }
 
-  let movies = await prisma.movie.findMany({
+  const results = await prisma.movie.findMany({
     where: {
       genres: {
         has: genre
@@ -37,8 +38,7 @@ export default async function GenrePage({
     skip: 0
   })
 
-  // convert dates to strings
-  movies = JSON.parse(JSON.stringify(movies))
+  const movies = await convertMovies(results)
 
   return (
     <YouTubeDialog>

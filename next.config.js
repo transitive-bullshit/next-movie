@@ -10,6 +10,13 @@ const nextConfig = {
   },
   images: {
     domains: ['image.tmdb.org']
+  },
+  webpack: (config) => {
+    // console.log(config)
+    config.externals.push({
+      sharp: 'commonjs sharp'
+    })
+    return config
   }
 }
 

@@ -1,7 +1,7 @@
 import { z } from 'zod'
-import { type Movie as MovieModel, type Prisma } from '@prisma/client'
+import { type Movie, type Prisma } from '@prisma/client'
 
-export { type MovieModel, type Prisma }
+export { type Movie, type Prisma }
 
 export const MovieSearchOptionsSchema = z.object({
   query: z.string().optional(),
@@ -56,4 +56,17 @@ export interface INextMovieResult {
   prevSeq: number
   seq: number
   nextSeq: number
+}
+
+export interface PreviewImage {
+  originalWidth: number
+  originalHeight: number
+  dataURIBase64: string
+}
+
+export interface MovieModel extends Omit<Movie, 'createdAt' | 'updatedAt'> {
+  createdAt: string
+  updatedAt: string
+
+  posterPlaceholderURL?: string
 }

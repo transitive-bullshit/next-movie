@@ -1,9 +1,10 @@
 import { MovieList } from '@/components/MovieList/MovieList'
 import { YouTubeDialog } from '@/components/YouTubeDialog/YouTubeDialog'
 import { prisma } from '@/lib/prisma'
+import { convertMovies } from '@/lib/utils'
 
 export default async function HomePage() {
-  let movies = await prisma.movie.findMany({
+  const results = await prisma.movie.findMany({
     where: {
       imdbRating: {
         gte: 6
@@ -29,8 +30,7 @@ export default async function HomePage() {
     skip: 125
   })
 
-  // convert dates to strings
-  movies = JSON.parse(JSON.stringify(movies))
+  const movies = await convertMovies(results)
 
   return (
     <>

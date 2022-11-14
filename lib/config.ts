@@ -37,10 +37,10 @@ export const githubIconUrl: string | null = `${prodUrl}/icons/github.png`
 export const isRedisEnabled = true
 export const redisHost = process.env.REDIS_HOST
 export const redisPassword = process.env.REDIS_PASSWORD
-export const redisUser = process.env.REDIS_USER
+export const redisUser = process.env.REDIS_USER || 'default'
+export const redisNamespace = process.env.REDIS_NAMESPACE || 'preview-images'
 export const redisUrl =
   process.env.REDIS_URL || `redis://${redisUser}:${redisPassword}@${redisHost}`
-export const redisNamespace = process.env.REDIS_NAMESPACE || 'preview-images'
 
 // ----------------------------------------------------------------------------
 

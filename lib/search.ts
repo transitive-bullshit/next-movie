@@ -1,5 +1,6 @@
 import { prisma } from './prisma'
 import * as types from './types'
+import { convertMovies } from './utils'
 
 export async function searchMovies(
   opts: types.IMovieSearchOptions & { skip?: number }
@@ -115,9 +116,9 @@ export async function searchMovies(
     : { relevancyScore: 'desc' }
   const cursor = opts.cursor ? { id: opts.cursor } : undefined
   const take = Math.max(1, Math.min(100, opts.limit || 10))
-  const skip = opts.skip ?? (opts.cursor ? 1 : 0)
+  const skip = opts.cursor ? 1 : 0
 
-  const [count, movies] = await Promise.all([
+  const [count, results] = await Promise.all([
     prisma.movie.count({
       where,
       orderBy
@@ -132,13 +133,11 @@ export async function searchMovies(
     })
   ])
 
-  // convert dates to strings
-  const results: types.MovieModel[] = JSON.parse(JSON.stringify(movies))
-
-  // console.log('search', opts, JSON.stringify(where, null, 2), results.length)
+  const movies = await convertMovies(results)
+  // console.log('search', opts, JSON.stringify(where, null, 2), movies.length)
 
   return {
-    results,
+    results: movies,
     total: count,
     cursor: movies[movies.length - 1]?.id
   }

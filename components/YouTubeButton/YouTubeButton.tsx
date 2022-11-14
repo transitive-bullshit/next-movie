@@ -3,9 +3,9 @@
 import * as React from 'react'
 import * as Dialog from '@radix-ui/react-dialog'
 import * as Tooltip from '@radix-ui/react-tooltip'
-import { Movie } from '@prisma/client'
 import Link from 'next/link'
 
+import { MovieModel } from '@/lib/types'
 import { YouTube } from '@/lib/hooks/youtube'
 
 import styles from './styles.module.css'
@@ -24,7 +24,7 @@ function isMouseEventNewTab(event: MouseEvent) {
 }
 
 export const YouTubeButton: React.FC<{
-  movie: Movie
+  movie: MovieModel
 }> = ({ movie }) => {
   const { openYouTubeDialog } = YouTube.useContainer()
 

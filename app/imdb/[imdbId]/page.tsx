@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { Movie } from '@/components/Movie/Movie'
 import { YouTubeDialog } from '@/components/YouTubeDialog/YouTubeDialog'
 import { prisma } from '@/lib/prisma'
+import { convertMovie } from '@/lib/utils'
 
 import styles from './styles.module.css'
 
@@ -16,18 +17,17 @@ export default async function MovieDetailPage({
     return notFound()
   }
 
-  let movie = await prisma.movie.findUnique({
+  const result = await prisma.movie.findUnique({
     where: {
       imdbId
     }
   })
 
-  // convert dates to strings
-  movie = JSON.parse(JSON.stringify(movie))
-
-  if (!movie) {
+  if (!result) {
     return notFound()
   }
+
+  const movie = await convertMovie(result)
 
   return (
     <>

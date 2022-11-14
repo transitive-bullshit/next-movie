@@ -1,15 +1,16 @@
 'use client'
 
 import * as React from 'react'
-import { Movie } from '@prisma/client'
 import { createContainer } from 'unstated-next'
 
+import { MovieModel } from '@/lib/types'
+
 function useYouTube() {
-  const [movie, setMovie] = React.useState<Movie | null>(null)
+  const [movie, setMovie] = React.useState<MovieModel | null>(null)
   const [isYouTubeDialogOpen, setIsYouTubeDialogOpen] =
     React.useState<boolean>(false)
 
-  const openYouTubeDialog = React.useCallback((movie: Movie) => {
+  const openYouTubeDialog = React.useCallback((movie: MovieModel) => {
     setMovie(movie)
     setIsYouTubeDialogOpen(true)
   }, [])
