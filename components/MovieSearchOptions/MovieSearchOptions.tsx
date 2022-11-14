@@ -5,10 +5,10 @@ import Select from 'react-select'
 import cs from 'clsx'
 
 import * as Checkbox from '@radix-ui/react-checkbox'
-import { CheckIcon } from '@radix-ui/react-icons'
 
 import { genres, genreLabelMap } from '@/lib/genres'
 import { SearchIcon } from '@/icons/Search'
+import { CheckIcon } from '@/icons/Check'
 import { Search } from '@/lib/hooks/search'
 
 import styles from './styles.module.css'

@@ -22,11 +22,11 @@
     "test:prettier": "prettier '**/*.{js,jsx,ts,tsx}' --check"
   },
   "dependencies": {
+    "@next/bundle-analyzer": "^13.0.3",
     "@next/font": "^13.0.3",
     "@prisma/client": "^4.6.1",
     "@radix-ui/react-checkbox": "^1.0.1",
     "@radix-ui/react-dialog": "^1.0.2",
-    "@radix-ui/react-icons": "^1.1.1",
     "@radix-ui/react-tooltip": "^1.0.2",
     "clsx": "^1.2.1",
     "lqip-modern": "^2.0.0",
