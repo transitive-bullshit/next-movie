@@ -39,7 +39,6 @@ const imdbRatingOptions = [
   }))
   .reverse()
 
-// TODO: these styles need a lot of work
 const selectStyles: any = {
   option: (provided: any, state: any) => ({
     ...provided,
@@ -98,6 +97,7 @@ export const MovieSearchOptions: React.FC = () => {
                   }
                 : null
             }
+            // TODO: allow filtering by multiple genres
             // isMulti
             isClearable
             onChange={onChangeGenres}

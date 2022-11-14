@@ -37,7 +37,7 @@ export type IMovieSearchOptions = z.infer<typeof MovieSearchOptionsSchema>
 export const NextMovieOptionsSchema = z.object({
   searchOptions: MovieSearchOptionsSchema,
 
-  seed: z.string().min(1),
+  seed: z.string().min(1).optional(),
   total: z.number().int().nonnegative().optional(),
   seq: z.number().int().nonnegative().optional()
 })
@@ -53,5 +53,7 @@ export interface IMovieSearchResults {
 export interface INextMovieResult {
   movie: MovieModel
   total: number
+  prevSeq: number
   seq: number
+  nextSeq: number
 }

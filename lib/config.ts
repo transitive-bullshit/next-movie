@@ -31,6 +31,19 @@ export const bannerImageUrl: string | null = `${prodUrl}/banner.jpg`
 export const twitterIconUrl: string | null = `${prodUrl}/icons/twitter.png`
 export const githubIconUrl: string | null = `${prodUrl}/icons/github.png`
 
+// ----------------------------------------------------------------------------
+
+// Optional redis instance for persisting preview images
+export const isRedisEnabled = true
+export const redisHost = process.env.REDIS_HOST
+export const redisPassword = process.env.REDIS_PASSWORD
+export const redisUser = process.env.REDIS_USER
+export const redisUrl =
+  process.env.REDIS_URL || `redis://${redisUser}:${redisPassword}@${redisHost}`
+export const redisNamespace = process.env.REDIS_NAMESPACE || 'preview-images'
+
+// ----------------------------------------------------------------------------
+
 export const defaultSearchOptions: IMovieSearchOptions = {
   query: '',
   genres: [],
@@ -39,4 +52,12 @@ export const defaultSearchOptions: IMovieSearchOptions = {
   foreign: false,
   orderBy: 'relevancyScore',
   limit: 10
+}
+
+export const defaultAppOptions: IMovieSearchOptions = {
+  genres: [],
+  releaseYearMin: 1972,
+  imdbRatingMin: 7,
+  foreign: false,
+  orderBy: 'relevancyScore'
 }

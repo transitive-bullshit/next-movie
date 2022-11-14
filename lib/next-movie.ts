@@ -3,26 +3,60 @@ import random from 'random'
 import { searchMovies } from './search'
 import * as types from './types'
 
+// TODO: p-memoize?
 export async function nextMovie(
   opts: types.INextMovieOptions
 ): Promise<types.INextMovieResult> {
+  const seed = opts.seed || JSON.stringify(opts.searchOptions)
   const total =
     opts.total ??
     (await searchMovies({ ...opts.searchOptions, limit: 0 })).total
-  const seq = opts.seq ?? random.clone(opts.seed).int(0, total - 1)
+  const prevSeq = opts.seq
+    ? opts.seq % total
+    : random.clone(seed).int(0, total - 1)
+  const seq = getNextSeq(total, prevSeq)
   const nextSeq = getNextSeq(total, seq)
 
-  // TODO: how to select `seq` skipped movie
   const result = await searchMovies({
     ...opts.searchOptions,
-    limit: 1
-    // skip: nextSeq
+    limit: 1,
+    skip: seq
   })
 
   return {
     movie: result.results[0],
     total,
-    seq: nextSeq
+    prevSeq,
+    seq,
+    nextSeq
+  }
+}
+
+export async function prevMovie(
+  opts: types.INextMovieOptions
+): Promise<types.INextMovieResult> {
+  const seed = opts.seed || JSON.stringify(opts.searchOptions)
+  const total =
+    opts.total ??
+    (await searchMovies({ ...opts.searchOptions, limit: 0 })).total
+  const nextSeq = opts.seq
+    ? opts.seq % total
+    : random.clone(seed).int(0, total - 1)
+  const seq = getPrevSeq(total, nextSeq)
+  const prevSeq = getPrevSeq(total, seq)
+
+  const result = await searchMovies({
+    ...opts.searchOptions,
+    limit: 1,
+    skip: seq
+  })
+
+  return {
+    movie: result.results[0],
+    total,
+    prevSeq,
+    seq,
+    nextSeq
   }
 }
 
@@ -35,15 +69,18 @@ const RAND_MASKS = [
   0x48000000, 0xa3000000
 ]
 
-function getNextSeq(total: number, seq: number): number {
+function getNextSeq(seq: number, total: number): number {
+  if (total <= 1) return 0
+
   const dim = Math.ceil(Math.sqrt(total))
   const size = dim * dim
 
   const bitWidth = getBitWidth(size)
   const mask = RAND_MASKS[bitWidth - 1]
 
-  const x = (0.5 + (seq % dim)) | 0
-  const y = (Math.ceil(seq / dim) - 1.0) | 0
+  // 2d version coords of the dissolve effect are unused
+  // const x = (0.5 + (seq % dim)) | 0
+  // const y = (Math.ceil(seq / dim) - 1.0) | 0
 
   // iterate and ignore samples outside of our target range
   do {
@@ -51,6 +88,27 @@ function getNextSeq(total: number, seq: number): number {
   } while (seq >= total)
 
   return seq
+}
+
+function getPrevSeq(targetSeq: number, total: number): number {
+  if (total <= 1) return 0
+
+  const dim = Math.ceil(Math.sqrt(total))
+  const size = dim * dim
+
+  const bitWidth = getBitWidth(size)
+  const mask = RAND_MASKS[bitWidth - 1]
+
+  let prevSeq: number
+  let seq = 1
+
+  // iterate and ignore samples outside of our target range
+  do {
+    prevSeq = seq
+    seq = (seq >> 1) ^ ((seq & 1) * mask)
+  } while (seq >= total || seq !== targetSeq)
+
+  return prevSeq
 }
 
 function getBitWidth(n: number): number {

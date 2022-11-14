@@ -22,6 +22,8 @@
     "test:prettier": "prettier '**/*.{js,jsx,ts,tsx}' --check"
   },
   "dependencies": {
+    "@keyvhq/core": "^1.6.14",
+    "@keyvhq/redis": "^1.6.21",
     "@next/bundle-analyzer": "^13.0.3",
     "@next/font": "^13.0.3",
     "@prisma/client": "^4.6.1",
