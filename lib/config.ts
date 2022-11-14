@@ -54,8 +54,8 @@ export const defaultSearchOptions: IMovieSearchOptions = {
   limit: 10
 }
 
+// TODO
 export const defaultAppOptions: IMovieSearchOptions = {
-  genres: [],
   releaseYearMin: 1972,
   imdbRatingMin: 7,
   foreign: false,
