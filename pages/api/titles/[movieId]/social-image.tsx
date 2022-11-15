@@ -12,6 +12,10 @@ const interRegularFontP = fetch(
   new URL('../../../../public/fonts/Inter-Regular.ttf', import.meta.url)
 ).then((res) => res.arrayBuffer())
 
+const interSemiBoldFontP = fetch(
+  new URL('../../../../public/fonts/Inter-SemiBold.ttf', import.meta.url)
+).then((res) => res.arrayBuffer())
+
 export const config = {
   runtime: 'experimental-edge'
 }
@@ -46,9 +50,10 @@ export default async function socialImageForMovie(req: NextRequest) {
   if (!movieRes.ok) {
     return new Response(movieRes.statusText, { status: movieRes.status })
   }
-  const [movie, interRegularFont] = await Promise.all([
+  const [movie, interRegularFont, interSemiBoldFont] = await Promise.all([
     movieRes.json() as Promise<MovieModel>,
-    interRegularFontP
+    interRegularFontP,
+    interSemiBoldFontP
   ])
   console.log(movie)
 
@@ -72,7 +77,7 @@ export default async function socialImageForMovie(req: NextRequest) {
           justifyContent: 'flex-start',
           alignItems: 'stretch',
           gap,
-          padding: gap,
+          padding: 36 + 12, // TODO: use gap
           backgroundColor: '#1F1F27',
           fontFamily: '"Inter", sans-serif',
           color: '#fff'
@@ -147,7 +152,8 @@ export default async function socialImageForMovie(req: NextRequest) {
               style={{
                 display: 'flex',
                 flexDirection: 'column',
-                fontSize: titleFontSize
+                fontSize: titleFontSize,
+                fontWeight: 600
               }}
             >
               {title}
@@ -235,6 +241,12 @@ export default async function socialImageForMovie(req: NextRequest) {
           data: interRegularFont,
           style: 'normal',
           weight: 400
+        },
+        {
+          name: 'Inter',
+          data: interSemiBoldFont,
+          style: 'normal',
+          weight: 600
         }
       ]
     }
