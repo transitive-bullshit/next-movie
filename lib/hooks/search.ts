@@ -2,13 +2,11 @@
 
 import * as React from 'react'
 import { createContainer } from 'unstated-next'
-// import { useLocalStorage, useDebounce } from 'react-use'
 import useSWRInfinite from 'swr/infinite'
 
 import { IMovieSearchOptions, IMovieSearchResults } from '@/lib/types'
 import { defaultSearchOptions } from '@/lib/config'
-
-// TODO: persist search options to local storage
+import { SearchOptions, ISearchOptionsConfig } from './search-options'
 
 const fetcher = ({
   url,
@@ -25,27 +23,14 @@ const fetcher = ({
     }
   }).then((res) => res.json())
 
-// const localStorageSearchOptionsKey = 'search-options-v0.0.1'
-
-interface ISearchConfig {
-  key: string
-  initialSearchOptions: IMovieSearchOptions
-}
-
 function useSearch(
-  config: ISearchConfig = {
+  config: ISearchOptionsConfig = {
     key: 'search',
     initialSearchOptions: defaultSearchOptions
   }
 ) {
-  // const [cachedSearchOptions, setCachedSearchOptions] = useLocalStorage(
-  //   `${localStorageSearchOptionsKey}-config.key}`,
-  //   config.initialSearchOptions
-  // )
-  const [searchOptions, setSearchOptions] = React.useState<IMovieSearchOptions>(
-    // cachedSearchOptions ?? defaultSearchOptions
-    config.initialSearchOptions
-  )
+  const { searchOptions, setSearchOptions, ...restSearchOptions } =
+    SearchOptions.useContainer()
 
   const getKey = React.useCallback(
     (_: number, previousPageData: IMovieSearchResults) => {
@@ -81,44 +66,6 @@ function useSearch(
     dedupingInterval: 24 * 60 * 1000
   })
 
-  const onChangeQuery = React.useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      setSearchOptions((options) => ({ ...options, query: event.target.value }))
-    },
-    []
-  )
-
-  const onChangeGenres = React.useCallback((opts: { value: string } | null) => {
-    setSearchOptions((options) => ({
-      ...options,
-      genres: opts?.value ? [opts.value] : []
-    }))
-  }, [])
-
-  const onChangeReleaseYearMin = React.useCallback(
-    (opts: { value: number } | null) => {
-      setSearchOptions((options) => ({
-        ...options,
-        releaseYearMin: opts?.value
-      }))
-    },
-    []
-  )
-
-  const onChangeImdbRatingMin = React.useCallback(
-    (opts: { value: number } | null) => {
-      setSearchOptions((options) => ({
-        ...options,
-        imdbRatingMin: opts?.value
-      }))
-    },
-    []
-  )
-
-  const onChangeForeign = React.useCallback((e: any) => {
-    setSearchOptions((options) => ({ ...options, foreign: !options.foreign }))
-  }, [])
-
   const searchResultMovies = React.useMemo(
     () => searchResults?.flatMap((searchResult) => searchResult.results),
     [searchResults]
@@ -137,23 +84,7 @@ function useSearch(
   )
   // const isRefreshing = isValidating && searchResults?.length === searchPageNum
 
-  // useDebounce(
-  //   () => {
-  //     setCachedSearchOptions(searchOptions)
-  //   },
-  //   2000,
-  //   [searchOptions]
-  // )
-
   return {
-    searchOptions,
-
-    onChangeQuery,
-    onChangeForeign,
-    onChangeReleaseYearMin,
-    onChangeImdbRatingMin,
-    onChangeGenres,
-
     searchResults,
     searchResultMovies,
     error,

@@ -9,7 +9,7 @@ import * as Checkbox from '@radix-ui/react-checkbox'
 import { genres, genreLabelMap } from '@/lib/genres'
 import { SearchIcon } from '@/icons/Search'
 import { CheckIcon } from '@/icons/Check'
-import { Search } from '@/lib/hooks/search'
+import { SearchOptions } from '@/lib/hooks/search-options'
 
 import styles from './styles.module.css'
 
@@ -58,7 +58,7 @@ export const MovieSearchOptions: React.FC = () => {
     onChangeReleaseYearMin,
     onChangeImdbRatingMin,
     onChangeForeign
-  } = Search.useContainer()
+  } = SearchOptions.useContainer()
 
   return (
     <form className={styles.movieSearchOptions}>

@@ -1,26 +1,22 @@
 'use client'
 
-import { unstable_serialize, SWRConfig } from 'swr'
+import * as React from 'react'
 
 import { YouTubeDialog } from '@/components/YouTubeDialog/YouTubeDialog'
-import { Search } from '@/lib/hooks/search'
+import { ISearchOptionsConfig, SearchOptions } from '@/lib/hooks/search-options'
 
 export function Providers({
   children,
-  fallbackData = []
+  searchOptionsConfig
 }: {
   children: React.ReactNode
-  fallbackData?: Array<{ key: any; value: any }>
+  searchOptionsConfig: ISearchOptionsConfig
 }) {
-  const fallback = Object.fromEntries(
-    fallbackData.map((d) => [unstable_serialize(d.key), d.value])
-  )
-
   return (
     <YouTubeDialog>
-      <SWRConfig value={{ fallback }}>
-        <Search.Provider>{children}</Search.Provider>
-      </SWRConfig>
+      <SearchOptions.Provider initialState={searchOptionsConfig}>
+        {children}
+      </SearchOptions.Provider>
     </YouTubeDialog>
   )
 }

@@ -3,6 +3,8 @@ import random from 'random'
 import { searchMovies } from './search'
 import * as types from './types'
 
+// TODO: add p-memoize?
+
 export async function getMovie(
   opts: types.INextMovieOptions
 ): Promise<types.INextMovieResult> {
@@ -29,7 +31,6 @@ export async function getMovie(
   }
 }
 
-// TODO: p-memoize?
 export async function nextMovie(
   opts: types.INextMovieOptions
 ): Promise<types.INextMovieResult> {

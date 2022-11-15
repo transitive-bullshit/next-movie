@@ -55,7 +55,7 @@ export default async function socialImageForMovie(req: NextRequest) {
     interRegularFontP,
     interSemiBoldFontP
   ])
-  console.log(movie)
+  // console.log(movie)
 
   const gap = '36px'
   const gapHalf = '18px'
@@ -77,7 +77,10 @@ export default async function socialImageForMovie(req: NextRequest) {
           justifyContent: 'flex-start',
           alignItems: 'stretch',
           gap,
-          padding: 36 + 12, // TODO: use gap
+          // TODO: use gap
+          // TODO: revert to just gap if we can remove the border after
+          // blurring is fixed
+          padding: 36 + 12,
           backgroundColor: '#1F1F27',
           fontFamily: '"Inter", sans-serif',
           color: '#fff'
@@ -124,6 +127,7 @@ export default async function socialImageForMovie(req: NextRequest) {
               }}
             />
 
+            {/* adds an ugly border as a workaround for an even uglier blur border bug */}
             <div
               style={{
                 position: 'absolute',
