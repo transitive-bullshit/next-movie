@@ -1,5 +1,7 @@
-<p>
-  <img alt="Pick your next movie using Next.js 13" src="/public/banner.jpg">
+<p align="center">
+  <a href="https://next-movie.transitivebullsh.it">
+    <img alt="Pick your next movie using Next.js 13" src="/public/social.jpg">
+  </a>
 </p>
 
 <p align="center">
@@ -13,9 +15,37 @@
 </p>
 
 - [Intro](#intro)
+- [Movie Database](#movie-database)
 - [License](#license)
 
 ## Intro
+
+TODO
+
+## Movie Database
+
+<p align="center">
+  <a href="https://github.com/transitive-bullshit/populate-movies">
+    <img alt="Populates a full database of movies from TMDB and IMDB into Postgres." src="https://raw.githubusercontent.com/transitive-bullshit/populate-movies/main/media/banner.jpg">
+  </a>
+</p>
+
+<p align="center">
+  Populates a full database of movies from TMDB and IMDB into Postgres.
+</p>
+
+The accompanying open source project [populate-movies](https://github.com/transitive-bullshit/populate-movies) is used to create a high quality movie database. It features:
+
+- ~72k high fidelity movies
+- Metadata from TMDB, IMDB, and Rotten Tomatoes
+- Data filtering and normalization
+- Simple, idempotent, automatable pipeline to keep metadata up-to-date
+- Custom post-processing
+  - Selecting the best available YouTube trailer for every movie
+  - Relevancy scores that use a combination of popularity, rating, and release date
+  - Nuanced foreign movie detection that looks at more than just language/country
+  - [LQIP](https://github.com/transitive-bullshit/lqip-modern) preview image generation for all movie images
+  - Basic text index for searching
 
 ## License
 
