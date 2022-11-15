@@ -5,15 +5,18 @@ import * as config from '@/lib/config'
 export const PageHead: React.FC<{
   title?: string
   description?: string
-  image?: string
+  imagePathname?: string
   pathname?: string
 }> = ({
   title = config.title,
   description = config.description,
-  image = config.socialImageUrl,
-  pathname = ''
+  imagePathname,
+  pathname
 }) => {
   const url = pathname ? `${config.url}${pathname}` : config.url
+  const imageUrl = imagePathname
+    ? `${config.url}${imagePathname}`
+    : config.socialImageUrl
 
   return (
     <>
@@ -33,11 +36,11 @@ export const PageHead: React.FC<{
         </>
       )}
 
-      {image ? (
+      {imageUrl ? (
         <>
           <meta name='twitter:card' content='summary_large_image' />
-          <meta name='twitter:image' content={image} />
-          <meta property='og:image' content={image} />
+          <meta name='twitter:image' content={imageUrl} />
+          <meta property='og:image' content={imageUrl} />
         </>
       ) : (
         <meta name='twitter:card' content='summary' />

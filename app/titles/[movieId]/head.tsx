@@ -18,11 +18,14 @@ export default async function Head({
   })
 
   const pathname = `/titles/${id}`
+  const imagePathname = `/api/titles/${id}/social-image`
+
   return (
     <PageHead
       title={movie?.title || movie?.originalTitle || `${id}`}
       description={movie?.plot}
       pathname={pathname}
+      imagePathname={imagePathname}
     />
   )
 }

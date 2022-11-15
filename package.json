@@ -28,6 +28,7 @@
     "@radix-ui/react-checkbox": "^1.0.1",
     "@radix-ui/react-dialog": "^1.0.2",
     "@radix-ui/react-tooltip": "^1.0.2",
+    "@vercel/og": "^0.0.20",
     "clsx": "^1.2.1",
     "next": "13.0.3",
     "next-themes": "^0.2.1",

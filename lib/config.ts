@@ -21,15 +21,12 @@ export const prodUrl = `https://${domain}`
 export const url = isDev ? `http://localhost:${port}` : prodUrl
 
 export const apiBaseUrl =
-  isDev || !process.env.VERCEL_URL
-    ? `${url}/api`
-    : `https://${process.env.VERCEL_URL}/api`
+  isDev || !process.env.VERCEL_URL ? url : `https://${process.env.VERCEL_URL}`
 
 // these must all be absolute urls
-export const socialImageUrl: string | null = null // `${prodUrl}/social.jpg`
-export const bannerImageUrl: string | null = `${prodUrl}/banner.jpg`
-export const twitterIconUrl: string | null = `${prodUrl}/icons/twitter.png`
-export const githubIconUrl: string | null = `${prodUrl}/icons/github.png`
+export const socialImageUrl: string | null = `${url}/social.jpg`
+export const twitterIconUrl: string | null = `${url}/icons/twitter.png`
+export const githubIconUrl: string | null = `${url}/icons/github.png`
 
 // ----------------------------------------------------------------------------
 
