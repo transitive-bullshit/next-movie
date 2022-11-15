@@ -30,15 +30,9 @@ TODO
   </a>
 </p>
 
-<p align="center">
-  Populates a full database of movies from TMDB and IMDB into Postgres.
-</p>
+Under the hood, `next-movie` uses [populate-movies](https://github.com/transitive-bullshit/populate-movies) to generate it's high quality database of movies, featuring:
 
-Under the hood, `next-movie` uses [populate-movies](https://github.com/transitive-bullshit/populate-movies) to generate it's high quality movie database.
-
-This accompanying OSS project features:
-
-- 73k movies
+- 73k movies (filtered from ~750k TMDB "movies")
 - Metadata from TMDB, IMDB, and Rotten Tomatoes
 - Easily automatable to keep metadata up-to-date
 - Custom post-processing
@@ -47,6 +41,7 @@ This accompanying OSS project features:
   - Nuanced foreign movie detection that looks at more than just language/country
   - [LQIP](https://github.com/transitive-bullshit/lqip-modern) preview image generation for all movie images
   - Basic text index for searching
+- Open source using TS + Prisma + Postgres
 
 ## License
 
