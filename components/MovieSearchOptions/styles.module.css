@@ -20,6 +20,15 @@
   gap: 0.5em;
 }
 
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.disabled * {
+  cursor: not-allowed !important;
+}
+
 .booleanField {
   flex: 0;
 }
@@ -80,6 +89,22 @@
   top: calc(50% - 9px);
   left: 10px;
   color: #31363b;
+}
+
+.clearInput {
+  position: absolute;
+  top: calc(50% - 18px);
+  right: 0;
+  width: 36px;
+  height: 36px;
+  color: hsl(0, 0%, 80%);
+  padding: 8px;
+  transition: color 150ms;
+  cursor: pointer;
+}
+
+.clearInput:hover {
+  color: hsl(0, 0%, 60%);
 }
 
 .checkbox {

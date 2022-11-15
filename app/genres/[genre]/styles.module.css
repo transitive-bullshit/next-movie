@@ -1,4 +1,4 @@
-.container {
+.genrePage {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -9,4 +9,13 @@
 
 .title {
   font-size: 2.5rem;
+}
+
+.body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
 }

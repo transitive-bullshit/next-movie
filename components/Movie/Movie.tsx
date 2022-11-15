@@ -5,7 +5,7 @@ import ms from 'pretty-ms'
 import cs from 'clsx'
 
 import type { MovieModel } from '@/lib/types'
-import { encodeGenre, genreLabelMap } from '@/lib/genres'
+import { genreLabelMap } from '@/lib/genres'
 import imdbLogoImage from '@/public/logos/imdb.png'
 import { ActiveLink } from '@/components/ActiveLink/ActiveLink'
 import { YouTubeButton } from '@/components/YouTubeButton/YouTubeButton'
@@ -154,7 +154,7 @@ export const Movie: React.FC<{
                 {movie.genres.map((genre) => (
                   <Link
                     key={genre}
-                    href={`/genres/${encodeGenre(genre)}`}
+                    href={`/genres/${genre}`}
                     className={styles.genre}
                   >
                     {genreLabelMap[genre] ?? genre}

@@ -1,10 +1,9 @@
 import { PageHead } from '@/components/PageHead/PageHead'
-import { decodeGenre, genreLabelMap } from '@/lib/genres'
+import { genreLabelMap } from '@/lib/genres'
 
 export default function Head({ params }: { params: { genre: string } }) {
-  const { genre: genreInput } = params
+  const { genre } = params
 
-  const genre = genreInput ? decodeGenre(genreInput) : null
   if (!genre) {
     return
   }
@@ -14,11 +13,11 @@ export default function Head({ params }: { params: { genre: string } }) {
     return
   }
 
-  const pathname = `/genres/${genreInput}`
+  const pathname = `/genres/${genre}`
   return (
     <PageHead
       title={genreLabel}
-      description={`${genreLabel} movies`}
+      description={`The top ${genreLabel} movies of all time.`}
       pathname={pathname}
     />
   )

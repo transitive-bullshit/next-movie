@@ -7,8 +7,7 @@ import cs from 'clsx'
 import * as Checkbox from '@radix-ui/react-checkbox'
 
 import { genres, genreLabelMap } from '@/lib/genres'
-import { SearchIcon } from '@/icons/Search'
-import { CheckIcon } from '@/icons/Check'
+import { SearchIcon, CheckIcon, ClearIcon } from '@/icons/index'
 import { SearchOptions } from '@/lib/hooks/search-options'
 
 import styles from './styles.module.css'
@@ -47,127 +46,200 @@ const selectStyles: any = {
   control: (provided: any) => ({
     ...provided,
     height: '100%'
+  }),
+  clearIndicator: (provided: any) => ({
+    ...provided,
+    cursor: 'pointer'
   })
 }
 
-export const MovieSearchOptions: React.FC = () => {
+export type MovieSearchOptionsFieldConfig = 'default' | 'hidden' | 'disabled'
+
+export interface IMovieSearchOptionsProps {
+  config?: {
+    query?: MovieSearchOptionsFieldConfig
+    genres?: MovieSearchOptionsFieldConfig
+    releaseYearMin?: MovieSearchOptionsFieldConfig
+    imdbRatingMin?: MovieSearchOptionsFieldConfig
+    foreign?: MovieSearchOptionsFieldConfig
+  }
+}
+
+export const MovieSearchOptions: React.FC<IMovieSearchOptionsProps> = ({
+  config
+}) => {
   const {
     searchOptions,
     onChangeQuery,
+    onClearQuery,
     onChangeGenres,
     onChangeReleaseYearMin,
     onChangeImdbRatingMin,
     onChangeForeign
   } = SearchOptions.useContainer()
 
+  const queryInputRef = React.useRef<HTMLInputElement>(null)
+
   return (
     <form className={styles.movieSearchOptions}>
       <div className={styles.mainOptions}>
-        <div className={cs(styles.field, styles.queryField)}>
-          <label htmlFor='query'>Search</label>
+        {config?.query !== 'hidden' && (
+          <div className={cs(styles.field, styles.queryField)}>
+            <label htmlFor='query'>Search</label>
 
-          <div className={styles.searchInput}>
-            <SearchIcon className={styles.searchIcon} />
+            <div
+              className={cs(
+                styles.searchInput,
+                config?.query === 'disabled' && styles.disabled
+              )}
+            >
+              <SearchIcon className={styles.searchIcon} />
 
-            <input
-              type='text'
-              name='query'
-              className={cs(styles.input, styles.textInput)}
-              value={searchOptions.query}
-              onChange={onChangeQuery}
+              <input
+                type='text'
+                name='query'
+                className={cs(styles.input, styles.textInput)}
+                value={searchOptions.query}
+                onChange={onChangeQuery}
+                disabled={config?.query === 'disabled'}
+                ref={queryInputRef}
+              />
+
+              {searchOptions.query && (
+                <div
+                  className={styles.clearInput}
+                  onClick={() => {
+                    onClearQuery()
+
+                    if (queryInputRef.current) {
+                      queryInputRef.current.focus()
+                    }
+                  }}
+                  aria-hidden='true'
+                >
+                  <ClearIcon className={styles.clearIcon} />
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {config?.genres !== 'hidden' && (
+          <div className={cs(styles.field, styles.genresField)}>
+            <label htmlFor='genres'>Genre</label>
+
+            <Select
+              name='genres'
+              instanceId='genres'
+              placeholder='Any'
+              className={cs(
+                styles.select,
+                config?.genres === 'disabled' && styles.disabled
+              )}
+              options={genreOptions}
+              styles={selectStyles}
+              value={
+                searchOptions.genres?.[0]
+                  ? {
+                      value: searchOptions.genres[0],
+                      label: genreLabelMap[searchOptions.genres[0]]
+                    }
+                  : null
+              }
+              // TODO: allow filtering by multiple genres
+              // isMulti
+              isClearable
+              onChange={onChangeGenres}
+              isDisabled={config?.genres === 'disabled'}
             />
           </div>
-        </div>
+        )}
 
-        <div className={cs(styles.field, styles.genresField)}>
-          <label htmlFor='genres'>Genre</label>
+        {config?.releaseYearMin !== 'hidden' && (
+          <div className={cs(styles.field, styles.releaseYearMinField)}>
+            <label htmlFor='releaseYearMin'>Min Release Year</label>
 
-          <Select
-            name='genres'
-            instanceId='genres'
-            placeholder='Any'
-            className={styles.select}
-            options={genreOptions}
-            styles={selectStyles}
-            value={
-              searchOptions.genres?.[0]
-                ? {
-                    value: searchOptions.genres[0],
-                    label: genreLabelMap[searchOptions.genres[0]]
-                  }
-                : null
-            }
-            // TODO: allow filtering by multiple genres
-            // isMulti
-            isClearable
-            onChange={onChangeGenres}
-          />
-        </div>
-
-        <div className={cs(styles.field, styles.releaseYearMinField)}>
-          <label htmlFor='releaseYearMin'>Min Release Year</label>
-
-          <Select
-            name='releaseYearMin'
-            instanceId='releaseYearMin'
-            placeholder='Any'
-            className={styles.select}
-            options={yearOptions}
-            styles={selectStyles}
-            value={
-              searchOptions.releaseYearMin
-                ? {
-                    value: searchOptions.releaseYearMin,
-                    label: `${searchOptions.releaseYearMin}`
-                  }
-                : null
-            }
-            isClearable
-            onChange={onChangeReleaseYearMin}
-          />
-        </div>
-
-        <div className={cs(styles.field, styles.imdbRatingMinField)}>
-          <label htmlFor='imdbRatingMin'>Min IMDB Rating</label>
-
-          <Select
-            name='imdbRatingMin'
-            instanceId='imdbRatingMin'
-            placeholder='Any'
-            className={styles.select}
-            options={imdbRatingOptions}
-            styles={selectStyles}
-            value={
-              searchOptions.imdbRatingMin
-                ? {
-                    value: searchOptions.imdbRatingMin,
-                    label: searchOptions.imdbRatingMin?.toFixed(1)
-                  }
-                : null
-            }
-            isClearable
-            onChange={onChangeImdbRatingMin}
-          />
-        </div>
-
-        <div
-          className={cs(styles.field, styles.booleanField, styles.foreignField)}
-        >
-          <label htmlFor='foreign'>Foreign</label>
-
-          <div>
-            <Checkbox.Root
-              className={cs(styles.checkbox)}
-              name='foreign'
-              checked={searchOptions.foreign}
-              onCheckedChange={onChangeForeign}
-            >
-              <Checkbox.Indicator className={styles.checkboxIndicator}>
-                <CheckIcon width={18} height={18} />
-              </Checkbox.Indicator>
-            </Checkbox.Root>
+            <Select
+              name='releaseYearMin'
+              instanceId='releaseYearMin'
+              placeholder='Any'
+              className={cs(
+                styles.select,
+                config?.releaseYearMin === 'disabled' && styles.disabled
+              )}
+              options={yearOptions}
+              styles={selectStyles}
+              value={
+                searchOptions.releaseYearMin
+                  ? {
+                      value: searchOptions.releaseYearMin,
+                      label: `${searchOptions.releaseYearMin}`
+                    }
+                  : null
+              }
+              isClearable
+              onChange={onChangeReleaseYearMin}
+              isDisabled={config?.releaseYearMin === 'disabled'}
+            />
           </div>
-        </div>
+        )}
+
+        {config?.imdbRatingMin !== 'hidden' && (
+          <div className={cs(styles.field, styles.imdbRatingMinField)}>
+            <label htmlFor='imdbRatingMin'>Min IMDB Rating</label>
+
+            <Select
+              name='imdbRatingMin'
+              instanceId='imdbRatingMin'
+              placeholder='Any'
+              className={cs(
+                styles.select,
+                config?.imdbRatingMin === 'disabled' && styles.disabled
+              )}
+              options={imdbRatingOptions}
+              styles={selectStyles}
+              value={
+                searchOptions.imdbRatingMin
+                  ? {
+                      value: searchOptions.imdbRatingMin,
+                      label: searchOptions.imdbRatingMin?.toFixed(1)
+                    }
+                  : null
+              }
+              isClearable
+              onChange={onChangeImdbRatingMin}
+              isDisabled={config?.imdbRatingMin === 'disabled'}
+            />
+          </div>
+        )}
+
+        {config?.foreign !== 'hidden' && (
+          <div
+            className={cs(
+              styles.field,
+              styles.booleanField,
+              styles.foreignField
+            )}
+          >
+            <label htmlFor='foreign'>Foreign</label>
+
+            <div
+              className={cs(config?.foreign === 'disabled' && styles.disabled)}
+            >
+              <Checkbox.Root
+                className={styles.checkbox}
+                name='foreign'
+                checked={searchOptions.foreign}
+                onCheckedChange={onChangeForeign}
+                disabled={config?.foreign === 'disabled'}
+              >
+                <Checkbox.Indicator className={styles.checkboxIndicator}>
+                  <CheckIcon width={18} height={18} />
+                </Checkbox.Indicator>
+              </Checkbox.Root>
+            </div>
+          </div>
+        )}
       </div>
     </form>
   )

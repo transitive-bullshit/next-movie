@@ -23,23 +23,15 @@ export const genreLabelMap: Record<string, string> = {
   romance: 'Romance',
   scifi: 'Science Fiction',
   sport: 'Sports',
-  'stand up': 'Stand Up',
+  'stand-up': 'Stand Up',
   talkshow: 'Talk Show',
   thriller: 'Thriller',
-  'tv movie': 'TV Movie',
+  'tv-movie': 'TV Movie',
   war: 'War',
   western: 'Western'
 }
 
 export const genres = Object.keys(genreLabelMap)
-
-export function encodeGenre(genre: string) {
-  return genre.replace(/ /g, '-')
-}
-
-export function decodeGenre(genre: string) {
-  return genre?.replace(/-/g, ' ').toLowerCase().trim()
-}
 
 export const defaultSearchOptionsByGenre: Record<string, IMovieSearchOptions> =
   Object.fromEntries(
@@ -48,8 +40,6 @@ export const defaultSearchOptionsByGenre: Record<string, IMovieSearchOptions> =
       {
         query: '',
         genres: [genre],
-        releaseYearMin: 1900,
-        imdbRatingMin: 0,
         foreign: false,
         orderBy: 'relevancyScore',
         limit: 10

@@ -1,11 +1,15 @@
 import { notFound } from 'next/navigation'
 
-import { MovieList } from '@/components/MovieList/MovieList'
-import { YouTubeDialog } from '@/components/YouTubeDialog/YouTubeDialog'
-import { prisma } from '@/lib/prisma'
-import { encodeGenre, decodeGenre, genres, genreLabelMap } from '@/lib/genres'
-import { convertMovies } from '@/lib/utils'
+import { MovieSearchOptions } from '@/components/MovieSearchOptions/MovieSearchOptions'
+import { MovieSearchResults } from '@/components/MovieSearchResults/MovieSearchResults'
+import {
+  genres,
+  genreLabelMap,
+  defaultSearchOptionsByGenre
+} from '@/lib/genres'
+import { searchMovies } from '@/lib/search'
 
+import { Providers } from './providers'
 import styles from './styles.module.css'
 
 export default async function GenrePage({
@@ -13,9 +17,8 @@ export default async function GenrePage({
 }: {
   params: { genre: string }
 }) {
-  const { genre: genreInput } = params
+  const { genre } = params
 
-  const genre = genreInput ? decodeGenre(genreInput) : null
   if (!genre) {
     return notFound()
   }
@@ -25,29 +28,39 @@ export default async function GenrePage({
     return notFound()
   }
 
-  const results = await prisma.movie.findMany({
-    where: {
-      genres: {
-        has: genre
-      }
-    },
-    orderBy: {
-      relevancyScore: 'desc'
-    },
-    take: 10,
-    skip: 0
-  })
+  const defaultSearchOptions = defaultSearchOptionsByGenre[genre]
+  const result = await searchMovies(defaultSearchOptions)
 
-  const movies = await convertMovies(results)
+  const searchKey = `genre-${genre}`
+  const fallbackData = [
+    {
+      key: {
+        url: '/api/search',
+        key: searchKey,
+        body: defaultSearchOptions
+      },
+      value: result
+    }
+  ]
 
   return (
-    <YouTubeDialog>
-      <div className={styles.container}>
+    <Providers
+      fallbackData={fallbackData}
+      searchOptionsConfig={{
+        key: searchKey,
+        initialSearchOptions: defaultSearchOptions
+      }}
+    >
+      <div className={styles.genrePage}>
         <h1 className={styles.genre}>{genreLabel}</h1>
 
-        <MovieList movies={movies} />
+        <div className={styles.body}>
+          <MovieSearchOptions config={{ genres: 'disabled' }} />
+
+          <MovieSearchResults />
+        </div>
       </div>
-    </YouTubeDialog>
+    </Providers>
   )
 }
 
@@ -55,5 +68,5 @@ export async function generateStaticParams() {
   const genresSet = new Set<string>(genres)
   const uniqueGenres = Array.from(genresSet).sort()
 
-  return uniqueGenres.map((genre) => ({ genre: encodeGenre(genre) }))
+  return uniqueGenres.map((genre) => ({ genre }))
 }

@@ -44,6 +44,10 @@ function useSearchOptions(
     []
   )
 
+  const onClearQuery = React.useCallback(() => {
+    setSearchOptions((options) => ({ ...options, query: '' }))
+  }, [])
+
   const onChangeGenres = React.useCallback((opts: { value: string } | null) => {
     setSearchOptions((options) => ({
       ...options,
@@ -88,6 +92,7 @@ function useSearchOptions(
     setSearchOptions,
 
     onChangeQuery,
+    onClearQuery,
     onChangeForeign,
     onChangeReleaseYearMin,
     onChangeImdbRatingMin,
