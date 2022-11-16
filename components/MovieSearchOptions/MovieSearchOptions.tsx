@@ -100,6 +100,8 @@ export interface IMovieSearchOptionsProps {
     releaseYearMin?: MovieSearchOptionsFieldConfig
     imdbRatingMin?: MovieSearchOptionsFieldConfig
     foreign?: MovieSearchOptionsFieldConfig
+    layout?: MovieSearchOptionsFieldConfig
+    orderBy?: MovieSearchOptionsFieldConfig
   }
 }
 
@@ -294,74 +296,100 @@ export const MovieSearchOptions: React.FC<IMovieSearchOptionsProps> = ({
         </button>
 
         <div className={styles.rhs}>
-          <div className={styles.layoutOptions}>
-            <Tooltip content='Grid Layout'>
-              <button
-                className={styles.layoutButton}
-                onClick={() => onChangeLayout('grid')}
-                disabled={searchOptions.layout === 'grid'}
-              >
-                <GridIcon
+          {config?.layout !== 'hidden' && (
+            <div className={styles.layoutOptions}>
+              <Tooltip content='Grid Layout'>
+                <button
                   className={cs(
-                    styles.layoutOption,
-                    searchOptions.layout === 'grid' && styles.selected
+                    styles.layoutButton,
+                    config?.layout === 'disabled' && styles.disabled
                   )}
-                />
-              </button>
-            </Tooltip>
-
-            <Tooltip content='List Layout'>
-              <button
-                className={styles.layoutButton}
-                onClick={() => onChangeLayout('list')}
-                disabled={searchOptions.layout === 'list'}
-              >
-                <ListIcon
-                  className={cs(
-                    styles.layoutOption,
-                    searchOptions.layout === 'list' && styles.selected
-                  )}
-                />
-              </button>
-            </Tooltip>
-
-            <Tooltip content='Single Movie Layout'>
-              <button
-                className={styles.layoutButton}
-                onClick={() => onChangeLayout('single')}
-                disabled={searchOptions.layout === 'single'}
-              >
-                <SingleIcon
-                  className={cs(
-                    styles.layoutOption,
-                    (!searchOptions.layout ||
-                      searchOptions.layout === 'single') &&
-                      styles.selected
-                  )}
-                />
-              </button>
-            </Tooltip>
-          </div>
-
-          <Select
-            name='orderBy'
-            instanceId='orderBy'
-            className={styles.orderBy}
-            options={orderByOptions}
-            styles={selectStyles}
-            value={
-              searchOptions.orderBy
-                ? {
-                    value: searchOptions.orderBy,
-                    label:
-                      orderByOptions.find(
-                        (o) => o.value === searchOptions.orderBy
-                      )?.label ?? 'Default'
+                  onClick={() => onChangeLayout('grid')}
+                  disabled={
+                    searchOptions.layout === 'grid' ||
+                    config?.layout === 'disabled'
                   }
-                : null
-            }
-            onChange={onChangeOrderBy}
-          />
+                >
+                  <GridIcon
+                    className={cs(
+                      styles.layoutOption,
+                      searchOptions.layout === 'grid' && styles.selected
+                    )}
+                  />
+                </button>
+              </Tooltip>
+
+              <Tooltip content='List Layout'>
+                <button
+                  className={cs(
+                    styles.layoutButton,
+                    config?.layout === 'disabled' && styles.disabled
+                  )}
+                  onClick={() => onChangeLayout('list')}
+                  disabled={
+                    searchOptions.layout === 'list' ||
+                    config?.layout === 'disabled'
+                  }
+                >
+                  <ListIcon
+                    className={cs(
+                      styles.layoutOption,
+                      searchOptions.layout === 'list' && styles.selected
+                    )}
+                  />
+                </button>
+              </Tooltip>
+
+              <Tooltip content='Single Movie Layout'>
+                <button
+                  className={cs(
+                    styles.layoutButton,
+                    config?.layout === 'disabled' && styles.disabled
+                  )}
+                  onClick={() => onChangeLayout('single')}
+                  disabled={
+                    searchOptions.layout === 'single' ||
+                    config?.layout === 'disabled'
+                  }
+                >
+                  <SingleIcon
+                    className={cs(
+                      styles.layoutOption,
+                      (!searchOptions.layout ||
+                        searchOptions.layout === 'single') &&
+                        styles.selected
+                    )}
+                  />
+                </button>
+              </Tooltip>
+            </div>
+          )}
+
+          {config?.orderBy !== 'hidden' && (
+            <Select
+              name='orderBy'
+              instanceId='orderBy'
+              className={cs(
+                styles.orderBy,
+                config?.orderBy === 'disabled' && styles.disabled
+              )}
+              options={orderByOptions}
+              styles={selectStyles}
+              isDisabled={config?.orderBy === 'disabled'}
+              value={
+                searchOptions.orderBy
+                  ? {
+                      value: searchOptions.orderBy,
+                      label:
+                        orderByOptions.find(
+                          (o) => o.value === searchOptions.orderBy
+                        )?.label ?? 'Default'
+                    }
+                  : null
+              }
+              onChange={onChangeOrderBy}
+            />
+          )}
         </div>
       </div>
     </form>

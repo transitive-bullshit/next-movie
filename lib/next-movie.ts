@@ -8,75 +8,23 @@ import * as types from './types'
 export async function getMovie(
   opts: types.INextMovieOptions
 ): Promise<types.INextMovieResult> {
-  const seed = opts.seed
-  const rng = seed ? random.clone(seed) : random
+  const { cursor, limit, ...restSearchOptions } = opts.searchOptions
+  const seed = opts.seed || JSON.stringify(restSearchOptions)
+  const rng = random.clone(seed)
   const total =
     opts.total ??
     (await searchMovies({ ...opts.searchOptions, limit: 0 })).total
-  const seq = opts.seq ? opts.seq % total : rng.int(0, total - 1)
+  const seq = opts.seq ? opts.seq % total : 0
+  const offset = rng.int(0, total - 1)
   const prevSeq = getPrevSeq(seq, total)
   const nextSeq = getNextSeq(seq, total)
 
-  const result = await searchMovies({
-    ...opts.searchOptions,
-    limit: 1,
-    skip: seq
-  })
-
-  return {
-    movie: result.results[0],
-    total,
-    prevSeq,
-    seq,
-    nextSeq
-  }
-}
-
-export async function nextMovie(
-  opts: types.INextMovieOptions
-): Promise<types.INextMovieResult> {
-  const seed = opts.seed || JSON.stringify(opts.searchOptions)
-  const total =
-    opts.total ??
-    (await searchMovies({ ...opts.searchOptions, limit: 0 })).total
-  const prevSeq = opts.seq
-    ? opts.seq % total
-    : random.clone(seed).int(0, total - 1)
-  const seq = getNextSeq(prevSeq, total)
-  const nextSeq = getNextSeq(seq, total)
+  const skip = (seq + offset) % total
 
   const result = await searchMovies({
-    ...opts.searchOptions,
+    ...restSearchOptions,
     limit: 1,
-    skip: seq
-  })
-
-  return {
-    movie: result.results[0],
-    total,
-    prevSeq,
-    seq,
-    nextSeq
-  }
-}
-
-export async function prevMovie(
-  opts: types.INextMovieOptions
-): Promise<types.INextMovieResult> {
-  const seed = opts.seed || JSON.stringify(opts.searchOptions)
-  const total =
-    opts.total ??
-    (await searchMovies({ ...opts.searchOptions, limit: 0 })).total
-  const nextSeq = opts.seq
-    ? opts.seq % total
-    : random.clone(seed).int(0, total - 1)
-  const seq = getPrevSeq(nextSeq, total)
-  const prevSeq = getPrevSeq(seq, total)
-
-  const result = await searchMovies({
-    ...opts.searchOptions,
-    limit: 1,
-    skip: seq
+    skip
   })
 
   return {
@@ -98,11 +46,11 @@ const RAND_MASKS = [
 ]
 
 function getNextSeq(seq: number, total: number): number {
-  if (seq >= total - 1) {
-    return 0
-  } else {
-    return seq + 1
-  }
+  // if (seq >= total - 1) {
+  //   return 0
+  // } else {
+  //   return seq + 1
+  // }
 
   if (total <= 1) return 0
 
@@ -125,11 +73,11 @@ function getNextSeq(seq: number, total: number): number {
 }
 
 function getPrevSeq(targetSeq: number, total: number): number {
-  if (targetSeq < 1) {
-    return total - 1
-  } else {
-    return targetSeq - 1
-  }
+  // if (targetSeq < 1) {
+  //   return total - 1
+  // } else {
+  //   return targetSeq - 1
+  // }
 
   if (total <= 1) return 0
 
