@@ -3,11 +3,10 @@
 import * as React from 'react'
 import { createContainer } from 'unstated-next'
 import { useLocalStorage, useDebounce, useRendersCount } from 'react-use'
+import { unstable_serialize } from 'swr'
 
 import { IMovieSearchOptions } from '@/lib/types'
 import { defaultSearchOptions } from '@/lib/config'
-
-// TODO: persist search options to local storage
 
 const localStorageSearchOptionsKey = 'search-options-v0.0.1'
 
@@ -75,9 +74,30 @@ function useSearchOptions(
     []
   )
 
-  const onChangeForeign = React.useCallback((e: any) => {
+  const onChangeForeign = React.useCallback(() => {
     setSearchOptions((options) => ({ ...options, foreign: !options.foreign }))
   }, [])
+
+  const onChangeOrderBy = React.useCallback(
+    (opts: { value: string } | null) => {
+      setSearchOptions((options) => ({
+        ...options,
+        orderBy: opts?.value || config.initialSearchOptions.orderBy
+      }))
+    },
+    [config]
+  )
+
+  const onResetDefaults = React.useCallback(() => {
+    setSearchOptions(config.initialSearchOptions)
+  }, [config])
+
+  const isDirty = React.useMemo<boolean>(
+    () =>
+      unstable_serialize(searchOptions) !==
+      unstable_serialize(config.initialSearchOptions),
+    [searchOptions, config]
+  )
 
   useDebounce(
     () => {
@@ -91,12 +111,16 @@ function useSearchOptions(
     searchOptions,
     setSearchOptions,
 
+    isDirty,
+
     onChangeQuery,
     onClearQuery,
     onChangeForeign,
     onChangeReleaseYearMin,
     onChangeImdbRatingMin,
-    onChangeGenres
+    onChangeGenres,
+    onChangeOrderBy,
+    onResetDefaults
   }
 }
 

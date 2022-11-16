@@ -1,7 +1,7 @@
 .movieSearchOptions {
   width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 24px;
 }
 
@@ -139,4 +139,26 @@
   position: relative;
   top: 2px;
   color: #111;
+}
+
+.subOptions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.rhs {
+  display: flex;
+  flex-direction: row;
+}
+
+.resetButton:not(.disabled) {
+  cursor: pointer;
+  border: 0 none;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.orderBy {
 }

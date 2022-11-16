@@ -54,7 +54,7 @@ export const Movie: React.FC<{
   let rtAudienceScoreImage = rtAudienceScoreEmptyImage
 
   if (movie.rtCriticRating) {
-    if (movie.rtCriticVotes! > 50) {
+    if (movie.rtCriticVotes! > 5) {
       if (movie.rtCriticRating >= 90) {
         rtCriticScoreImage = rtCriticScoreCertifiedFreshImage
       } else if (movie.rtCriticRating >= 60) {

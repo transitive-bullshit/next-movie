@@ -18,7 +18,7 @@ const genreOptions = genres.map((genre) => ({
 }))
 
 const minYear = 1900
-const maxYear = 2022
+const maxYear = new Date().getFullYear()
 
 const yearOptions = [...new Array(maxYear - minYear + 1)]
   .map((_, index) => ({
@@ -36,6 +36,37 @@ const imdbRatingOptions = [
     label: value.toFixed(1)
   }))
   .reverse()
+
+const orderByOptions = [
+  {
+    value: 'relevancyScore',
+    label: 'Custom Sort (default)'
+  },
+  {
+    value: 'imdbRating',
+    label: 'IMDB Rating'
+  },
+  {
+    value: 'imdbVotes',
+    label: 'IMDB Votes'
+  },
+  {
+    value: 'rtCriticRating',
+    label: 'RT Critic Score'
+  },
+  {
+    value: 'rtAudienceRating',
+    label: 'RT Audience Score'
+  },
+  {
+    value: 'tmdbPopularity',
+    label: 'TMDB Popularity'
+  },
+  {
+    value: 'releaseDate',
+    label: 'Release Date'
+  }
+]
 
 const selectStyles: any = {
   option: (provided: any, state: any) => ({
@@ -69,12 +100,15 @@ export const MovieSearchOptions: React.FC<IMovieSearchOptionsProps> = ({
 }) => {
   const {
     searchOptions,
+    isDirty,
     onChangeQuery,
     onClearQuery,
     onChangeGenres,
     onChangeReleaseYearMin,
     onChangeImdbRatingMin,
-    onChangeForeign
+    onChangeForeign,
+    onChangeOrderBy,
+    onResetDefaults
   } = SearchOptions.useContainer()
 
   const queryInputRef = React.useRef<HTMLInputElement>(null)
@@ -239,6 +273,38 @@ export const MovieSearchOptions: React.FC<IMovieSearchOptionsProps> = ({
             </div>
           </div>
         )}
+      </div>
+
+      <div className={styles.subOptions}>
+        <button
+          className={cs(styles.resetButton, !isDirty && styles.disabled)}
+          onClick={onResetDefaults}
+          disabled={!isDirty}
+        >
+          Reset to defaults
+        </button>
+
+        <div className={styles.rhs}>
+          <Select
+            name='orderBy'
+            instanceId='orderBy'
+            className={styles.orderBy}
+            options={orderByOptions}
+            styles={selectStyles}
+            value={
+              searchOptions.orderBy
+                ? {
+                    value: searchOptions.orderBy,
+                    label:
+                      orderByOptions.find(
+                        (o) => o.value === searchOptions.orderBy
+                      )?.label ?? 'Default'
+                  }
+                : null
+            }
+            onChange={onChangeOrderBy}
+          />
+        </div>
       </div>
     </form>
   )

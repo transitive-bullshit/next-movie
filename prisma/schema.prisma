@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["orderByNulls"]
 }
 
 datasource db {
@@ -87,6 +88,11 @@ model Movie {
   searchL              String?  @db.VarChar(2048)
 
   @@index([imdbRating, releaseYear, foreign, genres, searchL, relevancyScore])
+  @@index([imdbVotes])
+  @@index([tmdbPopularity])
+  @@index([rtCriticRating])
+  @@index([rtAudienceRating])
+  @@index([releaseDate])
   @@index([tmdbId])
   @@index([imdbId])
 }

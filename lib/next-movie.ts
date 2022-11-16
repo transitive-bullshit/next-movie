@@ -8,13 +8,14 @@ import * as types from './types'
 export async function getMovie(
   opts: types.INextMovieOptions
 ): Promise<types.INextMovieResult> {
-  const seed = opts.seed || JSON.stringify(opts.searchOptions)
+  const seed = opts.seed
+  const rng = seed ? random.clone(seed) : random
   const total =
     opts.total ??
     (await searchMovies({ ...opts.searchOptions, limit: 0 })).total
-  const seq = opts.seq ? opts.seq % total : random.clone(seed).int(0, total - 1)
-  const prevSeq = getPrevSeq(total, seq)
-  const nextSeq = getNextSeq(total, seq)
+  const seq = opts.seq ? opts.seq % total : rng.int(0, total - 1)
+  const prevSeq = getPrevSeq(seq, total)
+  const nextSeq = getNextSeq(seq, total)
 
   const result = await searchMovies({
     ...opts.searchOptions,
@@ -41,8 +42,8 @@ export async function nextMovie(
   const prevSeq = opts.seq
     ? opts.seq % total
     : random.clone(seed).int(0, total - 1)
-  const seq = getNextSeq(total, prevSeq)
-  const nextSeq = getNextSeq(total, seq)
+  const seq = getNextSeq(prevSeq, total)
+  const nextSeq = getNextSeq(seq, total)
 
   const result = await searchMovies({
     ...opts.searchOptions,
@@ -69,8 +70,8 @@ export async function prevMovie(
   const nextSeq = opts.seq
     ? opts.seq % total
     : random.clone(seed).int(0, total - 1)
-  const seq = getPrevSeq(total, nextSeq)
-  const prevSeq = getPrevSeq(total, seq)
+  const seq = getPrevSeq(nextSeq, total)
+  const prevSeq = getPrevSeq(seq, total)
 
   const result = await searchMovies({
     ...opts.searchOptions,
@@ -97,6 +98,12 @@ const RAND_MASKS = [
 ]
 
 function getNextSeq(seq: number, total: number): number {
+  if (seq >= total - 1) {
+    return 0
+  } else {
+    return seq + 1
+  }
+
   if (total <= 1) return 0
 
   const dim = Math.ceil(Math.sqrt(total))
@@ -118,6 +125,12 @@ function getNextSeq(seq: number, total: number): number {
 }
 
 function getPrevSeq(targetSeq: number, total: number): number {
+  if (targetSeq < 1) {
+    return total - 1
+  } else {
+    return targetSeq - 1
+  }
+
   if (total <= 1) return 0
 
   const dim = Math.ceil(Math.sqrt(total))

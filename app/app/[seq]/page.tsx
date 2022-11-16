@@ -83,13 +83,8 @@ export default async function AppMoviePage({
   })
   console.log('<<< getMovie', result)
 
-  // TODO
-  // AppMoviePage { seq: '5' } {}
-  // >>> getMovie { seed: undefined, searchOptions: {}, total: undefined, seq: 5 }
-
-  return null
-
   // TODO: add genres to searchOptions and params
+  // TODO: fix default searchOptions
 
   return (
     <Providers

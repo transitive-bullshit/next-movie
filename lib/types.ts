@@ -3,6 +3,15 @@ import { type Movie, type Prisma } from '@prisma/client'
 
 export { type Movie, type Prisma }
 
+// prisma's models use Dates which are not serializable, so we have to
+// convert them before using them client-side
+export interface MovieModel extends Omit<Movie, 'createdAt' | 'updatedAt'> {
+  createdAt: string
+  updatedAt: string
+}
+
+export const MovieSearchType = z.enum(['list', 'single'])
+
 export const MovieSearchOptionsSchema = z.object({
   query: z.string().optional(),
 
@@ -29,10 +38,12 @@ export const MovieSearchOptionsSchema = z.object({
 
   orderBy: z.string().optional(),
   cursor: z.number().nonnegative().optional(),
-  limit: z.number().int().gte(1).lte(100).optional()
+  limit: z.number().int().gte(1).lte(100).optional(),
+  type: MovieSearchType.optional()
 })
 
 export type IMovieSearchOptions = z.infer<typeof MovieSearchOptionsSchema>
+export type IMovieSearchType = z.infer<typeof MovieSearchType>
 
 export const NextMovieOptionsSchema = z.object({
   searchOptions: MovieSearchOptionsSchema,
@@ -56,9 +67,4 @@ export interface INextMovieResult {
   prevSeq: number
   seq: number
   nextSeq: number
-}
-
-export interface MovieModel extends Omit<Movie, 'createdAt' | 'updatedAt'> {
-  createdAt: string
-  updatedAt: string
 }

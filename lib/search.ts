@@ -111,12 +111,39 @@ export async function searchMovies(
     }
   }
 
-  const orderBy: types.Prisma.MovieOrderByWithAggregationInput = opts.orderBy
-    ? { [opts.orderBy]: 'desc' }
-    : { relevancyScore: 'desc' }
+  // always sort by desired field plus `id` to ensure sorting consistency
+  const orderByField = opts.orderBy || 'relevancyScore'
+  const orderBy: types.Prisma.Enumerable<types.Prisma.MovieOrderByWithAggregationInput> =
+    [
+      {
+        [orderByField]: { sort: 'desc', nulls: 'last' }
+      },
+      {
+        id: 'desc'
+      }
+    ]
+
+  if (orderByField === 'rtCriticRating') {
+    where.rtUrl = {
+      not: null
+    }
+
+    where.rtCriticVotes = {
+      gt: 5
+    }
+  } else if (orderByField === 'rtAudienceRating') {
+    where.rtUrl = {
+      not: null
+    }
+
+    where.rtAudienceVotes = {
+      gt: 50
+    }
+  }
+
   const cursor = opts.cursor ? { id: opts.cursor } : undefined
   const take = Math.max(1, Math.min(100, opts.limit || 10))
-  const skip = opts.cursor ? 1 : 0
+  const skip = opts.cursor ? 1 : opts.skip !== undefined ? opts.skip : 0
 
   const [count, results] = await Promise.all([
     prisma.movie.count({
