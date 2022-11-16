@@ -12,7 +12,7 @@ export const Tooltip: React.FC<
     content: React.ReactNode
     children: React.ReactNode
   } & TooltipPrimitiveProps
-> = React.forwardRef(function Tooltip({ content, children, ...props }) {
+> = React.forwardRef(function Tooltip({ content, children, ...props }, _ref) {
   return (
     <RadixTooltip.Provider>
       <RadixTooltip.Root {...props}>
