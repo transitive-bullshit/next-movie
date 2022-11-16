@@ -5,7 +5,7 @@ import * as types from './types'
 
 // TODO: add p-memoize?
 
-export async function getMovie(
+export async function getNextMovie(
   opts: types.INextMovieOptions
 ): Promise<types.INextMovieResult> {
   const { cursor, limit, ...restSearchOptions } = opts.searchOptions

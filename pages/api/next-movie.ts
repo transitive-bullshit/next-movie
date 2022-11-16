@@ -6,7 +6,7 @@ import {
   INextMovieOptions,
   INextMovieResult
 } from '@/lib/types'
-import { nextMovie } from '@/lib/next-movie'
+import { getNextMovie } from '@/lib/next-movie'
 
 export default async function nextMovieHandler(
   req: NextApiRequest,
@@ -28,6 +28,6 @@ export default async function nextMovieHandler(
     return res.status(400).json({ error: 'error parsing input' })
   }
 
-  const result = await nextMovie(params)
+  const result = await getNextMovie(params)
   return res.status(200).json(result)
 }

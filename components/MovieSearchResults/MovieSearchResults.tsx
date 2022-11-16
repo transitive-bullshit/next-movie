@@ -45,7 +45,7 @@ export const MovieSearchResultsInfinite: React.FC = () => {
     hasNextPage: hasMoreSearchResults,
     onLoadMore: loadMoreSearchResults,
     disabled: !!error,
-    rootMargin: '0px 0px 50% 0px'
+    rootMargin: '0px 0px 100% 0px'
   })
 
   if (error) {
