@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: calc(max(12px, min(48px, 4vmin)));
+  gap: var(--gap-2);
 }
 
 .title {
@@ -17,5 +17,5 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 24px;
+  gap: var(--gap);
 }

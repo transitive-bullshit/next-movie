@@ -298,7 +298,7 @@ export const MovieSearchOptions: React.FC<IMovieSearchOptionsProps> = ({
         <div className={styles.rhs}>
           {config?.layout !== 'hidden' && (
             <div className={styles.layoutOptions}>
-              <Tooltip content='Grid Layout'>
+              <Tooltip content='Grid View'>
                 <button
                   className={cs(
                     styles.layoutButton,
@@ -319,7 +319,7 @@ export const MovieSearchOptions: React.FC<IMovieSearchOptionsProps> = ({
                 </button>
               </Tooltip>
 
-              <Tooltip content='List Layout'>
+              <Tooltip content='List View'>
                 <button
                   className={cs(
                     styles.layoutButton,
@@ -340,7 +340,7 @@ export const MovieSearchOptions: React.FC<IMovieSearchOptionsProps> = ({
                 </button>
               </Tooltip>
 
-              <Tooltip content='Single Movie Layout'>
+              <Tooltip content='Single Movie View'>
                 <button
                   className={cs(
                     styles.layoutButton,

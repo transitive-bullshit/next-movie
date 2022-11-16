@@ -2,8 +2,6 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-
-  --gap: calc(max(4px, min(24px, 1.5vw)));
   gap: var(--gap);
 }
 

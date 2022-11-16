@@ -4,8 +4,8 @@
   grid-template-columns: repeat(auto-fill, 180px);
   align-items: flex-start;
   justify-content: center;
-  margin-bottom: calc(max(12px, min(48px, 4vmin)));
-  grid-gap: calc(max(12px, min(48px, 4vmin)));
+  margin-bottom: var(--gap-2);
+  grid-gap: var(--gap-2);
 }
 
 .gridMovie {
