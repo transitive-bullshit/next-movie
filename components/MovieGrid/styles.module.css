@@ -1,11 +1,13 @@
 .movieGrid {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 180px);
-  align-items: flex-start;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  align-items: stretch;
+  justify-items: stretch;
   justify-content: center;
   margin-bottom: var(--gap-2);
-  grid-gap: var(--gap-2);
+  column-gap: var(--gap-w);
+  row-gap: var(--gap-h);
 }
 
 .gridMovie {

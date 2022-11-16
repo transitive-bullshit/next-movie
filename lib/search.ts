@@ -1,3 +1,4 @@
+import { layoutToDefaultPageSize } from './config'
 import { prisma } from './prisma'
 import * as types from './types'
 import { convertMovies } from './utils'
@@ -141,11 +142,6 @@ export async function searchMovies(
     }
   }
 
-  const layoutToDefaultPageSize: Record<types.IMovieSearchLayout, number> = {
-    grid: 25,
-    list: 10,
-    single: 1
-  }
   const layout = opts.layout || 'list'
   const limit = opts.limit ?? layoutToDefaultPageSize[layout]
 

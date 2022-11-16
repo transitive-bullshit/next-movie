@@ -1,4 +1,4 @@
-import { IMovieSearchOptions } from './types'
+import { IMovieSearchOptions, IMovieSearchLayout } from './types'
 
 export const environment = process.env.NODE_ENV || 'development'
 export const isDev = environment === 'development'
@@ -39,4 +39,10 @@ export const defaultSearchOptions: IMovieSearchOptions = {
   foreign: false,
   orderBy: 'relevancyScore',
   layout: 'list'
+}
+
+export const layoutToDefaultPageSize: Record<IMovieSearchLayout, number> = {
+  grid: 50,
+  list: 10,
+  single: 1
 }

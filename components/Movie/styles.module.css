@@ -181,7 +181,7 @@
   display: grid;
   grid-template-columns: 0.2fr 1fr;
   align-items: center;
-  grid-gap: var(--gap-1);
+  gap: var(--gap-1);
 }
 
 .genres {

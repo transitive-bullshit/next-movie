@@ -10,6 +10,8 @@ import {
   IMovieSearchResults
 } from '@/lib/types'
 import { defaultSearchOptions } from '@/lib/config'
+import { layoutToDefaultPageSize } from '@/lib/config'
+
 import { SearchOptions, ISearchOptionsConfig } from './search-options'
 
 const fetcher = ({
@@ -78,11 +80,6 @@ function useSearch(
     setSearchPageNum(searchPageNum + 1)
   }, [searchPageNum, setSearchPageNum])
 
-  const layoutToDefaultPageSize: Record<IMovieSearchLayout, number> = {
-    grid: 25,
-    list: 10,
-    single: 1
-  }
   const layout = searchOptions.layout || 'list'
   const pageSize = defaultSearchOptions.limit ?? layoutToDefaultPageSize[layout]
   const isEmpty = searchResults?.[0]?.results?.length === 0
