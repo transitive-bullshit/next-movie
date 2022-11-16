@@ -29,6 +29,12 @@ const fetcher = ({
 function useSearch() {
   const { searchOptions, config } = SearchOptions.useContainer()
 
+  // const { cache } = useSWRConfig()
+  // console.log(
+  //   'cache',
+  //   Object.fromEntries(Array.from(cache.keys()).map((k) => [k, cache.get(k)]))
+  // )
+
   const getKey = React.useCallback(
     (_: number, previousPageData: IMovieSearchResults) => {
       const body: IMovieSearchOptions = { ...searchOptions }

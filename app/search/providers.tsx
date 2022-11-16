@@ -16,11 +16,16 @@ export function Providers({
   const fallback = React.useMemo(
     () => ({
       fallback: Object.fromEntries(
-        fallbackData.map((d) => [unstable_serialize(d.key), d.value])
+        fallbackData.map((d) => [
+          `$inf$${unstable_serialize(d.key)}`,
+          [d.value]
+        ])
       )
     }),
     [fallbackData]
   )
+
+  // console.log('fallback', Object.keys(fallback.fallback)[0])
 
   return (
     <YouTubeDialog>

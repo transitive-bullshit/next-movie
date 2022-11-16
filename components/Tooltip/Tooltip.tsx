@@ -5,6 +5,8 @@ import * as RadixTooltip from '@radix-ui/react-tooltip'
 
 import styles from './styles.module.css'
 
+// TODO: work with forwardRef
+
 export const Tooltip: React.FC<{
   content: React.ReactNode
   children: React.ReactNode
