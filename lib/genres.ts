@@ -42,7 +42,7 @@ export const defaultSearchOptionsByGenre: Record<string, IMovieSearchOptions> =
         genres: [genre],
         foreign: false,
         orderBy: 'relevancyScore',
-        limit: 10
+        layout: 'list'
       }
     ])
   )

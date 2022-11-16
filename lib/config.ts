@@ -38,13 +38,5 @@ export const defaultSearchOptions: IMovieSearchOptions = {
   imdbRatingMin: 7,
   foreign: false,
   orderBy: 'relevancyScore',
-  limit: 10
-}
-
-// TODO
-export const defaultAppOptions: IMovieSearchOptions = {
-  releaseYearMin: 1972,
-  imdbRatingMin: 7,
-  foreign: false,
-  orderBy: 'relevancyScore'
+  layout: 'list'
 }

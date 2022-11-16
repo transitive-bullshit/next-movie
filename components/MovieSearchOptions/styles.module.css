@@ -153,6 +153,7 @@
 .rhs {
   display: flex;
   flex-direction: row;
+  gap: var(--gap);
 }
 
 .resetButton:not(.disabled) {
@@ -164,4 +165,35 @@
 
 .orderBy {
   min-width: 218px;
+}
+
+.layoutOptions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.layoutOption {
+  width: 32px;
+  height: 32px;
+  padding: 8px;
+  border-radius: 4px;
+
+  background: transparent;
+  transition: all 150ms;
+  cursor: pointer;
+}
+
+.layoutOption:hover:not(.selected) {
+  background: var(--bg-color-1);
+}
+
+.selected {
+  cursor: default;
+  background: var(--fg-color-1);
+  color: var(--bg-color);
+}
+
+.layoutButton {
+  all: unset;
 }

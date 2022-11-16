@@ -10,7 +10,7 @@ export interface MovieModel extends Omit<Movie, 'createdAt' | 'updatedAt'> {
   updatedAt: string
 }
 
-export const MovieSearchType = z.enum(['list', 'single'])
+export const MovieSearchLayout = z.enum(['grid', 'list', 'single'])
 
 export const MovieSearchOptionsSchema = z.object({
   query: z.string().optional(),
@@ -39,11 +39,12 @@ export const MovieSearchOptionsSchema = z.object({
   orderBy: z.string().optional(),
   cursor: z.number().nonnegative().optional(),
   limit: z.number().int().gte(1).lte(100).optional(),
-  type: MovieSearchType.optional()
+
+  layout: MovieSearchLayout.optional()
 })
 
 export type IMovieSearchOptions = z.infer<typeof MovieSearchOptionsSchema>
-export type IMovieSearchType = z.infer<typeof MovieSearchType>
+export type IMovieSearchLayout = z.infer<typeof MovieSearchLayout>
 
 export const NextMovieOptionsSchema = z.object({
   searchOptions: MovieSearchOptionsSchema,

@@ -1,17 +1,17 @@
 import * as React from 'react'
 
 import type { MovieModel } from '@/lib/types'
-import { Movie } from '@/components/Movie/Movie'
 
+import { GridMovie } from './GridMovie'
 import styles from './styles.module.css'
 
-export const MovieList: React.FC<{
+export const MovieGrid: React.FC<{
   movies: MovieModel[]
 }> = ({ movies }) => {
   return (
-    <div className={styles.movieList}>
+    <div className={styles.movieGrid}>
       {movies.map((movie) => (
-        <Movie key={movie.id} movie={movie} />
+        <GridMovie key={movie.id} movie={movie} />
       ))}
     </div>
   )

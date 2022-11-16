@@ -10,7 +10,7 @@ import { YouTube } from '@/lib/hooks/youtube'
 
 import styles from './styles.module.css'
 
-function isMouseEventNewTab(event: MouseEvent) {
+export function isMouseEventNewTab(event: MouseEvent) {
   if (
     event.ctrlKey ||
     event.shiftKey ||
@@ -25,7 +25,8 @@ function isMouseEventNewTab(event: MouseEvent) {
 
 export const YouTubeButton: React.FC<{
   movie: MovieModel
-}> = ({ movie }) => {
+  tooltip?: boolean
+}> = ({ movie, tooltip = true }) => {
   const { openYouTubeDialog } = YouTube.useContainer()
 
   const onClick = React.useCallback(
@@ -40,6 +41,13 @@ export const YouTubeButton: React.FC<{
     [movie, openYouTubeDialog]
   )
 
+  const button = (
+    <button
+      className={styles.youtubeButton}
+      aria-label='Play YouTube Trailer'
+    />
+  )
+
   return (
     <Tooltip.Provider>
       <Tooltip.Root>
@@ -51,12 +59,11 @@ export const YouTubeButton: React.FC<{
           aria-label='YouTube Trailer'
         >
           <Dialog.Trigger asChild>
-            <Tooltip.Trigger asChild>
-              <button
-                className={styles.youtubeButton}
-                aria-label='Play YouTube Trailer'
-              />
-            </Tooltip.Trigger>
+            {tooltip ? (
+              <Tooltip.Trigger asChild>{button}</Tooltip.Trigger>
+            ) : (
+              button
+            )}
           </Dialog.Trigger>
         </Link>
 

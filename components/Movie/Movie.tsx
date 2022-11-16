@@ -93,7 +93,7 @@ export const Movie: React.FC<{
       </div> */}
 
       <div className={styles.lhs}>
-        <ActiveLink className={styles.title} href={`/titles/${movie.id}`}>
+        <ActiveLink href={`/titles/${movie.id}`}>
           <div className={styles.frame}>
             {movie.posterUrl ? (
               <Image

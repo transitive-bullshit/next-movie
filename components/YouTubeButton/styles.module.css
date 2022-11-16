@@ -1,5 +1,4 @@
 .youtubeButton {
-  all: unset;
   display: block;
   position: relative;
   width: 68px;
@@ -46,6 +45,25 @@
 
 .tooltipArrow {
   fill: #fff;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+}
+
+.overlay:hover,
+.overlay:focus {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.25);
 }
 
 @keyframes slideUpAndFade {

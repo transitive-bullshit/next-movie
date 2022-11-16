@@ -1,0 +1,51 @@
+.movieGrid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 180px);
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-bottom: calc(max(12px, min(48px, 4vmin)));
+  grid-gap: calc(max(12px, min(48px, 4vmin)));
+}
+
+.gridMovie {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5em;
+}
+
+.frame {
+  position: relative;
+  display: block;
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+}
+
+.poster {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.emptyPoster {
+  aspect-ratio: 230 / 345;
+  background-color: #dbdbdb;
+  background-image: url('/images/image-not-found.svg');
+  background-repeat: no-repeat;
+  background-size: 75%;
+  background-position: center center;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.releaseYear {
+  font-size: 0.75rem;
+  white-space: nowrap;
+  color: var(--fg-color-1);
+}

@@ -7,7 +7,14 @@ import cs from 'clsx'
 import * as Checkbox from '@radix-ui/react-checkbox'
 
 import { genres, genreLabelMap } from '@/lib/genres'
-import { SearchIcon, CheckIcon, ClearIcon } from '@/icons/index'
+import {
+  SearchIcon,
+  CheckIcon,
+  ClearIcon,
+  SingleIcon,
+  GridIcon,
+  ListIcon
+} from '@/icons/index'
 import { SearchOptions } from '@/lib/hooks/search-options'
 
 import styles from './styles.module.css'
@@ -40,7 +47,7 @@ const imdbRatingOptions = [
 const orderByOptions = [
   {
     value: 'relevancyScore',
-    label: 'Custom Sort (default)'
+    label: 'Default Sort'
   },
   {
     value: 'imdbRating',
@@ -108,6 +115,7 @@ export const MovieSearchOptions: React.FC<IMovieSearchOptionsProps> = ({
     onChangeImdbRatingMin,
     onChangeForeign,
     onChangeOrderBy,
+    onChangeLayout,
     onResetDefaults
   } = SearchOptions.useContainer()
 
@@ -281,10 +289,53 @@ export const MovieSearchOptions: React.FC<IMovieSearchOptionsProps> = ({
           onClick={onResetDefaults}
           disabled={!isDirty}
         >
-          Reset to defaults
+          Restore defaults
         </button>
 
         <div className={styles.rhs}>
+          <div className={styles.layoutOptions}>
+            <button
+              className={styles.layoutButton}
+              onClick={() => onChangeLayout('grid')}
+              disabled={searchOptions.layout === 'grid'}
+            >
+              <GridIcon
+                className={cs(
+                  styles.layoutOption,
+                  searchOptions.layout === 'grid' && styles.selected
+                )}
+              />
+            </button>
+
+            <button
+              className={styles.layoutButton}
+              onClick={() => onChangeLayout('list')}
+              disabled={searchOptions.layout === 'list'}
+            >
+              <ListIcon
+                className={cs(
+                  styles.layoutOption,
+                  searchOptions.layout === 'list' && styles.selected
+                )}
+              />
+            </button>
+
+            <button
+              className={styles.layoutButton}
+              onClick={() => onChangeLayout('single')}
+              disabled={searchOptions.layout === 'single'}
+            >
+              <SingleIcon
+                className={cs(
+                  styles.layoutOption,
+                  (!searchOptions.layout ||
+                    searchOptions.layout === 'single') &&
+                    styles.selected
+                )}
+              />
+            </button>
+          </div>
+
           <Select
             name='orderBy'
             instanceId='orderBy'

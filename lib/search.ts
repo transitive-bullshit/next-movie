@@ -141,8 +141,16 @@ export async function searchMovies(
     }
   }
 
+  const layoutToDefaultPageSize: Record<types.IMovieSearchLayout, number> = {
+    grid: 25,
+    list: 10,
+    single: 1
+  }
+  const layout = opts.layout || 'list'
+  const limit = opts.limit ?? layoutToDefaultPageSize[layout]
+
   const cursor = opts.cursor ? { id: opts.cursor } : undefined
-  const take = Math.max(1, Math.min(100, opts.limit || 10))
+  const take = Math.max(1, Math.min(100, limit))
   const skip = opts.cursor ? 1 : opts.skip !== undefined ? opts.skip : 0
 
   const [count, results] = await Promise.all([

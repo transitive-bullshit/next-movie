@@ -5,7 +5,7 @@ import { createContainer } from 'unstated-next'
 import { useLocalStorage, useDebounce, useRendersCount } from 'react-use'
 import { unstable_serialize } from 'swr'
 
-import { IMovieSearchOptions } from '@/lib/types'
+import { IMovieSearchLayout, IMovieSearchOptions } from '@/lib/types'
 import { defaultSearchOptions } from '@/lib/config'
 
 const localStorageSearchOptionsKey = 'search-options-v0.0.1'
@@ -88,6 +88,13 @@ function useSearchOptions(
     [config]
   )
 
+  const onChangeLayout = React.useCallback((value: IMovieSearchLayout) => {
+    setSearchOptions((options) => ({
+      ...options,
+      layout: value
+    }))
+  }, [])
+
   const onResetDefaults = React.useCallback(() => {
     setSearchOptions(config.initialSearchOptions)
   }, [config])
@@ -120,6 +127,7 @@ function useSearchOptions(
     onChangeImdbRatingMin,
     onChangeGenres,
     onChangeOrderBy,
+    onChangeLayout,
     onResetDefaults
   }
 }

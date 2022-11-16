@@ -4,7 +4,11 @@ import * as React from 'react'
 import { createContainer } from 'unstated-next'
 import useSWRInfinite from 'swr/infinite'
 
-import { IMovieSearchOptions, IMovieSearchResults } from '@/lib/types'
+import {
+  IMovieSearchLayout,
+  IMovieSearchOptions,
+  IMovieSearchResults
+} from '@/lib/types'
 import { defaultSearchOptions } from '@/lib/config'
 import { SearchOptions, ISearchOptionsConfig } from './search-options'
 
@@ -29,8 +33,7 @@ function useSearch(
     initialSearchOptions: defaultSearchOptions
   }
 ) {
-  const { searchOptions, setSearchOptions, ...restSearchOptions } =
-    SearchOptions.useContainer()
+  const { searchOptions } = SearchOptions.useContainer()
 
   const getKey = React.useCallback(
     (_: number, previousPageData: IMovieSearchResults) => {
@@ -75,7 +78,13 @@ function useSearch(
     setSearchPageNum(searchPageNum + 1)
   }, [searchPageNum, setSearchPageNum])
 
-  const pageSize = defaultSearchOptions.limit ?? 10
+  const layoutToDefaultPageSize: Record<IMovieSearchLayout, number> = {
+    grid: 25,
+    list: 10,
+    single: 1
+  }
+  const layout = searchOptions.layout || 'list'
+  const pageSize = defaultSearchOptions.limit ?? layoutToDefaultPageSize[layout]
   const isEmpty = searchResults?.[0]?.results?.length === 0
   const hasMoreSearchResults = !(
     isEmpty ||
