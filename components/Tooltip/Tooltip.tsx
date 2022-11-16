@@ -5,15 +5,17 @@ import * as RadixTooltip from '@radix-ui/react-tooltip'
 
 import styles from './styles.module.css'
 
-// TODO: work with forwardRef
+type TooltipPrimitiveProps = React.ComponentProps<typeof RadixTooltip.Root>
 
-export const Tooltip: React.FC<{
-  content: React.ReactNode
-  children: React.ReactNode
-}> = ({ content, children }) => {
+export const Tooltip: React.FC<
+  {
+    content: React.ReactNode
+    children: React.ReactNode
+  } & TooltipPrimitiveProps
+> = React.forwardRef(function Tooltip({ content, children, ...props }) {
   return (
     <RadixTooltip.Provider>
-      <RadixTooltip.Root>
+      <RadixTooltip.Root {...props}>
         <RadixTooltip.Trigger asChild>{children}</RadixTooltip.Trigger>
 
         <RadixTooltip.Portal className={styles.tooltipPortal}>
@@ -28,4 +30,6 @@ export const Tooltip: React.FC<{
       </RadixTooltip.Root>
     </RadixTooltip.Provider>
   )
-}
+})
+
+// export const TooltipProvider = RadixTooltip.Provider

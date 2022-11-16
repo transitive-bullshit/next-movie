@@ -32,11 +32,6 @@ export default async function HomePage() {
 
   const movies = await convertMovies(results)
 
-  return (
-    <>
-      <YouTubeDialog>
-        <MovieList movies={movies} />
-      </YouTubeDialog>
-    </>
-  )
+  // TODO
+  return <MovieList movies={movies} />
 }

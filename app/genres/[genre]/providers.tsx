@@ -3,7 +3,6 @@
 import * as React from 'react'
 import { unstable_serialize, SWRConfig } from 'swr'
 
-import { YouTubeDialog } from '@/components/YouTubeDialog/YouTubeDialog'
 import { ISearchOptionsConfig, SearchOptions } from '@/lib/hooks/search-options'
 
 export function Providers({
@@ -28,12 +27,10 @@ export function Providers({
   )
 
   return (
-    <YouTubeDialog>
-      <SWRConfig value={fallback}>
-        <SearchOptions.Provider initialState={searchOptionsConfig}>
-          {children}
-        </SearchOptions.Provider>
-      </SWRConfig>
-    </YouTubeDialog>
+    <SWRConfig value={fallback}>
+      <SearchOptions.Provider initialState={searchOptionsConfig}>
+        {children}
+      </SearchOptions.Provider>
+    </SWRConfig>
   )
 }

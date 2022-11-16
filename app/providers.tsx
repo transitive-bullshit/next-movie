@@ -2,6 +2,7 @@
 
 import { ThemeProvider } from 'next-themes'
 
+import { YouTubeDialog } from '@/components/YouTubeDialog/YouTubeDialog'
 import { bootstrap } from '@/lib/bootstrap'
 
 bootstrap()
@@ -9,7 +10,7 @@ bootstrap()
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <ThemeProvider disableTransitionOnChange defaultTheme='dark'>
-      {children}
+      <YouTubeDialog>{children}</YouTubeDialog>
     </ThemeProvider>
   )
 }
