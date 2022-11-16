@@ -101,7 +101,7 @@ function getPrevSeq(targetSeq: number, total: number): number {
   if (!mask) return 0 // this shold never happen
 
   let prevSeq = total
-  let seq = targetSeq === 1 ? 2 : 1
+  let seq = 1
 
   // iterate and ignore samples outside of our target range
   do {
