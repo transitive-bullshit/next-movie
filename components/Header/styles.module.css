@@ -9,6 +9,7 @@
   overflow: hidden;
   height: 56px;
   min-height: 56px;
+  padding: 12px 0;
 
   background: hsla(0, 0%, 100%, 0.8);
   backdrop-filter: saturate(180%) blur(16px);
@@ -26,7 +27,6 @@
   justify-content: space-between;
   align-items: center;
   gap: 2em;
-  padding: 0 12px;
 
   max-width: var(--max-width);
   height: 100%;

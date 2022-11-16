@@ -7,9 +7,9 @@ import { copyright, githubRepoUrl, twitter, twitterUrl } from '@/lib/config'
 
 import styles from './styles.module.css'
 
-export const Footer: React.FC = () => {
+export const Footer: React.FC<{ className?: string }> = ({ className }) => {
   return (
-    <footer className={styles.footer}>
+    <footer className={cs(styles.footer, className)}>
       <div className={styles.copyright}>
         <a href={twitterUrl} target='_blank' rel='noopener noreferrer'>
           {copyright}
@@ -17,7 +17,7 @@ export const Footer: React.FC = () => {
       </div>
 
       <div className={styles.settings}>
-        <DarkModeToggle className={styles.action} />
+        <DarkModeToggle className={cs(styles.action, styles.darkModeToggle)} />
       </div>
 
       <div className={styles.social}>

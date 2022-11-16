@@ -44,6 +44,11 @@
   transition: color 250ms ease-out;
 }
 
+.darkModeToggle {
+  width: 1.75em;
+  height: 1.75em;
+}
+
 .action:hover {
   transition: color 50ms ease-out;
 }

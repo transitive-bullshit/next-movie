@@ -1,13 +1,14 @@
 import * as React from 'react'
+import cs from 'clsx'
 
 import { ActiveLink } from '@/components/ActiveLink/ActiveLink'
 import { DarkModeToggle } from '@/components/DarkModeToggle/DarkModeToggle'
 
 import styles from './styles.module.css'
 
-export const Header: React.FC = () => {
+export const Header: React.FC<{ className?: string }> = ({ className }) => {
   return (
-    <header className={styles.header}>
+    <header className={cs(styles.header, className)}>
       <div className={styles.navHeader}>
         <ActiveLink
           href='/'
