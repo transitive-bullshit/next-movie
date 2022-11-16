@@ -4,11 +4,7 @@ import * as React from 'react'
 import { createContainer } from 'unstated-next'
 import useSWRInfinite from 'swr/infinite'
 
-import {
-  IMovieSearchLayout,
-  IMovieSearchOptions,
-  IMovieSearchResults
-} from '@/lib/types'
+import { IMovieSearchOptions, IMovieSearchResults } from '@/lib/types'
 import { defaultSearchOptions } from '@/lib/config'
 import { layoutToDefaultPageSize } from '@/lib/config'
 
@@ -20,6 +16,7 @@ const fetcher = ({
 }: {
   url: string
   body: IMovieSearchOptions
+  key?: string
 }): Promise<IMovieSearchResults> =>
   fetch(url, {
     method: 'POST',

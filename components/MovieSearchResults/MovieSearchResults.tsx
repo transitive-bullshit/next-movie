@@ -21,7 +21,6 @@ export const MovieSearchResults: React.FC = () => {
     return null
   } else {
     // 'list' and 'grid' layouts
-
     return <MovieSearchResultsInfinite />
   }
 }
