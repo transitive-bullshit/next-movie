@@ -118,6 +118,7 @@ function useSearchOptions(
     searchOptions,
     setSearchOptions,
 
+    config,
     isDirty,
 
     onChangeQuery,

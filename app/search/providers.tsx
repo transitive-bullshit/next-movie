@@ -5,7 +5,6 @@ import { unstable_serialize, SWRConfig } from 'swr'
 
 import { YouTubeDialog } from '@/components/YouTubeDialog/YouTubeDialog'
 import { SearchOptions } from '@/lib/hooks/search-options'
-import { Search } from '@/lib/hooks/search'
 
 export function Providers({
   children,
@@ -26,9 +25,7 @@ export function Providers({
   return (
     <YouTubeDialog>
       <SWRConfig value={fallback}>
-        <SearchOptions.Provider>
-          <Search.Provider>{children}</Search.Provider>
-        </SearchOptions.Provider>
+        <SearchOptions.Provider>{children}</SearchOptions.Provider>
       </SWRConfig>
     </YouTubeDialog>
   )

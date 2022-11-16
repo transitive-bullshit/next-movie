@@ -12,9 +12,10 @@ export async function getNextMovie(
   const seed = opts.seed || JSON.stringify(restSearchOptions)
   const rng = random.clone(seed)
   const total =
-    opts.total ??
-    (await searchMovies({ ...opts.searchOptions, limit: 0 })).total
-  const seq = opts.seq ? opts.seq % total : 0
+    opts.total !== undefined
+      ? opts.total | 0
+      : (await searchMovies({ ...opts.searchOptions, limit: 0 })).total
+  const seq = opts.seq ? Math.max(1, (opts.seq | 0) % (total + 1)) : 1
   const offset = rng.int(0, total - 1)
   const prevSeq = getPrevSeq(seq, total)
   const nextSeq = getNextSeq(seq, total)
@@ -25,6 +26,16 @@ export async function getNextMovie(
     ...restSearchOptions,
     limit: 1,
     skip
+  })
+
+  console.log('next-movie', {
+    movie: result.results[0]?.title,
+    total,
+    offset,
+    skip,
+    prevSeq,
+    seq,
+    nextSeq
   })
 
   return {
@@ -52,13 +63,14 @@ function getNextSeq(seq: number, total: number): number {
   //   return seq + 1
   // }
 
-  if (total <= 1) return 0
+  if (total <= 0 || seq < 1) return 0
 
   const dim = Math.ceil(Math.sqrt(total))
   const size = dim * dim
 
   const bitWidth = getBitWidth(size)
   const mask = RAND_MASKS[bitWidth - 1]
+  if (!mask) return 0 // this shold never happen
 
   // 2d version coords of the dissolve effect are unused
   // const x = (0.5 + (seq % dim)) | 0
@@ -67,7 +79,7 @@ function getNextSeq(seq: number, total: number): number {
   // iterate and ignore samples outside of our target range
   do {
     seq = (seq >> 1) ^ ((seq & 1) * mask)
-  } while (seq >= total)
+  } while (seq > total)
 
   return seq
 }
@@ -79,22 +91,26 @@ function getPrevSeq(targetSeq: number, total: number): number {
   //   return targetSeq - 1
   // }
 
-  if (total <= 1) return 0
+  if (total <= 0 || targetSeq < 1 || targetSeq > total) return 0
 
   const dim = Math.ceil(Math.sqrt(total))
   const size = dim * dim
 
   const bitWidth = getBitWidth(size)
   const mask = RAND_MASKS[bitWidth - 1]
+  if (!mask) return 0 // this shold never happen
 
-  let prevSeq: number
-  let seq = 1
+  let prevSeq = total
+  let seq = targetSeq === 1 ? 2 : 1
 
   // iterate and ignore samples outside of our target range
   do {
-    prevSeq = seq
+    if (seq <= total) {
+      prevSeq = seq
+    }
+
     seq = (seq >> 1) ^ ((seq & 1) * mask)
-  } while (seq >= total || seq !== targetSeq)
+  } while (seq > total || seq !== targetSeq)
 
   return prevSeq
 }

@@ -7,8 +7,11 @@ import cs from 'clsx'
 import { MovieList } from '@/components/MovieList/MovieList'
 import { MovieGrid } from '@/components/MovieGrid/MovieGrid'
 import { LoadingSpinner } from '@/components/LoadingSpinner/LoadingSpinner'
-import { Search } from '@/lib/hooks/search'
+import { Movie } from '@/components/Movie/Movie'
+
 import { SearchOptions } from '@/lib/hooks/search-options'
+import { Search } from '@/lib/hooks/search'
+import { NextMovie } from '@/lib/hooks/next-movie'
 
 import styles from './styles.module.css'
 
@@ -18,10 +21,18 @@ export const MovieSearchResults: React.FC = () => {
   const { searchOptions } = SearchOptions.useContainer()
 
   if (searchOptions.layout === 'single') {
-    return null
+    return (
+      <NextMovie.Provider>
+        <MovieSearchResultsSingle />
+      </NextMovie.Provider>
+    )
   } else {
     // 'list' and 'grid' layouts
-    return <MovieSearchResultsInfinite />
+    return (
+      <Search.Provider>
+        <MovieSearchResultsInfinite />
+      </Search.Provider>
+    )
   }
 }
 
@@ -93,6 +104,52 @@ export const MovieSearchResultsInfinite: React.FC = () => {
           />
         </div>
       )}
+    </div>
+  )
+}
+
+export const MovieSearchResultsSingle: React.FC = () => {
+  const {
+    result,
+    error,
+    isEmpty,
+    isLoading,
+    isValidating,
+    loadPrevMovie,
+    loadNextMovie
+  } = NextMovie.useContainer()
+
+  if (error) {
+    return <div>Error loading results</div>
+  }
+
+  return (
+    <div className={styles.nextMovieContainer}>
+      <div className={styles.detail}>
+        <LoadingSpinner loading={isLoading || isValidating} />
+
+        <div className={styles.totalResults}>
+          {result?.total
+            ? `${result.total.toLocaleString()} results`
+            : isLoading
+            ? 'Loading results'
+            : isEmpty
+            ? 'No results'
+            : ''}
+        </div>
+      </div>
+
+      {result?.movie && <Movie movie={result.movie} />}
+
+      <div className={styles.nextMovieActions}>
+        <button className={styles.nextMovieCTA} onClick={loadPrevMovie}>
+          Previous Movie
+        </button>
+
+        <button className={styles.nextMovieCTA} onClick={loadNextMovie}>
+          Next Movie
+        </button>
+      </div>
     </div>
   )
 }

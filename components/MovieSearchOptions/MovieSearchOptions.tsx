@@ -371,11 +371,16 @@ export const MovieSearchOptions: React.FC<IMovieSearchOptionsProps> = ({
               instanceId='orderBy'
               className={cs(
                 styles.orderBy,
-                config?.orderBy === 'disabled' && styles.disabled
+                (config?.orderBy === 'disabled' ||
+                  searchOptions.layout === 'single') &&
+                  styles.disabled
               )}
               options={orderByOptions}
               styles={selectStyles}
-              isDisabled={config?.orderBy === 'disabled'}
+              isDisabled={
+                config?.orderBy === 'disabled' ||
+                searchOptions.layout === 'single'
+              }
               value={
                 searchOptions.orderBy
                   ? {

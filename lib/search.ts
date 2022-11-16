@@ -145,8 +145,14 @@ export async function searchMovies(
   const layout = opts.layout || 'list'
   const limit = opts.limit ?? layoutToDefaultPageSize[layout]
 
+  if (layout === 'single') {
+    where.relevancyScore = {
+      gte: 31000
+    }
+  }
+
   const cursor = opts.cursor ? { id: opts.cursor } : undefined
-  const take = Math.max(1, Math.min(100, limit))
+  const take = Math.max(0, Math.min(100, limit))
   const skip = opts.cursor ? 1 : opts.skip !== undefined ? opts.skip : 0
 
   const [count, results] = await Promise.all([
@@ -155,13 +161,15 @@ export async function searchMovies(
       orderBy
     }),
 
-    prisma.movie.findMany({
-      where,
-      cursor,
-      orderBy,
-      take,
-      skip
-    })
+    take <= 0
+      ? Promise.resolve([] as types.Movie[])
+      : prisma.movie.findMany({
+          where,
+          cursor,
+          orderBy,
+          take,
+          skip
+        })
   ])
 
   const movies = await convertMovies(results)

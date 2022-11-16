@@ -8,7 +8,7 @@ import { IMovieSearchOptions, IMovieSearchResults } from '@/lib/types'
 import { defaultSearchOptions } from '@/lib/config'
 import { layoutToDefaultPageSize } from '@/lib/config'
 
-import { SearchOptions, ISearchOptionsConfig } from './search-options'
+import { SearchOptions } from './search-options'
 
 const fetcher = ({
   url,
@@ -26,13 +26,8 @@ const fetcher = ({
     }
   }).then((res) => res.json())
 
-function useSearch(
-  config: ISearchOptionsConfig = {
-    key: 'search',
-    initialSearchOptions: defaultSearchOptions
-  }
-) {
-  const { searchOptions } = SearchOptions.useContainer()
+function useSearch() {
+  const { searchOptions, config } = SearchOptions.useContainer()
 
   const getKey = React.useCallback(
     (_: number, previousPageData: IMovieSearchResults) => {
