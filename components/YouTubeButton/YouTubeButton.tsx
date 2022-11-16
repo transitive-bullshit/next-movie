@@ -2,9 +2,9 @@
 
 import * as React from 'react'
 import * as Dialog from '@radix-ui/react-dialog'
-import * as Tooltip from '@radix-ui/react-tooltip'
 import Link from 'next/link'
 
+import { Tooltip } from '@/components/Tooltip/Tooltip'
 import { MovieModel } from '@/lib/types'
 import { YouTube } from '@/lib/hooks/youtube'
 
@@ -25,8 +25,7 @@ export function isMouseEventNewTab(event: MouseEvent) {
 
 export const YouTubeButton: React.FC<{
   movie: MovieModel
-  tooltip?: boolean
-}> = ({ movie, tooltip = true }) => {
+}> = ({ movie }) => {
   const { openYouTubeDialog } = YouTube.useContainer()
 
   const onClick = React.useCallback(
@@ -41,39 +40,22 @@ export const YouTubeButton: React.FC<{
     [movie, openYouTubeDialog]
   )
 
-  const button = (
-    <button
-      className={styles.youtubeButton}
-      aria-label='Play YouTube Trailer'
-    />
-  )
-
   return (
-    <Tooltip.Provider>
-      <Tooltip.Root>
-        <Link
-          href={movie.trailerUrl!}
-          onClick={onClick}
-          target='_blank'
-          rel='noopener noreferrer'
-          aria-label='YouTube Trailer'
-        >
-          <Dialog.Trigger asChild>
-            {tooltip ? (
-              <Tooltip.Trigger asChild>{button}</Tooltip.Trigger>
-            ) : (
-              button
-            )}
-          </Dialog.Trigger>
-        </Link>
-
-        <Tooltip.Portal className={styles.tooltipPortal}>
-          <Tooltip.Content className={styles.tooltipContent} sideOffset={5}>
-            Play YouTube Trailer
-            <Tooltip.Arrow className={styles.tooltipArrow} />
-          </Tooltip.Content>
-        </Tooltip.Portal>
-      </Tooltip.Root>
-    </Tooltip.Provider>
+    <Link
+      href={movie.trailerUrl!}
+      onClick={onClick}
+      target='_blank'
+      rel='noopener noreferrer'
+      aria-label='YouTube Trailer'
+    >
+      <Dialog.Trigger asChild>
+        <Tooltip content='Play YouTube Trailer'>
+          <button
+            className={styles.youtubeButton}
+            aria-label='Play YouTube Trailer'
+          />
+        </Tooltip>
+      </Dialog.Trigger>
+    </Link>
   )
 }

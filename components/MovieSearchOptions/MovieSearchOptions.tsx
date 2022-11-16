@@ -6,6 +6,7 @@ import cs from 'clsx'
 
 import * as Checkbox from '@radix-ui/react-checkbox'
 
+import { Tooltip } from '@/components/Tooltip/Tooltip'
 import { genres, genreLabelMap } from '@/lib/genres'
 import {
   SearchIcon,
@@ -294,46 +295,52 @@ export const MovieSearchOptions: React.FC<IMovieSearchOptionsProps> = ({
 
         <div className={styles.rhs}>
           <div className={styles.layoutOptions}>
-            <button
-              className={styles.layoutButton}
-              onClick={() => onChangeLayout('grid')}
-              disabled={searchOptions.layout === 'grid'}
-            >
-              <GridIcon
-                className={cs(
-                  styles.layoutOption,
-                  searchOptions.layout === 'grid' && styles.selected
-                )}
-              />
-            </button>
+            <Tooltip content='Grid Layout'>
+              <button
+                className={styles.layoutButton}
+                onClick={() => onChangeLayout('grid')}
+                disabled={searchOptions.layout === 'grid'}
+              >
+                <GridIcon
+                  className={cs(
+                    styles.layoutOption,
+                    searchOptions.layout === 'grid' && styles.selected
+                  )}
+                />
+              </button>
+            </Tooltip>
 
-            <button
-              className={styles.layoutButton}
-              onClick={() => onChangeLayout('list')}
-              disabled={searchOptions.layout === 'list'}
-            >
-              <ListIcon
-                className={cs(
-                  styles.layoutOption,
-                  searchOptions.layout === 'list' && styles.selected
-                )}
-              />
-            </button>
+            <Tooltip content='List Layout'>
+              <button
+                className={styles.layoutButton}
+                onClick={() => onChangeLayout('list')}
+                disabled={searchOptions.layout === 'list'}
+              >
+                <ListIcon
+                  className={cs(
+                    styles.layoutOption,
+                    searchOptions.layout === 'list' && styles.selected
+                  )}
+                />
+              </button>
+            </Tooltip>
 
-            <button
-              className={styles.layoutButton}
-              onClick={() => onChangeLayout('single')}
-              disabled={searchOptions.layout === 'single'}
-            >
-              <SingleIcon
-                className={cs(
-                  styles.layoutOption,
-                  (!searchOptions.layout ||
-                    searchOptions.layout === 'single') &&
-                    styles.selected
-                )}
-              />
-            </button>
+            <Tooltip content='Single Movie Layout'>
+              <button
+                className={styles.layoutButton}
+                onClick={() => onChangeLayout('single')}
+                disabled={searchOptions.layout === 'single'}
+              >
+                <SingleIcon
+                  className={cs(
+                    styles.layoutOption,
+                    (!searchOptions.layout ||
+                      searchOptions.layout === 'single') &&
+                      styles.selected
+                  )}
+                />
+              </button>
+            </Tooltip>
           </div>
 
           <Select
