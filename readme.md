@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  An example Next.js 13 app built using the new router, server components, edge functions, and all the latest hotness.
+  An example Next.js 13 app built using the new router, server components, edge functions, and all that jazz.
 </p>
 
 - [About](#about)
