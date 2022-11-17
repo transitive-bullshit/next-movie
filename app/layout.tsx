@@ -6,7 +6,7 @@ import { Header } from '@/components/Header/Header'
 // import { GitHubShareButton } from '@/components/GitHubShareButton/GitHubShareButton'
 // import { githubRepoUrl } from '@/lib/config'
 
-import { Providers } from './providers'
+import { RootLayoutProviders } from './providers'
 import styles from './styles.module.css'
 
 import './globals.css'
@@ -35,13 +35,13 @@ export default function RootLayout({
         <div className={styles.container}>
           {/* <GitHubShareButton repoUrl={githubRepoUrl} /> */}
 
-          <Providers>
+          <RootLayoutProviders>
             <Header className={styles.header} />
 
             <main className={styles.main}>{children}</main>
 
             <Footer className={styles.footer} />
-          </Providers>
+          </RootLayoutProviders>
         </div>
       </body>
     </html>

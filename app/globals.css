@@ -41,6 +41,7 @@ h6 {
   --gap: calc(max(8px, min(24px, 1.5vw)));
   --gap-w: calc(max(12px, min(48px, 1.5vw)));
   --gap-h: calc(max(12px, min(48px, 4vh)));
+  --gap-h-1: calc(max(8px, min(24px, 1.5vh)));
   --gap-2: calc(max(12px, min(48px, 4vmin)));
 }
 

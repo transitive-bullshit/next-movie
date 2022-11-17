@@ -7,7 +7,7 @@ import cs from 'clsx'
 import * as Checkbox from '@radix-ui/react-checkbox'
 
 import { Tooltip } from '@/components/Tooltip/Tooltip'
-import { genres, genreLabelMap } from '@/lib/genres'
+import { genres, genreLabelMap, genresToIgnore } from '@/lib/genres'
 import {
   SearchIcon,
   CheckIcon,
@@ -20,10 +20,12 @@ import { SearchOptions } from '@/lib/hooks/search-options'
 
 import styles from './styles.module.css'
 
-const genreOptions = genres.map((genre) => ({
-  value: genre,
-  label: genreLabelMap[genre]
-}))
+const genreOptions = genres
+  .filter((genre) => !genresToIgnore.has(genre))
+  .map((genre) => ({
+    value: genre,
+    label: genreLabelMap[genre]
+  }))
 
 const minYear = 1900
 const maxYear = new Date().getFullYear()

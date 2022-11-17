@@ -147,8 +147,10 @@ export async function searchMovies(
 
   // TODO
   if (layout === 'single') {
+    // gte: 31000
+    // gte: 100000
     where.relevancyScore = {
-      gte: 31000
+      gte: 50000
     }
   }
 

@@ -62,6 +62,16 @@ export const genreTitleMap: Record<string, string> = {
   western: 'Westerns'
 }
 
+// don't show these genres in the dropdown menu
+export const genresToIgnore = new Set<string>([
+  'gameshow',
+  'filmnoir',
+  'news',
+  'realitytv',
+  'talkshow',
+  'tv-movie'
+])
+
 export const genres = Object.keys(genreLabelMap)
 
 export const defaultSearchOptionsByGenre: Record<string, IMovieSearchOptions> =

@@ -21,14 +21,6 @@ export const Header: React.FC<{ className?: string }> = ({ className }) => {
 
         <div className={styles.rhs}>
           <ActiveLink
-            href='/search'
-            className={styles.action}
-            activeClassName={styles.active}
-          >
-            Search
-          </ActiveLink>
-
-          <ActiveLink
             href='/about'
             className={styles.action}
             activeClassName={styles.active}

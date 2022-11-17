@@ -1,37 +1,29 @@
-import { MovieList } from '@/components/MovieList/MovieList'
-import { YouTubeDialog } from '@/components/YouTubeDialog/YouTubeDialog'
-import { prisma } from '@/lib/prisma'
-import { convertMovies } from '@/lib/utils'
+import { MovieSearch } from '@/components/MovieSearch/MovieSearch'
+import { defaultSearchOptions } from '@/lib/config'
+import { searchMovies } from '@/lib/search'
+
+import { RootPageProviders } from './providers'
+import styles from './styles.module.css'
 
 export default async function HomePage() {
-  const results = await prisma.movie.findMany({
-    where: {
-      imdbRating: {
-        gte: 6
-      },
-      releaseYear: {
-        gte: 1972
-      },
-      relevancyScore: {
-        gte: 31000
-      },
-      foreign: false,
-      NOT: {
-        genres: {
-          hasSome: ['stand up', 'documentary', 'short']
-          // hasSome: ['stand up', 'short']
-        }
-      }
-    },
-    orderBy: {
-      relevancyScore: 'desc'
-    },
-    take: 10,
-    skip: 0
-  })
+  const result = await searchMovies(defaultSearchOptions)
 
-  const movies = await convertMovies(results)
+  const fallbackData = [
+    {
+      key: {
+        url: '/api/search',
+        key: 'search',
+        body: defaultSearchOptions
+      },
+      value: result
+    }
+  ]
 
-  // TODO
-  return <MovieList movies={movies} />
+  return (
+    <RootPageProviders fallbackData={fallbackData}>
+      <div className={styles.homePage}>
+        <MovieSearch className={styles.body} />
+      </div>
+    </RootPageProviders>
+  )
 }

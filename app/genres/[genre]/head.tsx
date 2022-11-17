@@ -14,11 +14,14 @@ export default function Head({ params }: { params: { genre: string } }) {
   }
 
   const pathname = `/genres/${genre}`
+  const imagePathname = `/api/genres/${genre}/social-image`
+
   return (
     <PageHead
       title={genreTitle}
       description={`The top ${genreTitle.toLowerCase()} of all time.`}
       pathname={pathname}
+      imagePathname={imagePathname}
     />
   )
 }

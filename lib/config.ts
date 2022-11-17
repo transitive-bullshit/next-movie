@@ -25,9 +25,11 @@ export const apiBaseUrl =
   isDev || !process.env.VERCEL_URL ? url : `https://${process.env.VERCEL_URL}`
 
 // these must all be absolute urls
-export const socialImageUrl: string | null = `${url}/social.jpg`
-export const twitterIconUrl: string | null = `${url}/icons/twitter.png`
-export const githubIconUrl: string | null = `${url}/icons/github.png`
+export const socialImageUrl = `${url}/social.jpg`
+export const socialImageBgUrl = `${url}/social-image-bg.jpg`
+export const socialIconUrl = `${url}/icon.svg`
+export const twitterIconUrl = `${url}/icons/twitter.png`
+export const githubIconUrl = `${url}/icons/github.png`
 
 // ----------------------------------------------------------------------------
 
