@@ -18,9 +18,9 @@
 - [App Features](#app-features)
 - [Implementation Features](#implementation-features)
 - [Screenshots](#screenshots)
-  - [List View](#list-view)
-  - [Grid View](#grid-view)
-  - [Single View](#single-view)
+    - [List View](#list-view)
+    - [Grid View](#grid-view)
+    - [Single Movie View](#single-movie-view)
 - [Roadmap](#roadmap)
 - [Movie Database](#movie-database)
 - [Contributing](#contributing)
@@ -56,7 +56,7 @@ Building a better app for finding great movies has been on my proverbial todo li
 
 ## Screenshots
 
-### List View
+#### List View
 
 <p align="center">
   <img alt="List view dark mode" src="https://raw.githubusercontent.com/transitive-bullshit/next-movie/main/public/images/list-view-dark.jpg" width="45%">
@@ -64,7 +64,7 @@ Building a better app for finding great movies has been on my proverbial todo li
   <img alt="List view light mode" src="https://raw.githubusercontent.com/transitive-bullshit/next-movie/main/public/images/list-view-light.jpg" width="45%">
 </p>
 
-### Grid View
+#### Grid View
 
 <p align="center">
   <img alt="Grid view dark mode" src="https://raw.githubusercontent.com/transitive-bullshit/next-movie/main/public/images/grid-view-dark.jpg" width="45%">
@@ -72,7 +72,7 @@ Building a better app for finding great movies has been on my proverbial todo li
   <img alt="Grid view light mode" src="https://raw.githubusercontent.com/transitive-bullshit/next-movie/main/public/images/grid-view-light.jpg" width="45%">
 </p>
 
-### Single View
+#### Single Movie View
 
 <p align="center">
   <img alt="Single movie view dark mode" src="https://raw.githubusercontent.com/transitive-bullshit/next-movie/main/public/images/single-view-dark.jpg" width="45%">
