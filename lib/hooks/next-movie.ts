@@ -74,42 +74,41 @@ function useNextMovie() {
     }
   }, [result])
 
-  // TODO
   // preload the next and previous movies any time `seq` changes
-  // React.useEffect(() => {
-  //   if (result) {
-  //     if (result.prevSeq !== undefined) {
-  //       preload(
-  //         {
-  //           url: '/api/next-movie',
-  //           key: config.key,
-  //           body: {
-  //             ...body,
-  //             seq: result.prevSeq
-  //           }
-  //         },
-  //         fetcher
-  //       )
-  //     }
+  React.useEffect(() => {
+    if (result) {
+      if (result.prevSeq) {
+        preload(
+          {
+            url: '/api/next-movie',
+            key: config.key,
+            body: {
+              ...body,
+              seq: result.prevSeq
+            }
+          },
+          fetcher
+        )
+      }
 
-  //     if (result?.nextSeq !== undefined) {
-  //       preload(
-  //         {
-  //           url: '/api/next-movie',
-  //           key: config.key,
-  //           body: {
-  //             ...body,
-  //             seq: result.nextSeq
-  //           }
-  //         },
-  //         fetcher
-  //       )
-  //     }
-  //   }
-  // }, [result, body, config])
+      if (result?.nextSeq) {
+        preload(
+          {
+            url: '/api/next-movie',
+            key: config.key,
+            body: {
+              ...body,
+              seq: result.nextSeq
+            }
+          },
+          fetcher
+        )
+      }
+    }
+  }, [result, body, config])
 
   // TODO
-  const isEmpty = false
+  const isEmpty = result && !result.total
 
   return {
     result,

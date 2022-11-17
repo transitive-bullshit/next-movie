@@ -15,6 +15,17 @@ export async function getNextMovie(
     opts.total !== undefined
       ? opts.total | 0
       : (await searchMovies({ ...opts.searchOptions, limit: 0 })).total
+
+  if (total <= 0) {
+    return {
+      movie: undefined,
+      total,
+      prevSeq: 0,
+      seq: 0,
+      nextSeq: 0
+    }
+  }
+
   const seq = opts.seq ? Math.max(1, (opts.seq | 0) % (total + 1)) : 1
   const offset = rng.int(0, total - 1)
   const prevSeq = getPrevSeq(seq, total)
@@ -22,13 +33,22 @@ export async function getNextMovie(
 
   const skip = (seq + offset) % total
 
+  console.log('>>> next-movie', {
+    total,
+    offset,
+    skip,
+    prevSeq,
+    seq,
+    nextSeq
+  })
+
   const result = await searchMovies({
     ...restSearchOptions,
     limit: 1,
     skip
   })
 
-  console.log('next-movie', {
+  console.log('<<< next-movie', {
     movie: result.results[0]?.title,
     total,
     offset,

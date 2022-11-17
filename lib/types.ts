@@ -63,7 +63,7 @@ export interface IMovieSearchResults {
 }
 
 export interface INextMovieResult {
-  movie: MovieModel
+  movie?: MovieModel
   total: number
   prevSeq: number
   seq: number

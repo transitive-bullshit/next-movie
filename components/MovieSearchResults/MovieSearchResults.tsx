@@ -141,13 +141,27 @@ export const MovieSearchResultsSingle: React.FC = () => {
         </div>
       </div>
 
-      {result?.movie && <Movie movie={result.movie} />}
+      {result?.movie && (
+        <div className={styles.singleMovieContainer}>
+          <Movie movie={result.movie} />
+        </div>
+      )}
 
-      <div className={styles.nextMovieActions}>
-        <Button onClick={loadPrevMovie}>Previous Movie</Button>
+      {!isEmpty && (
+        <div className={styles.nextMovieActions}>
+          {result?.prevSeq ? (
+            <Button onClick={loadPrevMovie}>Previous Movie</Button>
+          ) : (
+            <div />
+          )}
 
-        <HeroButton onClick={loadNextMovie}>Next Movie</HeroButton>
-      </div>
+          {result?.nextSeq ? (
+            <HeroButton onClick={loadNextMovie}>Next Movie</HeroButton>
+          ) : (
+            <div />
+          )}
+        </div>
+      )}
     </div>
   )
 }

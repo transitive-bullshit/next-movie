@@ -43,7 +43,7 @@
   z-index: -1;
   border: 12px solid transparent;
   filter: blur(24px);
-  opacity: 1;
+  /* animation: pulse 2s ease-in-out infinite alternate; */
   background-image: linear-gradient(
     165deg,
     var(--start-color),
@@ -94,20 +94,21 @@
   display: inline-block;
 }
 
-.heroButton:hover,
-.heroButton:focus {
+.heroButton:hover {
   --lighten-color: transparent;
   background-color: transparent;
   color: var(--bg-color);
 }
 
+.heroButton:focus:not(:active):not(:hover) {
+  border-color: var(--fg-color);
+  /* background-color: var(--fg-color);
+  color: var(--bg-color); */
+}
+
 .heroButton:active {
   --lighten-color: hsla(0, 0%, 100%, 0.5);
 }
-
-/* .heroButtonWrapper:hover .heroButtonBg::before {
-  opacity: 0;
-} */
 
 /* @keyframes heroBgAnimation1 {
   0%,
@@ -143,5 +144,15 @@
   66.667%,
   83.333% {
     opacity: 1;
+  }
+} */
+
+/* @keyframes pulse {
+  from {
+    filter: blur(8px);
+  }
+
+  to {
+    filter: blur(32px);
   }
 } */
