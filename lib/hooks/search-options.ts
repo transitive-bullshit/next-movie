@@ -118,9 +118,9 @@ function useSearchOptions(
   useDebounce(updateCache, 1000, [searchOptions])
 
   React.useEffect(() => {
-    window.addEventListener('unload', updateCache)
+    window.addEventListener('pagehide', updateCache)
     return () => {
-      window.removeEventListener('unload', updateCache)
+      window.removeEventListener('pagehide', updateCache)
     }
   }, [updateCache])
 
