@@ -102,8 +102,6 @@
 
 .heroButton:focus:not(:active):not(:hover) {
   border-color: var(--fg-color);
-  /* background-color: var(--fg-color);
-  color: var(--bg-color); */
 }
 
 .heroButton:active {

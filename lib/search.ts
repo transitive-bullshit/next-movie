@@ -146,11 +146,11 @@ export async function searchMovies(
   const limit = opts.limit ?? layoutToDefaultPageSize[layout]
 
   // TODO
-  // if (layout === 'single') {
-  //   where.relevancyScore = {
-  //     gte: 31000
-  //   }
-  // }
+  if (layout === 'single') {
+    where.relevancyScore = {
+      gte: 31000
+    }
+  }
 
   const cursor = opts.cursor ? { id: opts.cursor } : undefined
   const take = Math.max(0, Math.min(100, limit))

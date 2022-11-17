@@ -145,7 +145,9 @@ export const Movie: React.FC<{
 
         <div className={styles.body}>
           <div className={styles.lh}>
-            <div className={styles.plot}>{movie.plot}</div>
+            <div className={cs(styles.plot, priority && styles.expanded)}>
+              {movie.plot}
+            </div>
 
             <div className={styles.metadata}>
               <div>Genres</div>

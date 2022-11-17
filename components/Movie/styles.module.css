@@ -177,6 +177,15 @@
   align-self: center;
 }
 
+.plot:not(.expanded) {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+}
+
 .metadata {
   display: grid;
   grid-template-columns: 0.2fr 1fr;
