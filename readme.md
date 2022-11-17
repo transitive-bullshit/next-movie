@@ -14,10 +14,6 @@
   An example Next.js 13 app built using the new router, server components, edge functions, and all the latest hotness.
 </p>
 
-> **Warning**
-> This app is a work in progress. I'm building this in public. You can follow the progress on Twitter [@transitive_bs](https://twitter.com/transitive_bs).
-> See the roadmap below.
-
 - [About](#about)
 - [App Features](#app-features)
 - [Implementation Features](#implementation-features)
@@ -93,12 +89,12 @@ Post-v1.0:
 
 Under the hood, `next-movie` uses [populate-movies](https://github.com/transitive-bullshit/populate-movies) to generate it's high quality movie database, featuring:
 
-- 73k movies (filtered from ~750k TMDB "movies")
+- ~73k movies (filtered from ~750k TMDB "movies")
 - Metadata from TMDB, IMDB, and Rotten Tomatoes
-- Easy to automate
+- Automatable pipeline
 - Custom post-processing
   - Selects the best available YouTube trailer for every movie
-  - Relevancy scores that use a combination of popularity, rating, and release date
+  - Relevancy scores using a combination of popularity, rating, and release date
   - Nuanced foreign movie detection that looks at more than just language/country
   - [LQIP](https://github.com/transitive-bullshit/lqip-modern) preview image generation for all movie images
   - Basic text index for searching
@@ -106,7 +102,7 @@ Under the hood, `next-movie` uses [populate-movies](https://github.com/transitiv
 
 ## Contributing
 
-See the [contribution guide](contributing.md) and join our amazing list of [contributors](https://github.com/transitive-bullshit/next-movie/graphs/contributors)!
+See the [contribution guide](contributing.md) and join our amazing list of [contributors](https://github.com/transitive-bullshit/next-movie/graphs/contributors).
 
 ## License
 
