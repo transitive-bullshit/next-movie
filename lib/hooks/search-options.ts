@@ -2,7 +2,12 @@
 
 import * as React from 'react'
 import { createContainer } from 'unstated-next'
-import { useLocalStorage, useDebounce, useRendersCount } from 'react-use'
+import {
+  useLocalStorage,
+  useDebounce,
+  useRendersCount,
+  useUnmount
+} from 'react-use'
 import { unstable_serialize } from 'swr'
 
 import { IMovieSearchLayout, IMovieSearchOptions } from '@/lib/types'
@@ -106,13 +111,18 @@ function useSearchOptions(
     [searchOptions, config]
   )
 
-  useDebounce(
-    () => {
-      setCachedSearchOptions(searchOptions)
-    },
-    1000,
-    [searchOptions]
-  )
+  const updateCache = React.useCallback(() => {
+    setCachedSearchOptions(searchOptions)
+  }, [setCachedSearchOptions, searchOptions])
+
+  useDebounce(updateCache, 1000, [searchOptions])
+
+  React.useEffect(() => {
+    window.addEventListener('unload', updateCache)
+    return () => {
+      window.removeEventListener('unload', updateCache)
+    }
+  }, [updateCache])
 
   return {
     searchOptions,

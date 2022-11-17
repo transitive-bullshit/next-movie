@@ -1,10 +1,9 @@
 import { notFound } from 'next/navigation'
 
-import { MovieSearchOptions } from '@/components/MovieSearchOptions/MovieSearchOptions'
-import { MovieSearchResults } from '@/components/MovieSearchResults/MovieSearchResults'
+import { MovieSearch } from '@/components/MovieSearch/MovieSearch'
 import {
   genres,
-  genreLabelMap,
+  genreTitleMap,
   defaultSearchOptionsByGenre
 } from '@/lib/genres'
 import { searchMovies } from '@/lib/search'
@@ -23,8 +22,8 @@ export default async function GenrePage({
     return notFound()
   }
 
-  const genreLabel = genreLabelMap[genre]
-  if (!genreLabel) {
+  const genreTitle = genreTitleMap[genre]
+  if (!genreTitle) {
     return notFound()
   }
 
@@ -52,13 +51,9 @@ export default async function GenrePage({
       }}
     >
       <div className={styles.genrePage}>
-        <h1 className={styles.genre}>{genreLabel}</h1>
+        <h1 className={styles.genre}>{genreTitle}</h1>
 
-        <div className={styles.body}>
-          <MovieSearchOptions config={{ genres: 'disabled' }} />
-
-          <MovieSearchResults />
-        </div>
+        <MovieSearch className={styles.body} config={{ genres: 'disabled' }} />
       </div>
     </Providers>
   )

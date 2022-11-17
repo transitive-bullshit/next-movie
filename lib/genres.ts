@@ -31,6 +31,37 @@ export const genreLabelMap: Record<string, string> = {
   western: 'Western'
 }
 
+export const genreTitleMap: Record<string, string> = {
+  action: 'Action Flicks',
+  adventure: 'Adventure Movies',
+  animation: 'Animated Movies',
+  biography: 'Biographies',
+  comedy: 'Comedy Movies',
+  crime: 'Crime Movies',
+  documentary: 'Documentaries',
+  drama: 'Drama Movies',
+  family: 'Family Movies',
+  fantasy: 'Fantasy Movies',
+  filmnoir: 'Film Noir Movies',
+  gameshow: 'Game Show Movies',
+  history: 'History Movies',
+  horror: 'Horror Movies',
+  music: 'Music Movies',
+  musical: 'Musicals',
+  mystery: 'Mystery Movies',
+  news: 'News Movies',
+  realitytv: 'Reality TV Movies',
+  romance: 'Romance Movies',
+  scifi: 'Science Fiction Movies',
+  sport: 'Sports Movies',
+  'stand-up': 'Stand Up Specials',
+  talkshow: 'Talk Show Movies',
+  thriller: 'Thriller Movies',
+  'tv-movie': 'TV Movies',
+  war: 'War Movies',
+  western: 'Westerns'
+}
+
 export const genres = Object.keys(genreLabelMap)
 
 export const defaultSearchOptionsByGenre: Record<string, IMovieSearchOptions> =
