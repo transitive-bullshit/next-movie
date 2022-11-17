@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  An example Next.js 13 app built using the new router, server components, edge functions, and all that jazz.
+  An example Next.js 13 app built using the new router, server components, and all the latest hotness. 🔥
 </p>
 
 - [About](#about)
@@ -28,7 +28,7 @@
 
 ## About
 
-Building a better app for finding great movies has been on my proverbial TODO list for awhile. With Next.js 13's latest paradigm shift, I thought it'd be the perfect time to build it and open source my learnings along the way.
+Building a better app for finding great movies has been on my proverbial todo list for awhile. With Next.js 13's paradigm shift, I thought it'd be the perfect time to build it and open source my learnings along the way.
 
 ## App Features
 
