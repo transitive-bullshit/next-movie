@@ -275,6 +275,7 @@ export const MovieSearchOptions: React.FC<IMovieSearchOptionsProps> = ({
               <Checkbox.Root
                 className={styles.checkbox}
                 name='foreign'
+                aria-label='foreign'
                 checked={searchOptions.foreign}
                 onCheckedChange={onChangeForeign}
                 disabled={config?.foreign === 'disabled'}
@@ -311,6 +312,7 @@ export const MovieSearchOptions: React.FC<IMovieSearchOptionsProps> = ({
                     searchOptions.layout === 'grid' ||
                     config?.layout === 'disabled'
                   }
+                  aria-label='Grid View'
                 >
                   <GridIcon
                     className={cs(
@@ -332,6 +334,7 @@ export const MovieSearchOptions: React.FC<IMovieSearchOptionsProps> = ({
                     searchOptions.layout === 'list' ||
                     config?.layout === 'disabled'
                   }
+                  aria-label='List View'
                 >
                   <ListIcon
                     className={cs(
@@ -353,6 +356,7 @@ export const MovieSearchOptions: React.FC<IMovieSearchOptionsProps> = ({
                     searchOptions.layout === 'single' ||
                     config?.layout === 'disabled'
                   }
+                  aria-label='Single Movie View'
                 >
                   <SingleIcon
                     className={cs(
