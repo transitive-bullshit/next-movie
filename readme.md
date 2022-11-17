@@ -10,13 +10,78 @@
   <a href="https://prettier.io"><img alt="Prettier Code Formatting" src="https://img.shields.io/badge/code_style-prettier-brightgreen.svg"></a>
 </p>
 
-- [Intro](#intro)
+<p align="center">
+  An example Next.js 13 app built using the new router, server components, edge functions, and all the latest hotness.
+</p>
+
+> **Warning**
+> This app is a work in progress. I'm building this in public. You can follow the progress on Twitter [@transitive_bs](https://twitter.com/transitive_bs).
+> See the roadmap below.
+
+- [About](#about)
+- [App Features](#app-features)
+- [Implementation Features](#implementation-features)
+- [Roadmap](#roadmap)
 - [Movie Database](#movie-database)
+- [Contributing](#contributing)
 - [License](#license)
 
-## Intro
+## About
 
-TODO
+Building a better app for finding great movies has been on my proverbial TODO list for awhile. With Next.js 13's latest paradigm shift, I thought it'd be the perfect time to build it and open source my learnings along the way.
+
+## App Features
+
+- Advanced movie search by rating, genre, release date, etc
+- All movies include **YouTube trailers**
+- Most movies include **IMDB rating, RT audience score, and RT critic score**
+- Supports grid view, list view, and single movie view
+- Polished UX
+- High quality movie database
+
+## Implementation Features
+
+- New `/app` dir
+- Blurred image placeholders
+- Dynamic OG images
+- Dark mode
+- Hosted on **Vercel**
+- ORM using **Prisma** + **Postgres**
+- UI components built using **Radix UI**
+- Styled using **CSS Modules**
+- Data fetching using **SWR**
+- Validations using **Zod**
+- Written in **TypeScript**
+- Fully **Open Source**
+
+## Roadmap
+
+> **Warning**
+> This app is a work in progress. I'm building this in public. You can follow the progress on Twitter [@transitive_bs](https://twitter.com/transitive_bs).
+
+- [x] [Movie database](https://github.com/transitive-bullshit/populate-movies)
+- [x] Search functionality
+- [x] Grid view
+- [x] List view
+- [x] Single view (original idea for browsing movies using a "next movie" button)
+- [x] Dynamic OG images for movies
+- [x] Dynamic OG images for genres
+- [x] Dark mode
+- [ ] About page
+- [ ] Mobile friendly
+- [ ] Add top X movies pages
+
+Post-v1.0:
+
+- [ ] Streaming service availability + filters
+- [ ] Weight single view movie selection by `relevancyScore`
+- [ ] Better movie detail page design
+- [ ] Person detail page
+- [ ] User auth and accounts
+  - [ ] Watchlist
+  - [ ] Seen list + user ratings
+- [ ] Automate scripts to keep movie DB up-to-date
+- [ ] Improve access to Rotten Tomatoes metadata
 
 ## Movie Database
 
@@ -26,11 +91,11 @@ TODO
   </a>
 </p>
 
-Under the hood, `next-movie` uses [populate-movies](https://github.com/transitive-bullshit/populate-movies) to generate it's high quality database of movies, featuring:
+Under the hood, `next-movie` uses [populate-movies](https://github.com/transitive-bullshit/populate-movies) to generate it's high quality movie database, featuring:
 
 - 73k movies (filtered from ~750k TMDB "movies")
 - Metadata from TMDB, IMDB, and Rotten Tomatoes
-- Easily automatable to keep metadata up-to-date
+- Easy to automate
 - Custom post-processing
   - Selects the best available YouTube trailer for every movie
   - Relevancy scores that use a combination of popularity, rating, and release date
@@ -39,11 +104,15 @@ Under the hood, `next-movie` uses [populate-movies](https://github.com/transitiv
   - Basic text index for searching
 - Open source using TS + Prisma + Postgres
 
+## Contributing
+
+See the [contribution guide](contributing.md) and join our amazing list of [contributors](https://github.com/transitive-bullshit/next-movie/graphs/contributors)!
+
 ## License
 
 MIT © [Travis Fischer](https://transitivebullsh.it)
 
-Support my open source work by <a href="https://twitter.com/transitive_bs">following me on twitter <img src="https://storage.googleapis.com/saasify-assets/twitter-logo.svg" alt="twitter" height="24px" align="center"></a>
+Support my open source work by [sponsoring me](https://github.com/sponsors/transitive-bullshit) or <a href="https://twitter.com/transitive_bs">following me on twitter <img src="https://storage.googleapis.com/saasify-assets/twitter-logo.svg" alt="twitter" height="24px" align="center"></a>
 
 <p>
   <a href="https://developers.themoviedb.org/3/getting-started/introduction"><img alt="TMDB" src="/public/logos/tmdb.svg" height="65"></a>
