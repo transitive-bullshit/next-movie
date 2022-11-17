@@ -31,7 +31,7 @@
     "@vercel/og": "^0.0.20",
     "clsx": "^1.2.1",
     "next": "13.0.4-canary.3",
-    "next-themes": "^0.2.1",
+    "next-themes": "npm:@wits/next-themes@^0.2.11",
     "p-map": "^5.5.0",
     "p-memoize": "^7.1.1",
     "pretty-ms": "^8.0.0",
