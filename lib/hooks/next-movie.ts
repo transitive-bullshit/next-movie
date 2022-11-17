@@ -38,12 +38,6 @@ function useNextMovie() {
 
   const [seed, setSeed] = React.useState<string>(JSON.stringify(searchOptions))
 
-  React.useEffect(() => {
-    if (cachedSeed && rendersCount === 2) {
-      setSeed(cachedSeed)
-    }
-  }, [cachedSeed, rendersCount])
-
   const body = React.useMemo<INextMovieOptions>(
     () => ({
       searchOptions,
@@ -87,6 +81,13 @@ function useNextMovie() {
     }
   }, [result])
 
+  // use the cached seed from session storage client-side
+  React.useEffect(() => {
+    if (cachedSeed && rendersCount === 2) {
+      setSeed(cachedSeed)
+    }
+  }, [cachedSeed, rendersCount])
+
   // preload the next and previous movies any time `seq` changes
   React.useEffect(() => {
     if (result) {
@@ -120,7 +121,6 @@ function useNextMovie() {
     }
   }, [result, body, config])
 
-  // TODO
   const isEmpty = result && !result.total
 
   return {

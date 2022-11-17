@@ -87,16 +87,20 @@ export const MovieSearchResultsInfinite: React.FC = () => {
         </div>
       </div>
 
-      {searchResultMovies && (
-        <>
-          {searchOptions.layout === 'grid' && (
-            <MovieGrid movies={searchResultMovies} />
-          )}
+      {isEmpty ? (
+        <EmptyResults />
+      ) : (
+        searchResultMovies && (
+          <>
+            {searchOptions.layout === 'grid' && (
+              <MovieGrid movies={searchResultMovies} />
+            )}
 
-          {(searchOptions.layout === 'list' || !searchOptions.layout) && (
-            <MovieList movies={searchResultMovies} />
-          )}
-        </>
+            {(searchOptions.layout === 'list' || !searchOptions.layout) && (
+              <MovieList movies={searchResultMovies} />
+            )}
+          </>
+        )
       )}
 
       {hasMoreSearchResults && (

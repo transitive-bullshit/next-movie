@@ -1,0 +1,15 @@
+.movieSearch {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--gap);
+
+  opacity: 0;
+  transition: opacity 250ms ease-out;
+}
+
+.visible {
+  opacity: 1;
+}
