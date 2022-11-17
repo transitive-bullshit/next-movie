@@ -31,5 +31,3 @@ export const Tooltip: React.FC<
     </RadixTooltip.Provider>
   )
 })
-
-// export const TooltipProvider = RadixTooltip.Provider

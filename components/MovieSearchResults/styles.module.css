@@ -40,12 +40,3 @@
   flex-direction: row;
   justify-content: space-around;
 }
-
-.nextMovieCTA {
-  all: unset;
-  cursor: pointer;
-  padding: 16px;
-  font-size: 2rem;
-  border-radius: 4px;
-  border: 0 none;
-}

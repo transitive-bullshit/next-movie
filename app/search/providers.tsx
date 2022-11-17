@@ -12,6 +12,7 @@ export function Providers({
   children: React.ReactNode
   fallbackData?: Array<{ key: any; value: any }>
 }) {
+  // TODO: https://github.com/vercel/swr/issues/2234
   const fallback = React.useMemo(
     () => ({
       fallback: Object.fromEntries(

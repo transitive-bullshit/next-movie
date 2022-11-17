@@ -8,6 +8,8 @@ import { MovieList } from '@/components/MovieList/MovieList'
 import { MovieGrid } from '@/components/MovieGrid/MovieGrid'
 import { LoadingSpinner } from '@/components/LoadingSpinner/LoadingSpinner'
 import { Movie } from '@/components/Movie/Movie'
+import { HeroButton } from '@/components/HeroButton/HeroButton'
+import { Button } from '@/components/Button/Button'
 
 import { SearchOptions } from '@/lib/hooks/search-options'
 import { Search } from '@/lib/hooks/search'
@@ -142,13 +144,9 @@ export const MovieSearchResultsSingle: React.FC = () => {
       {result?.movie && <Movie movie={result.movie} />}
 
       <div className={styles.nextMovieActions}>
-        <button className={styles.nextMovieCTA} onClick={loadPrevMovie}>
-          Previous Movie
-        </button>
+        <Button onClick={loadPrevMovie}>Previous Movie</Button>
 
-        <button className={styles.nextMovieCTA} onClick={loadNextMovie}>
-          Next Movie
-        </button>
+        <HeroButton onClick={loadNextMovie}>Next Movie</HeroButton>
       </div>
     </div>
   )
