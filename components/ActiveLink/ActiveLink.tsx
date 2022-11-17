@@ -47,14 +47,15 @@ export const ActiveLink = ({
   )
 
   const onClickOverride = React.useCallback(
-    (event: React.MouseEvent) => {
+    (event: any): void => {
       if (disabled) {
         event.preventDefault()
-        return false
+        return
       }
 
       if (onClick) {
-        return onClick(event)
+        onClick(event)
+        return
       }
     },
     [disabled, onClick]

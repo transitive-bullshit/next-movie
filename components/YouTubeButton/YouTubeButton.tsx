@@ -10,7 +10,7 @@ import { YouTube } from '@/lib/hooks/youtube'
 
 import styles from './styles.module.css'
 
-export function isMouseEventNewTab(event: MouseEvent) {
+export function isMouseEventNewTab(event: any) {
   if (
     event.ctrlKey ||
     event.shiftKey ||
@@ -29,7 +29,7 @@ export const YouTubeButton: React.FC<{
   const { openYouTubeDialog } = YouTube.useContainer()
 
   const onClick = React.useCallback(
-    (event: MouseEvent) => {
+    (event: any) => {
       if (isMouseEventNewTab(event)) {
         // open link in new tab
       } else {

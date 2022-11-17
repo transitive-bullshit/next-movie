@@ -16,7 +16,7 @@ export const YouTubeButtonOverlay: React.FC<{
   const { openYouTubeDialog } = YouTube.useContainer()
 
   const onClick = React.useCallback(
-    (event: MouseEvent) => {
+    (event: any) => {
       if (isMouseEventNewTab(event)) {
         // open link in new tab
       } else {
