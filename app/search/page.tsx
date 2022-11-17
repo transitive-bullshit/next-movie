@@ -1,5 +1,4 @@
-import { MovieSearchOptions } from '@/components/MovieSearchOptions/MovieSearchOptions'
-import { MovieSearchResults } from '@/components/MovieSearchResults/MovieSearchResults'
+import { MovieSearch } from '@/components/MovieSearch/MovieSearch'
 import { defaultSearchOptions } from '@/lib/config'
 import { searchMovies } from '@/lib/search'
 
@@ -25,11 +24,7 @@ export default async function SearchPage() {
       <div className={styles.searchPage}>
         <h1 className={styles.title}>Movie Search</h1>
 
-        <div className={styles.body}>
-          <MovieSearchOptions />
-
-          <MovieSearchResults />
-        </div>
+        <MovieSearch className={styles.body} />
       </div>
     </Providers>
   )

@@ -1,15 +1,15 @@
 'use client'
 
-// TODO: handle empty result set
-// TODO: handle result set with one entry
-
 import * as React from 'react'
 import { createContainer } from 'unstated-next'
 import useSWR, { preload } from 'swr'
+import { useSessionStorage, useRendersCount } from 'react-use'
 
 import { INextMovieOptions, INextMovieResult } from '@/lib/types'
 
 import { SearchOptions } from './search-options'
+
+const sessionStorageSeedKey = 'next-movie-seed-v0.0.1'
 
 const fetcher = ({
   url,
@@ -30,7 +30,20 @@ const fetcher = ({
 function useNextMovie() {
   const { searchOptions, config } = SearchOptions.useContainer()
   const [seq, setSeq] = React.useState<number>()
-  const seed = 'nala-test-seed'
+  const rendersCount = useRendersCount()
+  const [cachedSeed] = useSessionStorage(
+    `${sessionStorageSeedKey}-${config.key}`,
+    `${Math.random()}`
+  )
+
+  const [seed, setSeed] = React.useState<string>(JSON.stringify(searchOptions))
+
+  React.useEffect(() => {
+    if (cachedSeed && rendersCount === 2) {
+      setSeed(cachedSeed)
+    }
+  }, [cachedSeed, rendersCount])
+
   const body = React.useMemo<INextMovieOptions>(
     () => ({
       searchOptions,

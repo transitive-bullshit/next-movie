@@ -108,6 +108,15 @@
   --lighten-color: hsla(0, 0%, 100%, 0.5);
 }
 
+.heroButtonWrapper:has(.heroButton:disabled) {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.heroButtonWrapper:has(.heroButton:disabled) * {
+  pointer-events: none;
+}
+
 /* @keyframes heroBgAnimation1 {
   0%,
   16.667%,

@@ -44,3 +44,12 @@
 .button:active {
   background-color: var(--bg-color-1);
 }
+
+.buttonWrapper:has(.button:disabled) {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.buttonWrapper:has(.button:disabled) * {
+  pointer-events: none;
+}

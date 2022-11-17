@@ -45,6 +45,7 @@
     "react-youtube": "^10.0.0",
     "swr": "2.0.0-rc.0",
     "unstated-next": "^1.1.0",
+    "use-delayed-render": "^0.0.7",
     "zod": "^3.19.1"
   },
   "devDependencies": {

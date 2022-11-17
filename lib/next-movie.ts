@@ -28,8 +28,8 @@ export async function getNextMovie(
 
   const seq = opts.seq ? Math.max(1, (opts.seq | 0) % (total + 1)) : 1
   const offset = rng.int(0, total - 1)
-  const prevSeq = getPrevSeq(seq, total)
-  const nextSeq = getNextSeq(seq, total)
+  const prevSeq = total <= 1 ? 0 : getPrevSeq(seq, total)
+  const nextSeq = total <= 1 ? 0 : getNextSeq(seq, total)
 
   const skip = (seq + offset) % total
 

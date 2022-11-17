@@ -80,7 +80,9 @@ export const MovieSearchResultsInfinite: React.FC = () => {
             : isEmpty
             ? 'No results'
             : searchResults?.length
-            ? `${searchResults[0].total.toLocaleString()} results`
+            ? `${searchResults[0].total.toLocaleString()} result${
+                searchResults[0].total !== 1 ? 's' : ''
+              }`
             : ''}
         </div>
       </div>
@@ -132,7 +134,9 @@ export const MovieSearchResultsSingle: React.FC = () => {
 
         <div className={styles.totalResults}>
           {result?.total
-            ? `${result.total.toLocaleString()} results`
+            ? `${result.total.toLocaleString()} result${
+                result.total !== 1 ? 's' : ''
+              }`
             : isLoading
             ? 'Loading results'
             : isEmpty
@@ -147,21 +151,36 @@ export const MovieSearchResultsSingle: React.FC = () => {
         </div>
       )}
 
-      {!isEmpty && (
+      {isEmpty ? (
+        <EmptyResults />
+      ) : (
         <div className={styles.nextMovieActions}>
-          {result?.prevSeq ? (
-            <Button onClick={loadPrevMovie}>Previous Movie</Button>
-          ) : (
-            <div />
-          )}
+          <Button onClick={loadPrevMovie} disabled={!result?.prevSeq}>
+            Previous Movie
+          </Button>
 
-          {result?.nextSeq ? (
-            <HeroButton onClick={loadNextMovie}>Next Movie</HeroButton>
-          ) : (
-            <div />
-          )}
+          <HeroButton onClick={loadNextMovie} disabled={!result?.nextSeq}>
+            Next Movie
+          </HeroButton>
         </div>
       )}
+    </div>
+  )
+}
+
+export const EmptyResults: React.FC = () => {
+  return (
+    <div className={styles.emptyResults}>
+      <p>No results found. Try broadening your search.</p>
+      {/* <Image
+        src={NoSignalImage.src}
+        alt='No results'
+        className={styles.noResultsImage}
+        width={NoSignalImage.width}
+        height={NoSignalImage.height}
+        placeholder='blur'
+        blurDataURL={NoSignalImage.blurDataURL}
+      /> */}
     </div>
   )
 }
