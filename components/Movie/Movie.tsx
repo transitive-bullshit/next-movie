@@ -187,13 +187,13 @@ export const Movie: React.FC<{
                 </>
               ) : null}
 
-              {/* <>
+              <>
                 <div className={styles.label}>Score</div>
 
                 <div className={styles.cast}>
                   {(movie.relevancyScore! | 0).toLocaleString()}
                 </div>
-              </> */}
+              </>
             </div>
           </div>
 

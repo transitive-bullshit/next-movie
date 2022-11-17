@@ -2,12 +2,7 @@
 
 import * as React from 'react'
 import { createContainer } from 'unstated-next'
-import {
-  useLocalStorage,
-  useDebounce,
-  useRendersCount,
-  useUnmount
-} from 'react-use'
+import { useLocalStorage, useDebounce, useRendersCount } from 'react-use'
 import { unstable_serialize } from 'swr'
 
 import { IMovieSearchLayout, IMovieSearchOptions } from '@/lib/types'

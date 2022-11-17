@@ -62,7 +62,7 @@ function useNextMovie() {
     {
       // treat movie results as immutable
       keepPreviousData: true,
-      revalidateIfStale: true,
+      revalidateIfStale: false,
       revalidateOnFocus: false,
       revalidateOnReconnect: false,
       dedupingInterval: 24 * 60 * 1000
@@ -91,7 +91,7 @@ function useNextMovie() {
   // preload the next and previous movies any time `seq` changes
   React.useEffect(() => {
     if (result) {
-      if (result.prevSeq) {
+      if (result?.prevSeq) {
         preload(
           {
             url: '/api/next-movie',
