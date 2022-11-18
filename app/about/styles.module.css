@@ -7,3 +7,14 @@
   align-items: center;
   gap: var(--gap-2);
 }
+
+.meta {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 2.5rem;
+}
