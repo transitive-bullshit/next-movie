@@ -3,8 +3,6 @@ import { Inter } from '@next/font/google'
 
 import { Footer } from '@/components/Footer/Footer'
 import { Header } from '@/components/Header/Header'
-// import { GitHubShareButton } from '@/components/GitHubShareButton/GitHubShareButton'
-// import { githubRepoUrl } from '@/lib/config'
 
 import { RootLayoutProviders } from './providers'
 import styles from './styles.module.css'
@@ -42,8 +40,6 @@ export default function RootLayout({
 
       <body className={styles.body}>
         <div className={styles.container}>
-          {/* <GitHubShareButton repoUrl={githubRepoUrl} /> */}
-
           <RootLayoutProviders>
             <Header className={styles.header} />
 
