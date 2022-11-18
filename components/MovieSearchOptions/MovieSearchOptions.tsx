@@ -6,6 +6,7 @@ import cs from 'clsx'
 
 import * as Checkbox from '@radix-ui/react-checkbox'
 
+import { Button } from '@/components/Button/Button'
 import { Tooltip } from '@/components/Tooltip/Tooltip'
 import { genres, genreLabelMap, genresToIgnore } from '@/lib/genres'
 import {
@@ -295,13 +296,13 @@ export const MovieSearchOptions: React.FC<IMovieSearchOptionsProps> = ({
       </div>
 
       <div className={styles.subOptions}>
-        <button
+        <Button
           className={cs(styles.resetButton, !isDirty && styles.disabled)}
           onClick={onResetDefaults}
           disabled={!isDirty}
         >
           Restore defaults
-        </button>
+        </Button>
 
         {config?.layout !== 'hidden' && (
           <div className={styles.layoutOptions}>

@@ -151,15 +151,16 @@
 
 .resetButton {
   margin-right: auto;
-  padding: 8px;
+  font-size: 1rem;
   align-self: stretch;
+  outline: none;
 }
 
-.resetButton:not(.disabled) {
-  cursor: pointer;
-  border: 0 none;
-  padding: 8px;
-  border-radius: 4px;
+.resetButton > button {
+  padding: 8px 12px;
+  line-height: 1em;
+  font-weight: normal;
+  font-size: 14px;
 }
 
 .orderBy {
