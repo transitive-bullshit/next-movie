@@ -144,6 +144,7 @@ export const MovieSearchOptions: React.FC<IMovieSearchOptionsProps> = ({
               <input
                 type='text'
                 name='query'
+                id='query'
                 className={cs(styles.input, styles.textInput)}
                 value={searchOptions.query}
                 onChange={onChangeQuery}
@@ -176,6 +177,7 @@ export const MovieSearchOptions: React.FC<IMovieSearchOptionsProps> = ({
 
             <Select
               name='genres'
+              id='genres'
               instanceId='genres'
               placeholder='Any'
               className={cs(
@@ -207,6 +209,7 @@ export const MovieSearchOptions: React.FC<IMovieSearchOptionsProps> = ({
 
             <Select
               name='releaseYearMin'
+              id='releaseYearMin'
               instanceId='releaseYearMin'
               placeholder='Any'
               className={cs(
@@ -236,6 +239,7 @@ export const MovieSearchOptions: React.FC<IMovieSearchOptionsProps> = ({
 
             <Select
               name='imdbRatingMin'
+              id='imdbRatingMin'
               instanceId='imdbRatingMin'
               placeholder='Any'
               className={cs(
@@ -275,6 +279,7 @@ export const MovieSearchOptions: React.FC<IMovieSearchOptionsProps> = ({
               <Checkbox.Root
                 className={styles.checkbox}
                 name='foreign'
+                id='foreign'
                 aria-label='foreign'
                 checked={searchOptions.foreign}
                 onCheckedChange={onChangeForeign}
@@ -375,6 +380,7 @@ export const MovieSearchOptions: React.FC<IMovieSearchOptionsProps> = ({
             <Select
               name='orderBy'
               instanceId='orderBy'
+              aria-label='Sort by'
               className={cs(
                 styles.orderBy,
                 (config?.orderBy === 'disabled' ||
