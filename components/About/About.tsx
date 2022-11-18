@@ -38,11 +38,11 @@ Under the hood, this app uses [populate-movies](https://github.com/transitive-bu
 
 ## License
 
-This project is [open source](https://github.com/transitive-bullshit/next-movie).
+This project is [open source](https://github.com/transitive-bullshit/next-movie). MIT © [Travis Fischer](https://transitivebullsh.it)
 
-MIT © [Travis Fischer](https://transitivebullsh.it)
+Support my open source work by [sponsoring me](https://github.com/sponsors/transitive-bullshit) or <a href="https://twitter.com/transitive_bs">following me on twitter</a>.
 
-Support my open source work by [sponsoring me](https://github.com/sponsors/transitive-bullshit) or <a href="https://twitter.com/transitive_bs">following me on twitter</a>. 🙏
+<br />
 
 <p>
   <a href="https://developers.themoviedb.org/3/getting-started/introduction"><img alt="TMDB" src="/logos/tmdb.png" height="65"></a>
