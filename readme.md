@@ -97,7 +97,6 @@ Building a better app for finding great movies has been on my proverbial todo li
 - [x] Dark mode
 - [x] About page
 - [x] Mobile friendly
-- [ ] Add top X movies pages
 
 Post-v1.0:
 
@@ -109,10 +108,11 @@ Post-v1.0:
 - [ ] User auth and accounts
   - [ ] Watchlist
   - [ ] Seen list + user ratings
-- [ ] Improve search to not be so naive
+- [ ] Improve text search (fuzzy + weighting)
 - [ ] Weight single view movie selection by `relevancyScore`
 - [ ] Automate scripts to keep movie DB up-to-date
 - [ ] Improve access to Rotten Tomatoes metadata
+- [ ] Add top X movies pages
 
 ## Movie Database
 
