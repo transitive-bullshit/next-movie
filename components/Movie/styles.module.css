@@ -286,6 +286,7 @@
     --gap-2: 8px;
 
     flex-direction: column;
+    padding: var(--gap-1);
   }
 
   .lhs {
