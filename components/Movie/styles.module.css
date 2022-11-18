@@ -264,3 +264,26 @@
   color: var(--fg-color-1);
   font-size: 70%;
 }
+
+@media (max-width: 900px) {
+  .ratingsGrid {
+    grid-template-columns: 32px max-content 1fr;
+  }
+
+  .ratingLink {
+    display: none;
+  }
+
+  .ratingsGrid > *:nth-child(3n-1) {
+    grid-column: 2 / span 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .movie {
+    flex-direction: column;
+  }
+  .lhs {
+    align-self: center;
+  }
+}

@@ -187,13 +187,13 @@ export const Movie: React.FC<{
                 </>
               ) : null}
 
-              <>
+              {/* <>
                 <div className={styles.label}>Score</div>
 
                 <div className={styles.cast}>
                   {(movie.relevancyScore! | 0).toLocaleString()}
                 </div>
-              </>
+              </> */}
             </div>
           </div>
 
@@ -213,7 +213,7 @@ export const Movie: React.FC<{
                     href={`https://www.imdb.com/title/${movie.imdbId}`}
                     target='_blank'
                     rel='noopener noreferrer'
-                    className={styles.imdbLogoLink}
+                    className={cs(styles.imdbLogoLink, styles.ratingLink)}
                   >
                     <Image
                       className={styles.imdbLogo}
@@ -254,7 +254,7 @@ export const Movie: React.FC<{
                     href={movie.rtUrl}
                     target='_blank'
                     rel='noopener noreferrer'
-                    className={styles.score}
+                    className={cs(styles.score, styles.ratingLink)}
                   >
                     Critic Score
                     {movie.rtCriticVotes && (
@@ -285,7 +285,7 @@ export const Movie: React.FC<{
                     href={movie.rtUrl}
                     target='_blank'
                     rel='noopener noreferrer'
-                    className={styles.score}
+                    className={cs(styles.score, styles.ratingLink)}
                   >
                     Audience Score
                     {rtAudienceVotesApprox && (

@@ -1,68 +1,80 @@
-.about {
+.markdown {
   max-width: 830px;
   line-height: 1.6;
 }
 
-.about > *:first-child {
+.markdown > *:first-child {
   margin-top: 0 !important;
 }
 
-.about img {
+.markdown img {
   max-width: 100%;
 }
 
-.about a {
+.markdown a {
   color: #0969da;
   text-decoration: none;
 }
 
-.about a:hover {
+[data-theme='dark'] .markdown a {
+  color: #3291ff;
+}
+
+.markdown a:hover {
   text-decoration: underline;
 }
 
-.about p {
+.markdown p {
   margin-top: 0;
   margin-bottom: 1em;
 }
 
-.about h1,
-.about h2,
-.about h3,
-.about h4,
-.about h5,
-.about h6 {
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
   margin-top: 24px;
   margin-bottom: 16px;
   font-weight: 600;
   line-height: 1.25;
 }
 
-.about h1 {
+.markdown h1 {
   padding-bottom: 0.3em;
   font-size: 2em;
   border-bottom: 1px solid var(--var-bg-2);
 }
 
-.about h2 {
+.markdown h2 {
   padding-bottom: 0.3em;
   font-size: 1.5em;
   border-bottom: 1px solid var(--var-bg-2);
 }
 
-.about h3 {
+.markdown h3 {
   font-size: 1.25em;
 }
 
-.about h4 {
+.markdown h4 {
   font-size: 1em;
 }
 
-.about h5 {
+.markdown h5 {
   font-size: 1em;
   font-weight: 700;
 }
 
-.about h6 {
+.markdown h6 {
   font-size: 1em;
   font-weight: 500;
+}
+
+@media (max-width: 800px) {
+  .markdown img {
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+  }
 }

@@ -44,7 +44,7 @@
   transition: color 250ms ease-out;
 }
 
-.darkModeToggle {
+.footer .darkModeToggle {
   width: 1.75em;
   height: 1.75em;
 }

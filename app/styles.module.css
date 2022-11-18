@@ -7,7 +7,15 @@
   margin: 0 auto;
   max-width: var(--max-width);
   min-height: 100vh;
-  padding: 12px;
+  padding: 0;
+}
+
+.header {
+  padding: 12px 12px 0;
+}
+
+.footer {
+  padding: 0 12px 12px;
 }
 
 .main {
@@ -18,6 +26,7 @@
   flex-direction: column;
   align-items: center;
   margin-bottom: var(--gap-h);
+  padding: 0 12px;
 }
 
 .homePage {
@@ -34,4 +43,10 @@
 .body {
   flex: 1;
   width: 100%;
+}
+
+@media (max-width: 800px) {
+  .header {
+    padding: 0;
+  }
 }

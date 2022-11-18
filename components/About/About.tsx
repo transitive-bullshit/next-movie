@@ -130,7 +130,7 @@ Support my open source work by [sponsoring me](https://github.com/sponsors/trans
 
 export const About: React.FC<{ className?: string }> = ({ className }) => {
   return (
-    <div className={cs(styles.about, className)}>
+    <div className={cs(styles.markdown, className)}>
       <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
         {content}
       </ReactMarkdown>
