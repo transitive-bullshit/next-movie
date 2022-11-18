@@ -38,7 +38,6 @@ Building a better app for finding great movies has been on my proverbial todo li
 - All movies include **YouTube trailers**
 - Most movies include **IMDB rating, RT audience score, and RT critic score**
 - Supports grid view, list view, and single movie view
-- Polished UX
 - High quality movie database
 
 ## Implementation Features

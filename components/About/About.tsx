@@ -13,7 +13,6 @@ Building a better app for finding great movies has been on my proverbial todo li
 - All movies include **YouTube trailers**
 - Most movies include **IMDB rating, RT audience score, and RT critic score**
 - Supports grid view, list view, and single movie view
-- Polished UX
 - High quality movie database
 
 ## Movie Database
@@ -24,7 +23,18 @@ Building a better app for finding great movies has been on my proverbial todo li
   </a>
 </p>
 
-Under the hood, this app uses [populate-movies](https://github.com/transitive-bullshit/populate-movies) to generate it's high quality movie database.
+Under the hood, this app uses [populate-movies](https://github.com/transitive-bullshit/populate-movies) to generate it's high quality movie database, featuring:
+
+- ~73k movies (filtered from ~750k TMDB "movies")
+- Metadata from TMDB, IMDB, and Rotten Tomatoes
+- Automatable pipeline
+- Custom post-processing
+  - Selects the best available YouTube trailer for every movie
+  - Relevancy scores using a combination of popularity, rating, and release date
+  - Nuanced foreign movie detection that looks at more than just language/country
+  - [LQIP](https://github.com/transitive-bullshit/lqip-modern) preview image generation for all movie images
+  - Basic text index for searching
+- Open source using TS + Prisma + Postgres
 
 ## License
 
