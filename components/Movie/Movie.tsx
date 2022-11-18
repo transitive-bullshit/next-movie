@@ -41,10 +41,13 @@ function getApproxHumanizedNumVotes(numVotes: number | null) {
   return humanizedApprox
 }
 
+export type MovieVariants = 'normal' | 'slim'
+
 export const Movie: React.FC<{
   movie: MovieModel
   priority?: boolean
-}> = ({ movie, priority }) => {
+  variant?: MovieVariants
+}> = ({ movie, priority, variant = 'normal' }) => {
   const rtAudienceVotesApprox = getApproxHumanizedNumVotes(
     movie.rtAudienceVotes
   )
@@ -76,7 +79,7 @@ export const Movie: React.FC<{
   }
 
   return (
-    <div className={styles.movie}>
+    <div className={cs(styles.movie, styles[`variant-${variant}`])}>
       {/* <div className={styles.backdropWrapper}>
         {movie.backdropUrl && (
           <Image
@@ -150,7 +153,7 @@ export const Movie: React.FC<{
             </div>
 
             <div className={styles.metadata}>
-              <div>Genres</div>
+              <div className={styles.genresLabel}>Genres</div>
 
               <div className={styles.genres}>
                 {movie.genres.map((genre) => (
@@ -166,7 +169,9 @@ export const Movie: React.FC<{
 
               {movie.director && (
                 <>
-                  <div className={styles.label}>Director</div>
+                  <div className={cs(styles.label, styles.directorLabel)}>
+                    Director
+                  </div>
 
                   <div className={styles.director}>{movie.director}</div>
                 </>
@@ -174,7 +179,7 @@ export const Movie: React.FC<{
 
               {movie.cast?.length ? (
                 <>
-                  <div className={styles.label}>Cast</div>
+                  <div className={cs(styles.label, styles.castLabel)}>Cast</div>
 
                   <div className={styles.cast}>
                     {movie.cast.map((person, index) => (

@@ -151,7 +151,7 @@ export const MovieSearchResultsSingle: React.FC = () => {
 
       {result?.movie && (
         <div className={styles.singleMovieContainer}>
-          <Movie movie={result.movie} />
+          <Movie movie={result.movie} variant='slim' />
         </div>
       )}
 

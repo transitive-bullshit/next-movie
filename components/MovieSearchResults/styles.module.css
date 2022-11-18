@@ -58,3 +58,13 @@
   width: calc(max(100px, min(300px, 25vw)));
   height: auto;
 }
+
+@media (max-width: 600px) {
+  .singleMovieContainer {
+    order: 5;
+  }
+
+  .nextMovieActions {
+    justify-content: space-between;
+  }
+}
