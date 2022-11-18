@@ -63,7 +63,7 @@ function useSearch() {
   } = useSWRInfinite<IMovieSearchResults, Error>(getKey, fetcher, {
     // treat movie results as immutable
     keepPreviousData: true,
-    revalidateIfStale: false,
+    revalidateIfStale: true,
     revalidateOnFocus: false,
     revalidateOnReconnect: false,
     dedupingInterval: 24 * 60 * 1000
