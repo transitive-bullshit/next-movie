@@ -71,7 +71,7 @@ Building a better app for finding great movies has been on my proverbial todo li
 - [x] Dynamic OG images for genres
 - [x] Dark mode
 - [x] About page
-- [ ] Mobile friendly
+- [x] Mobile friendly
 - [ ] Add top X movies pages
 
 Post-v1.0:
@@ -113,7 +113,7 @@ This project is [open source](https://github.com/transitive-bullshit/next-movie)
 
 MIT © [Travis Fischer](https://transitivebullsh.it)
 
-Support my open source work by [sponsoring me](https://github.com/sponsors/transitive-bullshit) or <a href="https://twitter.com/transitive_bs">following me on twitter <img src="https://storage.googleapis.com/saasify-assets/twitter-logo.svg" alt="twitter" height="24px" align="center"></a>
+Support my open source work by [sponsoring me](https://github.com/sponsors/transitive-bullshit) or <a href="https://twitter.com/transitive_bs">following me on twitter</a>. 🙏
 
 <p>
   <a href="https://developers.themoviedb.org/3/getting-started/introduction"><img alt="TMDB" src="/logos/tmdb.png" height="65"></a>
