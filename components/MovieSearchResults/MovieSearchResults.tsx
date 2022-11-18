@@ -72,7 +72,7 @@ export const MovieSearchResultsInfinite: React.FC = () => {
       )}
     >
       <div className={styles.detail}>
-        <LoadingSpinner loading={isLoading || isValidating} />
+        <LoadingSpinner loading={isLoading} />
 
         <div className={styles.totalResults}>
           {isLoading
