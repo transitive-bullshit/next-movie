@@ -74,7 +74,7 @@ Building a better app for finding great movies has been on my proverbial todo li
 - [x] Dynamic OG images for movies
 - [x] Dynamic OG images for genres
 - [x] Dark mode
-- [ ] About page
+- [x] About page
 - [ ] Mobile friendly
 - [ ] Add top X movies pages
 
