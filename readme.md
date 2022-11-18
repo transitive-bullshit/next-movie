@@ -102,12 +102,15 @@ Building a better app for finding great movies has been on my proverbial todo li
 Post-v1.0:
 
 - [ ] Streaming service availability + filters
-- [ ] Weight single view movie selection by `relevancyScore`
+- [ ] Add TV series
+- [ ] Advanced search by language, country, etc.
 - [ ] Better movie detail page design
 - [ ] Person detail page
 - [ ] User auth and accounts
   - [ ] Watchlist
   - [ ] Seen list + user ratings
+- [ ] Improve search to not be so naive
+- [ ] Weight single view movie selection by `relevancyScore`
 - [ ] Automate scripts to keep movie DB up-to-date
 - [ ] Improve access to Rotten Tomatoes metadata
 
