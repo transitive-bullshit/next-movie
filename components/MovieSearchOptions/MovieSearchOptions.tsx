@@ -303,82 +303,87 @@ export const MovieSearchOptions: React.FC<IMovieSearchOptionsProps> = ({
           Restore defaults
         </button>
 
-        <div className={styles.rhs}>
-          {config?.layout !== 'hidden' && (
-            <div className={styles.layoutOptions}>
-              <Tooltip content='Grid View'>
-                <button
+        {config?.layout !== 'hidden' && (
+          <div className={styles.layoutOptions}>
+            <Tooltip content='Grid View'>
+              <button
+                className={cs(
+                  styles.layoutButton,
+                  config?.layout === 'disabled' && styles.disabled
+                )}
+                onClick={() => onChangeLayout('grid')}
+                disabled={
+                  searchOptions.layout === 'grid' ||
+                  config?.layout === 'disabled'
+                }
+                aria-label='Grid View'
+              >
+                <GridIcon
                   className={cs(
-                    styles.layoutButton,
-                    config?.layout === 'disabled' && styles.disabled
+                    styles.layoutOption,
+                    searchOptions.layout === 'grid' && styles.selected
                   )}
-                  onClick={() => onChangeLayout('grid')}
-                  disabled={
-                    searchOptions.layout === 'grid' ||
-                    config?.layout === 'disabled'
-                  }
-                  aria-label='Grid View'
-                >
-                  <GridIcon
-                    className={cs(
-                      styles.layoutOption,
-                      searchOptions.layout === 'grid' && styles.selected
-                    )}
-                  />
-                </button>
-              </Tooltip>
+                />
+              </button>
+            </Tooltip>
 
-              <Tooltip content='List View'>
-                <button
+            <Tooltip content='List View'>
+              <button
+                className={cs(
+                  styles.layoutButton,
+                  config?.layout === 'disabled' && styles.disabled
+                )}
+                onClick={() => onChangeLayout('list')}
+                disabled={
+                  searchOptions.layout === 'list' ||
+                  config?.layout === 'disabled'
+                }
+                aria-label='List View'
+              >
+                <ListIcon
                   className={cs(
-                    styles.layoutButton,
-                    config?.layout === 'disabled' && styles.disabled
+                    styles.layoutOption,
+                    searchOptions.layout === 'list' && styles.selected
                   )}
-                  onClick={() => onChangeLayout('list')}
-                  disabled={
-                    searchOptions.layout === 'list' ||
-                    config?.layout === 'disabled'
-                  }
-                  aria-label='List View'
-                >
-                  <ListIcon
-                    className={cs(
-                      styles.layoutOption,
-                      searchOptions.layout === 'list' && styles.selected
-                    )}
-                  />
-                </button>
-              </Tooltip>
+                />
+              </button>
+            </Tooltip>
 
-              <Tooltip content='Single Movie View'>
-                <button
+            <Tooltip content='Single Movie View'>
+              <button
+                className={cs(
+                  styles.layoutButton,
+                  config?.layout === 'disabled' && styles.disabled
+                )}
+                onClick={() => onChangeLayout('single')}
+                disabled={
+                  searchOptions.layout === 'single' ||
+                  config?.layout === 'disabled'
+                }
+                aria-label='Single Movie View'
+              >
+                <SingleIcon
                   className={cs(
-                    styles.layoutButton,
-                    config?.layout === 'disabled' && styles.disabled
+                    styles.layoutOption,
+                    (!searchOptions.layout ||
+                      searchOptions.layout === 'single') &&
+                      styles.selected
                   )}
-                  onClick={() => onChangeLayout('single')}
-                  disabled={
-                    searchOptions.layout === 'single' ||
-                    config?.layout === 'disabled'
-                  }
-                  aria-label='Single Movie View'
-                >
-                  <SingleIcon
-                    className={cs(
-                      styles.layoutOption,
-                      (!searchOptions.layout ||
-                        searchOptions.layout === 'single') &&
-                        styles.selected
-                    )}
-                  />
-                </button>
-              </Tooltip>
-            </div>
-          )}
+                />
+              </button>
+            </Tooltip>
+          </div>
+        )}
 
-          {config?.orderBy !== 'hidden' && (
+        {config?.orderBy !== 'hidden' && (
+          <div className={cs(styles.field, styles.orderByField)}>
+            <label htmlFor='orderBy' className={styles.labelOrderBy}>
+              Sort By
+            </label>
+
             <Select
               name='orderBy'
+              id='orderBy'
               instanceId='orderBy'
               aria-label='Sort by'
               className={cs(
@@ -406,8 +411,8 @@ export const MovieSearchOptions: React.FC<IMovieSearchOptionsProps> = ({
               }
               onChange={onChangeOrderBy}
             />
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </form>
   )

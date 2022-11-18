@@ -144,14 +144,15 @@
 .subOptions {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-end;
+  align-items: center;
   gap: var(--gap);
 }
 
-.rhs {
-  display: flex;
-  flex-direction: row;
-  gap: var(--gap);
+.resetButton {
+  margin-right: auto;
+  padding: 8px;
+  align-self: stretch;
 }
 
 .resetButton:not(.disabled) {
@@ -194,4 +195,53 @@
 
 .layoutButton {
   all: unset;
+  display: block;
+  line-height: 0;
+}
+
+.labelOrderBy {
+  display: none;
+}
+
+.orderByField {
+  flex: unset;
+}
+
+@media (max-width: 700px) {
+  .movieSearchOptions {
+    --gap: calc(max(8px, min(24px, 2vh)));
+    margin-bottom: var(--gap);
+  }
+
+  .mainOptions {
+    flex-direction: column;
+  }
+
+  .subOptions {
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .layoutOptions {
+    order: 4;
+  }
+
+  .resetButton {
+    order: 3;
+    margin: 0;
+    align-self: center;
+  }
+
+  .labelOrderBy {
+    display: block;
+  }
+
+  .orderByField {
+    width: 100%;
+  }
+
+  .orderBy {
+    width: 100%;
+  }
 }
