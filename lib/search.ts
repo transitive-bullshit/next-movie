@@ -1,9 +1,19 @@
+import pMemoize from 'p-memoize'
+import stringify from 'fast-json-stable-stringify'
+import QuickLRU from 'quick-lru'
+
 import { layoutToDefaultPageSize } from './config'
 import { prisma } from './prisma'
 import * as types from './types'
 import { convertMovies } from './utils'
 
-export async function searchMovies(
+// TODO: is this even worth it within a serverless function?
+export const searchMovies = pMemoize(searchMoviesImpl, {
+  cacheKey: (args: Parameters<typeof searchMoviesImpl>) => stringify(args[0]),
+  cache: new QuickLRU({ maxSize: 500 })
+})
+
+export async function searchMoviesImpl(
   opts: types.IMovieSearchOptions & { skip?: number }
 ): Promise<types.IMovieSearchResults> {
   const where: types.Prisma.MovieWhereInput = {}
@@ -14,13 +24,6 @@ export async function searchMovies(
     // TODO: use a full-text index
     if (query) {
       where.searchL = { contains: query }
-      // where.OR = [
-      //   { title: { contains: query } },
-      //   { originalTitle: { contains: query } },
-      //   { cast: { has: query } },
-      //   { keywords: { has: query } },
-      //   { director: { contains: query } }
-      // ]
     }
   }
 
@@ -145,7 +148,8 @@ export async function searchMovies(
   const layout = opts.layout || 'list'
   const limit = opts.limit ?? layoutToDefaultPageSize[layout]
 
-  // TODO
+  // TODO: instead of this, we should weight search results by their respective
+  // relevancy scores, or at least their order in the results list
   if (layout === 'single') {
     // gte: 31000
     // gte: 100000

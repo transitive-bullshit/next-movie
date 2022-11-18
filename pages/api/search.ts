@@ -32,9 +32,9 @@ export default async function searchHandler(
 
   // add an extra long delay to accentuate any client-side swr cache misses
   // (for debugging purposes)
-  await new Promise((resolve) => {
-    setTimeout(resolve, 5000)
-  })
+  // await new Promise((resolve) => {
+  //   setTimeout(resolve, 5000)
+  // })
 
   // TODO: search results can't be cached because the params are a POST body
   // res.setHeader(

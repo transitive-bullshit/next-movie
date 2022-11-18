@@ -1,11 +1,18 @@
+import pMemoize from 'p-memoize'
+import stringify from 'fast-json-stable-stringify'
+import QuickLRU from 'quick-lru'
 import random from 'random'
 
-import { searchMovies } from './search'
 import * as types from './types'
+import { searchMovies } from './search'
 
-// TODO: add p-memoize?
+// TODO: is this even worth it within a serverless function?
+export const getNextMovie = pMemoize(getNextMovieImpl, {
+  cacheKey: (args: Parameters<typeof getNextMovieImpl>) => stringify(args[0]),
+  cache: new QuickLRU({ maxSize: 500 })
+})
 
-export async function getNextMovie(
+export async function getNextMovieImpl(
   opts: types.INextMovieOptions
 ): Promise<types.INextMovieResult> {
   const { cursor, limit, ...restSearchOptions } = opts.searchOptions
@@ -33,14 +40,14 @@ export async function getNextMovie(
 
   const skip = (seq + offset) % total
 
-  console.log('>>> next-movie', {
-    total,
-    offset,
-    skip,
-    prevSeq,
-    seq,
-    nextSeq
-  })
+  // console.log('>>> next-movie', {
+  //   total,
+  //   offset,
+  //   skip,
+  //   prevSeq,
+  //   seq,
+  //   nextSeq
+  // })
 
   const result = await searchMovies({
     ...restSearchOptions,
@@ -48,15 +55,15 @@ export async function getNextMovie(
     skip
   })
 
-  console.log('<<< next-movie', {
-    movie: result.results[0]?.title,
-    total,
-    offset,
-    skip,
-    prevSeq,
-    seq,
-    nextSeq
-  })
+  // console.log('<<< next-movie', {
+  //   movie: result.results[0]?.title,
+  //   total,
+  //   offset,
+  //   skip,
+  //   prevSeq,
+  //   seq,
+  //   nextSeq
+  // })
 
   return {
     movie: result.results[0],
@@ -67,6 +74,8 @@ export async function getNextMovie(
   }
 }
 
+// all of this weird bit hackery is from
+// https://github.com/transitive-bullshit/dissolve-generator
 const RAND_MASKS = [
   0x00000001, 0x00000003, 0x00000006, 0x0000000c, 0x00000014, 0x00000030,
   0x00000060, 0x000000b8, 0x00000110, 0x00000240, 0x00000500, 0x00000ca0,

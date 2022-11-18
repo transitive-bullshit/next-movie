@@ -15,6 +15,7 @@ specifiers:
   clsx: ^1.2.1
   eslint: 8.27.0
   eslint-config-next: 13.0.3
+  fast-json-stable-stringify: ^2.1.0
   husky: ^8.0.2
   lint-staged: ^13.0.3
   next: 13.0.4-canary.3
@@ -25,6 +26,7 @@ specifiers:
   prettier: ^2.7.1
   pretty-ms: ^8.0.0
   prisma: ^4.6.1
+  quick-lru: ^6.1.1
   random: ^4.0.2
   react: 18.2.0
   react-dom: 18.2.0
@@ -51,11 +53,13 @@ dependencies:
   '@radix-ui/react-tooltip': 1.0.2_2zx2umvpluuhvlq44va5bta2da
   '@vercel/og': 0.0.20
   clsx: 1.2.1
+  fast-json-stable-stringify: 2.1.0
   next: 13.0.4-canary.3_biqbaboplfbrettd7655fr4n2y
   next-themes: 0.2.1_v3r6nvbux6qg2nzc75ueupbsma
   p-map: 5.5.0
   p-memoize: 7.1.1
   pretty-ms: 8.0.0
+  quick-lru: 6.1.1
   random: 4.0.2
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -2216,7 +2220,6 @@ packages:
 
   /fast-json-stable-stringify/2.1.0:
     resolution: {integrity: sha512-lhd/wF+Lk98HZoTCtlVraHtfh5XYijIjalXck7saUtuanSDyLMxnHhSXEDJqHxD7msR8D0uCmqlkwjCV8xvwHw==}
-    dev: true
 
   /fast-levenshtein/2.0.6:
     resolution: {integrity: sha512-DCXu6Ifhqcks7TZKY3Hxp3y6qphY5SJZmrWMDrKcERSOXWQdMhU9Ig/PYrzyw/ul9jOIyh0N4M0tbC5hodg8dw==}
@@ -3807,6 +3810,11 @@ packages:
   /queue-microtask/1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
     dev: true
+
+  /quick-lru/6.1.1:
+    resolution: {integrity: sha512-S27GBT+F0NTRiehtbrgaSE1idUAJ5bX8dPAQTdylEyNlrdcH5X4Lz7Edz3DYzecbsCluD5zO8ZNEe04z3D3u6Q==}
+    engines: {node: '>=12'}
+    dev: false
 
   /random/4.0.2:
     resolution: {integrity: sha512-KMBi+Aa8RWIpFyQgBAQwVwR9Yy6vFTjw0GHJeZS6AtUB5YgOkSz0zCmk7BpgIcBy7emP0g8I/ysGvHvDw/c3sA==}
