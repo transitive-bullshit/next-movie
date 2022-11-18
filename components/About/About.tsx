@@ -1,10 +1,6 @@
+import 'server-only'
 import * as React from 'react'
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
-import rehypeRaw from 'rehype-raw'
-import cs from 'clsx'
-
-import styles from './styles.module.css'
+import { Markdown } from '@/components/Markdown/Markdown'
 
 const content = `
 ## About
@@ -129,11 +125,5 @@ Support my open source work by [sponsoring me](https://github.com/sponsors/trans
 `
 
 export const About: React.FC<{ className?: string }> = ({ className }) => {
-  return (
-    <div className={cs(styles.markdown, className)}>
-      <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
-        {content}
-      </ReactMarkdown>
-    </div>
-  )
+  return <Markdown className={className}>{content}</Markdown>
 }
