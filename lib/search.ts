@@ -10,7 +10,7 @@ import { convertMovies } from './utils'
 // TODO: is this even worth it within a serverless function?
 export const searchMovies = pMemoize(searchMoviesImpl, {
   cacheKey: (args: Parameters<typeof searchMoviesImpl>) => stringify(args[0]),
-  cache: new QuickLRU({ maxSize: 500 })
+  cache: new QuickLRU({ maxSize: 200 })
 })
 
 export async function searchMoviesImpl(

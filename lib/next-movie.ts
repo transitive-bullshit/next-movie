@@ -9,7 +9,7 @@ import { searchMovies } from './search'
 // TODO: is this even worth it within a serverless function?
 export const getNextMovie = pMemoize(getNextMovieImpl, {
   cacheKey: (args: Parameters<typeof getNextMovieImpl>) => stringify(args[0]),
-  cache: new QuickLRU({ maxSize: 500 })
+  cache: new QuickLRU({ maxSize: 100 })
 })
 
 export async function getNextMovieImpl(
