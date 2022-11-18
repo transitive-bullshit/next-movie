@@ -267,23 +267,82 @@
 
 @media (max-width: 900px) {
   .ratingsGrid {
-    grid-template-columns: 32px max-content 1fr;
+    grid-template-columns: 32px max-content 0;
   }
 
   .ratingLink {
     display: none;
   }
 
-  .ratingsGrid > *:nth-child(3n-1) {
+  .rating {
     grid-column: 2 / span 2;
   }
 }
 
 @media (max-width: 600px) {
   .movie {
+    --gap: 16px;
+    --gap-1: 12px;
+    --gap-2: 8px;
+
     flex-direction: column;
   }
+
   .lhs {
     align-self: center;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .subHeader {
+    justify-content: center;
+  }
+  .title {
+    text-align: center;
+  }
+
+  .body {
+    flex-direction: column;
+  }
+
+  .lhs {
+    width: 50%;
+    max-width: 100%;
+  }
+
+  .lh {
+    order: 2;
+  }
+
+  .rh {
+    order: 1;
+    width: 100%;
+    max-width: unset;
+  }
+
+  .ratingsGrid {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .ratingIcon {
+    margin-left: auto;
+  }
+
+  .rating {
+    margin-right: auto;
+  }
+
+  .ratingLink {
+    display: none;
+  }
+
+  .plot:not(.expanded) {
+    -webkit-line-clamp: 6;
+    line-clamp: 6;
   }
 }

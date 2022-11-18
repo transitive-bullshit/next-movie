@@ -201,9 +201,9 @@ export const Movie: React.FC<{
             <div className={styles.ratingsGrid}>
               {movie.imdbRating !== null && (
                 <>
-                  <Star className={styles.imdbStar} />
+                  <Star className={cs(styles.imdbStar, styles.ratingIcon)} />
 
-                  <div className={styles.imdbRatingValue0}>
+                  <div className={cs(styles.imdbRatingValue0, styles.rating)}>
                     <span className={styles.imdbRatingValue1}>
                       {movie.imdbRating.toFixed(1)}
                     </span>
@@ -239,12 +239,12 @@ export const Movie: React.FC<{
                 <>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    className={styles.rtRatingImage}
+                    className={cs(styles.rtRatingImage, styles.ratingIcon)}
                     src={rtCriticScoreImage}
                     alt='Rotten Tomatoes Critic Score'
                   />
 
-                  <div className={styles.rtRatingValue}>
+                  <div className={cs(styles.rtRatingValue, styles.rating)}>
                     {rtCriticScoreImage === rtCriticScoreEmptyImage
                       ? '- -'
                       : `${movie.rtCriticRating}%`}
@@ -270,12 +270,12 @@ export const Movie: React.FC<{
                 <>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    className={styles.rtRatingImage}
+                    className={cs(styles.rtRatingImage, styles.ratingIcon)}
                     src={rtAudienceScoreImage}
                     alt='Rotten Tomatoes Audience Score'
                   />
 
-                  <div className={styles.rtRatingValue}>
+                  <div className={cs(styles.rtRatingValue, styles.rating)}>
                     {rtAudienceScoreImage === rtAudienceScoreEmptyImage
                       ? '- -'
                       : `${movie.rtAudienceRating}%`}
