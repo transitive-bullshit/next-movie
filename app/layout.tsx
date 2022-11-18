@@ -13,13 +13,22 @@ import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
+const htmlStyle: React.CSSProperties = {
+  colorScheme: 'dark'
+}
+
 export default function RootLayout({
   children
 }: {
   children: React.ReactNode
 }) {
   return (
-    <html lang='en' className={inter.className}>
+    <html
+      lang='en'
+      className={inter.className}
+      data-theme='dark'
+      style={htmlStyle}
+    >
       <head>
         <meta charSet='utf-8' />
         <meta httpEquiv='Content-Type' content='text/html; charset=utf-8' />

@@ -2,7 +2,7 @@ import * as React from 'react'
 import cs from 'clsx'
 
 import { ActiveLink } from '@/components/ActiveLink/ActiveLink'
-import { DarkModeToggle } from '@/components/DarkModeToggle/DarkModeToggle'
+// import { DarkModeToggle } from '@/components/DarkModeToggle/DarkModeToggle'
 import { GitHub, Twitter } from '@/icons/index'
 import * as config from '@/lib/config'
 
@@ -30,7 +30,7 @@ export const Header: React.FC<{ className?: string }> = ({ className }) => {
             About
           </ActiveLink>
 
-          <DarkModeToggle className={cs(styles.action, styles.icon)} />
+          {/* <DarkModeToggle className={cs(styles.action, styles.icon)} /> */}
 
           <a
             className={cs(styles.twitter, styles.action, styles.icon)}

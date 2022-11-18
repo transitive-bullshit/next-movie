@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import { ThemeProvider } from 'next-themes'
+// import { ThemeProvider } from 'next-themes'
 import { unstable_serialize, SWRConfig } from 'swr'
 
 import { YouTubeDialog } from '@/components/YouTubeDialog/YouTubeDialog'
@@ -16,9 +16,9 @@ export function RootLayoutProviders({
   children: React.ReactNode
 }) {
   return (
-    <ThemeProvider disableTransitionOnChange defaultTheme='dark'>
-      <YouTubeDialog>{children}</YouTubeDialog>
-    </ThemeProvider>
+    // <ThemeProvider disableTransitionOnChange defaultTheme='dark'>
+    <YouTubeDialog>{children}</YouTubeDialog>
+    // </ThemeProvider>
   )
 }
 
