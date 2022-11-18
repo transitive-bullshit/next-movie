@@ -64,6 +64,11 @@
   height: calc(1em + 24px);
 }
 
+.icon > svg {
+  width: 100%;
+  height: 100%;
+}
+
 .action:not(.active):hover,
 .action:not(.active):focus {
   transition: all 50ms ease-in;
