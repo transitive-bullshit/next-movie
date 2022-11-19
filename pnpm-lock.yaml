@@ -19,7 +19,7 @@ specifiers:
   husky: ^8.0.2
   lint-staged: ^13.0.3
   next: 13.0.5-canary.2
-  next-themes: ^0.2.1
+  next-themes: npm:@wits/next-themes@^0.2.11
   npm-run-all: ^4.1.5
   p-map: ^5.5.0
   p-memoize: ^7.1.1
@@ -56,7 +56,7 @@ dependencies:
   clsx: 1.2.1
   fast-json-stable-stringify: 2.1.0
   next: 13.0.5-canary.2_biqbaboplfbrettd7655fr4n2y
-  next-themes: 0.2.1_n47h3j5n5cmf7ijifvgrxigir4
+  next-themes: /@wits/next-themes/0.2.11_n47h3j5n5cmf7ijifvgrxigir4
   p-map: 5.5.0
   p-memoize: 7.1.1
   pretty-ms: 8.0.0
@@ -1312,6 +1312,18 @@ packages:
   /@vue/shared/3.2.45:
     resolution: {integrity: sha512-Ewzq5Yhimg7pSztDV+RH1UDKBzmtqieXQlpTVm2AwraoRL/Rks96mvd8Vgi7Lj+h+TH8dv7mXD3FRZR3TUvbSg==}
     dev: true
+
+  /@wits/next-themes/0.2.11_n47h3j5n5cmf7ijifvgrxigir4:
+    resolution: {integrity: sha512-NEAzv6ZkFZVOhwnHy3cCCYwybfHAM60Iz9pQ5d8JwnV08oMxxl6MVt7S6klKfzr15jOhF4hjJRuNC3CbqzhIkw==}
+    peerDependencies:
+      next: '*'
+      react: '*'
+      react-dom: '*'
+    dependencies:
+      next: 13.0.5-canary.2_biqbaboplfbrettd7655fr4n2y
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
 
   /@xobotyi/scrollbar-width/1.9.5:
     resolution: {integrity: sha512-N8tkAACJx2ww8vFMneJmaAgmjAG1tnVBZJRLRcx061tmsLRZHSEZSLuGWnwPtunsSLvSqXQ2wfp7Mgqg1I+2dQ==}
@@ -3478,18 +3490,6 @@ packages:
   /natural-compare/1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
-
-  /next-themes/0.2.1_n47h3j5n5cmf7ijifvgrxigir4:
-    resolution: {integrity: sha512-B+AKNfYNIzh0vqQQKqQItTS8evEouKD7H5Hj3kmuPERwddR2TxvDSFZuTj6T7Jfn1oyeUyJMydPl1Bkxkh0W7A==}
-    peerDependencies:
-      next: '*'
-      react: '*'
-      react-dom: '*'
-    dependencies:
-      next: 13.0.5-canary.2_biqbaboplfbrettd7655fr4n2y
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
-    dev: false
 
   /next/13.0.5-canary.2_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-asF/qsN0WVONRR496hwLMEF5+h+nvmuMmnmJv4HxafcRk1pI8A+KC4vwJAVqcE9+ZKh9DO9wDI6e9eQrC37+fA==}

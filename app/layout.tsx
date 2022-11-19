@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { ServerThemeProvider } from 'next-themes'
 import { Inter } from '@next/font/google'
 
 import { Footer } from '@/components/Footer/Footer'
@@ -21,40 +22,42 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html
-      lang='en'
-      className={inter.className}
-      data-theme='dark'
-      style={htmlStyle}
-    >
-      <head>
-        <meta charSet='utf-8' />
-        <meta httpEquiv='Content-Type' content='text/html; charset=utf-8' />
-        <meta
-          name='viewport'
-          content='width=device-width, initial-scale=1, shrink-to-fit=no'
-        />
+    <ServerThemeProvider disableTransitionOnChange defaultTheme='dark'>
+      <html
+        lang='en'
+        className={inter.className}
+        // data-theme='dark'
+        // style={htmlStyle}
+      >
+        <head>
+          <meta charSet='utf-8' />
+          <meta httpEquiv='Content-Type' content='text/html; charset=utf-8' />
+          <meta
+            name='viewport'
+            content='width=device-width, initial-scale=1, shrink-to-fit=no'
+          />
 
-        <link rel='icon' href='/favicon.ico' />
-      </head>
+          <link rel='icon' href='/favicon.ico' />
+        </head>
 
-      <body className={styles.body}>
-        <div className={styles.container}>
-          <RootLayoutProviders>
-            <React.Suspense>
-              <Header className={styles.header} />
-            </React.Suspense>
+        <body className={styles.body}>
+          <div className={styles.container}>
+            <RootLayoutProviders>
+              <React.Suspense>
+                <Header className={styles.header} />
+              </React.Suspense>
 
-            <React.Suspense>
-              <main className={styles.main}>{children}</main>
-            </React.Suspense>
+              <React.Suspense>
+                <main className={styles.main}>{children}</main>
+              </React.Suspense>
 
-            <React.Suspense>
-              <Footer className={styles.footer} />
-            </React.Suspense>
-          </RootLayoutProviders>
-        </div>
-      </body>
-    </html>
+              <React.Suspense>
+                <Footer className={styles.footer} />
+              </React.Suspense>
+            </RootLayoutProviders>
+          </div>
+        </body>
+      </html>
+    </ServerThemeProvider>
   )
 }

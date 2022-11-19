@@ -2,7 +2,7 @@ import 'server-only'
 import * as React from 'react'
 import cs from 'clsx'
 
-// import { DarkModeToggle } from '@/components/DarkModeToggle/DarkModeToggle'
+import { DarkModeToggle } from '@/components/DarkModeToggle/DarkModeToggle'
 import { GitHub, Twitter } from '@/icons/index'
 import { copyright, githubRepoUrl, twitter, twitterUrl } from '@/lib/config'
 
@@ -17,9 +17,9 @@ export const Footer: React.FC<{ className?: string }> = ({ className }) => {
         </a>
       </div>
 
-      {/* <div className={styles.settings}>
+      <div className={styles.settings}>
         <DarkModeToggle className={cs(styles.action, styles.darkModeToggle)} />
-      </div> */}
+      </div>
 
       <div className={styles.social}>
         <a
