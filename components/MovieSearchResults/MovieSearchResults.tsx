@@ -80,7 +80,7 @@ export const MovieSearchResultsInfinite: React.FC = () => {
             : isEmpty
             ? 'No results'
             : searchResults?.length
-            ? `${searchResults[0].total.toLocaleString()} result${
+            ? `${searchResults[0].total.toLocaleString('en-US')} result${
                 searchResults[0].total !== 1 ? 's' : ''
               }`
             : ''}
@@ -138,7 +138,7 @@ export const MovieSearchResultsSingle: React.FC = () => {
 
         <div className={styles.totalResults}>
           {result?.total
-            ? `${result.total.toLocaleString()} result${
+            ? `${result.total.toLocaleString('en-US')} result${
                 result.total !== 1 ? 's' : ''
               }`
             : isLoading

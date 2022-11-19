@@ -32,7 +32,7 @@ function getApproxHumanizedNumVotes(numVotes: number | null) {
   const temp = Math.pow(10, numDigits - 1)
   const floor = Math.floor(numVotes / temp)
   const approx = (floor * temp) | 0
-  let humanizedApprox = approx.toLocaleString()
+  let humanizedApprox = approx.toLocaleString('en-US')
 
   if (numVotes > approx) {
     humanizedApprox += '+'
@@ -196,7 +196,7 @@ export const Movie: React.FC<{
                 <div className={styles.label}>Score</div>
 
                 <div className={styles.cast}>
-                  {(movie.relevancyScore! | 0).toLocaleString()}
+                  {(movie.relevancyScore! | 0).toLocaleString('en-US')}
                 </div>
               </> */}
             </div>

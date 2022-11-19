@@ -29,7 +29,7 @@ const genreOptions = genres
   }))
 
 const minYear = 1900
-const maxYear = new Date().getFullYear()
+const maxYear = 2022
 
 const yearOptions = [...new Array(maxYear - minYear + 1)]
   .map((_, index) => ({
