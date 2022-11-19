@@ -22,8 +22,8 @@
     "test:prettier": "prettier '**/*.{js,jsx,ts,tsx}' --check"
   },
   "dependencies": {
-    "@next/bundle-analyzer": "13",
-    "@next/font": "13",
+    "@next/bundle-analyzer": "13.0.5-canary.2",
+    "@next/font": "13.0.5-canary.2",
     "@prisma/client": "^4.6.1",
     "@radix-ui/react-checkbox": "^1.0.1",
     "@radix-ui/react-dialog": "^1.0.2",
@@ -31,7 +31,7 @@
     "@vercel/og": "^0.0.20",
     "clsx": "^1.2.1",
     "fast-json-stable-stringify": "^2.1.0",
-    "next": "13.0.5-canary.1",
+    "next": "13.0.5-canary.2",
     "next-themes": "^0.2.1",
     "p-map": "^5.5.0",
     "p-memoize": "^7.1.1",
