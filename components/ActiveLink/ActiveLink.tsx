@@ -39,8 +39,8 @@ export const ActiveLink = ({
     () =>
       disabled
         ? {
-            pointerEvents: 'none',
-            ...style
+            ...style,
+            pointerEvents: 'none'
           }
         : style ?? {},
     [disabled, style]
