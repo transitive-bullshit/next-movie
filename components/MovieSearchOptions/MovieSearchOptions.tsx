@@ -180,6 +180,7 @@ export const MovieSearchOptions: React.FC<IMovieSearchOptionsProps> = ({
               name='genres'
               id='genres'
               instanceId='genres'
+              aria-label='Genres'
               placeholder='Any'
               className={cs(
                 styles.select,
@@ -212,6 +213,7 @@ export const MovieSearchOptions: React.FC<IMovieSearchOptionsProps> = ({
               name='releaseYearMin'
               id='releaseYearMin'
               instanceId='releaseYearMin'
+              aria-label='Min Release Year'
               placeholder='Any'
               className={cs(
                 styles.select,
@@ -242,6 +244,7 @@ export const MovieSearchOptions: React.FC<IMovieSearchOptionsProps> = ({
               name='imdbRatingMin'
               id='imdbRatingMin'
               instanceId='imdbRatingMin'
+              aria-label='Min IMDB Rating'
               placeholder='Any'
               className={cs(
                 styles.select,
@@ -281,7 +284,7 @@ export const MovieSearchOptions: React.FC<IMovieSearchOptionsProps> = ({
                 className={styles.checkbox}
                 name='foreign'
                 id='foreign'
-                aria-label='foreign'
+                aria-label='Foreign'
                 checked={searchOptions.foreign}
                 onCheckedChange={onChangeForeign}
                 disabled={config?.foreign === 'disabled'}

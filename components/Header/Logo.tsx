@@ -16,6 +16,8 @@ export const Logo: React.FC<{ className?: string }> = ({ className }) => {
       className={cs(styles.logo, className)}
       src='/next-logo-dark.svg'
       alt='Logo'
+      width={200}
+      height={33}
     />
   ) : (
     // eslint-disable-next-line @next/next/no-img-element
@@ -23,6 +25,8 @@ export const Logo: React.FC<{ className?: string }> = ({ className }) => {
       className={cs(styles.logo, className)}
       src='/next-logo-light.svg'
       alt='Logo'
+      width={200}
+      height={33}
     />
   )
 }
