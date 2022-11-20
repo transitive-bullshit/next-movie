@@ -1,4 +1,5 @@
 import 'server-only'
+
 import * as React from 'react'
 import cs from 'clsx'
 
@@ -7,6 +8,7 @@ import { ActiveLink } from '@/components/ActiveLink/ActiveLink'
 import { GitHub, Twitter } from '@/icons/index'
 import * as config from '@/lib/config'
 
+import { Logo } from './Logo'
 import styles from './styles.module.css'
 
 export const Header: React.FC<{ className?: string }> = ({ className }) => {
@@ -19,7 +21,7 @@ export const Header: React.FC<{ className?: string }> = ({ className }) => {
           activeClassName={styles.active}
           aria-label='Next Movie Logo'
         >
-          <div className={styles.logo} />
+          <Logo />
         </ActiveLink>
 
         <div className={styles.rhs}>

@@ -3,7 +3,6 @@
 import * as React from 'react'
 import { createContainer } from 'unstated-next'
 import useSWR, { preload } from 'swr'
-import { useSessionStorage, useRendersCount } from 'react-use'
 
 import { INextMovieOptions, INextMovieResult } from '@/lib/types'
 
@@ -27,16 +26,17 @@ const fetcher = ({
     }
   }).then((res) => res.json())
 
+const globalSeed = `${Math.random()}`
+
 function useNextMovie() {
   const { searchOptions, config } = SearchOptions.useContainer()
   const [seq, setSeq] = React.useState<number>()
-  const rendersCount = useRendersCount()
-  const [cachedSeed] = useSessionStorage(
-    `${sessionStorageSeedKey}-${config.key}`,
-    `${Math.random()}`
-  )
+  // const [cachedSeed] = useSessionStorage(
+  //   `${sessionStorageSeedKey}-${config.key}`,
+  //   `${Math.random()}`
+  // )
 
-  const [seed, setSeed] = React.useState<string>(JSON.stringify(searchOptions))
+  const [seed, _setSeed] = React.useState<string>(globalSeed)
 
   const body = React.useMemo<INextMovieOptions>(
     () => ({
@@ -82,11 +82,11 @@ function useNextMovie() {
   }, [result])
 
   // use the cached seed from session storage client-side
-  React.useEffect(() => {
-    if (cachedSeed && rendersCount === 2) {
-      setSeed(cachedSeed)
-    }
-  }, [cachedSeed, rendersCount])
+  // React.useEffect(() => {
+  //   if (cachedSeed && rendersCount === 2) {
+  //     setSeed(cachedSeed)
+  //   }
+  // }, [cachedSeed, rendersCount])
 
   // preload the next and previous movies any time `seq` changes
   React.useEffect(() => {
