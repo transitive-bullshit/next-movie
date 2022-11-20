@@ -176,15 +176,6 @@ export const EmptyResults: React.FC = () => {
   return (
     <div className={styles.emptyResults}>
       <p>No results found. Try broadening your search.</p>
-      {/* <Image
-        src={NoSignalImage.src}
-        alt='No results'
-        className={styles.noResultsImage}
-        width={NoSignalImage.width}
-        height={NoSignalImage.height}
-        placeholder='blur'
-        blurDataURL={NoSignalImage.blurDataURL}
-      /> */}
     </div>
   )
 }

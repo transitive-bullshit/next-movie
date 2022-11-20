@@ -96,16 +96,18 @@ const selectStyles: any = {
 
 export type MovieSearchOptionsFieldConfig = 'default' | 'hidden' | 'disabled'
 
+export interface IMovieSearchOptionsConfig {
+  query?: MovieSearchOptionsFieldConfig
+  genres?: MovieSearchOptionsFieldConfig
+  releaseYearMin?: MovieSearchOptionsFieldConfig
+  imdbRatingMin?: MovieSearchOptionsFieldConfig
+  foreign?: MovieSearchOptionsFieldConfig
+  layout?: MovieSearchOptionsFieldConfig
+  orderBy?: MovieSearchOptionsFieldConfig
+}
+
 export interface IMovieSearchOptionsProps {
-  config?: {
-    query?: MovieSearchOptionsFieldConfig
-    genres?: MovieSearchOptionsFieldConfig
-    releaseYearMin?: MovieSearchOptionsFieldConfig
-    imdbRatingMin?: MovieSearchOptionsFieldConfig
-    foreign?: MovieSearchOptionsFieldConfig
-    layout?: MovieSearchOptionsFieldConfig
-    orderBy?: MovieSearchOptionsFieldConfig
-  }
+  config?: IMovieSearchOptionsConfig
 }
 
 export const MovieSearchOptions: React.FC<IMovieSearchOptionsProps> = ({

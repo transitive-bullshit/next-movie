@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation'
 
 import { MovieSearch } from '@/components/MovieSearch/MovieSearch'
+import { IMovieSearchOptionsConfig } from '@/components/MovieSearchOptions/MovieSearchOptions'
 import {
   genres,
   genreTitleMap,
@@ -10,6 +11,8 @@ import { searchMovies } from '@/lib/search'
 
 import { Providers } from './providers'
 import styles from './styles.module.css'
+
+const config: IMovieSearchOptionsConfig = { genres: 'disabled' }
 
 export default async function GenrePage({
   params
@@ -53,7 +56,7 @@ export default async function GenrePage({
       <div className={styles.genrePage}>
         <h1 className={styles.genre}>{genreTitle}</h1>
 
-        <MovieSearch className={styles.body} config={{ genres: 'disabled' }} />
+        <MovieSearch className={styles.body} config={config} />
       </div>
     </Providers>
   )

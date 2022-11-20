@@ -47,7 +47,7 @@ export const Movie: React.FC<{
   movie: MovieModel
   priority?: boolean
   variant?: MovieVariants
-}> = ({ movie, priority, variant = 'normal' }) => {
+}> = React.memo(function Movie({ movie, priority, variant = 'normal' }) {
   const rtAudienceVotesApprox = getApproxHumanizedNumVotes(
     movie.rtAudienceVotes
   )
@@ -223,8 +223,6 @@ export const Movie: React.FC<{
                     <Image
                       className={styles.imdbLogo}
                       src={imdbLogoImage.src}
-                      blurDataURL={imdbLogoImage.blurDataURL}
-                      placeholder='blur'
                       alt='IMDB'
                       sizes='96px'
                       width={imdbLogoImage.width}
@@ -307,4 +305,4 @@ export const Movie: React.FC<{
       </div>
     </div>
   )
-}
+})
