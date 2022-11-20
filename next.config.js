@@ -7,7 +7,8 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: false,
   experimental: {
-    appDir: true
+    appDir: true,
+    swcMinify: false
   },
   images: {
     domains: ['image.tmdb.org']
