@@ -231,7 +231,7 @@ export const Movie: React.FC<{
                       height={imdbLogoImage.height}
                     />
 
-                    {imdbVotesApprox && (
+                    {imdbVotesApprox !== null && (
                       <span className={styles.detail}>
                         {imdbVotesApprox} ratings
                       </span>
@@ -262,7 +262,7 @@ export const Movie: React.FC<{
                     className={cs(styles.score, styles.ratingLink)}
                   >
                     Critic Score
-                    {movie.rtCriticVotes && (
+                    {movie.rtCriticVotes !== null && (
                       <span className={styles.detail}>
                         {movie.rtCriticVotes} reviews
                       </span>
@@ -293,7 +293,7 @@ export const Movie: React.FC<{
                     className={cs(styles.score, styles.ratingLink)}
                   >
                     Audience Score
-                    {rtAudienceVotesApprox && (
+                    {rtAudienceVotesApprox !== null && (
                       <span className={styles.detail}>
                         {rtAudienceVotesApprox} ratings
                       </span>

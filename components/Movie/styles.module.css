@@ -261,6 +261,7 @@
 }
 
 .detail {
+  display: block;
   color: var(--fg-color-1);
   font-size: 70%;
 }
