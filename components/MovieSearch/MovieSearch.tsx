@@ -20,13 +20,17 @@ export const MovieSearch: React.FC<
     setHasMounted(true)
   }, [])
 
-  const { rendered } = useDelayedRender(hasMounted, {
+  const { mounted, rendered } = useDelayedRender(hasMounted, {
     enterDelay: 100
   })
 
   return (
     <div
-      className={cs(styles.movieSearch, rendered && styles.visible, className)}
+      className={cs(
+        styles.movieSearch,
+        mounted && rendered && styles.visible,
+        className
+      )}
     >
       <MovieSearchOptions config={config} />
 

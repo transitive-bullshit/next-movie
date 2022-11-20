@@ -129,6 +129,60 @@ export const MovieSearchOptions: React.FC<IMovieSearchOptionsProps> = ({
 
   const queryInputRef = React.useRef<HTMLInputElement>(null)
 
+  const onClickClearQuery = React.useCallback(() => {
+    onClearQuery()
+
+    if (queryInputRef.current) {
+      queryInputRef.current.focus()
+    }
+  }, [onClearQuery, queryInputRef])
+
+  const selectedGenreValue = React.useMemo(
+    () =>
+      searchOptions.genres?.[0]
+        ? {
+            value: searchOptions.genres[0],
+            label: genreLabelMap[searchOptions.genres[0]]
+          }
+        : null,
+    [searchOptions.genres]
+  )
+
+  const selectedReleaseMinYearValue = React.useMemo(
+    () =>
+      searchOptions.releaseYearMin
+        ? {
+            value: searchOptions.releaseYearMin,
+            label: `${searchOptions.releaseYearMin}`
+          }
+        : null,
+    [searchOptions.releaseYearMin]
+  )
+
+  const selectedIMDBRatingMinValue = React.useMemo(
+    () =>
+      searchOptions.imdbRatingMin
+        ? {
+            value: searchOptions.imdbRatingMin,
+            label: searchOptions.imdbRatingMin?.toFixed(1)
+          }
+        : null,
+    [searchOptions.imdbRatingMin]
+  )
+
+  const selectedOrderByValue = React.useMemo(
+    () =>
+      searchOptions.orderBy
+        ? {
+            value: searchOptions.orderBy,
+            label:
+              orderByOptions.find((o) => o.value === searchOptions.orderBy)
+                ?.label ?? 'Default'
+          }
+        : null,
+    [searchOptions.orderBy]
+  )
+
   return (
     <form className={styles.movieSearchOptions}>
       <div className={styles.mainOptions}>
@@ -158,13 +212,7 @@ export const MovieSearchOptions: React.FC<IMovieSearchOptionsProps> = ({
               {searchOptions.query && (
                 <div
                   className={styles.clearInput}
-                  onClick={() => {
-                    onClearQuery()
-
-                    if (queryInputRef.current) {
-                      queryInputRef.current.focus()
-                    }
-                  }}
+                  onClick={onClickClearQuery}
                   aria-hidden='true'
                 >
                   <ClearIcon className={styles.clearIcon} />
@@ -190,14 +238,7 @@ export const MovieSearchOptions: React.FC<IMovieSearchOptionsProps> = ({
               )}
               options={genreOptions}
               styles={selectStyles}
-              value={
-                searchOptions.genres?.[0]
-                  ? {
-                      value: searchOptions.genres[0],
-                      label: genreLabelMap[searchOptions.genres[0]]
-                    }
-                  : null
-              }
+              value={selectedGenreValue}
               // TODO: allow filtering by multiple genres
               // isMulti
               isClearable
@@ -223,14 +264,7 @@ export const MovieSearchOptions: React.FC<IMovieSearchOptionsProps> = ({
               )}
               options={yearOptions}
               styles={selectStyles}
-              value={
-                searchOptions.releaseYearMin
-                  ? {
-                      value: searchOptions.releaseYearMin,
-                      label: `${searchOptions.releaseYearMin}`
-                    }
-                  : null
-              }
+              value={selectedReleaseMinYearValue}
               isClearable
               onChange={onChangeReleaseYearMin}
               isDisabled={config?.releaseYearMin === 'disabled'}
@@ -254,14 +288,7 @@ export const MovieSearchOptions: React.FC<IMovieSearchOptionsProps> = ({
               )}
               options={imdbRatingOptions}
               styles={selectStyles}
-              value={
-                searchOptions.imdbRatingMin
-                  ? {
-                      value: searchOptions.imdbRatingMin,
-                      label: searchOptions.imdbRatingMin?.toFixed(1)
-                    }
-                  : null
-              }
+              value={selectedIMDBRatingMinValue}
               isClearable
               onChange={onChangeImdbRatingMin}
               isDisabled={config?.imdbRatingMin === 'disabled'}
@@ -404,17 +431,7 @@ export const MovieSearchOptions: React.FC<IMovieSearchOptionsProps> = ({
                 config?.orderBy === 'disabled' ||
                 searchOptions.layout === 'single'
               }
-              value={
-                searchOptions.orderBy
-                  ? {
-                      value: searchOptions.orderBy,
-                      label:
-                        orderByOptions.find(
-                          (o) => o.value === searchOptions.orderBy
-                        )?.label ?? 'Default'
-                    }
-                  : null
-              }
+              value={selectedOrderByValue}
               onChange={onChangeOrderBy}
             />
           </div>
