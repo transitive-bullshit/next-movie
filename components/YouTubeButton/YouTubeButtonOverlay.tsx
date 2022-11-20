@@ -37,7 +37,7 @@ export const YouTubeButtonOverlay: React.FC<{
       aria-label='YouTube Trailer'
     >
       <Dialog.Trigger asChild>
-        <button
+        <span
           className={styles.youtubeButton}
           aria-label='Play YouTube Trailer'
         />

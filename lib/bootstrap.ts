@@ -1,6 +1,6 @@
 import { githubRepoUrl, isSafari, isServer } from './config'
 
-const author = `This webapp is open source: ${githubRepoUrl}`
+const detail = `This webapp is open source: ${githubRepoUrl}`
 const banner = `
 
 ████████╗██████╗  █████╗ ███╗   ██╗███████╗██╗████████╗██╗██╗   ██╗███████╗    ██████╗ ███████╗
@@ -10,14 +10,14 @@ const banner = `
    ██║   ██║  ██║██║  ██║██║ ╚████║███████║██║   ██║   ██║ ╚████╔╝ ███████╗    ██████╔╝███████║
    ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝   ╚═╝   ╚═╝  ╚═══╝  ╚══════╝    ╚═════╝ ╚══════╝
                                                                                                
-   ${author}
+   ${detail}
 `
 
 export async function bootstrap() {
   if (isServer) return
 
   if (isSafari) {
-    console.log(author)
+    console.log(detail)
   } else {
     console.log(banner)
   }

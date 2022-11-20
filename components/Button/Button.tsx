@@ -13,7 +13,7 @@ export const Button: React.FC<
   return (
     <div className={cs(styles.buttonWrapper, className)} style={style}>
       <button className={cs(styles.button, buttonClassName)} {...buttonProps}>
-        <span className={styles.buttonContent}>{children}</span>
+        <div className={styles.buttonContent}>{children}</div>
       </button>
     </div>
   )

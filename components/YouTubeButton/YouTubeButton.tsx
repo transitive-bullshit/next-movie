@@ -50,9 +50,10 @@ export const YouTubeButton: React.FC<{
     >
       <Dialog.Trigger asChild>
         <Tooltip content='Play YouTube Trailer'>
-          <button
+          <span
             className={styles.youtubeButton}
             aria-label='Play YouTube Trailer'
+            role='button'
           />
         </Tooltip>
       </Dialog.Trigger>

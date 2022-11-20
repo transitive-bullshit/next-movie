@@ -38,7 +38,7 @@ export const HeroButton: React.FC<
         className={cs(styles.heroButton, buttonClassName)}
         {...buttonProps}
       >
-        <span className={styles.heroButtonContent}>{children}</span>
+        <div className={styles.heroButtonContent}>{children}</div>
       </button>
     </div>
   )
