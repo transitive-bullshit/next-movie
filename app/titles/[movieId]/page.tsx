@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 
-import { Movie } from '@/components/Movie/Movie'
+// import { Movie } from '@/components/Movie/Movie'
 import { prisma } from '@/lib/prisma'
 import { convertMovie } from '@/lib/utils'
 
@@ -27,10 +27,12 @@ export default async function MovieDetailPage({
   }
 
   const movie = await convertMovie(result)
+  console.log(movie)
 
   return (
     <div className={styles.container}>
-      <Movie movie={movie} priority />
+      TODO: testing...
+      {/* <Movie movie={movie} priority /> */}
     </div>
   )
 }
