@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { unstable_serialize, SWRConfig } from 'swr'
+import { InferGetStaticPropsType } from 'next'
 
 import { MovieSearch } from '@/components/MovieSearch/MovieSearch'
 import { PageHead } from '@/components/PageHead/PageHead'
@@ -17,20 +18,12 @@ import styles from './styles.module.css'
 
 export default function GenrePage({
   genre,
+  genreTitle,
   fallbackData = [],
   searchOptionsConfig
-}: {
-  genre: string
-  fallbackData?: Array<{ key: any; value: any }>
-  searchOptionsConfig: ISearchOptionsConfig
-}) {
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   const pathname = `/genres/${genre}`
   const imagePathname = `/api/genres/${genre}/social-image`
-
-  const genreTitle = genreTitleMap[genre]
-  if (!genreTitle) {
-    return
-  }
 
   return (
     <Layout>
@@ -94,6 +87,7 @@ export const getStaticProps = async ({
   return {
     props: {
       genre,
+      genreTitle,
       fallbackData,
       searchOptionsConfig: {
         key: searchKey,

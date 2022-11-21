@@ -43,7 +43,13 @@ function getApproxHumanizedNumVotes(numVotes: number | null) {
 
 export type MovieVariants = 'normal' | 'slim'
 
-function areMoviePropsEqual(propsA: any, propsB: any): boolean {
+export type MovieProps = {
+  movie: MovieModel
+  priority?: boolean
+  variant?: MovieVariants
+}
+
+function areMoviePropsEqual(propsA: MovieProps, propsB: MovieProps): boolean {
   return (
     propsA.movie.id === propsB.movie.id &&
     propsA.priority === propsB.priority &&
@@ -51,11 +57,11 @@ function areMoviePropsEqual(propsA: any, propsB: any): boolean {
   )
 }
 
-export const Movie: React.FC<{
-  movie: MovieModel
-  priority?: boolean
-  variant?: MovieVariants
-}> = React.memo(function Movie({ movie, priority, variant = 'normal' }) {
+export const Movie: React.FC<MovieProps> = React.memo(function Movie({
+  movie,
+  priority,
+  variant = 'normal'
+}) {
   const rtAudienceVotesApprox = getApproxHumanizedNumVotes(
     movie.rtAudienceVotes
   )
@@ -313,4 +319,5 @@ export const Movie: React.FC<{
       </div>
     </div>
   )
-}, areMoviePropsEqual)
+},
+areMoviePropsEqual)

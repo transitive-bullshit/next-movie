@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { unstable_serialize, SWRConfig } from 'swr'
+import { InferGetStaticPropsType } from 'next'
 
 import { MovieSearch } from '@/components/MovieSearch/MovieSearch'
 import { PageHead } from '@/components/PageHead/PageHead'
@@ -12,9 +13,7 @@ import styles from '../styles/styles.module.css'
 
 export default function HomePage({
   fallbackData = []
-}: {
-  fallbackData?: Array<{ key: any; value: any }>
-}) {
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <Layout>
       <RootPageProviders fallbackData={fallbackData}>

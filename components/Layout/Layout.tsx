@@ -1,6 +1,6 @@
 import * as React from 'react'
 // import { Inter } from '@next/font/google'
-import cs from 'clsx'
+// import cs from 'clsx'
 
 import { Footer } from '@/components/Footer/Footer'
 import { Header } from '@/components/Header/Header'

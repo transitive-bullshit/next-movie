@@ -1,20 +1,18 @@
 import * as React from 'react'
+import { InferGetStaticPropsType } from 'next'
+
 import { Layout } from '@/components/Layout/Layout'
 import { Movie } from '@/components/Movie/Movie'
 import { PageHead } from '@/components/PageHead/PageHead'
 import { prisma } from '@/lib/prisma'
 import { convertMovie } from '@/lib/utils'
-import * as types from '@/lib/types'
 import * as config from '@/lib/config'
 
 import styles from './styles.module.css'
 
 export default function MovieDetailPage({
-  movie,
-  ...rest
-}: {
-  movie: types.MovieModel
-}) {
+  movie
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   const pathname = movie ? `/titles/${movie?.id}` : undefined
   const imagePathname = movie
     ? `/api/titles/${movie?.id}/social-image`
@@ -30,7 +28,7 @@ export default function MovieDetailPage({
       />
 
       <div className={styles.container}>
-        {movie && <Movie movie={movie} priority />}
+        {movie && <Movie movie={movie} priority={true} />}
       </div>
     </Layout>
   )
