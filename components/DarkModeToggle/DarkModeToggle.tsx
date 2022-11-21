@@ -11,15 +11,15 @@ import styles from './styles.module.css'
 export const DarkModeToggle: React.FC<{ className?: string }> = ({
   className
 }) => {
-  const { isDarkMode } = useTheme()
+  // const { isDarkMode } = useTheme()
   // TODO
-  // const { isDarkMode, toggleDarkMode } = useTheme()
+  const { isDarkMode, toggleDarkMode } = useTheme()
 
   return (
     <button
       className={cs(styles.toggleDarkMode, className)}
       aria-label='Toggle dark mode'
-      // onClick={toggleDarkMode}
+      onClick={toggleDarkMode}
     >
       {isDarkMode ? <Moon /> : <Sun />}
     </button>

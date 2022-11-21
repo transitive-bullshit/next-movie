@@ -19,6 +19,7 @@ specifiers:
   husky: ^8.0.2
   lint-staged: ^13.0.3
   next: 13.0.5-canary.3
+  next-themes: ^0.2.1
   npm-run-all: ^4.1.5
   p-map: ^5.5.0
   p-memoize: ^7.1.1
@@ -54,6 +55,7 @@ dependencies:
   clsx: 1.2.1
   fast-json-stable-stringify: 2.1.0
   next: 13.0.5-canary.3_biqbaboplfbrettd7655fr4n2y
+  next-themes: 0.2.1_p6ldyhl3eilwbxhfzedqikw7ni
   p-map: 5.5.0
   p-memoize: 7.1.1
   pretty-ms: 8.0.0
@@ -3474,6 +3476,18 @@ packages:
   /natural-compare/1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
+
+  /next-themes/0.2.1_p6ldyhl3eilwbxhfzedqikw7ni:
+    resolution: {integrity: sha512-B+AKNfYNIzh0vqQQKqQItTS8evEouKD7H5Hj3kmuPERwddR2TxvDSFZuTj6T7Jfn1oyeUyJMydPl1Bkxkh0W7A==}
+    peerDependencies:
+      next: '*'
+      react: '*'
+      react-dom: '*'
+    dependencies:
+      next: 13.0.5-canary.3_biqbaboplfbrettd7655fr4n2y
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
 
   /next/13.0.5-canary.3_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-u3As6SkLXf2u9Mt06B3gBdQzVi45qoH27fyj2UGH+GcWjloz0x0Q+99CEz0sr93zS6iQRZuDn93PMZXoXIa8Og==}
