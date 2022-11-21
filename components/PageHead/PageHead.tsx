@@ -1,4 +1,5 @@
 import * as React from 'react'
+import Head from 'next/head'
 
 import * as config from '@/lib/config'
 
@@ -19,7 +20,7 @@ export const PageHead: React.FC<{
     : config.socialImageUrl
 
   return (
-    <>
+    <Head>
       <meta name='robots' content='index,follow' />
       <meta property='og:type' content='website' />
 
@@ -57,6 +58,6 @@ export const PageHead: React.FC<{
       <meta property='og:title' content={title} />
       <meta name='twitter:title' content={title} />
       <title>{title}</title>
-    </>
+    </Head>
   )
 }

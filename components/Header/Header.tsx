@@ -1,5 +1,3 @@
-import 'server-only'
-
 import * as React from 'react'
 import cs from 'clsx'
 
