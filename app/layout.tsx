@@ -41,17 +41,17 @@ export default function RootLayout({
       <body className={styles.body}>
         <div className={styles.container}>
           <RootLayoutProviders>
-            <React.Suspense>
-              <Header className={styles.header} />
-            </React.Suspense>
+            {/* <React.Suspense> */}
+            <Header className={styles.header} />
+            {/* </React.Suspense> */}
 
-            <React.Suspense>
-              <main className={styles.main}>{children}</main>
-            </React.Suspense>
+            {/* <React.Suspense> */}
+            <main className={styles.main}>{children}</main>
+            {/* </React.Suspense> */}
 
-            <React.Suspense>
-              <Footer className={styles.footer} />
-            </React.Suspense>
+            {/* <React.Suspense> */}
+            <Footer className={styles.footer} />
+            {/* </React.Suspense> */}
           </RootLayoutProviders>
         </div>
       </body>
