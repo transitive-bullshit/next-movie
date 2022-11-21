@@ -259,6 +259,8 @@ export const Movie: React.FC<MovieProps> = React.memo(function Movie({
                     className={cs(styles.rtRatingImage, styles.ratingIcon)}
                     src={rtCriticScoreImage}
                     alt='Rotten Tomatoes Critic Score'
+                    loading='lazy'
+                    decoding='async'
                   />
 
                   <div className={cs(styles.rtRatingValue, styles.rating)}>
@@ -290,6 +292,8 @@ export const Movie: React.FC<MovieProps> = React.memo(function Movie({
                     className={cs(styles.rtRatingImage, styles.ratingIcon)}
                     src={rtAudienceScoreImage}
                     alt='Rotten Tomatoes Audience Score'
+                    loading='lazy'
+                    decoding='async'
                   />
 
                   <div className={cs(styles.rtRatingValue, styles.rating)}>
