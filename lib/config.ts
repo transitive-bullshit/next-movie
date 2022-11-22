@@ -9,7 +9,9 @@ export const isSafari =
 export const title = 'Next Movie'
 export const description =
   'Find your next favorite movie using Next.js 13. Search by IMDB rating, Rotten Tomatoes score, release year, and more.'
-export const domain = 'next-movie.transitivebullsh.it'
+export const domain = 'next-movie-test.transitivebullsh.it'
+console.warn('TODO: revert domain to prod')
+
 export const author = 'Travis Fischer'
 export const twitter = 'transitive_bs'
 export const twitterUrl = `https://twitter.com/${twitter}`
