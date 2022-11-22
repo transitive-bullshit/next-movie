@@ -115,6 +115,7 @@ model UserMovie {
   user  User  @relation(fields: [userId], references: [id])
 
   @@unique([movieId, userId])
+  @@index([userId, movieId])
   @@index([userId, status, createdAt])
 }
 
@@ -161,6 +162,7 @@ model User {
   accounts Account[]
   sessions Session[]
 
+  // TODO: rename userMovies
   movies UserMovie[]
 }
 

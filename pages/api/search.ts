@@ -1,6 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { z } from 'zod'
 
+import { getServerSession } from '@/lib/auth'
+
 import {
   MovieSearchOptionsSchema,
   IMovieSearchResults,
@@ -28,7 +30,8 @@ export default async function searchHandler(
     return res.status(400).json({ error: 'error parsing input' })
   }
 
-  const result = await searchMovies(searchOptions)
+  const session = await getServerSession(req, res)
+  const result = await searchMovies(searchOptions, session)
 
   // add an extra long delay to accentuate any client-side swr cache misses
   // (for debugging purposes)

@@ -14,7 +14,8 @@ export const searchMovies = pMemoize(searchMoviesImpl, {
 })
 
 export async function searchMoviesImpl(
-  opts: types.IMovieSearchOptions & { skip?: number }
+  opts: types.IMovieSearchOptions & { skip?: number },
+  session?: types.Session | null
 ): Promise<types.IMovieSearchResults> {
   const where: types.Prisma.MovieWhereInput = {}
 
@@ -158,6 +159,18 @@ export async function searchMoviesImpl(
     }
   }
 
+  let include: types.Prisma.MovieInclude | undefined
+
+  if (session?.user?.id) {
+    include = {
+      userMovies: {
+        where: {
+          userId: session.user.id
+        }
+      }
+    }
+  }
+
   const cursor = opts.cursor ? { id: opts.cursor } : undefined
   const take = Math.max(0, Math.min(100, limit))
   const skip = opts.cursor ? 1 : opts.skip !== undefined ? opts.skip : 0
@@ -175,7 +188,8 @@ export async function searchMoviesImpl(
           cursor,
           orderBy,
           take,
-          skip
+          skip,
+          include
         })
   ])
 

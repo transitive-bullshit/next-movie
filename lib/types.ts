@@ -1,13 +1,9 @@
 import { z } from 'zod'
-import {
-  type Prisma,
-  type Movie,
-  type User,
-  type Account,
-  type UserMovie
-} from '@prisma/client'
+import type { Prisma, Movie, User, Account, UserMovie } from '@prisma/client'
+import type { Session } from 'next-auth'
 
-export { type Prisma, type Movie, type User, type Account, type UserMovie }
+export type { Prisma, Movie, User, Account, UserMovie }
+export type { Session }
 
 // prisma's models use Dates which are not serializable, so we have to
 // convert them before using them client-side
@@ -81,3 +77,11 @@ export interface INextMovieResult {
   seq: number
   nextSeq: number
 }
+
+export const UpsertUserMovieBody = z.object({
+  status: z.string().optional(),
+  rating: z.number().nonnegative().lte(100).optional(),
+  notes: z.string().optional()
+})
+
+export type IUpsertUserMovieBody = z.infer<typeof UpsertUserMovieBody>

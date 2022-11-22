@@ -1,4 +1,6 @@
+import type { GetServerSidePropsContext } from 'next'
 import { NextAuthOptions } from 'next-auth'
+import { unstable_getServerSession } from 'next-auth/next'
 import GitHubProvider from 'next-auth/providers/github'
 import EmailProvider from 'next-auth/providers/email'
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
@@ -70,4 +72,11 @@ export const authOptions: NextAuthOptions = {
       }
     }
   }
+}
+
+export async function getServerSession(
+  req: GetServerSidePropsContext['req'],
+  res: GetServerSidePropsContext['res']
+) {
+  return unstable_getServerSession(req, res, authOptions)
 }
