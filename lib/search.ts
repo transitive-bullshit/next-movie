@@ -1,6 +1,6 @@
-import pMemoize from 'p-memoize'
-import stringify from 'fast-json-stable-stringify'
-import QuickLRU from 'quick-lru'
+// import pMemoize from 'p-memoize'
+// import stringify from 'fast-json-stable-stringify'
+// import QuickLRU from 'quick-lru'
 
 import { layoutToDefaultPageSize } from './config'
 import { prisma } from './prisma'
@@ -8,12 +8,12 @@ import * as types from './types'
 import { convertMovies } from './utils'
 
 // TODO: is this even worth it within a serverless function?
-export const searchMovies = pMemoize(searchMoviesImpl, {
-  cacheKey: (args: Parameters<typeof searchMoviesImpl>) => stringify(args[0]),
-  cache: new QuickLRU({ maxSize: 200 })
-})
+// export const searchMovies = pMemoize(searchMoviesImpl, {
+//   cacheKey: (args: Parameters<typeof searchMoviesImpl>) => stringify(args[0]),
+//   cache: new QuickLRU({ maxSize: 200 })
+// })
 
-export async function searchMoviesImpl(
+export async function searchMovies(
   opts: types.IMovieSearchOptions & { skip?: number },
   session?: types.Session | null
 ): Promise<types.IMovieSearchResults> {

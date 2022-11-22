@@ -1,18 +1,18 @@
-import pMemoize from 'p-memoize'
-import stringify from 'fast-json-stable-stringify'
-import QuickLRU from 'quick-lru'
+// import pMemoize from 'p-memoize'
+// import stringify from 'fast-json-stable-stringify'
+// import QuickLRU from 'quick-lru'
 import random from 'random'
 
 import * as types from './types'
 import { searchMovies } from './search'
 
 // TODO: is this even worth it within a serverless function?
-export const getNextMovie = pMemoize(getNextMovieImpl, {
-  cacheKey: (args: Parameters<typeof getNextMovieImpl>) => stringify(args[0]),
-  cache: new QuickLRU({ maxSize: 100 })
-})
+// export const getNextMovie = pMemoize(getNextMovieImpl, {
+//   cacheKey: (args: Parameters<typeof getNextMovieImpl>) => stringify(args[0]),
+//   cache: new QuickLRU({ maxSize: 100 })
+// })
 
-export async function getNextMovieImpl(
+export async function getNextMovie(
   opts: types.INextMovieOptions
 ): Promise<types.INextMovieResult> {
   const { cursor, limit, ...restSearchOptions } = opts.searchOptions
