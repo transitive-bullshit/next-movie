@@ -4,15 +4,6 @@ import Mailgun from 'mailgun.js'
 import { fromEmail, mailgunApiKey, mailgunDomain } from '@/lib/config'
 import { renderEmail } from './render-email'
 
-const mailgun = new Mailgun(formData)
-const client =
-  mailgunApiKey && mailgunDomain
-    ? mailgun.client({
-        username: 'api',
-        key: mailgunApiKey
-      })
-    : null
-
 export interface SendEmailOptions {
   /**
    * Email address for `From` header
@@ -51,6 +42,15 @@ export interface SendEmailOptions {
    */
   body: string
 }
+
+const mailgun = new Mailgun(formData)
+const client =
+  mailgunApiKey && mailgunDomain
+    ? mailgun.client({
+        username: 'api',
+        key: mailgunApiKey
+      })
+    : null
 
 export async function sendEmail({
   from = fromEmail,

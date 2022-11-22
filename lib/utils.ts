@@ -26,3 +26,29 @@ export async function convertMovie(
 
   return model
 }
+
+export async function convertUserMovies(
+  userMovies: types.UserMovie[]
+): Promise<types.UserMovieModel[]> {
+  // convert dates to strings
+  const models: types.UserMovieModel[] = userMovies.map((userMovie) => ({
+    ...userMovie,
+    createdAt: userMovie.createdAt?.toISOString(),
+    updatedAt: userMovie.updatedAt?.toISOString()
+  }))
+
+  return models
+}
+
+export async function convertUserMovie(
+  userMovie: types.UserMovie
+): Promise<types.UserMovieModel> {
+  // convert dates to strings
+  const model: types.UserMovieModel = {
+    ...userMovie,
+    createdAt: userMovie.createdAt?.toISOString(),
+    updatedAt: userMovie.updatedAt?.toISOString()
+  }
+
+  return model
+}

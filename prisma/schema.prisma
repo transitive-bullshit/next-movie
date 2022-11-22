@@ -87,6 +87,8 @@ model Movie {
   imdbCustomPopularity Float?
   searchL              String?  @db.VarChar(2048)
 
+  userMovies UserMovie[]
+
   @@index([imdbRating, releaseYear, foreign, genres, searchL, relevancyScore])
   @@index([imdbVotes])
   @@index([tmdbPopularity])
@@ -95,6 +97,25 @@ model Movie {
   @@index([releaseDate])
   @@index([tmdbId])
   @@index([imdbId])
+}
+
+model UserMovie {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  status String?
+  rating Int?
+  notes  String? @db.Text
+
+  movieId Int
+  userId  String
+
+  movie Movie @relation(fields: [movieId], references: [id])
+  user  User  @relation(fields: [userId], references: [id])
+
+  @@unique([movieId, userId])
+  @@index([userId, status, createdAt])
 }
 
 model Account {
@@ -139,6 +160,8 @@ model User {
 
   accounts Account[]
   sessions Session[]
+
+  movies UserMovie[]
 }
 
 model VerificationToken {
