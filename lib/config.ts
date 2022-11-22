@@ -28,8 +28,17 @@ export const apiBaseUrl =
 export const socialImageUrl = `${url}/social.jpg`
 export const socialImageBgUrl = `${url}/social-image-bg.jpg`
 export const socialIconUrl = `${url}/icon.svg`
-export const twitterIconUrl = `${url}/icons/twitter.png`
-export const githubIconUrl = `${url}/icons/github.png`
+export const bannerImageUrl = `${prodUrl}/banner.jpg`
+export const twitterIconUrl = `${prodUrl}/icons/twitter.png`
+export const githubIconUrl = `${prodUrl}/icons/github.png`
+
+// ----------------------------------------------------------------------------
+
+export const fromEmail = 'Travis Fischer <travis@transitivebullsh.it>'
+export const githubClientId = process.env.GITHUB_CLIENT_ID ?? ''
+export const githubClientSecret = process.env.GITHUB_CLIENT_SECRET ?? ''
+export const mailgunApiKey = process.env.MAILGUN_API_KEY ?? ''
+export const mailgunDomain = process.env.MAILGUN_DOMAIN ?? ''
 
 // ----------------------------------------------------------------------------
 

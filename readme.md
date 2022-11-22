@@ -48,6 +48,7 @@ Building a better app for finding great movies has been on my proverbial todo li
 - Dark mode
 - Hosted on **Vercel**
 - ORM using **Prisma** + **Postgres**
+- Authentication using **Next Auth**
 - UI components built using **Radix UI**
 - Styled using **CSS Modules**
 - Data fetching using **SWR**

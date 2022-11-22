@@ -1,7 +1,12 @@
 import { z } from 'zod'
-import { type Movie, type Prisma } from '@prisma/client'
+import {
+  type Prisma,
+  type Movie,
+  type User,
+  type Account
+} from '@prisma/client'
 
-export { type Movie, type Prisma }
+export { type Prisma, type Movie, type User, type Account }
 
 // prisma's models use Dates which are not serializable, so we have to
 // convert them before using them client-side

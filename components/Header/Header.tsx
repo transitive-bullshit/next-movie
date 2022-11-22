@@ -1,5 +1,6 @@
 import * as React from 'react'
 import cs from 'clsx'
+import { useSession, signIn, signOut } from 'next-auth/react'
 
 import { ActiveLink } from '@/components/ActiveLink/ActiveLink'
 import { DarkModeToggle } from '@/components/DarkModeToggle/DarkModeToggle'
@@ -10,6 +11,9 @@ import { Logo } from './Logo'
 import styles from './styles.module.css'
 
 export const Header: React.FC<{ className?: string }> = ({ className }) => {
+  const { data: session } = useSession()
+  console.log(session)
+
   return (
     <header className={cs(styles.header, className)}>
       <div className={styles.navHeader}>
@@ -23,6 +27,16 @@ export const Header: React.FC<{ className?: string }> = ({ className }) => {
         </ActiveLink>
 
         <div className={styles.rhs}>
+          {session?.user ? (
+            <div className={styles.action} onClick={() => signOut()}>
+              {session.user.name || 'Account'}
+            </div>
+          ) : (
+            <div className={styles.action} onClick={() => signIn()}>
+              Login
+            </div>
+          )}
+
           <ActiveLink
             href='/about'
             className={styles.action}
