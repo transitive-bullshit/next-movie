@@ -12,7 +12,6 @@ import styles from './styles.module.css'
 
 export const Header: React.FC<{ className?: string }> = ({ className }) => {
   const { data: session } = useSession()
-  console.log(session)
 
   return (
     <header className={cs(styles.header, className)}>
