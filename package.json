@@ -29,7 +29,7 @@
     "@radix-ui/react-checkbox": "^1.0.1",
     "@radix-ui/react-dialog": "^1.0.2",
     "@radix-ui/react-tooltip": "^1.0.2",
-    "@vercel/og": "^0.0.20",
+    "@vercel/og": "^0.0.21",
     "clsx": "^1.2.1",
     "fast-json-stable-stringify": "^2.1.0",
     "form-data": "^4.0.0",
