@@ -57,7 +57,7 @@ export const getStaticProps = async ({
     }
   }
 
-  const movie = await convertMovie(result)
+  const movie = convertMovie(result)
 
   return {
     props: {

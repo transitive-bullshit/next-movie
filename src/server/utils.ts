@@ -1,35 +1,34 @@
 import * as types from '@/types'
 
-export async function convertMovies(
-  movies: types.Movie[]
-): Promise<types.MovieModel[]> {
+export function convertMovies(
+  movies: Array<types.Movie & { userMovies?: any }>
+): types.MovieModel[] {
   // convert dates to strings
-  const models: types.MovieModel[] = movies.map((movie) => ({
-    ...movie,
-    createdAt: movie.createdAt?.toISOString(),
-    updatedAt: movie.updatedAt?.toISOString()
-  }))
+  const models: types.MovieModel[] = movies.map(convertMovie)
 
   return models
 }
 
-export async function convertMovie(
-  movie: types.Movie
-): Promise<types.MovieModel> {
+export function convertMovie(
+  movie: types.Movie & { userMovies?: any }
+): types.MovieModel {
+  const { userMovies, ...rest } = movie
+
   // convert dates to strings
   // const model: types.MovieModel = JSON.parse(JSON.stringify(movie))
   const model: types.MovieModel = {
-    ...movie,
+    ...rest,
     createdAt: movie.createdAt?.toISOString(),
-    updatedAt: movie.updatedAt?.toISOString()
+    updatedAt: movie.updatedAt?.toISOString(),
+    userMovie: convertUserMovie(userMovies?.[0])
   }
 
   return model
 }
 
-export async function convertUserMovies(
+export function convertUserMovies(
   userMovies: types.UserMovie[]
-): Promise<types.UserMovieModel[]> {
+): types.UserMovieModel[] {
   // convert dates to strings
   const models: types.UserMovieModel[] = userMovies.map((userMovie) => ({
     ...userMovie,
@@ -40,9 +39,13 @@ export async function convertUserMovies(
   return models
 }
 
-export async function convertUserMovie(
-  userMovie: types.UserMovie
-): Promise<types.UserMovieModel> {
+export function convertUserMovie(
+  userMovie?: types.UserMovie
+): types.UserMovieModel | null {
+  if (!userMovie) {
+    return null
+  }
+
   // convert dates to strings
   const model: types.UserMovieModel = {
     ...userMovie,

@@ -51,7 +51,7 @@ export default createAPIHandler<IQuery, IBody, types.UserMovieModel>(
       }
     })
 
-    const movie = await convertUserMovie(result)
+    const movie = convertUserMovie(result)
     return res.status(200).json(movie)
   }
 )

@@ -53,7 +53,8 @@ function areMoviePropsEqual(propsA: MovieProps, propsB: MovieProps): boolean {
   return (
     propsA.movie.id === propsB.movie.id &&
     propsA.priority === propsB.priority &&
-    propsA.variant === propsB.variant
+    propsA.variant === propsB.variant &&
+    propsA.movie.userMovie?.id === propsB.movie.userMovie?.id
   )
 }
 

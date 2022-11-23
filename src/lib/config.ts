@@ -1,4 +1,4 @@
-import { type IMovieSearchOptions, type IMovieSearchLayout } from './types'
+import { type IMovieSearchOptions, type IMovieSearchLayout } from '@/types'
 
 export const environment = process.env.NODE_ENV || 'development'
 export const isDev = environment === 'development'

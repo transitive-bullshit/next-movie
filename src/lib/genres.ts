@@ -1,4 +1,4 @@
-import { IMovieSearchOptions } from './types'
+import { IMovieSearchOptions } from '@/types'
 
 export const genreLabelMap: Record<string, string> = {
   action: 'Action',

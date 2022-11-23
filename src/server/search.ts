@@ -2,8 +2,8 @@
 // import stringify from 'fast-json-stable-stringify'
 // import QuickLRU from 'quick-lru'
 
-import { layoutToDefaultPageSize } from '@/lib/config'
 import * as types from '@/types'
+import { layoutToDefaultPageSize } from '@/lib/config'
 import { prisma } from './prisma'
 import { convertMovies } from './utils'
 
@@ -193,7 +193,7 @@ export async function searchMovies(
         })
   ])
 
-  const movies = await convertMovies(results)
+  const movies = convertMovies(results)
   // console.log('search', opts, JSON.stringify(where, null, 2), movies.length)
 
   return {

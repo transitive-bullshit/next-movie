@@ -7,6 +7,7 @@ export type { Prisma, Movie, User, Account, UserMovie }
 export interface MovieModel extends Omit<Movie, 'createdAt' | 'updatedAt'> {
   createdAt: string
   updatedAt: string
+  userMovie: UserMovieModel | null
 }
 
 export interface UserMovieModel

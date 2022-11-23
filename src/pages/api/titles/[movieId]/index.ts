@@ -32,7 +32,7 @@ export default createAPIHandler<IQuery, never, types.MovieModel>(
       return res.status(404).json({ error: `title "${movieId}" not found` })
     }
 
-    const movie = await convertMovie(result)
+    const movie = convertMovie(result)
     return res.status(200).json(movie)
   }
 )
