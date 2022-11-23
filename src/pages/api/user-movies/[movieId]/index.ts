@@ -1,62 +1,57 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
 import { z } from 'zod'
 
-import * as types from '@/lib/types'
+import * as types from '@/types'
 import { prisma } from '@/server/prisma'
 import { convertUserMovie } from '@/server/utils'
-import { getServerSession } from '@/server/auth'
+import { createAPIHandler } from '@/server/api'
 
-export default async function upsertUserMovieHandler(
-  req: NextApiRequest,
-  res: NextApiResponse<types.UserMovieModel | { error: string }>
-) {
-  const session = await getServerSession(req, res)
-  if (!session) {
-    return res.status(401).json({ error: `Unauthorized` })
-  }
+export const Body = z.object({
+  status: z.string().optional(),
+  rating: z.number().nonnegative().lte(100).optional(),
+  notes: z.string().optional()
+})
 
-  if (req.method !== 'POST' && req.method !== 'PUT') {
-    return res.status(405).json({ error: 'method not allowed' })
-  }
+export type IBody = z.infer<typeof Body>
 
-  const id = req.query.movieId as string
-  const movieId = parseInt(id)
-  if (isNaN(movieId)) {
-    return res.status(400).json({ error: `invalid movie id "${id}"` })
-  }
+export const Query = z.object({
+  movieId: z.preprocess(
+    (a) => parseInt(a as string, 10),
+    z.number().nonnegative().lt(2147483647)
+  )
+})
 
-  let userMovieBody: types.IUpsertUserMovieBody
+export type IQuery = z.infer<typeof Query>
 
-  try {
-    userMovieBody = types.UpsertUserMovieBody.parse(req.body)
-  } catch (err) {
-    if (err instanceof z.ZodError) {
-      console.error('error parsing input', err.issues)
-    }
+export default createAPIHandler<IQuery, IBody, types.UserMovieModel>(
+  {
+    auth: 'required',
+    methods: ['POST'],
+    query: Query,
+    body: Body
+  },
+  async (req, res, { session, query, body }) => {
+    const { movieId } = query
+    const userId = session.user.id
 
-    return res.status(400).json({ error: 'error parsing input' })
-  }
-
-  const userId = session.user.id
-
-  // TODO
-  const result = await prisma.userMovie.upsert({
-    where: {
-      movieId_userId: {
+    // TODO: test
+    const result = await prisma.userMovie.upsert({
+      where: {
+        movieId_userId: {
+          movieId,
+          userId
+        }
+      },
+      create: {
+        ...body,
         movieId,
         userId
+      },
+      update: {
+        ...body
       }
-    },
-    create: {
-      ...userMovieBody,
-      movieId,
-      userId
-    },
-    update: {
-      ...userMovieBody
-    }
-  })
+    })
 
-  const movie = await convertUserMovie(result)
-  return res.status(200).json(movie)
-}
+    const movie = await convertUserMovie(result)
+    return res.status(200).json(movie)
+  }
+)

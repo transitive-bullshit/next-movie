@@ -5,7 +5,7 @@ import { createContainer } from 'unstated-next'
 import { useLocalStorage, useDebounce, useRendersCount } from 'react-use'
 import { unstable_serialize } from 'swr'
 
-import { IMovieSearchLayout, IMovieSearchOptions } from '@/lib/types'
+import { IMovieSearchLayout, IMovieSearchOptions } from '@/types'
 import { defaultSearchOptions } from '@/lib/config'
 
 const localStorageSearchOptionsKey = 'search-options-v0.0.1'

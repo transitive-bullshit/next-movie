@@ -4,7 +4,7 @@ import Link from 'next/link'
 import ms from 'pretty-ms'
 import cs from 'clsx'
 
-import type { MovieModel } from '@/lib/types'
+import type { MovieModel } from '@/types'
 import { genreLabelMap } from '@/lib/genres'
 import imdbLogoImage from '@/public/logos/imdb.png'
 import { ActiveLink } from '@/components/ActiveLink/ActiveLink'

@@ -3,7 +3,7 @@
 // import QuickLRU from 'quick-lru'
 import random from 'random'
 
-import * as types from '@/lib/types'
+import * as types from '@/types'
 import { searchMovies } from './search'
 
 // TODO: is this even worth it within a serverless function?
@@ -13,7 +13,8 @@ import { searchMovies } from './search'
 // })
 
 export async function getNextMovie(
-  opts: types.INextMovieOptions
+  opts: types.INextMovieOptions,
+  session?: types.Session | null
 ): Promise<types.INextMovieResult> {
   const { cursor, limit, ...restSearchOptions } = opts.searchOptions
   const seed = opts.seed || JSON.stringify(restSearchOptions)
@@ -49,11 +50,14 @@ export async function getNextMovie(
   //   nextSeq
   // })
 
-  const result = await searchMovies({
-    ...restSearchOptions,
-    limit: 1,
-    skip
-  })
+  const result = await searchMovies(
+    {
+      ...restSearchOptions,
+      limit: 1,
+      skip
+    },
+    session
+  )
 
   // console.log('<<< next-movie', {
   //   movie: result.results[0]?.title,

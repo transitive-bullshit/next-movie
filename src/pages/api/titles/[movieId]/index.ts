@@ -1,33 +1,38 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
+import { z } from 'zod'
 
-import { MovieModel } from '@/lib/types'
+import * as types from '@/types'
 import { prisma } from '@/server/prisma'
 import { convertMovie } from '@/server/utils'
+import { createAPIHandler } from '@/server/api'
 
-export default async function getMovieByIdHandler(
-  req: NextApiRequest,
-  res: NextApiResponse<MovieModel | { error: string }>
-) {
-  if (req.method !== 'GET') {
-    return res.status(405).json({ error: 'method not allowed' })
-  }
+const Query = z.object({
+  movieId: z.preprocess(
+    (a) => parseInt(a as string, 10),
+    z.number().nonnegative().lt(2147483647)
+  )
+})
 
-  const movieId = req.query.movieId as string
-  const id = parseInt(movieId)
-  if (isNaN(id)) {
-    return res.status(400).json({ error: `invalid movie id "${movieId}"` })
-  }
+export type IQuery = z.infer<typeof Query>
 
-  const result = await prisma.movie.findUnique({
-    where: {
-      id
+export default createAPIHandler<IQuery, never, types.MovieModel>(
+  {
+    methods: ['GET'],
+    query: Query
+  },
+  async (req, res, { query }) => {
+    const { movieId } = query
+
+    const result = await prisma.movie.findUnique({
+      where: {
+        id: movieId
+      }
+    })
+
+    if (!result) {
+      return res.status(404).json({ error: `title "${movieId}" not found` })
     }
-  })
 
-  if (!result) {
-    return res.status(404).json({ error: `movie "${movieId}" not found` })
+    const movie = await convertMovie(result)
+    return res.status(200).json(movie)
   }
-
-  const movie = await convertMovie(result)
-  return res.status(200).json(movie)
-}
+)

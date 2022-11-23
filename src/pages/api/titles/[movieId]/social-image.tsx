@@ -6,7 +6,7 @@ import { ImageResponse } from '@vercel/og'
 import ms from 'pretty-ms'
 
 import * as appConfig from '@/lib/config'
-import { MovieModel } from '@/lib/types'
+import { MovieModel } from '@/types'
 
 const interRegularFontP = fetch(
   new URL('../../../../../public/fonts/Inter-Regular.ttf', import.meta.url)

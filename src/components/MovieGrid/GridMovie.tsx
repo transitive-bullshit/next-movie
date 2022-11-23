@@ -2,7 +2,7 @@ import * as React from 'react'
 import Image from 'next/image'
 import cs from 'clsx'
 
-import type { MovieModel } from '@/lib/types'
+import type { MovieModel } from '@/types'
 import { ActiveLink } from '@/components/ActiveLink/ActiveLink'
 import { YouTubeButtonOverlay } from '@/components/YouTubeButton/YouTubeButtonOverlay'
 

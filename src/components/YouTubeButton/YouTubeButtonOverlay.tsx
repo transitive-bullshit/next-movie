@@ -4,7 +4,7 @@ import * as React from 'react'
 import * as Dialog from '@radix-ui/react-dialog'
 import Link from 'next/link'
 
-import { MovieModel } from '@/lib/types'
+import { MovieModel } from '@/types'
 import { YouTube } from '@/lib/hooks/youtube'
 
 import { isMouseEventNewTab } from './YouTubeButton'

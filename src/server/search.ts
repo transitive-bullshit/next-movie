@@ -3,7 +3,7 @@
 // import QuickLRU from 'quick-lru'
 
 import { layoutToDefaultPageSize } from '@/lib/config'
-import * as types from '@/lib/types'
+import * as types from '@/types'
 import { prisma } from './prisma'
 import { convertMovies } from './utils'
 

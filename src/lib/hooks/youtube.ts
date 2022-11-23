@@ -3,7 +3,7 @@
 import * as React from 'react'
 import { createContainer } from 'unstated-next'
 
-import { MovieModel } from '@/lib/types'
+import { MovieModel } from '@/types'
 
 function useYouTube() {
   const [movie, setMovie] = React.useState<MovieModel | null>(null)

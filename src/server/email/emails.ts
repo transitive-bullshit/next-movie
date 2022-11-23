@@ -1,5 +1,5 @@
 import * as config from '@/lib/config'
-import { type User } from '@/lib/types'
+import { type User } from '@/types'
 
 import { sendEmail } from './send-email'
 

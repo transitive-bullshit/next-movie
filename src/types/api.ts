@@ -1,22 +1,6 @@
 import { z } from 'zod'
-import type { Prisma, Movie, User, Account, UserMovie } from '@prisma/client'
-import type { Session } from 'next-auth'
 
-export type { Prisma, Movie, User, Account, UserMovie }
-export type { Session }
-
-// prisma's models use Dates which are not serializable, so we have to
-// convert them before using them client-side
-export interface MovieModel extends Omit<Movie, 'createdAt' | 'updatedAt'> {
-  createdAt: string
-  updatedAt: string
-}
-
-export interface UserMovieModel
-  extends Omit<UserMovie, 'createdAt' | 'updatedAt'> {
-  createdAt: string
-  updatedAt: string
-}
+import { MovieModel } from './models'
 
 export const MovieSearchLayout = z.enum(['grid', 'list', 'single'])
 

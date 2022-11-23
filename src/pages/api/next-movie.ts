@@ -1,33 +1,21 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
-import { z } from 'zod'
-
 import {
   NextMovieOptionsSchema,
   INextMovieOptions,
   INextMovieResult
-} from '@/lib/types'
+} from '@/types'
 import { getNextMovie } from '@/server/next-movie'
 
-export default async function nextMovieHandler(
-  req: NextApiRequest,
-  res: NextApiResponse<INextMovieResult | { error: string }>
-) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'method not allowed' })
+import { createAPIHandler } from '@/server/api'
+
+export default createAPIHandler<never, INextMovieOptions, INextMovieResult>(
+  {
+    auth: 'optional',
+    methods: ['POST'],
+    body: NextMovieOptionsSchema
+  },
+  async (req, res, { session, body }) => {
+    const result = await getNextMovie(body, session)
+
+    return res.status(200).json(result)
   }
-
-  let params: INextMovieOptions
-
-  try {
-    params = NextMovieOptionsSchema.parse(req.body)
-  } catch (err) {
-    if (err instanceof z.ZodError) {
-      console.error('error parsing input', err.issues)
-    }
-
-    return res.status(400).json({ error: 'error parsing input' })
-  }
-
-  const result = await getNextMovie(params)
-  return res.status(200).json(result)
-}
+)

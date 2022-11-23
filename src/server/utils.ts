@@ -1,4 +1,4 @@
-import * as types from '@/lib/types'
+import * as types from '@/types'
 
 export async function convertMovies(
   movies: types.Movie[]

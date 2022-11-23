@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import type { MovieModel } from '@/lib/types'
+import type { MovieModel } from '@/types'
 
 import { GridMovie } from './GridMovie'
 import styles from './styles.module.css'
