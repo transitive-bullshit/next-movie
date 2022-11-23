@@ -88,8 +88,8 @@ export function createAPIHandler<Q, B, T>(
       }
     }
 
-    // TODO: these type casts are really not what we want
     try {
+      // TODO: these type casts are really not what we want
       await handler(req, res, {
         session: session as types.Session,
         query: query as Q,
