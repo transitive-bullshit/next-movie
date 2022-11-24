@@ -13,7 +13,7 @@
 
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 1em;
 
   --violet1: hsl(255, 65%, 99.4%);
   --violet2: hsl(252, 100%, 99%);

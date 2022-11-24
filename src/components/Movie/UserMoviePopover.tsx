@@ -14,11 +14,12 @@ import { DotsVerticalIcon } from '@/icons'
 
 import styles from './styles.module.css'
 
+// TODO: some of these status options make more sense for TV series
 const statusOptions = [
-  {
-    value: 'watching',
-    label: 'Watching'
-  },
+  // {
+  //   value: 'watching',
+  //   label: 'Watching'
+  // },
   {
     value: 'planning',
     label: 'Plan to watch'
@@ -27,10 +28,10 @@ const statusOptions = [
     value: 'completed',
     label: 'Completed'
   },
-  {
-    value: 'rewatching',
-    label: 'Rewatching'
-  },
+  // {
+  //   value: 'rewatching',
+  //   label: 'Rewatching'
+  // },
   {
     value: 'paused',
     label: 'Paused'
