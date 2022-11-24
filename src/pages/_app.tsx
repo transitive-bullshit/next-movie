@@ -1,12 +1,12 @@
 import * as React from 'react'
+import { SessionProvider } from 'next-auth/react'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
-import { SessionProvider } from 'next-auth/react'
-
-import './globals.css'
 
 import { bootstrap } from '@/lib/bootstrap'
 import { isServer } from '@/lib/config'
+
+import './globals.css'
 
 if (!isServer) {
   bootstrap()

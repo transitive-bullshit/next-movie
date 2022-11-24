@@ -1,8 +1,8 @@
 'use client'
 
 import * as React from 'react'
-import { createContainer } from 'unstated-next'
 import useSWR, { preload } from 'swr'
+import { createContainer } from 'unstated-next'
 
 import * as types from '@/types'
 

@@ -2,7 +2,7 @@ import test from 'ava'
 
 import * as types from '@/types'
 
-import { normalizeTitle, getMoviePathname, parseMovieId } from './utils'
+import { getMoviePathname, normalizeTitle, parseMovieId } from './utils'
 
 test('normalizeTitle', (t) => {
   t.is(normalizeTitle(), '')

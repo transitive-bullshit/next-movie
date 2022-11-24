@@ -1,12 +1,11 @@
 import * as React from 'react'
+
 // import { Inter } from '@next/font/google'
 // import cs from 'clsx'
-
 import { Footer } from '@/components/Footer/Footer'
 import { Header } from '@/components/Header/Header'
 
 import { RootLayoutProviders } from './providers'
-
 import styles from './styles.module.css'
 
 // const inter = Inter({ subsets: ['latin'] })

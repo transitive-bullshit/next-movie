@@ -1,9 +1,9 @@
 'use client'
 
-import * as React from 'react'
 import * as Dialog from '@radix-ui/react-dialog'
-import YouTubeEmbed from 'react-youtube'
+import * as React from 'react'
 import { useWindowSize } from 'react-use'
+import YouTubeEmbed from 'react-youtube'
 
 import { YouTube } from '@/lib/hooks/youtube'
 

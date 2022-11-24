@@ -1,8 +1,8 @@
 'use client'
 
 import * as React from 'react'
-import { createContainer } from 'unstated-next'
 import useSWRInfinite from 'swr/infinite'
+import { createContainer } from 'unstated-next'
 
 import * as types from '@/types'
 import { defaultSearchOptions } from '@/lib/config'

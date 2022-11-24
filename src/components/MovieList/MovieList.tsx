@@ -1,7 +1,7 @@
 import * as React from 'react'
 
-import type { MovieModel, MutateUserMovieFn } from '@/types'
 import { Movie } from '@/components/Movie/Movie'
+import type { MovieModel, MutateUserMovieFn } from '@/types'
 
 import styles from './styles.module.css'
 

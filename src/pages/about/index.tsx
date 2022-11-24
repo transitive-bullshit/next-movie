@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { InferGetStaticPropsType } from 'next'
 
+import * as config from '@/lib/config'
 import { Layout } from '@/components/Layout/Layout'
 import { Markdown } from '@/components/Markdown/Markdown'
-import * as config from '@/lib/config'
 import { markdownToHtml } from '@/server/markdown-to-html'
 
 import styles from './styles.module.css'

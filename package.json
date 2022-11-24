@@ -70,7 +70,7 @@
     "zod": "^3.19.1"
   },
   "devDependencies": {
-    "@trivago/prettier-plugin-sort-imports": "^3.4.0",
+    "@trivago/prettier-plugin-sort-imports": "npm:@fisch0920/prettier-plugin-sort-imports@^3.4.3",
     "@types/lodash.omit": "^4.5.7",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",

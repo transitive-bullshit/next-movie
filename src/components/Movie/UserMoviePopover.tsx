@@ -2,15 +2,14 @@ import * as React from 'react'
 import { useSession } from 'next-auth/react'
 import Select from 'react-select'
 
-import { dequal } from '@/lib/dequal'
-
-import type { MovieModel, UserMovieModel, MutateUserMovieFn } from '@/types'
 import {
   Popover,
   PopoverContent,
   PopoverTrigger
 } from '@/components/Popover/Popover'
 import { DotsVerticalIcon } from '@/icons'
+import { dequal } from '@/lib/dequal'
+import type { MovieModel, MutateUserMovieFn, UserMovieModel } from '@/types'
 
 import styles from './styles.module.css'
 

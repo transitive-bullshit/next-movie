@@ -2,6 +2,7 @@ import formData from 'form-data'
 import Mailgun from 'mailgun.js'
 
 import { fromEmail, mailgunApiKey, mailgunDomain } from '@/server/config'
+
 import { renderEmail } from './render-email'
 
 export interface SendEmailOptions {

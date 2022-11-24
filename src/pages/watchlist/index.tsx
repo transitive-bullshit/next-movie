@@ -1,15 +1,14 @@
 import * as React from 'react'
-import { unstable_serialize, SWRConfig } from 'swr'
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next'
+import { SWRConfig, unstable_serialize } from 'swr'
 
+import { Layout } from '@/components/Layout/Layout'
 import { MovieSearch } from '@/components/MovieSearch/MovieSearch'
 import { PageHead } from '@/components/PageHead/PageHead'
-import { Layout } from '@/components/Layout/Layout'
-import { ISearchOptionsConfig, SearchOptions } from '@/lib/hooks/search-options'
 import { emptySearchOptions } from '@/lib/config'
-
-import { searchUserMovies } from '@/server/search-user-movies'
+import { ISearchOptionsConfig, SearchOptions } from '@/lib/hooks/search-options'
 import { getServerSession } from '@/server/auth'
+import { searchUserMovies } from '@/server/search-user-movies'
 
 import styles from './styles.module.css'
 

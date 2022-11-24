@@ -1,12 +1,12 @@
 'use client'
 
 import * as React from 'react'
-import { createContainer } from 'unstated-next'
-import { useLocalStorage, useDebounce, useRendersCount } from 'react-use'
+import { useDebounce, useLocalStorage, useRendersCount } from 'react-use'
 import { unstable_serialize } from 'swr'
+import { createContainer } from 'unstated-next'
 
-import { IMovieSearchLayout, IMovieSearchOptions } from '@/types'
 import { defaultSearchOptions } from '@/lib/config'
+import { IMovieSearchLayout, IMovieSearchOptions } from '@/types'
 
 const localStorageSearchOptionsKey = 'search-options-v0.0.1'
 

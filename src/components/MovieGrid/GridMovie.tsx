@@ -1,10 +1,10 @@
 import * as React from 'react'
-import Image from 'next/image'
 import cs from 'clsx'
+import Image from 'next/image'
 
-import type { MovieModel, MutateUserMovieFn } from '@/types'
 import { ActiveLink } from '@/components/ActiveLink/ActiveLink'
 import { YouTubeButtonOverlay } from '@/components/YouTubeButton/YouTubeButtonOverlay'
+import type { MovieModel, MutateUserMovieFn } from '@/types'
 
 import styles from './styles.module.css'
 

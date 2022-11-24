@@ -1,15 +1,15 @@
 import * as React from 'react'
 import { InferGetStaticPropsType } from 'next'
 
+import * as config from '@/lib/config'
 import { Layout } from '@/components/Layout/Layout'
 import { Movie } from '@/components/Movie/Movie'
 import { PageHead } from '@/components/PageHead/PageHead'
-import * as config from '@/lib/config'
+import { getMoviePathname, parseMovieId } from '@/lib/utils'
 import { prisma } from '@/server/prisma'
 import { convertMovie } from '@/server/utils'
 
 import styles from './styles.module.css'
-import { getMoviePathname, parseMovieId } from '@/lib/utils'
 
 export default function MovieDetailPage({
   movie

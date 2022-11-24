@@ -1,8 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { z } from 'zod'
 
-import { getServerSession } from '@/server/auth'
 import * as types from '@/types'
+import { getServerSession } from '@/server/auth'
 
 type AuthType = 'optional' | 'required'
 type HTTPMethod = 'GET' | 'HEAD' | 'POST' | 'PATCH' | 'PUT' | 'DELETE'

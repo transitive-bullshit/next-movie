@@ -1,17 +1,16 @@
 import * as React from 'react'
-import { unstable_serialize, SWRConfig } from 'swr'
 import { InferGetStaticPropsType } from 'next'
+import { SWRConfig, unstable_serialize } from 'swr'
 
+import { Layout } from '@/components/Layout/Layout'
 import { MovieSearch } from '@/components/MovieSearch/MovieSearch'
 import { PageHead } from '@/components/PageHead/PageHead'
-import { Layout } from '@/components/Layout/Layout'
-import { ISearchOptionsConfig, SearchOptions } from '@/lib/hooks/search-options'
 import {
-  genres,
+  defaultSearchOptionsByGenre,
   genreTitleMap,
-  defaultSearchOptionsByGenre
+  genres
 } from '@/lib/genres'
-
+import { ISearchOptionsConfig, SearchOptions } from '@/lib/hooks/search-options'
 import { searchMovies } from '@/server/search-movies'
 
 import styles from './styles.module.css'

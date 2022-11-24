@@ -1,9 +1,9 @@
 import { z } from 'zod'
 
 import * as types from '@/types'
+import { createAPIHandler } from '@/server/api'
 import { prisma } from '@/server/prisma'
 import { convertUserMovie } from '@/server/utils'
-import { createAPIHandler } from '@/server/api'
 
 export const Body = z.object({
   status: z.string().optional().nullable(),

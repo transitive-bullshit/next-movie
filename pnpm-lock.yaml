@@ -9,7 +9,7 @@ specifiers:
   '@radix-ui/react-dialog': ^1.0.2
   '@radix-ui/react-popover': ^1.0.2
   '@radix-ui/react-tooltip': ^1.0.2
-  '@trivago/prettier-plugin-sort-imports': ^3.4.0
+  '@trivago/prettier-plugin-sort-imports': npm:@fisch0920/prettier-plugin-sort-imports@^3.4.3
   '@types/lodash.omit': ^4.5.7
   '@types/node': 18.11.9
   '@types/react': 18.0.25
@@ -110,7 +110,7 @@ dependencies:
   zod: 3.19.1
 
 devDependencies:
-  '@trivago/prettier-plugin-sort-imports': 3.4.0_prettier@2.8.0
+  '@trivago/prettier-plugin-sort-imports': /@fisch0920/prettier-plugin-sort-imports/3.4.3_prettier@2.8.0
   '@types/lodash.omit': 4.5.7
   '@types/node': 18.11.9
   '@types/react': 18.0.25
@@ -160,7 +160,7 @@ packages:
       '@babel/parser': 7.18.9
       '@babel/template': 7.18.10
       '@babel/traverse': 7.17.3
-      '@babel/types': 7.17.0
+      '@babel/types': 7.20.2
       convert-source-map: 1.9.0
       debug: 4.3.4
       gensync: 1.0.0-beta.2
@@ -174,7 +174,7 @@ packages:
     resolution: {integrity: sha512-oLcVCTeIFadUoArDTwpluncplrYBmTCCZZgXCbgNGvOBBiSDDK3eWO4b/+eOTli5tKv1lg+a5/NAXg+nTcei1w==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.17.0
+      '@babel/types': 7.20.2
       jsesc: 2.5.2
       source-map: 0.5.7
     dev: true
@@ -299,7 +299,7 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
     dependencies:
-      '@babel/types': 7.17.0
+      '@babel/types': 7.20.2
     dev: true
 
   /@babel/parser/7.20.3:
@@ -353,7 +353,7 @@ packages:
       '@babel/helper-hoist-variables': 7.18.6
       '@babel/helper-split-export-declaration': 7.18.6
       '@babel/parser': 7.18.9
-      '@babel/types': 7.17.0
+      '@babel/types': 7.20.2
       debug: 4.3.4
       globals: 11.12.0
     transitivePeerDependencies:
@@ -541,6 +541,24 @@ packages:
       js-yaml: 4.1.0
       minimatch: 3.1.2
       strip-json-comments: 3.1.1
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /@fisch0920/prettier-plugin-sort-imports/3.4.3_prettier@2.8.0:
+    resolution: {integrity: sha512-txyVOkw3LOiGtiZX18T/xKjKUMV5NA6DCVj444N8pHnc9snLIRsKh5KXvd2nrxbtNTwaFFjI8bEmUm6LOH8E2Q==}
+    peerDependencies:
+      prettier: 2.x
+    dependencies:
+      '@babel/core': 7.17.8
+      '@babel/generator': 7.17.7
+      '@babel/parser': 7.18.9
+      '@babel/traverse': 7.17.3
+      '@babel/types': 7.17.0
+      '@vue/compiler-sfc': 3.2.45
+      javascript-natural-sort: 0.7.1
+      lodash: 4.17.21
+      prettier: 2.8.0
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -1212,24 +1230,6 @@ packages:
       tslib: 2.4.1
     dev: false
 
-  /@trivago/prettier-plugin-sort-imports/3.4.0_prettier@2.8.0:
-    resolution: {integrity: sha512-485Iailw8X5f7KetzRka20RF1kPBEINR5LJMNwlBZWY1gRAlVnv5dZzyNPnLxSP0Qcia8HETa9Cdd8LlX9o+pg==}
-    peerDependencies:
-      prettier: 2.x
-    dependencies:
-      '@babel/core': 7.17.8
-      '@babel/generator': 7.17.7
-      '@babel/parser': 7.18.9
-      '@babel/traverse': 7.17.3
-      '@babel/types': 7.17.0
-      '@vue/compiler-sfc': 3.2.45
-      javascript-natural-sort: 0.7.1
-      lodash: 4.17.21
-      prettier: 2.8.0
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
   /@types/debug/4.1.7:
     resolution: {integrity: sha512-9AonUzyTjXXhEOa0DnqpzZi6VHlqKMswga9EXjpXnnqxwLtdvPPtlO8evrI5D9S6asFRCQ6v+wpiUKbw+vKqyg==}
     dependencies:
@@ -1389,7 +1389,7 @@ packages:
   /@vue/compiler-core/3.2.45:
     resolution: {integrity: sha512-rcMj7H+PYe5wBV3iYeUgbCglC+pbpN8hBLTJvRiK2eKQiWqu+fG9F+8sW99JdL4LQi7Re178UOxn09puSXvn4A==}
     dependencies:
-      '@babel/parser': 7.18.9
+      '@babel/parser': 7.20.3
       '@vue/shared': 3.2.45
       estree-walker: 2.0.2
       source-map: 0.6.1
@@ -1413,7 +1413,7 @@ packages:
       '@vue/shared': 3.2.45
       estree-walker: 2.0.2
       magic-string: 0.25.9
-      postcss: 8.4.19
+      postcss: 8.4.14
       source-map: 0.6.1
     dev: true
 
@@ -1427,7 +1427,7 @@ packages:
   /@vue/reactivity-transform/3.2.45:
     resolution: {integrity: sha512-BHVmzYAvM7vcU5WmuYqXpwaBHjsS8T63jlKGWVtHxAHIoMIlmaMyurUSEs1Zcg46M4AYT5MtB1U274/2aNzjJQ==}
     dependencies:
-      '@babel/parser': 7.18.9
+      '@babel/parser': 7.20.3
       '@vue/compiler-core': 3.2.45
       '@vue/shared': 3.2.45
       estree-walker: 2.0.2
@@ -4802,16 +4802,6 @@ packages:
       nanoid: 3.3.4
       picocolors: 1.0.0
       source-map-js: 1.0.2
-    dev: false
-
-  /postcss/8.4.19:
-    resolution: {integrity: sha512-h+pbPsyhlYj6N2ozBmHhHrs9DzGmbaarbLvWipMRO7RLS+v4onj26MPFXA5OBYFxyqYhUJK456SwDcY9H2/zsA==}
-    engines: {node: ^10 || ^12 || >=14}
-    dependencies:
-      nanoid: 3.3.4
-      picocolors: 1.0.0
-      source-map-js: 1.0.2
-    dev: true
 
   /preact-render-to-string/5.2.6_preact@10.11.3:
     resolution: {integrity: sha512-JyhErpYOvBV1hEPwIxc/fHWXPfnEGdRKxc8gFdAZ7XV4tlzyzG847XAyEZqoDnynP88akM4eaHcSOzNcLWFguw==}

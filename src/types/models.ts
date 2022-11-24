@@ -1,4 +1,4 @@
-import type { Prisma, Movie, User, Account, UserMovie } from '@prisma/client'
+import type { Account, Movie, Prisma, User, UserMovie } from '@prisma/client'
 
 export type { Prisma, Movie, User, Account, UserMovie }
 

@@ -1,12 +1,12 @@
 'use client'
 
 import * as React from 'react'
-import useDelayedRender from 'use-delayed-render'
 import cs from 'clsx'
+import useDelayedRender from 'use-delayed-render'
 
 import {
-  MovieSearchOptions,
-  IMovieSearchOptionsProps
+  IMovieSearchOptionsProps,
+  MovieSearchOptions
 } from '@/components/MovieSearchOptions/MovieSearchOptions'
 import { MovieSearchResults } from '@/components/MovieSearchResults/MovieSearchResults'
 

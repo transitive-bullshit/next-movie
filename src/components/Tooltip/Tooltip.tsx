@@ -1,7 +1,7 @@
 'use client'
 
-import * as React from 'react'
 import * as RadixTooltip from '@radix-ui/react-tooltip'
+import * as React from 'react'
 
 import styles from './styles.module.css'
 

@@ -1,11 +1,11 @@
 import * as React from 'react'
 import cs from 'clsx'
-import { useSession, signIn, signOut } from 'next-auth/react'
+import { signIn, signOut, useSession } from 'next-auth/react'
 
+import * as config from '@/lib/config'
 import { ActiveLink } from '@/components/ActiveLink/ActiveLink'
 import { DarkModeToggle } from '@/components/DarkModeToggle/DarkModeToggle'
 import { GitHub, Twitter } from '@/icons/index'
-import * as config from '@/lib/config'
 
 import { Logo } from './Logo'
 import styles from './styles.module.css'

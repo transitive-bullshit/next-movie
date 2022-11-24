@@ -1,22 +1,21 @@
 'use client'
 
-import * as React from 'react'
-import Select from 'react-select'
-import cs from 'clsx'
-
 import * as Checkbox from '@radix-ui/react-checkbox'
+import * as React from 'react'
+import cs from 'clsx'
+import Select from 'react-select'
 
 import { Button } from '@/components/Button/Button'
 import { Tooltip } from '@/components/Tooltip/Tooltip'
-import { genres, genreLabelMap, genresToIgnore } from '@/lib/genres'
 import {
-  SearchIcon,
   CheckIcon,
   ClearIcon,
-  SingleIcon,
   GridIcon,
-  ListIcon
+  ListIcon,
+  SearchIcon,
+  SingleIcon
 } from '@/icons/index'
+import { genreLabelMap, genres, genresToIgnore } from '@/lib/genres'
 import { SearchOptions } from '@/lib/hooks/search-options'
 
 import styles from './styles.module.css'

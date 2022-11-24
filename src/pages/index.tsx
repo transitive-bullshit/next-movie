@@ -1,13 +1,13 @@
 import * as React from 'react'
-import { unstable_serialize, SWRConfig } from 'swr'
 import { InferGetStaticPropsType } from 'next'
+import { SWRConfig, unstable_serialize } from 'swr'
 
+import { Layout } from '@/components/Layout/Layout'
 import { MovieSearch } from '@/components/MovieSearch/MovieSearch'
 import { PageHead } from '@/components/PageHead/PageHead'
-import { Layout } from '@/components/Layout/Layout'
 import { defaultSearchOptions } from '@/lib/config'
-import { searchMovies } from '@/server/search-movies'
 import { SearchOptions } from '@/lib/hooks/search-options'
+import { searchMovies } from '@/server/search-movies'
 
 import styles from './styles.module.css'
 

@@ -1,8 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
-
 import * as React from 'react'
-import { NextRequest } from 'next/server'
 import { ImageResponse } from '@vercel/og'
+import { NextRequest } from 'next/server'
 import ms from 'pretty-ms'
 
 import * as appConfig from '@/lib/config'

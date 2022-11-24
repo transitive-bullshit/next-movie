@@ -4,8 +4,8 @@ import * as React from 'react'
 import cs from 'clsx'
 
 import { Moon, Sun } from '@/icons/index'
-
 import { useTheme } from '@/lib/hooks/use-theme'
+
 import styles from './styles.module.css'
 
 export const DarkModeToggle: React.FC<{ className?: string }> = ({

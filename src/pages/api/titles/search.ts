@@ -1,10 +1,10 @@
-import {
-  MovieSearchOptionsSchema,
-  IMovieSearchResults,
-  IMovieSearchOptions
-} from '@/types'
-import { searchMovies } from '@/server/search-movies'
 import { createAPIHandler } from '@/server/api'
+import { searchMovies } from '@/server/search-movies'
+import {
+  IMovieSearchOptions,
+  IMovieSearchResults,
+  MovieSearchOptionsSchema
+} from '@/types'
 
 export default createAPIHandler<
   never,

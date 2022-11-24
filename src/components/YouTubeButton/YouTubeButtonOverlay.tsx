@@ -1,11 +1,11 @@
 'use client'
 
-import * as React from 'react'
 import * as Dialog from '@radix-ui/react-dialog'
+import * as React from 'react'
 import Link from 'next/link'
 
-import { MovieModel } from '@/types'
 import { YouTube } from '@/lib/hooks/youtube'
+import { MovieModel } from '@/types'
 
 import { isMouseEventNewTab } from './YouTubeButton'
 import styles from './styles.module.css'

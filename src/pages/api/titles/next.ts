@@ -1,11 +1,10 @@
-import {
-  NextMovieOptionsSchema,
-  INextMovieOptions,
-  INextMovieResult
-} from '@/types'
-import { getNextMovie } from '@/server/next-movie'
-
 import { createAPIHandler } from '@/server/api'
+import { getNextMovie } from '@/server/next-movie'
+import {
+  INextMovieOptions,
+  INextMovieResult,
+  NextMovieOptionsSchema
+} from '@/types'
 
 export default createAPIHandler<never, INextMovieOptions, INextMovieResult>(
   {

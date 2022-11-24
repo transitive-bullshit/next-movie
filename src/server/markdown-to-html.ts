@@ -1,10 +1,10 @@
-import { unified } from 'unified'
+import rehypeFormat from 'rehype-format'
+import rehypeRaw from 'rehype-raw'
+import rehypeStringify from 'rehype-stringify'
+import remarkGfm from 'remark-gfm'
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
-import remarkGfm from 'remark-gfm'
-import rehypeRaw from 'rehype-raw'
-import rehypeFormat from 'rehype-format'
-import rehypeStringify from 'rehype-stringify'
+import { unified } from 'unified'
 
 const processor = unified()
   .use(remarkParse)

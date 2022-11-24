@@ -1,12 +1,13 @@
+import { PrismaAdapter } from '@next-auth/prisma-adapter'
 import type { GetServerSidePropsContext } from 'next'
 import { NextAuthOptions } from 'next-auth'
 import { unstable_getServerSession } from 'next-auth/next'
-import GitHubProvider from 'next-auth/providers/github'
 import EmailProvider from 'next-auth/providers/email'
-import { PrismaAdapter } from '@next-auth/prisma-adapter'
+import GitHubProvider from 'next-auth/providers/github'
 
 import * as config from '@/server/config'
 import { prisma } from '@/server/prisma'
+
 import { sendSignInEmail, sendVerificationEmail } from './email'
 
 export const authOptions: NextAuthOptions = {

@@ -1,19 +1,18 @@
 'use client'
 
 import * as React from 'react'
-import useInfiniteScroll from 'react-infinite-scroll-hook'
 import cs from 'clsx'
+import useInfiniteScroll from 'react-infinite-scroll-hook'
 
-import { MovieList } from '@/components/MovieList/MovieList'
-import { MovieGrid } from '@/components/MovieGrid/MovieGrid'
+import { Button } from '@/components/Button/Button'
+import { HeroButton } from '@/components/HeroButton/HeroButton'
 import { LoadingSpinner } from '@/components/LoadingSpinner/LoadingSpinner'
 import { Movie } from '@/components/Movie/Movie'
-import { HeroButton } from '@/components/HeroButton/HeroButton'
-import { Button } from '@/components/Button/Button'
-
-import { SearchOptions } from '@/lib/hooks/search-options'
-import { Search } from '@/lib/hooks/search'
+import { MovieGrid } from '@/components/MovieGrid/MovieGrid'
+import { MovieList } from '@/components/MovieList/MovieList'
 import { NextMovie } from '@/lib/hooks/next-movie'
+import { Search } from '@/lib/hooks/search'
+import { SearchOptions } from '@/lib/hooks/search-options'
 
 import styles from './styles.module.css'
 

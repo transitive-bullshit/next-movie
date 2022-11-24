@@ -1,9 +1,9 @@
 import { z } from 'zod'
 
 import * as types from '@/types'
+import { createAPIHandler } from '@/server/api'
 import { prisma } from '@/server/prisma'
 import { convertMovie } from '@/server/utils'
-import { createAPIHandler } from '@/server/api'
 
 const Query = z.object({
   movieId: z.preprocess(
