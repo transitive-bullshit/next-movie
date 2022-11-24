@@ -49,7 +49,8 @@ export const MovieSearchResultsInfinite: React.FC = () => {
     isLoading,
     isValidating,
     hasMoreSearchResults,
-    loadMoreSearchResults
+    loadMoreSearchResults,
+    mutateUserMovie
   } = Search.useContainer()
 
   const [sentryRef] = useInfiniteScroll({
@@ -93,11 +94,17 @@ export const MovieSearchResultsInfinite: React.FC = () => {
         searchResultMovies && (
           <>
             {searchOptions.layout === 'grid' && (
-              <MovieGrid movies={searchResultMovies} />
+              <MovieGrid
+                movies={searchResultMovies}
+                mutateUserMovie={mutateUserMovie}
+              />
             )}
 
             {(searchOptions.layout === 'list' || !searchOptions.layout) && (
-              <MovieList movies={searchResultMovies} />
+              <MovieList
+                movies={searchResultMovies}
+                mutateUserMovie={mutateUserMovie}
+              />
             )}
           </>
         )
@@ -124,7 +131,8 @@ export const MovieSearchResultsSingle: React.FC = () => {
     isLoading,
     isValidating,
     loadPrevMovie,
-    loadNextMovie
+    loadNextMovie,
+    mutateUserMovie
   } = NextMovie.useContainer()
 
   if (error) {
@@ -151,7 +159,11 @@ export const MovieSearchResultsSingle: React.FC = () => {
 
       {result?.movie && (
         <div className={styles.singleMovieContainer}>
-          <Movie movie={result.movie} variant='slim' />
+          <Movie
+            movie={result.movie}
+            variant='slim'
+            mutateUserMovie={mutateUserMovie}
+          />
         </div>
       )}
 

@@ -2,7 +2,7 @@ import * as React from 'react'
 import Image from 'next/image'
 import cs from 'clsx'
 
-import type { MovieModel } from '@/types'
+import type { MovieModel, MutateUserMovieFn } from '@/types'
 import { ActiveLink } from '@/components/ActiveLink/ActiveLink'
 import { YouTubeButtonOverlay } from '@/components/YouTubeButton/YouTubeButtonOverlay'
 
@@ -10,6 +10,7 @@ import styles from './styles.module.css'
 
 export const GridMovie: React.FC<{
   movie: MovieModel
+  mutateUserMovie?: MutateUserMovieFn
 }> = ({ movie }) => {
   return (
     <div className={styles.gridMovie}>

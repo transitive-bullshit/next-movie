@@ -124,6 +124,7 @@
 }
 
 .body {
+  flex: 1;
   display: flex;
   flex-direction: row;
   gap: var(--gap);
@@ -140,6 +141,7 @@
   max-width: var(--col-width);
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: var(--gap-1);
 }
 
@@ -361,4 +363,17 @@
   .variant-slim .genresLabel {
     display: none;
   }
+}
+
+.userMoviePopoverTrigger {
+  cursor: pointer;
+  align-self: flex-end;
+  justify-self: flex-end;
+  padding: 4px;
+}
+
+.dotsIcon {
+  display: block;
+  width: 24px;
+  height: 24px;
 }

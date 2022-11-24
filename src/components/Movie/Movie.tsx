@@ -4,13 +4,15 @@ import Link from 'next/link'
 import ms from 'pretty-ms'
 import cs from 'clsx'
 
-import type { MovieModel } from '@/types'
+import type { MovieModel, MutateUserMovieFn } from '@/types'
+import { dequal } from '@/lib/dequal'
 import { genreLabelMap } from '@/lib/genres'
 import imdbLogoImage from '@/public/logos/imdb.png'
 import { ActiveLink } from '@/components/ActiveLink/ActiveLink'
 import { YouTubeButton } from '@/components/YouTubeButton/YouTubeButton'
 import { Star } from '@/icons/Star'
 
+import { UserMoviePopover } from './UserMoviePopover'
 import styles from './styles.module.css'
 
 const rtCriticScoreEmptyImage = '/images/rt-critics-empty.svg'
@@ -47,6 +49,7 @@ export type MovieProps = {
   movie: MovieModel
   priority?: boolean
   variant?: MovieVariants
+  mutateUserMovie?: MutateUserMovieFn
 }
 
 function areMoviePropsEqual(propsA: MovieProps, propsB: MovieProps): boolean {
@@ -54,14 +57,16 @@ function areMoviePropsEqual(propsA: MovieProps, propsB: MovieProps): boolean {
     propsA.movie.id === propsB.movie.id &&
     propsA.priority === propsB.priority &&
     propsA.variant === propsB.variant &&
-    propsA.movie.userMovie?.id === propsB.movie.userMovie?.id
+    dequal(propsA.movie.userMovie, propsB.movie.userMovie)
+    // TODO: mutateUserMovieFn?
   )
 }
 
 export const Movie: React.FC<MovieProps> = React.memo(function Movie({
   movie,
   priority,
-  variant = 'normal'
+  variant = 'normal',
+  mutateUserMovie
 }) {
   const rtAudienceVotesApprox = getApproxHumanizedNumVotes(
     movie.rtAudienceVotes
@@ -319,6 +324,13 @@ export const Movie: React.FC<MovieProps> = React.memo(function Movie({
                 </>
               )}
             </div>
+
+            {mutateUserMovie && (
+              <UserMoviePopover
+                movie={movie}
+                mutateUserMovie={mutateUserMovie}
+              />
+            )}
           </div>
         </div>
       </div>

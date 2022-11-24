@@ -4,20 +4,20 @@ import * as React from 'react'
 import { createContainer } from 'unstated-next'
 import useSWR, { preload } from 'swr'
 
-import { INextMovieOptions, INextMovieResult } from '@/types'
+import * as types from '@/types'
 
 import { SearchOptions } from './search-options'
 
-const sessionStorageSeedKey = 'next-movie-seed-v0.0.1'
+// const sessionStorageSeedKey = 'next-movie-seed-v0.0.1'
 
 const fetcher = ({
   url,
   body
 }: {
   url: string
-  body: INextMovieOptions
+  body: types.INextMovieOptions
   key?: string
-}): Promise<INextMovieResult> =>
+}): Promise<types.INextMovieResult> =>
   fetch(url, {
     method: 'POST',
     body: JSON.stringify(body),
@@ -38,7 +38,7 @@ function useNextMovie() {
 
   const [seed, _setSeed] = React.useState<string>(globalSeed)
 
-  const body = React.useMemo<INextMovieOptions>(
+  const body = React.useMemo<types.INextMovieOptions>(
     () => ({
       searchOptions,
       seed,
@@ -51,8 +51,9 @@ function useNextMovie() {
     data: result,
     error,
     isLoading,
-    isValidating
-  } = useSWR<INextMovieResult, Error>(
+    isValidating,
+    mutate
+  } = useSWR<types.INextMovieResult, Error>(
     {
       url: '/api/next-movie',
       key: config.key,
@@ -67,6 +68,47 @@ function useNextMovie() {
       revalidateOnReconnect: false,
       dedupingInterval: 24 * 60 * 1000
     }
+  )
+
+  const mutateUserMovie = React.useCallback<types.MutateUserMovieFn>(
+    async (userMovie) => {
+      const { movieId, ...patch } = userMovie
+
+      const updateResult = (
+        userMovie: Partial<types.UserMovie>,
+        current: types.INextMovieResult = result!
+      ) =>
+        current?.movie?.id === movieId
+          ? {
+              ...current!,
+              movie: {
+                ...current!.movie!,
+                userMovie: userMovie as any
+              }
+            }
+          : current
+
+      return mutate(
+        async () => {
+          const update = await fetch(`/api/titles/${movieId}/user-movie`, {
+            method: 'POST',
+            body: JSON.stringify(patch),
+            headers: {
+              'content-type': 'application/json'
+            }
+          }).then((res) => res.json())
+
+          return update
+        },
+        {
+          optimisticData: updateResult(userMovie),
+          populateCache: updateResult,
+          rollbackOnError: true,
+          revalidate: false
+        }
+      )
+    },
+    [mutate, result]
   )
 
   const loadPrevMovie = React.useCallback(() => {
@@ -132,7 +174,8 @@ function useNextMovie() {
     isValidating,
 
     loadPrevMovie,
-    loadNextMovie
+    loadNextMovie,
+    mutateUserMovie
   }
 }
 

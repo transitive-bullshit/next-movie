@@ -1,5 +1,7 @@
 export * from './Check'
 export * from './Clear'
+export * from './Cross'
+export * from './DotsVertical'
 export * from './GitHub'
 export * from './Grid'
 export * from './List'

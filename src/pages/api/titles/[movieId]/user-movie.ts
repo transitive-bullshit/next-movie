@@ -6,9 +6,9 @@ import { convertUserMovie } from '@/server/utils'
 import { createAPIHandler } from '@/server/api'
 
 export const Body = z.object({
-  status: z.string().optional(),
-  rating: z.number().nonnegative().lte(100).optional(),
-  notes: z.string().optional()
+  status: z.string().optional().nullable(),
+  rating: z.number().nonnegative().lte(100).optional().nullable(),
+  notes: z.string().optional().nullable()
 })
 
 export type IBody = z.infer<typeof Body>
@@ -29,7 +29,7 @@ export default createAPIHandler<IQuery, IBody, types.UserMovieModel>(
     query: Query,
     body: Body
   },
-  async (req, res, { session, query, body }) => {
+  async function upsertUserMovieHandler(req, res, { session, query, body }) {
     const { movieId } = query
     const userId = session.user.id
 
@@ -49,6 +49,11 @@ export default createAPIHandler<IQuery, IBody, types.UserMovieModel>(
       update: {
         ...body
       }
+    })
+    // add an extra long delay to accentuate any client-side swr cache misses
+    // (for debugging purposes)
+    await new Promise((resolve) => {
+      setTimeout(resolve, 5000)
     })
 
     const movie = convertUserMovie(result)

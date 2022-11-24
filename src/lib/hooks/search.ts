@@ -4,7 +4,7 @@ import * as React from 'react'
 import { createContainer } from 'unstated-next'
 import useSWRInfinite from 'swr/infinite'
 
-import { IMovieSearchOptions, IMovieSearchResults } from '@/types'
+import * as types from '@/types'
 import { defaultSearchOptions } from '@/lib/config'
 import { layoutToDefaultPageSize } from '@/lib/config'
 
@@ -15,9 +15,9 @@ const fetcher = ({
   body
 }: {
   url: string
-  body: IMovieSearchOptions
+  body: types.IMovieSearchOptions
   key?: string
-}): Promise<IMovieSearchResults> =>
+}): Promise<types.IMovieSearchResults> =>
   fetch(url, {
     method: 'POST',
     body: JSON.stringify(body),
@@ -36,8 +36,8 @@ function useSearch() {
   // )
 
   const getKey = React.useCallback(
-    (_: number, previousPageData: IMovieSearchResults) => {
-      const body: IMovieSearchOptions = { ...searchOptions }
+    (_: number, previousPageData: types.IMovieSearchResults) => {
+      const body: types.IMovieSearchOptions = { ...searchOptions }
       const url = '/api/search'
 
       if (previousPageData) {
@@ -59,20 +59,85 @@ function useSearch() {
     size: searchPageNum,
     setSize: setSearchPageNum,
     isLoading,
-    isValidating
-  } = useSWRInfinite<IMovieSearchResults, Error>(getKey, fetcher, {
+    isValidating,
+    mutate
+  } = useSWRInfinite<types.IMovieSearchResults, Error>(getKey, fetcher, {
     // treat movie results as immutable
     keepPreviousData: true,
     revalidateIfStale: true,
     revalidateOnFocus: false,
-    revalidateOnReconnect: false,
-    dedupingInterval: 24 * 60 * 1000
+    revalidateOnReconnect: false
+    // dedupingInterval: 24 * 60 * 1000
   })
+
+  const mutateUserMovie = React.useCallback<types.MutateUserMovieFn>(
+    async (userMovie) => {
+      const { movieId, ...patch } = userMovie
+
+      const updateResults = (
+        userMovie: Partial<types.UserMovie>,
+        current = searchResults
+      ) => {
+        // console.log('updateResults 0', { userMovie, current })
+
+        return current?.map((searchResult) => ({
+          ...searchResult,
+          results: searchResult.results.map((movie) => {
+            if (movie.id === movieId) {
+              // console.log('updateResults 1', movieId, {
+              //   old: movie.userMovie,
+              //   new: {
+              //     ...movie.userMovie,
+              //     ...(userMovie as any)
+              //   }
+              // })
+
+              return {
+                ...movie,
+                userMovie: {
+                  ...movie.userMovie,
+                  ...(userMovie as any)
+                }
+              }
+            } else {
+              return movie
+            }
+          })
+        }))
+      }
+
+      return mutate(
+        async () => {
+          const update = await fetch(`/api/titles/${movieId}/user-movie`, {
+            method: 'POST',
+            body: JSON.stringify(patch),
+            headers: {
+              'content-type': 'application/json'
+            }
+          }).then((res) => res.json())
+
+          return updateResults(update, searchResults)
+        },
+        {
+          // TODO: Optimistic updates are not supported with swr/infinite.
+          // @see https://github.com/vercel/swr/issues/1899#issue-1188206595
+          // optimisticData: updateResults(userMovie),
+          // populateCache: updateResults,
+          // rollbackOnError: true,
+          // revalidate: false
+          revalidate: true
+        }
+      )
+    },
+    [mutate, searchResults]
+  )
 
   const searchResultMovies = React.useMemo(
     () => searchResults?.flatMap((searchResult) => searchResult.results),
     [searchResults]
   )
+
+  // console.log('searchResultMovies', searchResultMovies)
 
   const loadMoreSearchResults = React.useCallback(() => {
     setSearchPageNum(searchPageNum + 1)
@@ -98,7 +163,8 @@ function useSearch() {
     hasMoreSearchResults,
     searchPageNum,
 
-    loadMoreSearchResults
+    loadMoreSearchResults,
+    mutateUserMovie
   }
 }
 
