@@ -52,9 +52,9 @@ export default createAPIHandler<IQuery, IBody, types.UserMovieModel>(
     })
     // add an extra long delay to accentuate any client-side swr cache misses
     // (for debugging purposes)
-    await new Promise((resolve) => {
-      setTimeout(resolve, 5000)
-    })
+    // await new Promise((resolve) => {
+    //   setTimeout(resolve, 5000)
+    // })
 
     const movie = convertUserMovie(result)
     return res.status(200).json(movie)

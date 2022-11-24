@@ -377,3 +377,21 @@
   width: 24px;
   height: 24px;
 }
+
+.field {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5em;
+}
+
+.field label {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.field .select {
+  width: 100%;
+}
