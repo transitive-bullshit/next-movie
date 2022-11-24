@@ -4,7 +4,7 @@
 import random from 'random'
 
 import * as types from '@/types'
-import { searchMovies } from './search'
+import { searchMovies } from '@/server/search-movies'
 
 // TODO: is this even worth it within a serverless function?
 // export const getNextMovie = pMemoize(getNextMovieImpl, {

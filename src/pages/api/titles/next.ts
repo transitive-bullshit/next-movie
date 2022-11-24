@@ -13,7 +13,7 @@ export default createAPIHandler<never, INextMovieOptions, INextMovieResult>(
     methods: ['POST'],
     body: NextMovieOptionsSchema
   },
-  async (req, res, { session, body }) => {
+  async function getNextTitleHandler(req, res, { session, body }) {
     const result = await getNextMovie(body, session)
 
     return res.status(200).json(result)

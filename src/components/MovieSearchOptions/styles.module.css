@@ -184,7 +184,7 @@
   cursor: pointer;
 }
 
-.layoutOption:hover:not(.selected) {
+.layoutOption:hover:not(.selected):not(.disabled) {
   background: var(--bg-color-1);
 }
 
@@ -198,6 +198,7 @@
   all: unset;
   display: block;
   line-height: 0;
+  border-radius: 4px;
 }
 
 .labelOrderBy {

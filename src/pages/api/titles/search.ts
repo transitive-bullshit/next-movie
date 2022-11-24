@@ -3,7 +3,7 @@ import {
   IMovieSearchResults,
   IMovieSearchOptions
 } from '@/types'
-import { searchMovies } from '@/server/search'
+import { searchMovies } from '@/server/search-movies'
 import { createAPIHandler } from '@/server/api'
 
 export default createAPIHandler<
@@ -16,7 +16,7 @@ export default createAPIHandler<
     methods: ['POST'],
     body: MovieSearchOptionsSchema
   },
-  async (req, res, { session, body }) => {
+  async function searchTitlesHandler(req, res, { session, body }) {
     const result = await searchMovies(body, session)
 
     // add an extra long delay to accentuate any client-side swr cache misses

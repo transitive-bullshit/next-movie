@@ -29,7 +29,6 @@ const fetcher = ({
 function useSearch() {
   const { searchOptions, config } = SearchOptions.useContainer()
 
-  console.log('searchOptions', searchOptions)
   // const { cache } = useSWRConfig()
   // console.log(
   //   'cache',
@@ -39,7 +38,7 @@ function useSearch() {
   const getKey = React.useCallback(
     (_: number, previousPageData: types.IMovieSearchResults) => {
       const body: types.IMovieSearchOptions = { ...searchOptions }
-      const url = '/api/search'
+      const url = config.url || '/api/titles/search'
 
       if (previousPageData) {
         const cursor =
@@ -51,7 +50,7 @@ function useSearch() {
 
       return { url, body, key: config.key }
     },
-    [searchOptions, config.key]
+    [searchOptions, config]
   )
 
   const {

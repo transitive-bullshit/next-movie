@@ -6,7 +6,7 @@ import { MovieSearch } from '@/components/MovieSearch/MovieSearch'
 import { PageHead } from '@/components/PageHead/PageHead'
 import { Layout } from '@/components/Layout/Layout'
 import { defaultSearchOptions } from '@/lib/config'
-import { searchMovies } from '@/server/search'
+import { searchMovies } from '@/server/search-movies'
 import { SearchOptions } from '@/lib/hooks/search-options'
 
 import styles from './styles.module.css'
@@ -33,7 +33,7 @@ export const getStaticProps = async () => {
   const fallbackData = [
     {
       key: {
-        url: '/api/search',
+        url: '/api/titles/search',
         key: 'search',
         body: defaultSearchOptions
       },

@@ -12,7 +12,7 @@ import {
   defaultSearchOptionsByGenre
 } from '@/lib/genres'
 
-import { searchMovies } from '@/server/search'
+import { searchMovies } from '@/server/search-movies'
 
 import styles from './styles.module.css'
 
@@ -72,12 +72,13 @@ export const getStaticProps = async ({
   const defaultSearchOptions = defaultSearchOptionsByGenre[genre]
   const result = await searchMovies(defaultSearchOptions)
 
-  const searchKey = `genre-${genre}`
+  const url = '/api/titles/search'
+  const key = `genre-${genre}`
   const fallbackData = [
     {
       key: {
-        url: '/api/search',
-        key: searchKey,
+        url,
+        key,
         body: defaultSearchOptions
       },
       value: result
@@ -90,7 +91,8 @@ export const getStaticProps = async ({
       genreTitle,
       fallbackData,
       searchOptionsConfig: {
-        key: searchKey,
+        url,
+        key,
         initialSearchOptions: defaultSearchOptions
       }
     }

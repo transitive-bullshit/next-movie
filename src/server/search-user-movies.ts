@@ -1,7 +1,6 @@
 import * as types from '@/types'
 import { prisma } from './prisma'
-import { convertUserMovies } from './utils'
-import { parseMovieQuery } from './search'
+import { convertUserMovies, parseMovieQuery } from './utils'
 
 export async function searchUserMovies(
   opts: types.IMovieSearchOptions & { skip?: number },
@@ -11,7 +10,7 @@ export async function searchUserMovies(
     throw new Error('Requires authentication')
   }
 
-  const query = parseMovieQuery(opts, session)
+  const query = parseMovieQuery(opts)
   const where: types.Prisma.UserMovieWhereInput = {
     userId: session.user.id,
     movie: query.where
@@ -24,6 +23,7 @@ export async function searchUserMovies(
   const orderBy: types.Prisma.Enumerable<types.Prisma.UserMovieOrderByWithAggregationInput> =
     [
       {
+        // TODO: make 'rating' configurable by `opts.orderBy`
         rating: { sort: 'desc', nulls: 'last' }
       },
       {

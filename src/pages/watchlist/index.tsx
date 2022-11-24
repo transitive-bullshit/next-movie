@@ -2,13 +2,14 @@ import * as React from 'react'
 import { unstable_serialize, SWRConfig } from 'swr'
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next'
 
+import * as config from '@/lib/config'
 import { MovieSearch } from '@/components/MovieSearch/MovieSearch'
 import { PageHead } from '@/components/PageHead/PageHead'
 import { Layout } from '@/components/Layout/Layout'
 import { ISearchOptionsConfig, SearchOptions } from '@/lib/hooks/search-options'
 import { emptySearchOptions } from '@/lib/config'
 
-import { searchMovies } from '@/server/search'
+import { searchUserMovies } from '@/server/search-user-movies'
 import { getServerSession } from '@/server/auth'
 
 import styles from './styles.module.css'
@@ -31,7 +32,12 @@ export default function WatchlistPage({
         <div className={styles.page}>
           <h1 className={styles.title}>{title}</h1>
 
-          <MovieSearch className={styles.body} />
+          <MovieSearch
+            className={styles.body}
+            config={{
+              layoutSingle: 'disabled'
+            }}
+          />
         </div>
       </Providers>
     </Layout>
@@ -43,21 +49,29 @@ export const getServerSideProps = async (
 ) => {
   const searchOptions = {
     ...emptySearchOptions,
-    auth: true,
     userMovie: {
       status: 'planning'
     }
   }
 
   const session = await getServerSession(context.req, context.res)
-  const result = await searchMovies(searchOptions, session)
-  console.log(session, result)
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/api/auth/login',
+        permanent: false
+      }
+    }
+  }
 
-  const key = 'watchlist'
+  const result = await searchUserMovies(searchOptions, session)
+
+  const url = '/api/user-movies/search'
+  const key = `watchlist-${session.user.id}`
   const fallbackData = [
     {
       key: {
-        url: '/api/search',
+        url,
         key,
         body: searchOptions
       },
@@ -72,6 +86,7 @@ export const getServerSideProps = async (
       pathname: '/watchlist',
       fallbackData,
       searchOptionsConfig: {
+        url,
         key,
         initialSearchOptions: searchOptions
       }

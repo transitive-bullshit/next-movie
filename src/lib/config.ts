@@ -36,6 +36,25 @@ export const githubIconUrl = `${prodUrl}/icons/github.png`
 
 // ----------------------------------------------------------------------------
 
+// TODO: currently unused
+// export const routes = {
+//   // API routes
+//   api: {
+//     searchMovies: '/api/titles/search',
+//     searchUserMovies: '/api/user-movies/search'
+//   },
+
+//   // auth pages
+//   // TODO: these pages are temporary defaults from next-auth
+//   pages: {
+//     signIn: '/api/auth/login',
+//     signOut: '/api/auth/login',
+//     verifyRequest: '/api/auth/verify-request'
+//   }
+// }
+
+// ----------------------------------------------------------------------------
+
 export const defaultSearchOptions: IMovieSearchOptions = {
   query: '',
   genres: [],

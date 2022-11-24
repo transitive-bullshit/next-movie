@@ -11,6 +11,7 @@ import { defaultSearchOptions } from '@/lib/config'
 const localStorageSearchOptionsKey = 'search-options-v0.0.1'
 
 export interface ISearchOptionsConfig {
+  url?: string
   key: string
   initialSearchOptions: IMovieSearchOptions
 }

@@ -55,7 +55,7 @@ function useNextMovie() {
     mutate
   } = useSWR<types.INextMovieResult, Error>(
     {
-      url: '/api/next-movie',
+      url: '/api/titles/next',
       key: config.key,
       body
     },
@@ -136,7 +136,7 @@ function useNextMovie() {
       if (result?.prevSeq) {
         preload(
           {
-            url: '/api/next-movie',
+            url: '/api/titles/next',
             key: config.key,
             body: {
               ...body,
@@ -150,7 +150,7 @@ function useNextMovie() {
       if (result?.nextSeq) {
         preload(
           {
-            url: '/api/next-movie',
+            url: '/api/titles/next',
             key: config.key,
             body: {
               ...body,

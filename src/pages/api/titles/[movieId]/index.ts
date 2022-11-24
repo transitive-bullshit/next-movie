@@ -19,7 +19,7 @@ export default createAPIHandler<IQuery, never, types.MovieModel>(
     methods: ['GET'],
     query: Query
   },
-  async (req, res, { query }) => {
+  async function getTitleHandler(req, res, { query }) {
     const { movieId } = query
 
     const result = await prisma.movie.findUnique({
