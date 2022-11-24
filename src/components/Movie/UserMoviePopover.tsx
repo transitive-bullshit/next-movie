@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from 'react'
 import { useSession } from 'next-auth/react'
 import Select from 'react-select'
