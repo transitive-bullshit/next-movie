@@ -12,7 +12,7 @@ export default withAuth(
 
     if (isAuthPage) {
       if (isAuthenticated) {
-        return NextResponse.redirect(new URL('/profile', req.url))
+        return NextResponse.redirect(new URL('/watchlist', req.url))
       }
 
       return null
@@ -25,7 +25,10 @@ export default withAuth(
       }
 
       return NextResponse.redirect(
-        new URL(`/login?from=${encodeURIComponent(from)}`, req.url)
+        new URL(
+          `/api/auth/signin?callbackUrl=${encodeURIComponent(from)}`,
+          req.url
+        )
       )
     }
   },
@@ -42,5 +45,5 @@ export default withAuth(
 )
 
 export const config = {
-  matcher: ['/profile/:path*', '/login', '/signup']
+  matcher: ['/profile/:path*', '/watchlist', '/login', '/signup']
 }

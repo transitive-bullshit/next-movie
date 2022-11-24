@@ -117,6 +117,7 @@ model UserMovie {
   @@unique([movieId, userId])
   @@index([userId, movieId])
   @@index([userId, status, createdAt])
+  @@index([userId, rating])
 }
 
 model Account {

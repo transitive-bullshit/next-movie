@@ -29,14 +29,17 @@ export const MovieSearchOptionsSchema = z.object({
   rtAudienceRatingMax: z.number().nonnegative().lte(100).optional(),
 
   orderBy: z.string().optional(),
-  cursor: z.number().nonnegative().optional(),
+  cursor: z.number().nonnegative().or(z.string().optional()).optional(),
   limit: z.number().int().gte(1).lte(100).optional(),
+
+  userMovie: z
+    .object({
+      status: z.string().optional()
+    })
+    .optional(),
 
   layout: MovieSearchLayout.optional()
 })
-
-export type IMovieSearchOptions = z.infer<typeof MovieSearchOptionsSchema>
-export type IMovieSearchLayout = z.infer<typeof MovieSearchLayout>
 
 export const NextMovieOptionsSchema = z.object({
   searchOptions: MovieSearchOptionsSchema,
@@ -46,12 +49,21 @@ export const NextMovieOptionsSchema = z.object({
   seq: z.number().int().nonnegative().optional()
 })
 
+export const UpsertUserMovieBody = z.object({
+  status: z.string().optional(),
+  rating: z.number().nonnegative().lte(100).optional(),
+  notes: z.string().optional()
+})
+
+export type IMovieSearchOptions = z.infer<typeof MovieSearchOptionsSchema>
+export type IMovieSearchLayout = z.infer<typeof MovieSearchLayout>
 export type INextMovieOptions = z.infer<typeof NextMovieOptionsSchema>
+export type IUpsertUserMovieBody = z.infer<typeof UpsertUserMovieBody>
 
 export interface IMovieSearchResults {
   results: MovieModel[]
   total: number
-  cursor?: number
+  cursor?: number | string
 }
 
 export interface INextMovieResult {
@@ -61,11 +73,3 @@ export interface INextMovieResult {
   seq: number
   nextSeq: number
 }
-
-export const UpsertUserMovieBody = z.object({
-  status: z.string().optional(),
-  rating: z.number().nonnegative().lte(100).optional(),
-  notes: z.string().optional()
-})
-
-export type IUpsertUserMovieBody = z.infer<typeof UpsertUserMovieBody>

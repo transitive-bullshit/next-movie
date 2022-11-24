@@ -46,6 +46,13 @@ export const defaultSearchOptions: IMovieSearchOptions = {
   layout: 'list'
 }
 
+export const emptySearchOptions: IMovieSearchOptions = {
+  query: '',
+  genres: [],
+  orderBy: 'relevancyScore',
+  layout: 'list'
+}
+
 export const layoutToDefaultPageSize: Record<IMovieSearchLayout, number> = {
   grid: 50,
   list: 10,

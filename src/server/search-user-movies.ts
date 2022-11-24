@@ -1,0 +1,65 @@
+import * as types from '@/types'
+import { prisma } from './prisma'
+import { convertUserMovies } from './utils'
+import { parseMovieQuery } from './search'
+
+export async function searchUserMovies(
+  opts: types.IMovieSearchOptions & { skip?: number },
+  session: types.Session
+): Promise<types.IMovieSearchResults> {
+  if (!session?.user?.id) {
+    throw new Error('Requires authentication')
+  }
+
+  const query = parseMovieQuery(opts, session)
+  const where: types.Prisma.UserMovieWhereInput = {
+    userId: session.user.id,
+    movie: query.where
+  }
+
+  if (opts.userMovie?.status) {
+    where.status = opts.userMovie.status
+  }
+
+  const orderBy: types.Prisma.Enumerable<types.Prisma.UserMovieOrderByWithAggregationInput> =
+    [
+      {
+        rating: { sort: 'desc', nulls: 'last' }
+      },
+      {
+        // always sort by desired field plus `id` to ensure sorting consistency
+        id: 'desc'
+      }
+    ]
+
+  const [count, results] = await Promise.all([
+    prisma.userMovie.count({
+      where,
+      orderBy
+    }),
+
+    query.take <= 0
+      ? Promise.resolve<types.UserMovieWithMovie[]>([])
+      : prisma.userMovie.findMany({
+          where,
+          cursor: query.cursor as
+            | types.Prisma.UserMovieWhereUniqueInput
+            | undefined,
+          orderBy,
+          take: query.take,
+          skip: query.skip,
+          include: {
+            movie: true
+          }
+        })
+  ])
+
+  const movies = convertUserMovies(results)
+  // console.log('search', opts, JSON.stringify(where, null, 2), movies.length)
+
+  return {
+    results: movies,
+    total: count,
+    cursor: movies[movies.length - 1]?.id
+  }
+}

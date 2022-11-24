@@ -25,12 +25,6 @@ export default createAPIHandler<
     //   setTimeout(resolve, 5000)
     // })
 
-    // TODO: search results can't be cached because the params are a POST body
-    // res.setHeader(
-    //   'Cache-Control',
-    //   'public, s-maxage=3600, max-age=3600, stale-while-revalidate=3600'
-    // )
-
     return res.status(200).json(result)
   }
 )

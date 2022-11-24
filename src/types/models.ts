@@ -15,3 +15,11 @@ export interface UserMovieModel
   createdAt: string
   updatedAt: string
 }
+
+export type MovieWithUserMovies = Movie & { userMovies?: UserMovie[] }
+export type UserMovieWithMovie = UserMovie & { movie: Movie }
+
+// const userMovieWithMovie = Prisma.validator<Prisma.UserMovieArgs>()({
+//   include: { movie: true },
+// })
+// type UserMovieWithMovie = Prisma.UserMovieGetPayload<typeof userMovieWithMovie>

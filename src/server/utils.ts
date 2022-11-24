@@ -1,7 +1,7 @@
 import * as types from '@/types'
 
 export function convertMovies(
-  movies: Array<types.Movie & { userMovies?: any }>
+  movies: types.MovieWithUserMovies[]
 ): types.MovieModel[] {
   // convert dates to strings
   const models: types.MovieModel[] = movies.map(convertMovie)
@@ -10,7 +10,7 @@ export function convertMovies(
 }
 
 export function convertMovie(
-  movie: types.Movie & { userMovies?: any }
+  movie: types.MovieWithUserMovies
 ): types.MovieModel {
   const { userMovies, ...rest } = movie
 
@@ -27,14 +27,14 @@ export function convertMovie(
 }
 
 export function convertUserMovies(
-  userMovies: types.UserMovie[]
-): types.UserMovieModel[] {
-  // convert dates to strings
-  const models: types.UserMovieModel[] = userMovies.map((userMovie) => ({
-    ...userMovie,
-    createdAt: userMovie.createdAt?.toISOString(),
-    updatedAt: userMovie.updatedAt?.toISOString()
-  }))
+  userMovies: types.UserMovieWithMovie[]
+): types.MovieModel[] {
+  const models: types.MovieModel[] = userMovies.map(({ movie, ...userMovie }) =>
+    convertMovie({
+      ...movie,
+      userMovies: [userMovie]
+    })
+  )
 
   return models
 }

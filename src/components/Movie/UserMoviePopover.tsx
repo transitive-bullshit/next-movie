@@ -112,6 +112,8 @@ export const UserMoviePopover: React.FC<{
       const update = {
         ...movie.userMovie,
         movieId: movie.id,
+        // TODO
+        status: movie.userMovie?.status || 'completed',
         rating: opts?.value || null
       }
 

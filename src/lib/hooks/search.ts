@@ -29,6 +29,7 @@ const fetcher = ({
 function useSearch() {
   const { searchOptions, config } = SearchOptions.useContainer()
 
+  console.log('searchOptions', searchOptions)
   // const { cache } = useSWRConfig()
   // console.log(
   //   'cache',

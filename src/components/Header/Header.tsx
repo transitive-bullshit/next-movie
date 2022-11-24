@@ -27,9 +27,19 @@ export const Header: React.FC<{ className?: string }> = ({ className }) => {
 
         <div className={styles.rhs}>
           {session?.user ? (
-            <div className={styles.action} onClick={() => signOut()}>
-              {session.user.name || 'Account'}
-            </div>
+            <>
+              <ActiveLink
+                href='/watchlist'
+                className={styles.action}
+                activeClassName={styles.active}
+              >
+                Watchlist
+              </ActiveLink>
+
+              <div className={styles.action} onClick={() => signOut()}>
+                {session.user.name || 'Account'}
+              </div>
+            </>
           ) : (
             <div className={styles.action} onClick={() => signIn()}>
               Login

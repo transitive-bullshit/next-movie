@@ -13,10 +13,10 @@ import { convertMovies } from './utils'
 //   cache: new QuickLRU({ maxSize: 200 })
 // })
 
-export async function searchMovies(
+export function parseMovieQuery(
   opts: types.IMovieSearchOptions & { skip?: number },
   session?: types.Session | null
-): Promise<types.IMovieSearchResults> {
+) {
   const where: types.Prisma.MovieWhereInput = {}
 
   if (opts.query) {
@@ -116,14 +116,20 @@ export async function searchMovies(
     }
   }
 
-  // always sort by desired field plus `id` to ensure sorting consistency
   const orderByField = opts.orderBy || 'relevancyScore'
   const orderBy: types.Prisma.Enumerable<types.Prisma.MovieOrderByWithAggregationInput> =
     [
+      // TODO: this type of sorting by a relation field doesn't seem to work..
+      // orderByField === 'score' ? {
+      //   userMovies: {
+      //     score: { sort: 'desc', nulls: 'last' }
+      //   }
+      // } :
       {
         [orderByField]: { sort: 'desc', nulls: 'last' }
       },
       {
+        // always sort by desired field plus `id` to ensure sorting consistency
         id: 'desc'
       }
     ]
@@ -159,21 +165,34 @@ export async function searchMovies(
     }
   }
 
-  let include: types.Prisma.MovieInclude | undefined
-
-  if (session?.user?.id) {
-    include = {
-      userMovies: {
-        where: {
-          userId: session.user.id
-        }
-      }
-    }
-  }
-
   const cursor = opts.cursor ? { id: opts.cursor } : undefined
   const take = Math.max(0, Math.min(100, limit))
   const skip = opts.cursor ? 1 : opts.skip !== undefined ? opts.skip : 0
+
+  return {
+    where,
+    orderBy,
+    cursor,
+    take,
+    skip
+  }
+}
+
+export async function searchMovies(
+  opts: types.IMovieSearchOptions & { skip?: number },
+  session?: types.Session | null
+): Promise<types.IMovieSearchResults> {
+  const { where, orderBy, cursor, take, skip } = parseMovieQuery(opts, session)
+
+  const include: types.Prisma.MovieInclude | undefined = session?.user?.id
+    ? {
+        userMovies: {
+          where: {
+            userId: session.user.id
+          }
+        }
+      }
+    : undefined
 
   const [count, results] = await Promise.all([
     prisma.movie.count({
@@ -182,10 +201,10 @@ export async function searchMovies(
     }),
 
     take <= 0
-      ? Promise.resolve([] as types.Movie[])
+      ? Promise.resolve<types.MovieWithUserMovies[]>([])
       : prisma.movie.findMany({
           where,
-          cursor,
+          cursor: cursor as types.Prisma.MovieWhereUniqueInput | undefined,
           orderBy,
           take,
           skip,
@@ -199,6 +218,6 @@ export async function searchMovies(
   return {
     results: movies,
     total: count,
-    cursor: movies[movies.length - 1]?.id
+    cursor: results[results.length - 1]?.id
   }
 }
