@@ -8,6 +8,7 @@ export interface MovieModel extends Omit<Movie, 'createdAt' | 'updatedAt'> {
   createdAt: string
   updatedAt: string
   userMovie: UserMovieModel | null
+  pathname: string
 }
 
 export interface UserMovieModel

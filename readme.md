@@ -137,7 +137,7 @@ Under the hood, `next-movie` uses [populate-movies](https://github.com/transitiv
 
 ## Contributing
 
-See the [contribution guide](contributing.md) and join our amazing list of [contributors](https://github.com/transitive-bullshit/next-movie/graphs/contributors).
+See the [contribution guide](contributing.md).
 
 ## License
 

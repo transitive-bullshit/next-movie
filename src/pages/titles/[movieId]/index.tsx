@@ -9,6 +9,7 @@ import { prisma } from '@/server/prisma'
 import { convertMovie } from '@/server/utils'
 
 import styles from './styles.module.css'
+import { getMoviePathname, parseMovieId } from '@/lib/utils'
 
 export default function MovieDetailPage({
   movie
@@ -20,7 +21,7 @@ export default function MovieDetailPage({
           <PageHead
             title={movie.title || movie.originalTitle || `${movie.id}`}
             description={movie.plot}
-            pathname={`/titles/${movie.id}`}
+            pathname={getMoviePathname(movie)}
             imagePathname={`/api/titles/${movie.id}/social-image`}
           />
 
@@ -38,8 +39,8 @@ export const getStaticProps = async ({
 }: {
   params: { movieId: string }
 }) => {
-  const id = parseInt(params.movieId)
-  if (!params.movieId || isNaN(id)) {
+  const id = parseMovieId(params.movieId)
+  if (!id) {
     return {
       notFound: true
     }

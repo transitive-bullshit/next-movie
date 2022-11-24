@@ -7,6 +7,7 @@ import cs from 'clsx'
 import type { MovieModel, MutateUserMovieFn } from '@/types'
 import { dequal } from '@/lib/dequal'
 import { genreLabelMap } from '@/lib/genres'
+import { getMoviePathname } from '@/lib/utils'
 import imdbLogoImage from '@/public/logos/imdb.png'
 import { ActiveLink } from '@/components/ActiveLink/ActiveLink'
 import { YouTubeButton } from '@/components/YouTubeButton/YouTubeButton'
@@ -116,7 +117,7 @@ export const Movie: React.FC<MovieProps> = React.memo(function Movie({
       </div> */}
 
       <div className={styles.lhs}>
-        <ActiveLink href={`/titles/${movie.id}`}>
+        <ActiveLink href={movie.pathname}>
           <div className={styles.frame}>
             {movie.posterUrl ? (
               <Image
@@ -140,7 +141,7 @@ export const Movie: React.FC<MovieProps> = React.memo(function Movie({
       <div className={styles.main}>
         <div className={styles.header}>
           <div className={styles.leftHeader}>
-            <ActiveLink className={styles.title} href={`/titles/${movie.id}`}>
+            <ActiveLink className={styles.title} href={movie.pathname}>
               <h3>{movie.title}</h3>
             </ActiveLink>
 

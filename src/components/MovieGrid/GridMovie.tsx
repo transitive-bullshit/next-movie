@@ -33,7 +33,7 @@ export const GridMovie: React.FC<{
         {movie.trailerYouTubeId && <YouTubeButtonOverlay movie={movie} />}
       </div>
 
-      <ActiveLink href={`/titles/${movie.id}`} prefetch={false}>
+      <ActiveLink href={movie.pathname} prefetch={false}>
         <h6 className={styles.title}>
           {movie.title}
 

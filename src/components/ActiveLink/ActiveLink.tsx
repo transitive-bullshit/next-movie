@@ -10,6 +10,9 @@ type ActiveLinkProps = LinkProps & {
   className?: string
   activeClassName?: string
   style?: React.CSSProperties
+
+  // optional comparison function to normalize URLs before comparing
+  compare?: (a?: any, b?: any) => boolean
 }
 
 /**
@@ -24,6 +27,7 @@ export const ActiveLink = ({
   activeClassName,
   onClick,
   prefetch,
+  compare = (a, b) => a === b,
   ...props
 }: ActiveLinkProps) => {
   const pathname = usePathname()
@@ -32,8 +36,8 @@ export const ActiveLink = ({
   React.useEffect(() => {
     const linkPathname = new URL(href as string, location.href).pathname
 
-    setDisabled(linkPathname === pathname)
-  }, [pathname, href])
+    setDisabled(compare(linkPathname, pathname))
+  }, [pathname, href, compare])
 
   const styleOverride = React.useMemo<React.CSSProperties>(
     () =>

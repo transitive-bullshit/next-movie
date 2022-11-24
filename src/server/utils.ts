@@ -1,5 +1,6 @@
 import * as types from '@/types'
 import { layoutToDefaultPageSize } from '@/lib/config'
+import { getMoviePathname } from '@/lib/utils'
 
 export function convertMovies(
   movies: types.MovieWithUserMovies[]
@@ -19,6 +20,7 @@ export function convertMovie(
   // const model: types.MovieModel = JSON.parse(JSON.stringify(movie))
   const model: types.MovieModel = {
     ...rest,
+    pathname: getMoviePathname(movie),
     createdAt: movie.createdAt?.toISOString(),
     updatedAt: movie.updatedAt?.toISOString(),
     userMovie: convertUserMovie(userMovies?.[0])
