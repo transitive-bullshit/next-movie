@@ -2,7 +2,6 @@ import * as React from 'react'
 import { unstable_serialize, SWRConfig } from 'swr'
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next'
 
-import * as config from '@/lib/config'
 import { MovieSearch } from '@/components/MovieSearch/MovieSearch'
 import { PageHead } from '@/components/PageHead/PageHead'
 import { Layout } from '@/components/Layout/Layout'
