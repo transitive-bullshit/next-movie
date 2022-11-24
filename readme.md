@@ -100,14 +100,14 @@ Building a better app for finding great movies has been on my proverbial todo li
 
 Post-v1.0:
 
+- [x] User auth and accounts
+  - [x] Watchlist
+  - [x] Seen list + user ratings
 - [ ] Streaming service availability + filters
 - [ ] Add TV series
 - [ ] Advanced search by language, country, etc.
 - [ ] Better movie detail page design
 - [ ] Person detail page
-- [ ] User auth and accounts
-  - [ ] Watchlist
-  - [ ] Seen list + user ratings
 - [ ] Improve text search (fuzzy + weighting)
 - [ ] Weight single view movie selection by `relevancyScore`
 - [ ] Automate scripts to keep movie DB up-to-date
