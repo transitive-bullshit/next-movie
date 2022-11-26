@@ -67,11 +67,14 @@ model Movie {
   metacriticVotes  Int?
 
   // rotten tomatoes
-  rtCriticRating   Int?
-  rtCriticVotes    Int?
-  rtAudienceRating Int?
-  rtAudienceVotes  Int?
-  rtUrl            String?
+  rtCriticRating     Int?
+  rtCriticVotes      Int?
+  rtAudienceRating   Int?
+  rtAudienceVotes    Int?
+  rtCriticsConsensus String? @db.VarChar(1024)
+  rtId               String?
+  emsId              String?
+  rtUrl              String?
 
   // letterboxd
   letterboxdScore Int?
