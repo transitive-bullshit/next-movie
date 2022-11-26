@@ -25,8 +25,8 @@ model Movie {
   plot              String   @db.VarChar(4096)
   runtime           Int
   adult             Boolean  @default(false)
-  budget            Int
-  revenue           String? // overflows int
+  budget            String? // overflows int (esp foreign currencies)
+  revenue           String? // overflows int (Avatar 2009)
   homepage          String?  @db.VarChar(511)
   status            String
   mpaaRating        String?
