@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@hookform/resolvers': ^2.9.10
   '@next-auth/prisma-adapter': ^1.0.5
   '@next/bundle-analyzer': 13.0.5
   '@next/font': 13.0.5
@@ -19,6 +20,7 @@ specifiers:
   autoprefixer: ^10.4.13
   ava: ^5.1.0
   clsx: ^1.2.1
+  csstype: ^3.1.1
   dequal: ^2.0.3
   eslint: ^8.28.0
   eslint-config-next: ^13.0.5
@@ -28,6 +30,7 @@ specifiers:
   isobject: ^4.0.0
   lint-staged: ^13.0.3
   lodash.omit: ^4.5.0
+  lucide-react: ^0.102.0
   mailgun.js: ^8.0.6
   next: 13.0.5
   next-auth: ^4.17.0
@@ -44,6 +47,8 @@ specifiers:
   random: ^4.0.3
   react: 18.2.0
   react-dom: 18.2.0
+  react-hook-form: ^7.39.5
+  react-hot-toast: ^2.4.0
   react-infinite-scroll-hook: ^4.0.4
   react-select: ^5.6.1
   react-spinners: ^0.13.6
@@ -67,6 +72,7 @@ specifiers:
   zod: ^3.19.1
 
 dependencies:
+  '@hookform/resolvers': 2.9.10_react-hook-form@7.39.5
   '@next-auth/prisma-adapter': 1.0.5_o53gfpk3vz2btjrokqfjjwwn3m
   '@next/bundle-analyzer': 13.0.5
   '@next/font': 13.0.5
@@ -78,11 +84,13 @@ dependencies:
   '@trivago/prettier-plugin-sort-imports': 4.0.0_prettier@2.8.0
   '@vercel/og': 0.0.21
   clsx: 1.2.1
+  csstype: 3.1.1
   dequal: 2.0.3
   form-data: 4.0.0
   handlebars: 4.7.7
   isobject: 4.0.0
   lodash.omit: 4.5.0
+  lucide-react: 0.102.0_react@18.2.0
   mailgun.js: 8.0.6
   next: 13.0.5_biqbaboplfbrettd7655fr4n2y
   next-auth: 4.17.0_2xoejpawkzgot77rbv5mbik6ve
@@ -93,6 +101,8 @@ dependencies:
   random: 4.0.3
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-hook-form: 7.39.5_react@18.2.0
+  react-hot-toast: 2.4.0_owo25xnefcwdq3zjgtohz6dbju
   react-infinite-scroll-hook: 4.0.4_react@18.2.0
   react-select: 5.6.1_2zx2umvpluuhvlq44va5bta2da
   react-spinners: 0.13.6_biqbaboplfbrettd7655fr4n2y
@@ -591,6 +601,14 @@ packages:
       use-isomorphic-layout-effect: 1.1.2_fan5qbzahqtxlm5dzefqlqx5ia
     transitivePeerDependencies:
       - '@types/react'
+    dev: false
+
+  /@hookform/resolvers/2.9.10_react-hook-form@7.39.5:
+    resolution: {integrity: sha512-JIL1DgJIlH9yuxcNGtyhsWX/PgNltz+5Gr6+8SX9fhXc/hPbEIk6wPI82nhgvp3uUb6ZfAM5mqg/x7KR7NAb+A==}
+    peerDependencies:
+      react-hook-form: ^7.0.0
+    dependencies:
+      react-hook-form: 7.39.5_react@18.2.0
     dev: false
 
   /@humanwhocodes/config-array/0.11.7:
@@ -3146,6 +3164,14 @@ packages:
     resolution: {integrity: sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==}
     dev: true
 
+  /goober/2.1.11_csstype@3.1.1:
+    resolution: {integrity: sha512-5SS2lmxbhqH0u9ABEWq7WPU69a4i2pYcHeCxqaNq6Cw3mnrF0ghWNM4tEGid4dKy8XNIAUbuThuozDHHKJVh3A==}
+    peerDependencies:
+      csstype: ^3.0.10
+    dependencies:
+      csstype: 3.1.1
+    dev: false
+
   /graceful-fs/4.2.10:
     resolution: {integrity: sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==}
     dev: true
@@ -3861,6 +3887,15 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       yallist: 4.0.0
+
+  /lucide-react/0.102.0_react@18.2.0:
+    resolution: {integrity: sha512-h4BOwyZ0cxqKw1Ftk6aQ/Gp7vEFaaq+AbhZWRbqGJCnBKXnAsf0+M8JRoRJxMqhOAxvl5dRje+eWKCGvO0enTg==}
+    peerDependencies:
+      prop-types: ^15.7.2
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /mailgun.js/8.0.6:
     resolution: {integrity: sha512-b+c7QO1T4oFsudEcRB2H7oZKth8ZDeYRW4xjW12QQVNYDSJCVxqSQfps6ofcH8fqcCMJdzc76HVNGdnUZgBPCw==}
@@ -5024,6 +5059,29 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
+    dev: false
+
+  /react-hook-form/7.39.5_react@18.2.0:
+    resolution: {integrity: sha512-OE0HKyz5IPc6svN2wd+e+evidZrw4O4WZWAWYzQVZuHi+hYnHFSLnxOq0ddjbdmaLIsLHut/ab7j72y2QT3+KA==}
+    engines: {node: '>=12.22.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18
+    dependencies:
+      react: 18.2.0
+    dev: false
+
+  /react-hot-toast/2.4.0_owo25xnefcwdq3zjgtohz6dbju:
+    resolution: {integrity: sha512-qnnVbXropKuwUpriVVosgo8QrB+IaPJCpL8oBI6Ov84uvHZ5QQcTp2qg6ku2wNfgJl6rlQXJIQU5q+5lmPOutA==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: '>=16'
+      react-dom: '>=16'
+    dependencies:
+      goober: 2.1.11_csstype@3.1.1
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    transitivePeerDependencies:
+      - csstype
     dev: false
 
   /react-infinite-scroll-hook/4.0.4_react@18.2.0:

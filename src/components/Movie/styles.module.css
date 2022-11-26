@@ -369,7 +369,13 @@
   cursor: pointer;
   align-self: flex-end;
   justify-self: flex-end;
-  padding: 4px;
+  padding: 8px;
+  border-radius: 4px;
+  background: var(--bg-color-1);
+}
+
+.userMoviePopoverTrigger:hover {
+  background: var(--bg-color-2);
 }
 
 .dotsIcon {
