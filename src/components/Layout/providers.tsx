@@ -11,7 +11,11 @@ export function RootLayoutProviders({
   children: React.ReactNode
 }) {
   return (
-    <ThemeProvider disableTransitionOnChange defaultTheme='dark'>
+    <ThemeProvider
+      attribute='class'
+      defaultTheme='dark'
+      disableTransitionOnChange
+    >
       <YouTubeDialog>{children}</YouTubeDialog>
     </ThemeProvider>
   )

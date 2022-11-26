@@ -16,7 +16,7 @@
   text-decoration: none;
 }
 
-[data-theme='dark'] .markdown a {
+:global(.dark) .markdown a {
   color: #3291ff;
 }
 

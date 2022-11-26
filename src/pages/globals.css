@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
   box-sizing: border-box;
 }
@@ -50,7 +54,7 @@ h6 {
   --gap-2: calc(max(12px, min(48px, 4vmin)));
 }
 
-[data-theme='dark'] {
+.dark {
   --bg-color: #121212;
   --bg-color-0: rgb(71, 76, 80);
   --bg-color-1: rgb(63, 68, 71);

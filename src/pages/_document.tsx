@@ -8,7 +8,7 @@ const htmlStyle: React.CSSProperties = {
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html lang='en' data-theme='dark' style={htmlStyle}>
+      <Html lang='en' dir='ltr' className='dark' style={htmlStyle}>
         <Head>
           <link rel='shortcut icon' href='/favicon.ico' />
         </Head>
