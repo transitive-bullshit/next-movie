@@ -22,7 +22,6 @@ specifiers:
   dequal: ^2.0.3
   eslint: ^8.28.0
   eslint-config-next: ^13.0.5
-  fast-json-stable-stringify: ^2.1.0
   form-data: ^4.0.0
   handlebars: ^4.7.7
   husky: ^8.0.2
@@ -36,14 +35,12 @@ specifiers:
   nodemailer: ^6.8.0
   npm-run-all: ^4.1.5
   p-map: ^5.5.0
-  p-memoize: ^7.1.1
   postcss: ^8.4.19
   postcss-import: ^15.0.0
   prettier: ^2.8.0
   prettier-plugin-tailwindcss: ^0.1.13
   pretty-ms: ^8.0.0
   prisma: ^4.6.1
-  quick-lru: ^6.1.1
   random: ^4.0.3
   react: 18.2.0
   react-dom: 18.2.0
@@ -61,6 +58,7 @@ specifiers:
   remark-rehype: ^10.1.0
   swr: 2.0.0-rc.0
   tailwindcss: ^3.2.4
+  tailwindcss-animate: ^1.0.5
   tsx: ^3.12.1
   typescript: ^4.9.3
   unified: ^10.1.2
@@ -81,7 +79,6 @@ dependencies:
   '@vercel/og': 0.0.21
   clsx: 1.2.1
   dequal: 2.0.3
-  fast-json-stable-stringify: 2.1.0
   form-data: 4.0.0
   handlebars: 4.7.7
   isobject: 4.0.0
@@ -92,9 +89,7 @@ dependencies:
   next-themes: 0.2.1_7iuvftg57tblwyxclfkwku5xo4
   nodemailer: 6.8.0
   p-map: 5.5.0
-  p-memoize: 7.1.1
   pretty-ms: 8.0.0
-  quick-lru: 6.1.1
   random: 4.0.3
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -135,6 +130,7 @@ devDependencies:
   prettier-plugin-tailwindcss: 0.1.13_prettier@2.8.0
   prisma: 4.6.1
   tailwindcss: 3.2.4_postcss@8.4.19
+  tailwindcss-animate: 1.0.5_tailwindcss@3.2.4
   tsx: 3.12.1
   typescript: 4.9.3
 
@@ -2912,6 +2908,7 @@ packages:
 
   /fast-json-stable-stringify/2.1.0:
     resolution: {integrity: sha512-lhd/wF+Lk98HZoTCtlVraHtfh5XYijIjalXck7saUtuanSDyLMxnHhSXEDJqHxD7msR8D0uCmqlkwjCV8xvwHw==}
+    dev: true
 
   /fast-levenshtein/2.0.6:
     resolution: {integrity: sha512-DCXu6Ifhqcks7TZKY3Hxp3y6qphY5SJZmrWMDrKcERSOXWQdMhU9Ig/PYrzyw/ul9jOIyh0N4M0tbC5hodg8dw==}
@@ -4328,6 +4325,7 @@ packages:
   /mimic-fn/4.0.0:
     resolution: {integrity: sha512-vqiC06CuhBTUdZH+RYl8sFrL096vA45Ok5ISO6sE/Mr1jRbGH4Csnhi8f3wKVl7x8mO4Au7Ir9D3Oyv1VYMFJw==}
     engines: {node: '>=12'}
+    dev: true
 
   /mini-svg-data-uri/1.4.4:
     resolution: {integrity: sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==}
@@ -4720,14 +4718,6 @@ packages:
     dependencies:
       aggregate-error: 4.0.1
 
-  /p-memoize/7.1.1:
-    resolution: {integrity: sha512-DZ/bONJILHkQ721hSr/E9wMz5Am/OTJ9P6LhLFo2Tu+jL8044tgc9LwHO8g4PiaYePnlVVRAJcKmgy8J9MVFrA==}
-    engines: {node: '>=14.16'}
-    dependencies:
-      mimic-fn: 4.0.0
-      type-fest: 3.2.0
-    dev: false
-
   /p-timeout/5.1.0:
     resolution: {integrity: sha512-auFDyzzzGZZZdHz3BtET9VEz0SE/uMEAx7uWfGPucfzEwwe/xH0iVeZibQmANYE/hp9T2+UUZT5m+BKyrDp3Ew==}
     engines: {node: '>=12'}
@@ -5018,11 +5008,6 @@ packages:
     resolution: {integrity: sha512-WuyALRjWPDGtt/wzJiadO5AXY+8hZ80hVpe6MyivgraREW751X3SbhRvG3eLKOYN+8VEvqLcf3wdnt44Z4S4SA==}
     engines: {node: '>=10'}
     dev: true
-
-  /quick-lru/6.1.1:
-    resolution: {integrity: sha512-S27GBT+F0NTRiehtbrgaSE1idUAJ5bX8dPAQTdylEyNlrdcH5X4Lz7Edz3DYzecbsCluD5zO8ZNEe04z3D3u6Q==}
-    engines: {node: '>=12'}
-    dev: false
 
   /random/4.0.3:
     resolution: {integrity: sha512-2IKyv2BPuvJ8Y19yEYLMPKgEZ1vWuScayHmI/QC+D9eU5mEqkOJOsCb8KzSwdy/XHb26yYDYjBqR3okBeE97Mg==}
@@ -5843,6 +5828,14 @@ packages:
       tslib: 2.4.1
     dev: true
 
+  /tailwindcss-animate/1.0.5_tailwindcss@3.2.4:
+    resolution: {integrity: sha512-UU3qrOJ4lFQABY+MVADmBm+0KW3xZyhMdRvejwtXqYOL7YjHYxmuREFAZdmVG5LPe5E9CAst846SLC4j5I3dcw==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || insiders'
+    dependencies:
+      tailwindcss: 3.2.4_postcss@8.4.19
+    dev: true
+
   /tailwindcss/3.2.4_postcss@8.4.19:
     resolution: {integrity: sha512-AhwtHCKMtR71JgeYDaswmZXhPcW9iuI9Sp2LvZPo9upDZ7231ZJ7eA9RaURbhpXGVlrjX4cFNlB4ieTetEb7hQ==}
     engines: {node: '>=12.13.0'}
@@ -6003,11 +5996,6 @@ packages:
     resolution: {integrity: sha512-t0rzBq87m3fVcduHDUFhKmyyX+9eo6WQjZvf51Ea/M0Q7+T374Jp1aUiyUl0GKxp8M/OETVHSDvmkyPgvX+X2w==}
     engines: {node: '>=10'}
     dev: true
-
-  /type-fest/3.2.0:
-    resolution: {integrity: sha512-Il3wdLRzWvbAEtocgxGQA9YOoRVeVUGOMBtel5LdEpNeEAol6GJTLw8GbX6Z8EIMfvfhoOXs2bwOijtAZdK5og==}
-    engines: {node: '>=14.16'}
-    dev: false
 
   /typescript/4.9.3:
     resolution: {integrity: sha512-CIfGzTelbKNEnLpLdGFgdyKhG23CKdKgQPOBc+OUNrkJ2vr+KSzsSV5kq5iWhEQbok+quxgGzrAtGWCyU7tHnA==}
