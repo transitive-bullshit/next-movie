@@ -68,7 +68,7 @@ export type IUserAuthSchema = z.infer<typeof UserAuthSchema>
 export interface IMovieSearchResults {
   results: MovieModel[]
   total: number
-  cursor?: number | string
+  cursor?: number | string | null
 }
 
 export interface INextMovieResult {

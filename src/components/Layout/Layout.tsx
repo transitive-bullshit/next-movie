@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { DefaultToastOptions, Toaster } from 'react-hot-toast'
 
 // import { Inter } from '@next/font/google'
 // import cs from 'clsx'
@@ -11,6 +12,16 @@ import styles from './styles.module.css'
 
 // const inter = Inter({ subsets: ['latin'] })
 
+const toastOptions: DefaultToastOptions = {
+  duration: 5000,
+  success: {
+    duration: 4000
+  },
+  error: {
+    duration: 6000
+  }
+}
+
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     // <div className={cs(styles.container, inter.className)}>
@@ -20,6 +31,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
         <main className={styles.main}>{children}</main>
 
+        <Toaster position='bottom-right' toastOptions={toastOptions} />
         <TailwindIndicator />
 
         <Footer className={styles.footer} />

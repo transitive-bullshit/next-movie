@@ -40,7 +40,7 @@
     position: relative;
     transition: unset;
     opacity: 1;
-    border-color: var(--color-fg-4);
+    border-color: var(--fg-color-2);
     border-bottom-width: 0.135rem;
     background: transparent;
     background-origin: border-box;

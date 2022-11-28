@@ -54,14 +54,14 @@
   background-color: transparent;
   cursor: pointer;
   outline: none;
-  transition: all 200ms ease-in;
+  transition: backgrond-color 200ms ease-in, color 200ms ease-in;
 }
 
 .icon {
   box-sizing: border-box;
   padding: 8px !important;
-  width: calc(1em + 24px);
-  height: calc(1em + 24px);
+  width: calc(1rem + 24px);
+  height: calc(1rem + 24px);
 }
 
 .icon > svg {
@@ -71,7 +71,7 @@
 
 .action:not(.active):hover,
 .action:not(.active):focus {
-  transition: all 50ms ease-in;
+  transition: backgrond-color 50ms ease-in, color 50ms ease-in;
   background-color: var(--bg-color-0);
 }
 

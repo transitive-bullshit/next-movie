@@ -61,6 +61,6 @@ export async function searchUserMovies(
   return {
     results: movies,
     total: count,
-    cursor: movies[movies.length - 1]?.id
+    cursor: movies[movies.length - 1]?.id || null
   }
 }

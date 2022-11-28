@@ -28,7 +28,8 @@
   position: relative;
   transition: unset;
   opacity: 1;
-  border-color: var(--color-fg-4);
+  color: unset;
+  border-color: var(--fg-color-2);
   border-bottom-width: 0.135rem;
   background: transparent;
   background-origin: border-box;
@@ -52,6 +53,7 @@
 
 .markdown a:hover:not(:has(img)),
 .markdown a:focus:not(:has(img)) {
+  color: var(--tw-prose-links);
   text-decoration: none;
   border-bottom-color: transparent;
 
