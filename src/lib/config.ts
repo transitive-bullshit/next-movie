@@ -47,8 +47,9 @@ export const githubIconUrl = `${prodUrl}/icons/github.png`
 //   // auth pages
 //   // TODO: these pages are temporary defaults from next-auth
 //   pages: {
-//     signIn: '/api/auth/login',
-//     signOut: '/api/auth/login',
+//     signIn: '/login',
+//     signUp: '/signup',
+//     signOut: '/api/auth/signout',
 //     verifyRequest: '/api/auth/verify-request'
 //   }
 // }

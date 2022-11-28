@@ -401,3 +401,8 @@
 .field .select {
   width: 100%;
 }
+
+.select input:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}

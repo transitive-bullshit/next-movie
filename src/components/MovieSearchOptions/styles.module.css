@@ -38,6 +38,11 @@
   min-height: 42px;
 }
 
+.select input:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
 .input {
   all: unset;
   box-sizing: border-box;

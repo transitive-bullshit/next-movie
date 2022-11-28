@@ -1,8 +1,6 @@
 const { fontFamily } = require('tailwindcss/defaultTheme')
 const colors = require('tailwindcss/colors')
 
-console.log('colors', colors)
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class',
