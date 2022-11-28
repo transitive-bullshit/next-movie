@@ -19,7 +19,7 @@ export default function LoginPage() {
             </p>
           </div>
 
-          <UserAuthForm emailCTA='Sign in with email' />
+          <UserAuthForm />
 
           <p className='px-8 text-center text-sm text-fg-1'>
             Don&apos;t have an account?{' '}

@@ -107,9 +107,10 @@ model UserMovie {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  status String?
-  rating Int?
-  notes  String? @db.Text
+  status  String?
+  rating  Int?
+  notes   String? @db.Text
+  ignored Boolean @default(false)
 
   movieId Int
   userId  String
@@ -121,6 +122,7 @@ model UserMovie {
   @@index([userId, movieId])
   @@index([userId, status, createdAt])
   @@index([userId, rating])
+  @@index([userId, ignored])
 }
 
 model Account {

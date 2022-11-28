@@ -10,19 +10,16 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
 
 import { SpinnerIcon } from '@/icons'
-import { UserAuthSchema } from '@/types'
 
-interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
-  emailCTA: React.ReactNode
-}
+interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
+
+const UserAuthSchema = z.object({
+  email: z.string().email()
+})
 
 type FormData = z.infer<typeof UserAuthSchema>
 
-export function UserAuthForm({
-  className,
-  emailCTA,
-  ...props
-}: UserAuthFormProps) {
+export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const {
     register,
     handleSubmit,
@@ -82,11 +79,11 @@ export function UserAuthForm({
           </div>
 
           <button
-            className='inline-flex w-full items-center justify-center rounded-lg bg-fg-0 px-5 py-2.5 text-center text-sm font-medium text-bg-0 hover:bg-fg-1 focus:outline-none focus:ring-4 focus:ring-fg-0/50 disabled:opacity-50 dark:hover:bg-fg-2 dark:focus:ring-bg-4'
+            className='inline-flex w-full items-center justify-center rounded-lg bg-fg-0 border border-fg-0 px-5 py-2.5 text-center text-sm font-medium text-bg-0 hover:bg-bg-0 hover:text-fg-0 focus:outline-none focus:ring-4 focus:ring-fg-0/50 disabled:opacity-50 dark:focus:ring-bg-4 transition-colors'
             disabled={isLoading}
           >
             {isLoading && <SpinnerIcon className='mr-2 h-4 w-4 animate-spin' />}
-            {emailCTA}
+            Send magic link
           </button>
         </div>
       </form>
@@ -103,7 +100,7 @@ export function UserAuthForm({
 
       <button
         type='button'
-        className='inline-flex w-full items-center justify-center rounded-lg border bg-bg-0 px-5 py-2.5 text-center text-sm font-medium text-fg-0 hover:bg-bg-1 focus:outline-none focus:ring-4 focus:ring-fg-0/50 disabled:opacity-50 dark:hover:bg-bg-2 dark:focus:ring-bg-4 dark:border-fg-2 dark:hover:border-bg-2'
+        className='inline-flex w-full items-center justify-center rounded-lg border bg-bg-0 px-5 py-2.5 text-center text-sm font-medium text-fg-0 hover:bg-bg-1 focus:outline-none focus:ring-4 focus:ring-fg-0/50 disabled:opacity-50 dark:hover:bg-bg-2 dark:focus:ring-bg-4 dark:border-fg-2 dark:hover:border-bg-2 transition-colors'
         onClick={() => signIn('github')}
         disabled={isLoading}
       >

@@ -25,7 +25,7 @@ export default function SignupPage() {
             </p>
           </div>
 
-          <UserAuthForm emailCTA='Sign up with email' />
+          <UserAuthForm />
 
           <p className='px-8 text-center text-sm text-fg-1'>
             Already have an account?{' '}

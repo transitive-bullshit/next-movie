@@ -7,6 +7,7 @@ import ms from 'pretty-ms'
 import { ActiveLink } from '@/components/ActiveLink/ActiveLink'
 import { YouTubeButton } from '@/components/YouTubeButton/YouTubeButton'
 import { Star } from '@/icons/Star'
+import { isDev } from '@/lib/config'
 import { dequal } from '@/lib/dequal'
 import { genreLabelMap } from '@/lib/genres'
 import imdbLogoImage from '@/public/logos/imdb.png'
@@ -77,7 +78,7 @@ export const Movie: React.FC<MovieProps> = React.memo(function Movie({
   let rtAudienceScoreImage = rtAudienceScoreEmptyImage
 
   if (movie.rtCriticRating) {
-    if (movie.rtCriticVotes! > 5) {
+    if (movie.rtCriticVotes! >= 5) {
       if (movie.rtCriticRating >= 90) {
         rtCriticScoreImage = rtCriticScoreCertifiedFreshImage
       } else if (movie.rtCriticRating >= 60) {
@@ -89,7 +90,7 @@ export const Movie: React.FC<MovieProps> = React.memo(function Movie({
   }
 
   if (movie.rtAudienceRating) {
-    if (movie.rtAudienceVotes! > 50) {
+    if (movie.rtAudienceVotes! >= 50) {
       if (movie.rtAudienceRating >= 60) {
         rtAudienceScoreImage = rtAudienceScoreFreshImage
       } else {
@@ -212,13 +213,15 @@ export const Movie: React.FC<MovieProps> = React.memo(function Movie({
                 </>
               ) : null}
 
-              {/* <>
-                <div className={styles.label}>Score</div>
+              {isDev && (
+                <>
+                  <div className={styles.label}>Score</div>
 
-                <div className={styles.cast}>
-                  {(movie.relevancyScore! | 0).toLocaleString('en-US')}
-                </div>
-              </> */}
+                  <div>
+                    {(movie.relevancyScore! | 0).toLocaleString('en-US')}
+                  </div>
+                </>
+              )}
             </div>
           </div>
 

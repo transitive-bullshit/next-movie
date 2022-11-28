@@ -55,10 +55,6 @@ export const UpsertUserMovieBody = z.object({
   notes: z.string().optional()
 })
 
-export const UserAuthSchema = z.object({
-  email: z.string().email()
-})
-
 export type IMovieSearchOptions = z.infer<typeof MovieSearchOptionsSchema>
 export type IMovieSearchLayout = z.infer<typeof MovieSearchLayout>
 export type INextMovieOptions = z.infer<typeof NextMovieOptionsSchema>
