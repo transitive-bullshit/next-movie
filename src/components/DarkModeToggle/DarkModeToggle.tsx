@@ -3,7 +3,7 @@
 import * as React from 'react'
 import cs from 'clsx'
 
-import { Moon, Sun } from '@/icons/index'
+import { Moon, Sun } from '@/icons'
 import { useTheme } from '@/lib/hooks/use-theme'
 
 import styles from './styles.module.css'

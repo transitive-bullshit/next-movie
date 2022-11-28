@@ -146,39 +146,41 @@ export const UserMoviePopover: React.FC<{
         <DotsVerticalIcon className={styles.dotsIcon} />
       </PopoverTrigger>
 
-      <PopoverContent className={styles.userMoviePopoverContent}>
-        <div className={styles.field}>
-          <label htmlFor='status'>Status</label>
+      <PopoverContent className={styles.userMoviePopoverContent} close={true}>
+        <div className={styles.popoverContent}>
+          <div className={styles.field}>
+            <label htmlFor='status'>Status</label>
 
-          <Select
-            name='status'
-            id='status'
-            instanceId='status'
-            aria-label='Status'
-            placeholder='Status'
-            className={styles.select}
-            options={statusOptions}
-            styles={selectStyles}
-            value={selectedStatusValue}
-            onChange={onChangeStatus}
-          />
-        </div>
+            <Select
+              name='status'
+              id='status'
+              instanceId='status'
+              aria-label='Status'
+              placeholder='Status'
+              className={styles.select}
+              options={statusOptions}
+              styles={selectStyles}
+              value={selectedStatusValue}
+              onChange={onChangeStatus}
+            />
+          </div>
 
-        <div className={styles.field}>
-          <label htmlFor='score'>Score</label>
+          <div className={styles.field}>
+            <label htmlFor='score'>Score</label>
 
-          <Select
-            name='score'
-            id='score'
-            instanceId='score'
-            aria-label='Score'
-            placeholder='Score'
-            className={styles.select}
-            options={scoreOptions}
-            styles={selectStyles}
-            value={selectedScoreValue}
-            onChange={onChangeScore}
-          />
+            <Select
+              name='score'
+              id='score'
+              instanceId='score'
+              aria-label='Score'
+              placeholder='Score'
+              className={styles.select}
+              options={scoreOptions}
+              styles={selectStyles}
+              value={selectedScoreValue}
+              onChange={onChangeScore}
+            />
+          </div>
         </div>
       </PopoverContent>
     </Popover>

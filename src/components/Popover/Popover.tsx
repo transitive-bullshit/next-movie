@@ -11,13 +11,14 @@ import styles from './styles.module.css'
 export const Popover = PopoverPrimitive.Root
 export const PopoverTrigger = PopoverPrimitive.Trigger
 
-type PopoverContentPrimitiveProps = React.ComponentProps<
-  typeof PopoverPrimitive.Content
->
+interface PopoverContentPrimitiveProps
+  extends React.ComponentProps<typeof PopoverPrimitive.Content> {
+  close?: boolean
+}
 
 export const PopoverContent: React.FC<PopoverContentPrimitiveProps> =
   React.forwardRef(function PopoverContent(
-    { children, className, ...props },
+    { children, className, close, ...props },
     forwardedRef
   ) {
     return (
@@ -30,12 +31,14 @@ export const PopoverContent: React.FC<PopoverContentPrimitiveProps> =
         >
           {children}
 
-          <PopoverPrimitive.Close
-            className={styles.popoverClose}
-            aria-label='Close'
-          >
-            <CrossIcon />
-          </PopoverPrimitive.Close>
+          {close && (
+            <PopoverPrimitive.Close
+              className={styles.popoverClose}
+              aria-label='Close'
+            >
+              <CrossIcon />
+            </PopoverPrimitive.Close>
+          )}
 
           <PopoverPrimitive.Arrow className={styles.popoverArrow} />
         </PopoverPrimitive.Content>

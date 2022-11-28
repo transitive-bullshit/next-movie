@@ -1,5 +1,10 @@
-export const Sun = () => (
-  <svg fill='currentColor' stroke='currentColor' viewBox='0 0 512 512'>
+export const Sun = ({ className }: { className?: string }) => (
+  <svg
+    fill='currentColor'
+    stroke='currentColor'
+    viewBox='0 0 512 512'
+    className={className}
+  >
     <path
       fill='none'
       strokeLinecap='round'

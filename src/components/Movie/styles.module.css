@@ -406,3 +406,11 @@
   outline: none !important;
   box-shadow: none !important;
 }
+
+.popoverContent {
+  padding: 16px;
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}

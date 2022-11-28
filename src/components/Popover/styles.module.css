@@ -1,7 +1,5 @@
 .popoverContent {
   border-radius: 4px;
-  padding: 16px;
-  width: 260px;
   background-color: #fff;
   box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
     hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
@@ -10,10 +8,6 @@
   will-change: transform, opacity;
 
   color: #24292f;
-
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
 
   --violet1: hsl(255, 65%, 99.4%);
   --violet2: hsl(252, 100%, 99%);
