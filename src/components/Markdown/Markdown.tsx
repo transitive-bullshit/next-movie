@@ -12,7 +12,7 @@ export const Markdown: React.FC<{ className?: string; content: string }> = ({
 }) => {
   return (
     <div
-      className={cs(styles.markdown, className)}
+      className={cs('prose dark:prose-invert', styles.markdown, className)}
       dangerouslySetInnerHTML={{ __html: content }}
     />
   )

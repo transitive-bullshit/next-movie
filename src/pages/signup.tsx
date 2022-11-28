@@ -19,25 +19,32 @@ export default function SignupPage() {
       <div className='container flex flex-col items-center justify-center flex-1 w-full'>
         <div className='mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]'>
           <div className='flex flex-col space-y-2 text-center'>
-            <h1 className='text-2xl font-bold'>Create an account</h1>
-            <p className='text-sm text-slate-600'>
+            <h1 className='text-2xl font-bold'>Sign Up</h1>
+            <p className='text-sm text-fg-1'>
               Enter your email below to create an account
             </p>
           </div>
 
-          <UserAuthForm />
+          <UserAuthForm emailCTA='Sign up with email' />
 
-          <p className='px-8 text-center text-sm text-slate-600'>
+          <p className='px-8 text-center text-sm text-fg-1'>
+            Already have an account?{' '}
+            <Link href='/login' className='link'>
+              Log in
+            </Link>
+          </p>
+
+          {/* TODO <p className='px-8 text-center text-sm text-fg-2'>
             By creating an account, you agree to our{' '}
-            <Link href='/terms' className='underline hover:text-brand'>
+            <Link href='/terms' className='link'>
               Terms of Service
             </Link>{' '}
             and{' '}
-            <Link href='/privacy' className='underline hover:text-brand'>
+            <Link href='/privacy' className='link'>
               Privacy Policy
             </Link>
             .
-          </p>
+          </p> */}
         </div>
       </div>
     </Layout>

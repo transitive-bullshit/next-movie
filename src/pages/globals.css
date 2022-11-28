@@ -2,6 +2,68 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    /* For rgb(255 115 179 / <alpha-value>) */
+    --color-fg-0: 36 41 47;
+    --color-fg-1: 51 65 85;
+    --color-fg-2: 71 85 105;
+    --color-fg-3: 100 116 139;
+    --color-fg-4: 148 163 184;
+
+    --color-bg-0: 255 255 255;
+    --color-bg-1: 241 245 249;
+    --color-bg-2: 226 232 240;
+    --color-bg-3: 203 213 225;
+    --color-bg-4: 148 163 184;
+  }
+
+  .dark {
+    --color-fg-0: 255 255 255;
+    /* --color-fg-1: 241 245 249; */
+    --color-fg-1: 226 232 240;
+    --color-fg-2: 203 213 225;
+    --color-fg-3: 148 163 184;
+    --color-fg-4: 100 116 139;
+
+    --color-bg-0: 18 18 18;
+    --color-bg-1: 51 65 85;
+    --color-bg-2: 71 85 105;
+    --color-bg-3: 100 116 139;
+    --color-bg-4: 148 163 184;
+  }
+
+  .link {
+    display: inline-block;
+    text-decoration: none;
+    line-height: 1.3;
+    position: relative;
+    transition: unset;
+    opacity: 1;
+    border-color: var(--color-fg-4);
+    border-bottom-width: 0.135rem;
+    background: transparent;
+    background-origin: border-box;
+    background-repeat: no-repeat;
+    background-position: 50% 100%;
+    background-size: 0 0.135rem;
+  }
+
+  .link:focus,
+  .link:hover {
+    text-decoration: none;
+    border-bottom-color: transparent;
+
+    background-image: linear-gradient(90.68deg, #b439df 0.26%, #e5337e 102.37%);
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 100% 0.135rem;
+
+    transition-property: background-position, background-size;
+    transition-duration: 300ms;
+  }
+}
+
 * {
   box-sizing: border-box;
 }

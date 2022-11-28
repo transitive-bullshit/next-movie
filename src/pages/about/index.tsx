@@ -70,6 +70,7 @@ export default function AboutPage({
           <p className={styles.detail}>
             By{' '}
             <a
+              className='link'
               href={config.twitterUrl}
               title={`Twitter ${config.twitter}`}
               target='_blank'
