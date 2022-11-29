@@ -104,6 +104,14 @@ export const getServerSideProps = async (
 
   const movie = convertMovie(result)
 
+  if (!session) {
+    const ttlSeconds = 60 * 60 * 24 // one day
+    context.res.setHeader(
+      'Cache-Control',
+      `public, max-age=${ttlSeconds}, stale-while-revalidate=${ttlSeconds}`
+    )
+  }
+
   return {
     props: {
       movie
