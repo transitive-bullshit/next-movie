@@ -31,7 +31,7 @@ export function UserDropdown() {
     <div className='relative inline-block text-left'>
       <Popover>
         <PopoverTrigger>
-          <button className='flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border border-gray-300 transition-all duration-75 focus:outline-none active:scale-95 sm:h-10 sm:w-10'>
+          <div className='flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border border-gray-300 transition-all duration-75 focus:outline-none active:scale-95 sm:h-10 sm:w-10'>
             {session && (
               // eslint-disable-next-line @next/next/no-img-element
               <img
@@ -39,7 +39,7 @@ export function UserDropdown() {
                 src={`https://avatars.dicebear.com/api/identicon/${session?.user?.email}.svg?scale=50`}
               />
             )}
-          </button>
+          </div>
         </PopoverTrigger>
 
         <PopoverContent align='end'>

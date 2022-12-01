@@ -1,4 +1,4 @@
-import { Info, Loader2, LogOut, Play } from 'lucide-react'
+import { Info, Loader2, LogOut, Play, Slash } from 'lucide-react'
 import type { Icon as LucideIcon } from 'lucide-react'
 
 export type Icon = LucideIcon
@@ -7,6 +7,7 @@ export { Loader2 as SpinnerIcon }
 export { LogOut as LogoutIcon }
 export { Play as WatchlistIcon }
 export { Info as InfoIcon }
+export { Slash as IgnoreIcon }
 
 export * from './Check'
 export * from './Clear'

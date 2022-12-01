@@ -42,6 +42,16 @@ export function convertUserMovies(
   return models
 }
 
+export function convertUserMovieToMovie(
+  input: types.UserMovieWithMovie
+): types.MovieModel {
+  const { movie, ...userMovie } = input
+  return convertMovie({
+    ...movie,
+    userMovies: [userMovie]
+  })
+}
+
 export function convertUserMovie(
   userMovie?: types.UserMovie
 ): types.UserMovieModel | null {
@@ -60,7 +70,8 @@ export function convertUserMovie(
 }
 
 export function parseMovieQuery(
-  opts: types.IMovieSearchOptions & { skip?: number }
+  opts: types.IMovieSearchOptions & { skip?: number },
+  session?: types.Session | null
 ) {
   const where: types.Prisma.MovieWhereInput = {}
 
@@ -158,6 +169,17 @@ export function parseMovieQuery(
     where.rtAudienceRating = {
       ...(where.rtAudienceRating as any),
       lte: opts.rtAudienceRatingMax
+    }
+  }
+
+  if (session) {
+    where.userMovies = {
+      every: {
+        ignored:
+          opts.userMovie?.ignored !== undefined
+            ? opts.userMovie?.ignored
+            : false
+      }
     }
   }
 

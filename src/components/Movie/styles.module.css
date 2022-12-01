@@ -365,7 +365,7 @@
   }
 }
 
-.userMoviePopoverTrigger {
+.userMovieButton {
   cursor: pointer;
   align-self: flex-end;
   justify-self: flex-end;
@@ -374,11 +374,11 @@
   background: var(--bg-color-1);
 }
 
-.userMoviePopoverTrigger:hover {
+.userMovieButton:hover {
   background: var(--bg-color-2);
 }
 
-.dotsIcon {
+.userMovieButtonIcon {
   display: block;
   width: 24px;
   height: 24px;

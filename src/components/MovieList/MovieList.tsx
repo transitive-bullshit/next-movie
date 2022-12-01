@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { AnimatePresence } from 'framer-motion'
 
 import { Movie } from '@/components/Movie/Movie'
 import type { MovieModel, MutateUserMovieFn } from '@/types'
@@ -11,9 +12,15 @@ export const MovieList: React.FC<{
 }> = ({ movies, mutateUserMovie }) => {
   return (
     <div className={styles.movieList}>
-      {movies.map((movie) => (
-        <Movie key={movie.id} movie={movie} mutateUserMovie={mutateUserMovie} />
-      ))}
+      <AnimatePresence mode='popLayout' initial={false}>
+        {movies.map((movie) => (
+          <Movie
+            key={movie.id}
+            movie={movie}
+            mutateUserMovie={mutateUserMovie}
+          />
+        ))}
+      </AnimatePresence>
     </div>
   )
 }

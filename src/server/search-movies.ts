@@ -16,7 +16,7 @@ export async function searchMovies(
   opts: types.IMovieSearchOptions & { skip?: number },
   session?: types.Session | null
 ): Promise<types.IMovieSearchResults> {
-  const { where, orderBy, cursor, take, skip } = parseMovieQuery(opts)
+  const { where, orderBy, cursor, take, skip } = parseMovieQuery(opts, session)
 
   const include: types.Prisma.MovieInclude | undefined = session?.user?.id
     ? {

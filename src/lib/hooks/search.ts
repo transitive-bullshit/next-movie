@@ -62,11 +62,11 @@ function useSearch() {
     isValidating,
     mutate
   } = useSWRInfinite<types.IMovieSearchResults, Error>(getKey, fetcher, {
-    // treat movie results as immutable
-    keepPreviousData: true,
+    keepPreviousData: true, // TODO?
     revalidateIfStale: true,
     revalidateOnFocus: false,
-    revalidateOnReconnect: false
+    revalidateOnReconnect: false,
+    revalidateAll: true
     // dedupingInterval: 24 * 60 * 1000
   })
 
@@ -75,7 +75,7 @@ function useSearch() {
       const { movieId, ...patch } = userMovie
 
       const updateResults = (
-        userMovie: Partial<types.UserMovie>,
+        userMovie: Partial<types.UserMovieModel>,
         current = searchResults
       ) => {
         // console.log('updateResults 0', { userMovie, current })
@@ -133,7 +133,12 @@ function useSearch() {
   )
 
   const searchResultMovies = React.useMemo(
-    () => searchResults?.flatMap((searchResult) => searchResult.results),
+    () =>
+      searchResults?.flatMap((searchResult) =>
+        searchResult.results.filter(
+          (movie) => movie.userMovie?.ignored !== true
+        )
+      ),
     [searchResults]
   )
 

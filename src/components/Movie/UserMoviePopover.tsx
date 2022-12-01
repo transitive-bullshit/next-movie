@@ -142,8 +142,8 @@ export const UserMoviePopover: React.FC<{
 
   return (
     <Popover>
-      <PopoverTrigger className={styles.userMoviePopoverTrigger}>
-        <DotsVerticalIcon className={styles.dotsIcon} />
+      <PopoverTrigger className={styles.userMovieButton}>
+        <DotsVerticalIcon className={styles.userMovieButtonIcon} />
       </PopoverTrigger>
 
       <PopoverContent className={styles.userMoviePopoverContent} close={true}>

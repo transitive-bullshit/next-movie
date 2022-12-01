@@ -1,5 +1,6 @@
 import * as React from 'react'
 import cs from 'clsx'
+import { motion } from 'framer-motion'
 import Image from 'next/image'
 
 import { ActiveLink } from '@/components/ActiveLink/ActiveLink'
@@ -11,9 +12,15 @@ import styles from './styles.module.css'
 export const GridMovie: React.FC<{
   movie: MovieModel
   mutateUserMovie?: MutateUserMovieFn
-}> = ({ movie }) => {
+}> = React.forwardRef(function GridMovie({ movie }, ref) {
   return (
-    <div className={styles.gridMovie}>
+    <motion.div
+      className={styles.gridMovie}
+      initial={{ scale: 0, translateY: -200 }}
+      animate={{ scale: 1, translateY: 0 }}
+      exit={{ scale: 0, translateY: 200 }}
+      ref={ref as any}
+    >
       <div className={styles.frame}>
         {movie.posterUrl ? (
           <Image
@@ -42,6 +49,6 @@ export const GridMovie: React.FC<{
           )}
         </h6>
       </ActiveLink>
-    </div>
+    </motion.div>
   )
-}
+})

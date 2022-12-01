@@ -34,7 +34,8 @@ export const MovieSearchOptionsSchema = z.object({
 
   userMovie: z
     .object({
-      status: z.string().optional()
+      status: z.string().optional(),
+      ignored: z.boolean().optional()
     })
     .optional(),
 
@@ -59,7 +60,6 @@ export type IMovieSearchOptions = z.infer<typeof MovieSearchOptionsSchema>
 export type IMovieSearchLayout = z.infer<typeof MovieSearchLayout>
 export type INextMovieOptions = z.infer<typeof NextMovieOptionsSchema>
 export type IUpsertUserMovieBody = z.infer<typeof UpsertUserMovieBody>
-export type IUserAuthSchema = z.infer<typeof UserAuthSchema>
 
 export interface IMovieSearchResults {
   results: MovieModel[]

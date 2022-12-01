@@ -11,14 +11,21 @@ export async function searchUserMovies(
     throw new Error('Requires authentication')
   }
 
-  const query = parseMovieQuery(opts)
+  const query = parseMovieQuery(opts, session)
+  delete query.where.userMovies
+
   const where: types.Prisma.UserMovieWhereInput = {
     userId: session.user.id,
-    movie: query.where
+    movie: query.where,
+    ignored: false
   }
 
   if (opts.userMovie?.status) {
     where.status = opts.userMovie.status
+  }
+
+  if (opts.userMovie?.ignored) {
+    where.ignored = opts.userMovie.ignored
   }
 
   const orderBy: types.Prisma.Enumerable<types.Prisma.UserMovieOrderByWithAggregationInput> =

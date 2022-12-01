@@ -1,6 +1,7 @@
 'use client'
 
 import * as React from 'react'
+import { MotionConfig } from 'framer-motion'
 import { ThemeProvider } from 'next-themes'
 
 import { YouTubeDialog } from '@/components/YouTubeDialog/YouTubeDialog'
@@ -16,7 +17,9 @@ export function RootLayoutProviders({
       defaultTheme='dark'
       disableTransitionOnChange
     >
-      <YouTubeDialog>{children}</YouTubeDialog>
+      <MotionConfig reducedMotion='user'>
+        <YouTubeDialog>{children}</YouTubeDialog>
+      </MotionConfig>
     </ThemeProvider>
   )
 }

@@ -8,7 +8,8 @@ import { convertUserMovie } from '@/server/utils'
 export const Body = z.object({
   status: z.string().optional().nullable(),
   rating: z.number().nonnegative().lte(100).optional().nullable(),
-  notes: z.string().optional().nullable()
+  notes: z.string().optional().nullable(),
+  ignored: z.boolean().optional()
 })
 
 export type IBody = z.infer<typeof Body>
@@ -22,7 +23,7 @@ export const Query = z.object({
 
 export type IQuery = z.infer<typeof Query>
 
-export default createAPIHandler<IQuery, IBody, types.UserMovieModel>(
+export default createAPIHandler<IQuery, IBody, types.MovieModel>(
   {
     auth: 'required',
     methods: ['POST'],
@@ -57,6 +58,7 @@ export default createAPIHandler<IQuery, IBody, types.UserMovieModel>(
     // })
 
     const movie = convertUserMovie(result)
+    console.log('UserMovie upsert', movie)
     return res.status(200).json(movie)
   }
 )
