@@ -16,9 +16,9 @@ export const GridMovie: React.FC<{
   return (
     <motion.div
       className={styles.gridMovie}
-      initial={{ scale: 0, translateY: -200 }}
+      initial={{ scale: 0, translateY: -100 }}
       animate={{ scale: 1, translateY: 0 }}
-      exit={{ scale: 0, translateY: 200 }}
+      exit={{ scale: 0, translateY: 100 }}
       ref={ref as any}
     >
       <div className={styles.frame}>
