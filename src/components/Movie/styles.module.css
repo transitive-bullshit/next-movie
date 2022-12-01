@@ -379,6 +379,7 @@
   padding: 8px;
   border-radius: 4px;
   background: var(--bg-color-1);
+  user-select: none;
 }
 
 .userMovieButton:hover {
@@ -420,4 +421,18 @@
   display: flex;
   flex-direction: column;
   gap: 1em;
+}
+
+.watchlist {
+  color: #cbf2db;
+}
+.watchlist:hover {
+  color: #50d386;
+}
+
+.ignore {
+  color: #f2d1de;
+}
+.ignore:hover {
+  color: #ed5495;
 }

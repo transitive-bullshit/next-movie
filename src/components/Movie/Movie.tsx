@@ -16,6 +16,7 @@ import type { MovieModel, MutateUserMovieFn } from '@/types'
 
 import { UserMovieIgnoreButton } from './UserMovieIgnoreButton'
 import { UserMoviePopover } from './UserMoviePopover'
+import { UserMovieWatchlistButton } from './UserMovieWatchlistButton'
 import styles from './styles.module.css'
 
 const rtCriticScoreEmptyImage = '/images/rt-critics-empty.svg'
@@ -103,9 +104,9 @@ export const Movie: React.FC<MovieProps> = React.memo(
     return (
       <motion.div
         className={cs(styles.movie, styles[`variant-${variant}`])}
-        initial={{ scale: 0, translateY: -200 }}
+        initial={{ scale: 0, translateY: -50 }}
         animate={{ scale: 1, translateY: 0 }}
-        exit={{ scale: 0, translateY: 200 }}
+        exit={{ scale: 0, translateY: 50 }}
         ref={ref as any}
       >
         {/* <div className={styles.backdropWrapper}>
@@ -340,6 +341,11 @@ export const Movie: React.FC<MovieProps> = React.memo(
               {mutateUserMovie && (
                 <div className='flex gap-4 w-full justify-around md:justify-end'>
                   <UserMovieIgnoreButton
+                    movie={movie}
+                    mutateUserMovie={mutateUserMovie}
+                  />
+
+                  <UserMovieWatchlistButton
                     movie={movie}
                     mutateUserMovie={mutateUserMovie}
                   />

@@ -5,13 +5,13 @@ import cs from 'clsx'
 import { useSession } from 'next-auth/react'
 
 import { Tooltip } from '@/components/Tooltip/Tooltip'
-import { IgnoreIcon, IsIgnoredIcon } from '@/icons'
+import { InWatchlistIcon, WatchlistIcon } from '@/icons'
 import { dequal } from '@/lib/dequal'
 import type { MovieModel, MutateUserMovieFn, UserMovieModel } from '@/types'
 
 import styles from './styles.module.css'
 
-export const UserMovieIgnoreButton: React.FC<{
+export const UserMovieWatchlistButton: React.FC<{
   movie: MovieModel
   mutateUserMovie: MutateUserMovieFn
 }> = ({ movie, mutateUserMovie }) => {
@@ -19,14 +19,14 @@ export const UserMovieIgnoreButton: React.FC<{
   const [userMovie, setUserMovie] =
     React.useState<Partial<UserMovieModel> | null>(movie.userMovie)
 
-  const onChangeIgnore = React.useCallback(() => {
+  const onChangeWatchlist = React.useCallback(() => {
     const update = {
       ...movie.userMovie,
       movieId: movie.id,
-      ignored: !movie.userMovie?.ignored
+      status: movie.userMovie?.status === 'planning' ? null : 'planning'
     }
 
-    console.log('update', update, movie.userMovie?.ignored)
+    console.log('update', update)
     setUserMovie(update)
     if (!dequal(update, movie.userMovie)) {
       mutateUserMovie(update as UserMovieModel)
@@ -34,6 +34,7 @@ export const UserMovieIgnoreButton: React.FC<{
   }, [movie, mutateUserMovie])
 
   React.useEffect(() => {
+    // update local cache from prop changes
     if (!dequal(userMovie, movie.userMovie)) {
       setUserMovie(movie.userMovie)
     }
@@ -45,22 +46,24 @@ export const UserMovieIgnoreButton: React.FC<{
     return null
   }
 
-  const isIgnored = !!userMovie?.ignored
+  const isPlanning = userMovie?.status === 'planning'
 
   return (
-    <Tooltip content={isIgnored ? 'Reset not interested' : 'Not Interested'}>
+    <Tooltip
+      content={isPlanning ? 'Remove from Watchlist' : 'Add to Watchlist'}
+    >
       <div
         className={cs(
           styles.userMovieButton,
-          styles.ignore,
-          isIgnored && styles.isIgnored
+          styles.watchlist,
+          isPlanning && styles.isPlanning
         )}
-        onClick={onChangeIgnore}
+        onClick={onChangeWatchlist}
       >
-        {isIgnored ? (
-          <IsIgnoredIcon className={styles.userMovieButtonIcon} />
+        {isPlanning ? (
+          <InWatchlistIcon className={styles.userMovieButtonIcon} />
         ) : (
-          <IgnoreIcon className={styles.userMovieButtonIcon} />
+          <WatchlistIcon className={styles.userMovieButtonIcon} />
         )}
       </div>
     </Tooltip>
