@@ -48,6 +48,7 @@ Building a better app for finding great movies has been on my proverbial todo li
 - Dark mode
 - Hosted on **Vercel**
 - ORM using **Prisma** + **Postgres**
+- Authentication using **Next Auth**
 - UI components built using **Radix UI**
 - Styled using **CSS Modules**
 - Data fetching using **SWR**
@@ -99,14 +100,14 @@ Building a better app for finding great movies has been on my proverbial todo li
 
 Post-v1.0:
 
+- [x] User auth and accounts
+  - [x] Watchlist
+  - [x] Seen list + user ratings
 - [ ] Streaming service availability + filters
 - [ ] Add TV series
 - [ ] Advanced search by language, country, etc.
 - [ ] Better movie detail page design
 - [ ] Person detail page
-- [ ] User auth and accounts
-  - [ ] Watchlist
-  - [ ] Seen list + user ratings
 - [ ] Improve text search (fuzzy + weighting)
 - [ ] Weight single view movie selection by `relevancyScore`
 - [ ] Automate scripts to keep movie DB up-to-date
@@ -136,7 +137,7 @@ Under the hood, `next-movie` uses [populate-movies](https://github.com/transitiv
 
 ## Contributing
 
-See the [contribution guide](contributing.md) and join our amazing list of [contributors](https://github.com/transitive-bullshit/next-movie/graphs/contributors).
+See the [contribution guide](contributing.md).
 
 ## License
 

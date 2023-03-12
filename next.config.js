@@ -5,9 +5,8 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
-  swcMinify: false,
   experimental: {
-    appDir: true
+    appDir: false
   },
   images: {
     domains: ['image.tmdb.org']
