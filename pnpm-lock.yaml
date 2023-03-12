@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@hookform/resolvers': ^2.9.10
   '@next-auth/prisma-adapter': ^1.0.5
+  '@next-static/image': ^0.0.10
   '@next/bundle-analyzer': 13.0.5
   '@next/font': 13.0.5
   '@prisma/client': ^4.7.0
@@ -76,6 +77,7 @@ specifiers:
 dependencies:
   '@hookform/resolvers': 2.9.10_react-hook-form@7.39.5
   '@next-auth/prisma-adapter': 1.0.5_shvya3vkjwvqcakop4qe7lit3y
+  '@next-static/image': 0.0.10
   '@next/bundle-analyzer': 13.0.5
   '@next/font': 13.0.5
   '@prisma/client': 4.7.0_prisma@4.7.0
@@ -748,6 +750,10 @@ packages:
     dependencies:
       '@prisma/client': 4.7.0_prisma@4.7.0
       next-auth: 4.17.0_2xoejpawkzgot77rbv5mbik6ve
+    dev: false
+
+  /@next-static/image/0.0.10:
+    resolution: {integrity: sha512-2j2RDnbf+vw1nwdbm3xYp6157POLlk6UcfNUBm742y+WME0+1514lHUD9S8W7Qqg8/7CKGzDNVwioIzaud6ehA==}
     dev: false
 
   /@next/bundle-analyzer/13.0.5:

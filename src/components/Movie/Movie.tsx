@@ -1,7 +1,7 @@
 import * as React from 'react'
+import Image from '@next-static/image'
 import cs from 'clsx'
 import { motion } from 'framer-motion'
-import Image from 'next/image'
 import Link from 'next/link'
 import ms from 'pretty-ms'
 
@@ -118,6 +118,7 @@ export const Movie: React.FC<MovieProps> = React.memo(
             width={movie.backdropWidth!}
             height={movie.backdropHeight!}
             sizes='(max-width: 768px) 33vw, (max-width: 1200px) 25vw, 10vw'
+            unoptimized
           />
         )}
 
@@ -138,6 +139,7 @@ export const Movie: React.FC<MovieProps> = React.memo(
                   placeholder={movie.posterPlaceholderUrl ? 'blur' : 'empty'}
                   blurDataURL={movie.posterPlaceholderUrl || undefined}
                   priority={priority}
+                  unoptimized
                 />
               ) : (
                 <div className={cs(styles.poster, styles.emptyPoster)} />
@@ -260,6 +262,7 @@ export const Movie: React.FC<MovieProps> = React.memo(
                         sizes='96px'
                         width={imdbLogoImage.width}
                         height={imdbLogoImage.height}
+                        unoptimized
                       />
 
                       {imdbVotesApprox !== null && (

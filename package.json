@@ -25,6 +25,7 @@
   "dependencies": {
     "@hookform/resolvers": "^2.9.10",
     "@next-auth/prisma-adapter": "^1.0.5",
+    "@next-static/image": "^0.0.10",
     "@next/bundle-analyzer": "13.0.5",
     "@next/font": "13.0.5",
     "@prisma/client": "^4.7.0",

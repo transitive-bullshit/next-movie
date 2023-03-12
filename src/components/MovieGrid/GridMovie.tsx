@@ -1,7 +1,7 @@
 import * as React from 'react'
+import Image from '@next-static/image'
 import cs from 'clsx'
 import { motion } from 'framer-motion'
-import Image from 'next/image'
 
 import { ActiveLink } from '@/components/ActiveLink/ActiveLink'
 import { YouTubeButtonOverlay } from '@/components/YouTubeButton/YouTubeButtonOverlay'
@@ -32,6 +32,7 @@ export const GridMovie: React.FC<{
             sizes='(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw'
             placeholder={movie.posterPlaceholderUrl ? 'blur' : 'empty'}
             blurDataURL={movie.posterPlaceholderUrl || undefined}
+            unoptimized
           />
         ) : (
           <div className={cs(styles.poster, styles.emptyPoster)} />
