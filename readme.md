@@ -1,7 +1,5 @@
 <p align="center">
-  <a href="https://next-movie.transitivebullsh.it">
-    <img alt="Pick your next movie using Next.js 13" src="/public/social.jpg">
-  </a>
+  <img alt="Pick your next movie using Next.js 13" src="/public/social.jpg">
 </p>
 
 <p align="center">
@@ -29,8 +27,6 @@
 ## About
 
 Building a better app for finding great movies has been on my proverbial todo list for awhile. With Next.js 13's paradigm shift, I thought it'd be the perfect time to build it and open source my learnings along the way.
-
-[Check it out live here](https://next-movie.transitivebullsh.it).
 
 ## App Features
 
